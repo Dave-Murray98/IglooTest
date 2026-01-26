@@ -91,7 +91,7 @@ namespace NWH.DWP2.ShipController
 
         public float GetMass()
         {
-            Debug.Log("Submarine: returning mass: " + _mass + ", DepthInput = " + depthInput + ", maxBallastMass = " + maxBallastMass + ", ballastChangeSpeed = " + ballastChangeSpeed);
+            //Debug.Log("Submarine: returning mass: " + _mass + ", DepthInput = " + depthInput + ", maxBallastMass = " + maxBallastMass + ", ballastChangeSpeed = " + ballastChangeSpeed);
             return _mass;
         }
 
@@ -140,8 +140,8 @@ namespace NWH.DWP2.ShipController
             // DepthInput = InputProvider.CombinedInput<ShipInputProvider>
             //     (i => i.SubmarineDepth());
 
-            _mass -= DepthInput * maxBallastMass * ballastChangeSpeed * Time.fixedDeltaTime;
-            _mass = Mathf.Clamp(_mass, 0f, Mathf.Infinity);
+            _mass += DepthInput * maxBallastMass * ballastChangeSpeed * Time.fixedDeltaTime;
+            _mass = Mathf.Clamp(_mass, 0f, maxBallastMass);
 
             if (keepHorizontal)
             {

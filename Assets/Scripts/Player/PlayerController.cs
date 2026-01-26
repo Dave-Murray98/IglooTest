@@ -24,9 +24,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float maxThrottleInput = 1f;
     [SerializeField] private float maxSteeringInput = 1f;
     [SerializeField] private float maxBrake = 1f;
-    // [SerializeField] private float currentBallastMass;
-    // [SerializeField] private float maxBallastMass;
-    // [SerializeField] private float ballastChangeSpeed = 1f;
 
     [Header("Debug")]
     [SerializeField] private bool enableDebugLogs = false;
@@ -79,9 +76,7 @@ public class PlayerController : MonoBehaviour
 
         ApplyThrottleInputs();
         ApplySteeringInputs();
-
-        ApplySurfaceInput();
-        ApplyDiveInput();
+        ApplyDepthInput();
     }
 
     private void ApplyThrottleInputs()
@@ -101,48 +96,36 @@ public class PlayerController : MonoBehaviour
         // DWP2 uses Steering for left/right turning
         shipController.input.Steering = -currentSteeringInput;
     }
-
-    private void ApplySurfaceInput()
+    private void ApplyDepthInput()
     {
+        float newDepthInput = 0f;
 
-        // if (currentDiveInput)
-        // {
-        //     submarineController.DepthInput = 0f;
-        //     return;
-        // }
-
-        if (currentSurfaceInput)
-            submarineController.DepthInput = -1f;
-        else
-            submarineController.DepthInput = 0f;
-
-        // vcom.MarkDirty();
-
-        if (currentSurfaceInput)
+        // Check for conflicting inputs
+        if (currentSurfaceInput && currentDiveInput)
         {
-            DebugLog($"Applying surface input, submarineController.DepthInput: {submarineController.DepthInput}");
+            // Both pressed - maintain current depth (neutral)
+            newDepthInput = 0f;
         }
-    }
-
-    private void ApplyDiveInput()
-    {
-        // if (currentSurfaceInput)
-        // {
-        //     submarineController.DepthInput = 0f;
-        //     return;
-        // }
-
-        if (currentDiveInput)
-            submarineController.DepthInput = 1f;
-        else
-            submarineController.DepthInput = 0f;
-
-        // vcom.MarkDirty();
-
-        if (currentDiveInput)
+        else if (currentSurfaceInput)
         {
-            DebugLog($"Applying dive input, submarineController.DepthInput: {submarineController.DepthInput}");
+            // Surface only
+            newDepthInput = -1f;
         }
+        else if (currentDiveInput)
+        {
+            // Dive only
+            newDepthInput = 1f;
+        }
+        else
+        {
+            // Neither pressed - maintain current depth
+            newDepthInput = 0f;
+        }
+
+        submarineController.DepthInput = newDepthInput;
+        vcom.MarkDirty();
+
+
     }
 
     private void DebugLog(string message)

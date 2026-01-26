@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 5203c17df090c13449711c72384457e0
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 112000000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147990
+  packageName: Dynamic Water Physics 2
+  packageVersion: 14.1.0
+  assetPath: Packages/com.nwh.dynamicwaterphysics/Samples~/BaseSample/Scenes/Main
+    Demo/DWP2 Main Demo/LightingData.asset
+  uploadId: 829162

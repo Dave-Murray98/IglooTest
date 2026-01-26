@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: a024fdc95f8757c439c7d0c04a0ed55b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147990
+  packageName: Dynamic Water Physics 2
+  packageVersion: 14.1.0
+  assetPath: Packages/com.nwh.dynamicwaterphysics/Samples~/MultiplayerPUN2Sample/Runtime/PhotonMultiplayerShip.cs
+  uploadId: 829162

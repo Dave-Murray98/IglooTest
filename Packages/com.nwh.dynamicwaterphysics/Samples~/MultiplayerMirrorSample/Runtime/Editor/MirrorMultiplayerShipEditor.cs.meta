@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: dfd50dbbfe69c1b458c8766225f87bc1
+timeCreated: 1583238016
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147990
+  packageName: Dynamic Water Physics 2
+  packageVersion: 14.1.0
+  assetPath: Packages/com.nwh.dynamicwaterphysics/Samples~/MultiplayerMirrorSample/Runtime/Editor/MirrorMultiplayerShipEditor.cs
+  uploadId: 829162

@@ -1,0 +1,18 @@
+{
+    "name": "NWH.DWP2.Integration.LuxWater",
+    "rootNamespace": "",
+    "references": [
+        "GUID:3c674ba120e1980499b91f4dd6087d79",
+        "GUID:75ecb28acc33857438e533566abcb3be",
+        "GUID:c76e28da8ce572043b1fb2da95817e18"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

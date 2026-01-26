@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c0d9cb91c52c50b4dbc73db96a9b5f11
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147990
+  packageName: Dynamic Water Physics 2
+  packageVersion: 14.1.0
+  assetPath: Packages/com.nwh.dynamicwaterphysics/Samples~/UnityHDRPWaterIntegration/NWH.DWP2.Integration.UnityHDRPWater.asmdef
+  uploadId: 829162

@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: eb384c7cca2197b4e902f6b94022665a
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147990
+  packageName: Dynamic Water Physics 2
+  packageVersion: 14.1.0
+  assetPath: Assets/Plugins/NWH/Common/Editor/URPToBuiltInConverter.cs
+  uploadId: 829162

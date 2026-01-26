@@ -1,10 +1,10 @@
-﻿// // ╔════════════════════════════════════════════════════════════════╗
-// // ║    Copyright © 2025 NWH Coding d.o.o.  All rights reserved.    ║
-// // ║    Licensed under Unity Asset Store Terms of Service:          ║
-// // ║        https://unity.com/legal/as-terms                        ║
-// // ║    Use permitted only in compliance with the License.          ║
-// // ║    Distributed "AS IS", without warranty of any kind.          ║
-// // ╚════════════════════════════════════════════════════════════════╝
+﻿// ╔════════════════════════════════════════════════════════════════╗
+// ║    Copyright © 2025 NWH Coding d.o.o.  All rights reserved.    ║
+// ║    Licensed under Unity Asset Store Terms of Service:          ║
+// ║        https://unity.com/legal/as-terms                        ║
+// ║    Use permitted only in compliance with the License.          ║
+// ║    Distributed "AS IS", without warranty of any kind.          ║
+// ╚════════════════════════════════════════════════════════════════╝
 
 #region
 
@@ -33,8 +33,8 @@ namespace NWH.DWP2.DemoContent
             // instead of the default one.
 
             // Important. Without running Synchronize() WaterObject will not be registered by the WaterObjectManager and
-            // 
-            // the physics will not work. Just note that running Synchronize() can be 
+            // the physics will not work. Just note that running Synchronize() can be expensive, so call it only after
+            // all WaterObject setup is complete. 
         }
     }
 }

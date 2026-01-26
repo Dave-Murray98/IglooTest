@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: e02a7eb8fc8cb32448b91be36d3beaa3
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147990
+  packageName: Dynamic Water Physics 2
+  packageVersion: 14.1.0
+  assetPath: Packages/com.nwh.dynamicwaterphysics/Samples~/MultiplayerPUN2Sample/NWH.DWP2.Mutliplayer.PUN2.asmdef
+  uploadId: 829162

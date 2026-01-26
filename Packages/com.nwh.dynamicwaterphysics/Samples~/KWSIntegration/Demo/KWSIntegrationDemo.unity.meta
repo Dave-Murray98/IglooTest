@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c59d34e1949f1ad4f828ceafcffe18c0
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147990
+  packageName: Dynamic Water Physics 2
+  packageVersion: 14.1.0
+  assetPath: Packages/com.nwh.dynamicwaterphysics/Samples~/KWSIntegration/Demo/KWSIntegrationDemo.unity
+  uploadId: 829162

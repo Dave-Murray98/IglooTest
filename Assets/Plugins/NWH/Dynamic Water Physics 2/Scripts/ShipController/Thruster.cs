@@ -1,10 +1,10 @@
-﻿// // ╔════════════════════════════════════════════════════════════════╗
-// // ║    Copyright © 2025 NWH Coding d.o.o.  All rights reserved.    ║
-// // ║    Licensed under Unity Asset Store Terms of Service:          ║
-// // ║        https://unity.com/legal/as-terms                        ║
-// // ║    Use permitted only in compliance with the License.          ║
-// // ║    Distributed "AS IS", without warranty of any kind.          ║
-// // ╚════════════════════════════════════════════════════════════════╝
+﻿// ╔════════════════════════════════════════════════════════════════╗
+// ║    Copyright © 2025 NWH Coding d.o.o.  All rights reserved.    ║
+// ║    Licensed under Unity Asset Store Terms of Service:          ║
+// ║        https://unity.com/legal/as-terms                        ║
+// ║    Use permitted only in compliance with the License.          ║
+// ║    Distributed "AS IS", without warranty of any kind.          ║
+// ╚════════════════════════════════════════════════════════════════╝
 
 #region
 
@@ -126,8 +126,8 @@ namespace NWH.DWP2.ShipController
 
         public virtual void Update()
         {
-            float newThurst = maxThrust * -Input;
-            thrust = Mathf.MoveTowards(thrust, newThurst, spinUpSpeed * maxThrust * Time.fixedDeltaTime);
+            float newThrust = maxThrust * -Input;
+            thrust = Mathf.MoveTowards(thrust, newThrust, spinUpSpeed * maxThrust * Time.fixedDeltaTime);
             sc.vehicleRigidbody.AddForceAtPosition(thrust * sc.transform.right, WorldPosition);
 
             if (propellerTransform != null)

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 320feda49cc531a43ae8a582349b617c
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147990
+  packageName: Dynamic Water Physics 2
+  packageVersion: 14.1.0
+  assetPath: Packages/com.nwh.dynamicwaterphysics/Samples~/StylizedWater3Integration/NWH.DWP2.Integration.StylizedWater3.asmdef
+  uploadId: 829162

@@ -1,10 +1,10 @@
-﻿// // ╔════════════════════════════════════════════════════════════════╗
-// // ║    Copyright © 2025 NWH Coding d.o.o.  All rights reserved.    ║
-// // ║    Licensed under Unity Asset Store Terms of Service:          ║
-// // ║        https://unity.com/legal/as-terms                        ║
-// // ║    Use permitted only in compliance with the License.          ║
-// // ║    Distributed "AS IS", without warranty of any kind.          ║
-// // ╚════════════════════════════════════════════════════════════════╝
+﻿// ╔════════════════════════════════════════════════════════════════╗
+// ║    Copyright © 2025 NWH Coding d.o.o.  All rights reserved.    ║
+// ║    Licensed under Unity Asset Store Terms of Service:          ║
+// ║        https://unity.com/legal/as-terms                        ║
+// ║    Use permitted only in compliance with the License.          ║
+// ║    Distributed "AS IS", without warranty of any kind.          ║
+// ╚════════════════════════════════════════════════════════════════╝
 
 #region
 
@@ -222,3 +222,95 @@ namespace NWH.DWP2.WaterData
         }
     }
 }
+
+
+#if UNITY_EDITOR
+
+namespace NWH.DWP2.WaterData
+{
+    using NWH.NUI;
+    using UnityEditor;
+
+    /// <summary>
+    /// Base editor for WaterDataProvider implementations.
+    /// Draws common UI elements (capabilities, trigger volume) and provides virtual methods for derived editors.
+    /// </summary>
+    public class WaterDataProviderEditor : DWP2NUIEditor
+    {
+        public override bool OnInspectorNUI()
+        {
+            if (!base.OnInspectorNUI()) return false;
+
+            var provider = (WaterDataProvider)target;
+
+            DrawStatus(provider);
+            DrawTriggerVolume(provider);
+            DrawCapabilities(provider);
+            DrawSettings(provider);
+
+            drawer.EndEditor(this);
+            return true;
+        }
+
+        /// <summary>
+        /// Override to draw provider-specific status information.
+        /// </summary>
+        protected virtual void DrawStatus(WaterDataProvider provider)
+        {
+        }
+
+        /// <summary>
+        /// Draws the trigger volume information.
+        /// </summary>
+        protected virtual void DrawTriggerVolume(WaterDataProvider provider)
+        {
+            drawer.BeginSubsection("Trigger Volume");
+            var collider = provider.GetComponent<UnityEngine.Collider>();
+            if (collider != null)
+            {
+                string colliderType = collider.GetType().Name;
+                string size = collider switch
+                {
+                    UnityEngine.BoxCollider box => $"{box.size.x:F1} x {box.size.y:F1} x {box.size.z:F1}",
+                    UnityEngine.SphereCollider sphere => $"Radius: {sphere.radius:F1}",
+                    UnityEngine.CapsuleCollider capsule => $"Radius: {capsule.radius:F1}, Height: {capsule.height:F1}",
+                    UnityEngine.MeshCollider mesh => mesh.sharedMesh != null ? mesh.sharedMesh.name : "No mesh",
+                    _ => ""
+                };
+                drawer.Info($"{colliderType}{(size.Length > 0 ? $" ({size})" : "")}");
+                if (!collider.isTrigger)
+                {
+                    drawer.Info("Collider is not set as trigger!", MessageType.Warning);
+                }
+            }
+            else
+            {
+                drawer.Info("No collider found. A large sphere trigger will be auto-created at runtime.", MessageType.Warning);
+            }
+            drawer.EndSubsection();
+        }
+
+        /// <summary>
+        /// Draws the capabilities section showing supported query types.
+        /// </summary>
+        protected virtual void DrawCapabilities(WaterDataProvider provider)
+        {
+            drawer.BeginSubsection("Capabilities");
+            drawer.Label($"Water Height: {(provider.SupportsWaterHeightQueries() ? "Yes" : "No")}");
+            drawer.Label($"Water Normal: {(provider.SupportsWaterNormalQueries() ? "Yes" : "No")}");
+            drawer.Label($"Water Flow: {(provider.SupportsWaterFlowQueries() ? "Yes" : "No")}");
+            drawer.EndSubsection();
+        }
+
+        /// <summary>
+        /// Override to draw provider-specific settings.
+        /// </summary>
+        protected virtual void DrawSettings(WaterDataProvider provider)
+        {
+        }
+
+        public override bool UseDefaultMargins() => false;
+    }
+}
+
+#endif

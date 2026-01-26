@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 8a68d6978d5471c4a9cf8c89ae80fa75
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147990
+  packageName: Dynamic Water Physics 2
+  packageVersion: 14.1.0
+  assetPath: Packages/com.nwh.dynamicwaterphysics/Samples~/LuxWaterIntegration/NWH.DWP2.Integration.LuxWater.asmdef
+  uploadId: 829162

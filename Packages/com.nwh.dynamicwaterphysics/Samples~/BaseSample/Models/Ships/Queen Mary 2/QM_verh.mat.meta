@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 8bc874a7470e5c843a4b34c533d1871a
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147990
+  packageName: Dynamic Water Physics 2
+  packageVersion: 14.1.0
+  assetPath: Packages/com.nwh.dynamicwaterphysics/Samples~/BaseSample/Models/Ships/Queen
+    Mary 2/QM_verh.mat
+  uploadId: 829162

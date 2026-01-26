@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 1c6751feb5c1be34da461a32a0a13a54
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147990
+  packageName: Dynamic Water Physics 2
+  packageVersion: 14.1.0
+  assetPath: Packages/com.nwh.dynamicwaterphysics/Samples~/MultiplayerPUN2Sample/Prefabs/PhotonManager.prefab
+  uploadId: 829162

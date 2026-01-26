@@ -1,0 +1,18 @@
+{
+    "name": "NWH.DWP2.Integration.KWS",
+    "rootNamespace": "",
+    "references": [
+        "GUID:19db8fea26d333b429867702a7138f47",
+        "GUID:75ecb28acc33857438e533566abcb3be",
+        "GUID:c76e28da8ce572043b1fb2da95817e18"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

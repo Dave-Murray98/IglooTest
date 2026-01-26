@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: 83d072e4f4a070841a10f0ece3ab7274
+timeCreated: 1583238016
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147990
+  packageName: Dynamic Water Physics 2
+  packageVersion: 14.1.0
+  assetPath: Packages/com.nwh.dynamicwaterphysics/Samples~/MultiplayerPUN2Sample/Runtime/Editor/PhotonMultiplayerShipEditor.cs
+  uploadId: 829162

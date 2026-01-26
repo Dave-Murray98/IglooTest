@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 0094d657fd383e248bab577c42dee924
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147990
+  packageName: Dynamic Water Physics 2
+  packageVersion: 14.1.0
+  assetPath: Packages/com.nwh.dynamicwaterphysics/Samples~/KWSIntegration/NWH.DWP2.Integration.KWS.asmdef
+  uploadId: 829162

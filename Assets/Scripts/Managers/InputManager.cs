@@ -25,37 +25,41 @@ public class InputManager : MonoBehaviour, IManager, IManagerState
     [Header("UI Actions")]
     private InputAction pauseAction;
 
-    [Header("Core Movement Actions")]
+    [Header("Pilot Actions")]
     private InputAction moveAction;
     private InputAction lookAction;
-
+    private InputAction surfaceAction;
+    private InputAction diveAction;
     #endregion
 
     #region Public Properties
     public Vector2 MovementInput { get; private set; }
     public Vector2 LookInput { get; private set; }
 
+    public bool SurfacePressed { get; private set; }
+    [ShowInInspector, ReadOnly] public bool SurfaceHeld { get; private set; }
+    public bool DivePressed { get; private set; }
+    [ShowInInspector, ReadOnly] public bool DiveHeld { get; private set; }
+
     #endregion
 
-    #region Events
-
-
-    // Gameplay action events (primary, secondary, reload)
-    public event Action OnPrimaryActionPressed;
-    public event Action OnPrimaryActionReleased;
-    public event Action OnSecondaryActionPressed;
-    public event Action OnSecondaryActionReleased;
+    #region Events 
     public static event Action<InputManager> OnInputManagerReady;
+
+    public event Action OnSurfacePressed;
+    public event Action OnSurfaceReleased;
+    public event Action OnDivePressed;
+    public event Action OnDiveReleased;
 
     #endregion
 
     // Action maps
     private InputActionMap uiActionMap;
-    private InputActionMap coreMovementActionMap;
+    private InputActionMap pilotActionMap;
 
     // State tracking
     private bool gameplayInputEnabled = true;
-    private bool isCleanedUp = false;
+    [ShowInInspector, ReadOnly] private bool isCleanedUp = false;
     private bool isFullyInitialized = false;
 
     // IManagerState implementation
@@ -112,7 +116,7 @@ public class InputManager : MonoBehaviour, IManager, IManagerState
 
         // Get action maps
         uiActionMap = inputActions.FindActionMap("UI");
-        coreMovementActionMap = inputActions.FindActionMap("CoreMovement");
+        pilotActionMap = inputActions.FindActionMap("Pilot");
 
         // Validate critical action maps exist
         if (uiActionMap == null)
@@ -121,7 +125,7 @@ public class InputManager : MonoBehaviour, IManager, IManagerState
             return;
         }
 
-        if (coreMovementActionMap == null)
+        if (pilotActionMap == null)
         {
             Debug.LogError("[InputManager] Core movement ActionMaps not found! Movement won't work!");
             return;
@@ -129,7 +133,7 @@ public class InputManager : MonoBehaviour, IManager, IManagerState
 
         // Setup actions
         SetupUIInputActions();
-        SetupCoreMovementInputActions();
+        SetupPilotInputActions();
 
         // Subscribe to events
         SubscribeToInputActions();
@@ -168,9 +172,9 @@ public class InputManager : MonoBehaviour, IManager, IManagerState
     /// </summary>
     private void EnableGameplayActionMaps()
     {
-        if (coreMovementActionMap != null)
+        if (pilotActionMap != null)
         {
-            coreMovementActionMap.Enable();
+            pilotActionMap.Enable();
             DebugLog("[InputManager] Core Movement ActionMap enabled");
         }
     }
@@ -180,7 +184,7 @@ public class InputManager : MonoBehaviour, IManager, IManagerState
     /// </summary>
     private void DisableGameplayActionMaps()
     {
-        coreMovementActionMap?.Disable();
+        pilotActionMap?.Disable();
         DebugLog("[InputManager] All gameplay ActionMaps disabled");
     }
 
@@ -306,6 +310,12 @@ public class InputManager : MonoBehaviour, IManager, IManagerState
         MovementInput = Vector2.zero;
         LookInput = Vector2.zero;
 
+        SurfacePressed = false;
+        SurfaceHeld = false;
+
+        DivePressed = false;
+        DiveHeld = false;
+
         DebugLog("All input states cleared");
     }
 
@@ -363,6 +373,7 @@ public class InputManager : MonoBehaviour, IManager, IManagerState
         // Disable and clean up input actions
         DisableAllInputActions();
         UnsubscribeFromInputActions();
+        UnsubscribeFromPilotInputActions();
     }
 
     #endregion
@@ -379,7 +390,7 @@ public class InputManager : MonoBehaviour, IManager, IManagerState
         gameplayInputEnabled = false;
 
         // Disable gameplay ActionMaps but KEEP UI enabled
-        coreMovementActionMap?.Disable();
+        pilotActionMap?.Disable();
 
         // UI ActionMap stays enabled for pause functionality
         DebugLog("[InputManager] Gameplay input disabled, UI remains active");
@@ -412,7 +423,7 @@ public class InputManager : MonoBehaviour, IManager, IManagerState
     private void DisableAllInputActions()
     {
         uiActionMap?.Disable();
-        coreMovementActionMap?.Disable();
+        pilotActionMap?.Disable();
     }
 
     #endregion
@@ -429,10 +440,12 @@ public class InputManager : MonoBehaviour, IManager, IManagerState
 
     }
 
-    private void SetupCoreMovementInputActions()
+    private void SetupPilotInputActions()
     {
-        moveAction = coreMovementActionMap.FindAction("Move");
-        lookAction = coreMovementActionMap.FindAction("Look");
+        moveAction = pilotActionMap.FindAction("Move");
+        lookAction = pilotActionMap.FindAction("Look");
+        surfaceAction = pilotActionMap.FindAction("Surface");
+        diveAction = pilotActionMap.FindAction("Dive");
     }
 
 
@@ -442,11 +455,11 @@ public class InputManager : MonoBehaviour, IManager, IManagerState
 
     private void ClearAllEvents()
     {
-        // FIXED: Clear all events properly
-        OnPrimaryActionPressed = null;
-        OnPrimaryActionReleased = null;
-        OnSecondaryActionPressed = null;
-        OnSecondaryActionReleased = null;
+        // Clear all events properly
+        OnSurfacePressed = null;
+        OnSurfaceReleased = null;
+        OnDivePressed = null;
+        OnDiveReleased = null;
     }
 
     #endregion
@@ -456,6 +469,35 @@ public class InputManager : MonoBehaviour, IManager, IManagerState
     private void SubscribeToInputActions()
     {
         SubscribeToUIInputActions();
+        SubscribeToPilotInputActions();
+    }
+
+    private void SubscribeToPilotInputActions()
+    {
+        if (surfaceAction != null)
+        {
+            surfaceAction.performed += OnSurfacePerformed;
+            surfaceAction.canceled += OnSurfaceCanceled;
+        }
+        if (diveAction != null)
+        {
+            diveAction.performed += OnDivePerformed;
+            diveAction.canceled += OnDiveCanceled;
+        }
+    }
+
+    private void UnsubscribeFromPilotInputActions()
+    {
+        if (surfaceAction != null)
+        {
+            surfaceAction.performed -= OnSurfacePerformed;
+            surfaceAction.canceled -= OnSurfaceCanceled;
+        }
+        if (diveAction != null)
+        {
+            diveAction.performed -= OnDivePerformed;
+            diveAction.canceled -= OnDiveCanceled;
+        }
     }
 
     private void SubscribeToUIInputActions()
@@ -465,7 +507,6 @@ public class InputManager : MonoBehaviour, IManager, IManagerState
             pauseAction.performed += OnPausePerformed;
         }
     }
-
 
     private void UnsubscribeFromInputActions()
     {
@@ -499,6 +540,33 @@ public class InputManager : MonoBehaviour, IManager, IManagerState
         }
     }
 
+    private void OnSurfacePerformed(InputAction.CallbackContext context)
+    {
+        if (isCleanedUp) return;
+        SurfacePressed = true;
+        OnSurfacePressed?.Invoke();
+        DebugLog("[InputManager] Surface input detected!");
+    }
+
+    private void OnSurfaceCanceled(InputAction.CallbackContext context)
+    {
+        if (isCleanedUp) return;
+        OnSurfaceReleased?.Invoke();
+    }
+
+    private void OnDivePerformed(InputAction.CallbackContext context)
+    {
+        if (isCleanedUp) return;
+        DivePressed = true;
+        OnDivePressed?.Invoke();
+        DebugLog("[InputManager] Dive input detected!");
+    }
+
+    private void OnDiveCanceled(InputAction.CallbackContext context)
+    {
+        if (isCleanedUp) return;
+        OnDiveReleased?.Invoke();
+    }
     #endregion
 
     #region Update Loop
@@ -508,7 +576,7 @@ public class InputManager : MonoBehaviour, IManager, IManagerState
         if (isCleanedUp) return;
 
         // Update input values
-        if (coreMovementActionMap?.enabled == true)
+        if (pilotActionMap?.enabled == true)
             UpdateCoreMovementInputValues();
 
         UpdateContextualInputValues();
@@ -523,6 +591,13 @@ public class InputManager : MonoBehaviour, IManager, IManagerState
     private void UpdateContextualInputValues()
     {
         // Update gameplay action held states
+        SurfaceHeld = surfaceAction?.IsPressed() ?? false;
+        DiveHeld = diveAction?.IsPressed() ?? false;
+        //DebugLog("[InputManager] Updating contextual input values, SurfaceHeld: " + SurfaceHeld + ", DiveHeld: " + DiveHeld);
+
+        // Reset pressed states after they've been read
+        if (SurfacePressed) SurfacePressed = false;
+        if (DivePressed) DivePressed = false;
     }
 
     #endregion

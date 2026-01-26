@@ -1,0 +1,20 @@
+{
+    "name": "CrestDWP2Asmdef",
+    "rootNamespace": "",
+    "references": [
+        "GUID:75ecb28acc33857438e533566abcb3be",
+        "GUID:7c347618730f5467f86a58f333ce21df",
+        "GUID:0bb22f2c66b84475fb905331bb617aa9",
+        "GUID:056ff2a5b2f124d468c6655552acdca5",
+        "GUID:c76e28da8ce572043b1fb2da95817e18"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

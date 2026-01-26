@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 1069800756bf31043a1ee51580e4231b
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147990
+  packageName: Dynamic Water Physics 2
+  packageVersion: 14.1.0
+  assetPath: Packages/com.nwh.dynamicwaterphysics/Samples~/CrestIntegration/NWH.DWP2.Integration.Crest.asmdef
+  uploadId: 829162

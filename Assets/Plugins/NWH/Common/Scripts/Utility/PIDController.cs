@@ -1,10 +1,10 @@
-﻿// // ╔════════════════════════════════════════════════════════════════╗
-// // ║    Copyright © 2025 NWH Coding d.o.o.  All rights reserved.    ║
-// // ║    Licensed under Unity Asset Store Terms of Service:          ║
-// // ║        https://unity.com/legal/as-terms                        ║
-// // ║    Use permitted only in compliance with the License.          ║
-// // ║    Distributed "AS IS", without warranty of any kind.          ║
-// // ╚════════════════════════════════════════════════════════════════╝
+﻿// ╔════════════════════════════════════════════════════════════════╗
+// ║    Copyright © 2025 NWH Coding d.o.o.  All rights reserved.    ║
+// ║    Licensed under Unity Asset Store Terms of Service:          ║
+// ║        https://unity.com/legal/as-terms                        ║
+// ║    Use permitted only in compliance with the License.          ║
+// ║    Distributed "AS IS", without warranty of any kind.          ║
+// ╚════════════════════════════════════════════════════════════════╝
 
 #region
 
@@ -143,7 +143,7 @@ namespace NWH.Common.Utility
             float dInput         = _processVariable - ProcessVariableLast;
             float derivativeTerm = GainDerivative * (dInput / timeSinceLastUpdate);
 
-            // proportional term calcullation
+            // proportional term calculation
             float proportionalTerm = GainProportional * error;
 
             float output = proportionalTerm + IntegralTerm - derivativeTerm;

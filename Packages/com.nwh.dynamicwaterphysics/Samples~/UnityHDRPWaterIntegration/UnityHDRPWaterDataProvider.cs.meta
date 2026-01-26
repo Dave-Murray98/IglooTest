@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 21111399ade0fb244b0fea81f985f315
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147990
+  packageName: Dynamic Water Physics 2
+  packageVersion: 14.1.0
+  assetPath: Packages/com.nwh.dynamicwaterphysics/Samples~/UnityHDRPWaterIntegration/UnityHDRPWaterDataProvider.cs
+  uploadId: 829162

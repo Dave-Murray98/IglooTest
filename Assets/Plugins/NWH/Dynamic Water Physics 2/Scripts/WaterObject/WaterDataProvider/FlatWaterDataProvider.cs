@@ -1,10 +1,10 @@
-﻿// // ╔════════════════════════════════════════════════════════════════╗
-// // ║    Copyright © 2025 NWH Coding d.o.o.  All rights reserved.    ║
-// // ║    Licensed under Unity Asset Store Terms of Service:          ║
-// // ║        https://unity.com/legal/as-terms                        ║
-// // ║    Use permitted only in compliance with the License.          ║
-// // ║    Distributed "AS IS", without warranty of any kind.          ║
-// // ╚════════════════════════════════════════════════════════════════╝
+﻿// ╔════════════════════════════════════════════════════════════════╗
+// ║    Copyright © 2025 NWH Coding d.o.o.  All rights reserved.    ║
+// ║    Licensed under Unity Asset Store Terms of Service:          ║
+// ║        https://unity.com/legal/as-terms                        ║
+// ║    Use permitted only in compliance with the License.          ║
+// ║    Distributed "AS IS", without warranty of any kind.          ║
+// ╚════════════════════════════════════════════════════════════════╝
 
 #region
 
@@ -18,8 +18,8 @@ namespace NWH.DWP2.WaterData
 {
     /// <summary>
     /// Simple water data provider for flat, static water surfaces.
-    /// Returns a constant water height based on the transform's Y position.
-    /// Does not support waves, normals, or flow.
+    /// Uses a constant water height based on the transform's Y position.
+    /// Does not support water height queries, waves, normals, or flow.
     /// </summary>
     public class FlatWaterDataProvider : WaterDataProvider
     {
@@ -48,3 +48,25 @@ namespace NWH.DWP2.WaterData
         }
     }
 }
+
+
+#if UNITY_EDITOR
+
+namespace NWH.DWP2.WaterData
+{
+    using UnityEditor;
+
+    [CustomEditor(typeof(FlatWaterDataProvider))]
+    [CanEditMultipleObjects]
+    public class FlatWaterDataProviderEditor : WaterDataProviderEditor
+    {
+        protected override void DrawStatus(WaterDataProvider provider)
+        {
+            drawer.BeginSubsection("Status");
+            drawer.Info($"Water height: {provider.transform.position.y:F2}m (from transform Y position)");
+            drawer.EndSubsection();
+        }
+    }
+}
+
+#endif

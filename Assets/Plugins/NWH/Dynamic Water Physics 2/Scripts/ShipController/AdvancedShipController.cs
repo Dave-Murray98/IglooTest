@@ -1,10 +1,10 @@
-// // ╔════════════════════════════════════════════════════════════════╗
-// // ║    Copyright © 2025 NWH Coding d.o.o.  All rights reserved.    ║
-// // ║    Licensed under Unity Asset Store Terms of Service:          ║
-// // ║        https://unity.com/legal/as-terms                        ║
-// // ║    Use permitted only in compliance with the License.          ║
-// // ║    Distributed "AS IS", without warranty of any kind.          ║
-// // ╚════════════════════════════════════════════════════════════════╝
+// ╔════════════════════════════════════════════════════════════════╗
+// ║    Copyright © 2025 NWH Coding d.o.o.  All rights reserved.    ║
+// ║    Licensed under Unity Asset Store Terms of Service:          ║
+// ║        https://unity.com/legal/as-terms                        ║
+// ║    Use permitted only in compliance with the License.          ║
+// ║    Distributed "AS IS", without warranty of any kind.          ║
+// ╚════════════════════════════════════════════════════════════════╝
 
 #region
 
@@ -247,8 +247,6 @@ namespace NWH.DWP2.ShipController
 
         private void OnDrawGizmos()
         {
-            Start();
-
             foreach (Rudder rudder in rudders)
             {
                 Gizmos.color = Color.magenta;
@@ -345,12 +343,6 @@ namespace NWH.DWP2.ShipController
             fwd   *= Mathf.Sign(transform.up.y);
             Vector3 right = Vector3.Cross(Vector3.up, fwd).normalized;
             return Vector3.Angle(right, transform.right) * Mathf.Sign(transform.right.y);
-        }
-
-
-        private float WrapAngle(float angle)
-        {
-            return angle > 180 ? angle - 360 : angle;
         }
     }
 }

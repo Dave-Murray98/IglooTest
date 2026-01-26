@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ec30cdf6ace975c42bad81753883e831
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147990
+  packageName: Dynamic Water Physics 2
+  packageVersion: 14.1.0
+  assetPath: Packages/com.nwh.dynamicwaterphysics/Samples~/BaseSample/Models/Harbor/Lighthouse/SR_White.mat
+  uploadId: 829162

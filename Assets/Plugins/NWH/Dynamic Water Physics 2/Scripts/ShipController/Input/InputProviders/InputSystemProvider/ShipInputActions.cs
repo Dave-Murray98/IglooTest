@@ -449,7 +449,7 @@ namespace NWH.DWP2.ShipController
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Keybord"",
+                    ""name"": ""Keyboard"",
                     ""id"": ""425eb718-41ba-4046-b5e1-c0765b18a0d6"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",

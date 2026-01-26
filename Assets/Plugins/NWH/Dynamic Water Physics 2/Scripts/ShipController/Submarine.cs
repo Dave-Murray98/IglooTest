@@ -1,10 +1,10 @@
-// // ╔════════════════════════════════════════════════════════════════╗
-// // ║    Copyright © 2025 NWH Coding d.o.o.  All rights reserved.    ║
-// // ║    Licensed under Unity Asset Store Terms of Service:          ║
-// // ║        https://unity.com/legal/as-terms                        ║
-// // ║    Use permitted only in compliance with the License.          ║
-// // ║    Distributed "AS IS", without warranty of any kind.          ║
-// // ╚════════════════════════════════════════════════════════════════╝
+// ╔════════════════════════════════════════════════════════════════╗
+// ║    Copyright © 2025 NWH Coding d.o.o.  All rights reserved.    ║
+// ║    Licensed under Unity Asset Store Terms of Service:          ║
+// ║        https://unity.com/legal/as-terms                        ║
+// ║    Use permitted only in compliance with the License.          ║
+// ║    Distributed "AS IS", without warranty of any kind.          ║
+// ╚════════════════════════════════════════════════════════════════╝
 
 #region
 
@@ -66,13 +66,13 @@ namespace NWH.DWP2.ShipController
         /// <summary>
         /// Reference to the WaterObject used for water level detection.
         /// </summary>
-        public  WaterObject ReferenceWaterObject;
-        private Vector3     _centerOfMass;
+        public WaterObject ReferenceWaterObject;
+        private Vector3 _centerOfMass;
 
         private float _mass;
 
         private VariableCenterOfMass _vcom;
-        private float                _zOffset;
+        private float _zOffset;
 
         [HideInInspector]
         [SerializeField]
@@ -91,6 +91,7 @@ namespace NWH.DWP2.ShipController
 
         public float GetMass()
         {
+            Debug.Log("Submarine: returning mass: " + _mass + ", DepthInput = " + depthInput + ", maxBallastMass = " + maxBallastMass + ", ballastChangeSpeed = " + ballastChangeSpeed);
             return _mass;
         }
 
@@ -126,8 +127,8 @@ namespace NWH.DWP2.ShipController
                     "of DWP2 replace CenterOfMass [deprecated] script with VariableCenterOfMass [new] script.");
             }
 
-            _vcom.useMassAffectors       = true;
-            _vcom.useDefaultMass         = false;
+            _vcom.useMassAffectors = true;
+            _vcom.useDefaultMass = false;
             _vcom.useDefaultCenterOfMass = false;
 
             Debug.Assert(ReferenceWaterObject != null, "ReferenceWaterObject not set.");
@@ -136,11 +137,11 @@ namespace NWH.DWP2.ShipController
 
         private void FixedUpdate()
         {
-            DepthInput = InputProvider.CombinedInput<ShipInputProvider>
-                (i => i.SubmarineDepth());
+            // DepthInput = InputProvider.CombinedInput<ShipInputProvider>
+            //     (i => i.SubmarineDepth());
 
             _mass -= DepthInput * maxBallastMass * ballastChangeSpeed * Time.fixedDeltaTime;
-            _mass =  Mathf.Clamp(_mass, 0f, Mathf.Infinity);
+            _mass = Mathf.Clamp(_mass, 0f, Mathf.Infinity);
 
             if (keepHorizontal)
             {

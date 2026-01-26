@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 29b0f1ca97ff41e41acdd578ca34e14e
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147990
+  packageName: Dynamic Water Physics 2
+  packageVersion: 14.1.0
+  assetPath: Packages/com.nwh.dynamicwaterphysics/Samples~/BaseSample/Prefabs/Effects/WaterSplashEffect.prefab
+  uploadId: 829162

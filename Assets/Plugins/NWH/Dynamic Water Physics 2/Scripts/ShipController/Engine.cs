@@ -1,10 +1,10 @@
-// // ╔════════════════════════════════════════════════════════════════╗
-// // ║    Copyright © 2025 NWH Coding d.o.o.  All rights reserved.    ║
-// // ║    Licensed under Unity Asset Store Terms of Service:          ║
-// // ║        https://unity.com/legal/as-terms                        ║
-// // ║    Use permitted only in compliance with the License.          ║
-// // ║    Distributed "AS IS", without warranty of any kind.          ║
-// // ╚════════════════════════════════════════════════════════════════╝
+// ╔════════════════════════════════════════════════════════════════╗
+// ║    Copyright © 2025 NWH Coding d.o.o.  All rights reserved.    ║
+// ║    Licensed under Unity Asset Store Terms of Service:          ║
+// ║        https://unity.com/legal/as-terms                        ║
+// ║    Use permitted only in compliance with the License.          ║
+// ║    Distributed "AS IS", without warranty of any kind.          ║
+// ╚════════════════════════════════════════════════════════════════╝
 
 #region
 
@@ -82,7 +82,7 @@ namespace NWH.DWP2.ShipController
         /// Ship speed in m/s at which the propeller thrust drops to zero due to water flow matching propeller speed.
         /// Used with thrustCurve to determine thrust efficiency at different ship speeds.
         /// </summary>
-        [Tooltip("Ship peed at which propeller will reach it's maximum rotational speed.")]
+        [Tooltip("Ship speed at which propeller will reach its maximum rotational speed.")]
         public float maxSpeed = 20f;
 
         /// <summary>
@@ -406,7 +406,7 @@ namespace NWH.DWP2.ShipController
             }
             else if (_engineState == State.Stopping)
             {
-                if (Time.realtimeSinceStartup > _stopTime + startDuration)
+                if (Time.realtimeSinceStartup > _stopTime + stopDuration)
                 {
                     _engineState = State.Off;
                 }

@@ -1,0 +1,20 @@
+{
+    "name": "NWH.DWP2.Multiplayer.PUN2",
+    "rootNamespace": "",
+    "references": [
+        "GUID:57c32fc907df0f54e8e6e8f0d2488336",
+        "GUID:75ecb28acc33857438e533566abcb3be",
+        "GUID:831409e8f9d13b5479a3baef9822ad34",
+        "GUID:3e2671f630827a94aa2c39ff6257495a",
+        "NWH.Common"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

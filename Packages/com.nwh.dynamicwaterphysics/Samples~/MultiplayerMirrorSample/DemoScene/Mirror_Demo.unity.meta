@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ab6d164d2440ecd49a05675ec08a5abf
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147990
+  packageName: Dynamic Water Physics 2
+  packageVersion: 14.1.0
+  assetPath: Packages/com.nwh.dynamicwaterphysics/Samples~/MultiplayerMirrorSample/DemoScene/Mirror_Demo.unity
+  uploadId: 829162

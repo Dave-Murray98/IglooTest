@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f83bc006152b9c341bf7c15971eec407
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147990
+  packageName: Dynamic Water Physics 2
+  packageVersion: 14.1.0
+  assetPath: Packages/com.nwh.dynamicwaterphysics/Samples~/MultiplayerPUN2Sample/Demo
+    Scene/PUN2_Demo.unity
+  uploadId: 829162

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 4024694a8eb78ec4887a68873cb904fc
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147990
+  packageName: Dynamic Water Physics 2
+  packageVersion: 14.1.0
+  assetPath: Assets/Plugins/NWH/Common/Editor/NWH.Common.Editor.asmdef
+  uploadId: 829162

@@ -8,9 +8,11 @@ Shared utilities and components used across all NWH packages.
 
 ## Samples
 
-Import Common Base Sample via **Package Manager > In Project > NWH Common Package > Samples**.
+Import **Common Base Sample** via **Package Manager > In Project > NWH Common Package > Samples**.
 
-This sample is required by other NWH package samples.
+**IMPORTANT**: This sample is **required by all other NWH package samples** to function properly.
+
+**Note**: Samples are found in the Package Manager under the **"In Project"** category in the left sidebar, NOT under "My Assets" or other categories.
 
 ## Requirements
 

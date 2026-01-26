@@ -9,9 +9,16 @@ Water-object interaction simulator with mesh-based buoyancy and hydrodynamics.
 
 ## Samples
 
+### Prerequisites
+Before importing NWH Dynamic Water Physics 2 samples, you **must** first import:
+- **NWH Common Package > Common Base Sample** (required for all NWH package samples)
+
+### Importing Samples
 Import samples via **Package Manager > In Project > NWH Dynamic Water Physics 2 > Samples**.
 
-Base Sample is required before importing other samples. Water integration samples are available for KWS, Crest, Stylized Water 3, R.A.M, Lux Water, and Unity HDRP Water.
+**Note**: Samples are found in the Package Manager under the **"In Project"** category in the left sidebar, NOT under "My Assets" or other categories.
+
+**NWH Dynamic Water Physics 2 Base Sample** is required before importing other Dynamic Water Physics samples (Multiplayer, water integration samples). Water integration samples are available for KWS, Crest, Stylized Water 3, R.A.M, Lux Water, and Unity HDRP Water.
 
 ## Requirements
 

@@ -1,10 +1,10 @@
-// // ╔════════════════════════════════════════════════════════════════╗
-// // ║    Copyright © 2025 NWH Coding d.o.o.  All rights reserved.    ║
-// // ║    Licensed under Unity Asset Store Terms of Service:          ║
-// // ║        https://unity.com/legal/as-terms                        ║
-// // ║    Use permitted only in compliance with the License.          ║
-// // ║    Distributed "AS IS", without warranty of any kind.          ║
-// // ╚════════════════════════════════════════════════════════════════╝
+// ╔════════════════════════════════════════════════════════════════╗
+// ║    Copyright © 2025 NWH Coding d.o.o.  All rights reserved.    ║
+// ║    Licensed under Unity Asset Store Terms of Service:          ║
+// ║        https://unity.com/legal/as-terms                        ║
+// ║    Use permitted only in compliance with the License.          ║
+// ║    Distributed "AS IS", without warranty of any kind.          ║
+// ╚════════════════════════════════════════════════════════════════╝
 
 #region
 
@@ -204,3 +204,35 @@ namespace NWH.DWP2.WaterData
         }
     }
 }
+
+
+#if UNITY_EDITOR
+
+namespace NWH.DWP2.WaterData
+{
+    using UnityEditor;
+
+    [CustomEditor(typeof(RaycastWaterDataProvider))]
+    [CanEditMultipleObjects]
+    public class RaycastWaterDataProviderEditor : WaterDataProviderEditor
+    {
+        protected override void DrawStatus(WaterDataProvider provider)
+        {
+            drawer.BeginSubsection("Status");
+            drawer.Info("Uses physics raycasts to detect water surface colliders.");
+            drawer.EndSubsection();
+        }
+
+        protected override void DrawSettings(WaterDataProvider provider)
+        {
+            drawer.BeginSubsection("Settings");
+            drawer.Field("waterLayer");
+            drawer.Field("objectLayer");
+            drawer.Field("raycastDistance", true, "m");
+            drawer.Field("commandsPerJob");
+            drawer.EndSubsection();
+        }
+    }
+}
+
+#endif

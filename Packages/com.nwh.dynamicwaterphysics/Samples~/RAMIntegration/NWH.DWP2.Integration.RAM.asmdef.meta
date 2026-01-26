@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 7fa6c6dceaf5f2843b7484c14b3e9e2f
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147990
+  packageName: Dynamic Water Physics 2
+  packageVersion: 14.1.0
+  assetPath: Packages/com.nwh.dynamicwaterphysics/Samples~/RAMIntegration/NWH.DWP2.Integration.RAM.asmdef
+  uploadId: 829162

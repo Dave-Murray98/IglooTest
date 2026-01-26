@@ -1,0 +1,18 @@
+{
+    "name": "NWH.DWP2.Integration.RAM",
+    "rootNamespace": "",
+    "references": [
+        "GUID:75ecb28acc33857438e533566abcb3be",
+        "GUID:c76e28da8ce572043b1fb2da95817e18",
+        "GUID:e5a79230f75834c409a7c4ffbcefc717"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

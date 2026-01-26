@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 469ef791be8cd0e489f452ff8107a634
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147990
+  packageName: Dynamic Water Physics 2
+  packageVersion: 14.1.0
+  assetPath: Packages/com.nwh.dynamicwaterphysics/Samples~/StylizedWater3Integration/Demo/SW3IntegrationDemo.unity
+  uploadId: 829162

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 016d045a04f1bee44b5333b71259b358
+timeCreated: 1494184439
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147990
+  packageName: Dynamic Water Physics 2
+  packageVersion: 14.1.0
+  assetPath: Packages/com.nwh.dynamicwaterphysics/Samples~/BaseSample/Models/Ships/MotorBoat/Materials/WAHOTHRO.mat
+  uploadId: 829162

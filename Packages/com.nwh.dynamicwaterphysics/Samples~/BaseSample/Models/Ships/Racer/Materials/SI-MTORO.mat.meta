@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: eb9c5ad6145a74549908edd256088e28
+timeCreated: 1494186493
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147990
+  packageName: Dynamic Water Physics 2
+  packageVersion: 14.1.0
+  assetPath: Packages/com.nwh.dynamicwaterphysics/Samples~/BaseSample/Models/Ships/Racer/Materials/SI-MTORO.mat
+  uploadId: 829162

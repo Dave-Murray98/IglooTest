@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba1a68ea32b5ff042977598151f7ca3c, type: 3}
+  m_Name: Audio Log 1.5 Saskia Chen
+  m_EditorClassIdentifier: 
+  logTitle: Saskia Chen 08.06.2556
+  logDescription: 
+  audioClip: {fileID: 8300000, guid: b19823262c0d59e4ba4b25836822669a, type: 3}
+  speakerName: Saskia Chen
+  recordingDate: 8th June 2556, 18:42
+  speakerPortrait: {fileID: 21300000, guid: c21968e6cb725f24da2ea842026d3a19, type: 3}
+  logIcon: {fileID: 0}
+  hasSubtitles: 1
+  subtitles:
+  - timestamp: 0
+    text: Environmental log, Dr Saskia Chen, day twelve.
+    duration: 0
+  - timestamp: 4
+    text: "I catalogued seven new species today. The biodiversity here is extraordinary.
+      Found a whole colony of filter feeders in the thermal vent region - beautiful
+      things\u2026"
+    duration: 0
+  - timestamp: 14.8
+    text: The adaptation to the acidic conditions is fascinating. Their cellular
+      structure is completely different from anything in Earth's oceans.
+    duration: 0
+  - timestamp: 24
+    text: 'Though the preliminary survey listed the ecosystem as "minimal life, primarily
+      microbial." I''ve found seventeen distinct species just in my first two weeks. '
+    duration: 0
+  - timestamp: 33.5
+    text: Perhaps the survey team was working under time constraints?
+    duration: 0

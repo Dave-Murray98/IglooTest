@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1116a520d9e98d94c8c624c4fb301754, type: 3}
+  m_Name: Level 00 Initial Descent
+  m_EditorClassIdentifier: 
+  speechID: Level_00_Initial_Descent
+  speechTitle: Level 00 initial descent
+  speechDescription: 
+  audioClip: {fileID: 8300000, guid: a9d1a67d368675b42b39d214fb4579c0, type: 3}
+  canInterrupt: 1
+  canBeInterrupted: 1
+  mustPlayIfCantInterrupt: 0
+  priority: 5
+  speechIcon: {fileID: 0}

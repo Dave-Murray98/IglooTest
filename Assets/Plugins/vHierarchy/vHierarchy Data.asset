@@ -1,0 +1,325 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a9752b0c8e144801967e6897679604b, type: 3}
+  m_Name: vHierarchy Data
+  m_EditorClassIdentifier: 
+  sceneDatasByGuid:
+    keys:
+    - 99c9720ab356a0642a771bea13969a05
+    - 
+    - f3c14b763cc304047b13e2bbf586e0cc
+    - 0b7ccf68dc0b7df46a3c4687f8549a59
+    - e3f79391d39f0f849af015f2a95d0493
+    - aae5b1c8e9570bd418e9b106c14ab558
+    - 374a0505954cac84dbed630adc2b30f7
+    - 6c461b5b5cc12dc42a3bdd0c5ecd1409
+    - b1b10d74140363f478f0d339651ec61d
+    - ce3fe018429179547b659eb52a22d03f
+    - 40cc32290cb764540940dd513e4a20d9
+    - a49ee43a386090745a27b36181c2d3f8
+    - a979df9c1dbdaa842aa00d1b6e50808d
+    - 31f3ccbb2375dfa4ba13ea010572edd5
+    - bf2b6aa0bc5ca944d9649c544f457d40
+    - 4f4f077f3922c70448e78a5621089f73
+    - d002a3e7cff2c1741b12df755d4ec5d1
+    - e3403cdf2a53fc243b0fcfb3ecc51c69
+    - cdffb13e48b649945a26a21d218aa4f3
+    - 404aa258f18d63e44b5005f014e3d95c
+    - ed22645195e017841b67752fe23c6541
+    - 176fc10600708eb4c86cef8bdb6925d2
+    - 20a2b0e20add1054991975d01a7cca7a
+    - 252aa8a580092bc44a2554416044679c
+    - b55b750cd3a4db1459a780b1f46aeefe
+    - b2ef585730291934193bf921e5f550c3
+    - 4ddddb7e7d6929944a4c3c75198e0acd
+    - 5797f7be623dcc0428ed56bc53de4499
+    values:
+    - goDatasByGlobalId:
+        keys:
+        - GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-639667418-0
+        - GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-1342972582-0
+        - GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-328802275-0
+        - GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-1752032061-0
+        - GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-347147957-0
+        values:
+        - iColor: 2
+          icon: Terrain Icon
+        - iColor: 4
+          icon: ParticleSystem Icon
+        - iColor: 8
+          icon: MeshCollider Icon
+        - iColor: 9
+          icon: 
+        - iColor: 5
+          icon: 
+      goDatasByInstanceId:
+        keys: eae90200a2eb02001ee9020078ec020022e90200
+        values:
+        - iColor: 2
+          icon: Terrain Icon
+        - iColor: 4
+          icon: ParticleSystem Icon
+        - iColor: 8
+          icon: MeshCollider Icon
+        - iColor: 9
+          icon: 
+        - iColor: 5
+          icon: 
+    - goDatasByGlobalId:
+        keys: []
+        values: []
+      goDatasByInstanceId:
+        keys: 
+        values: []
+    - goDatasByGlobalId:
+        keys: []
+        values: []
+      goDatasByInstanceId:
+        keys: 
+        values: []
+    - goDatasByGlobalId:
+        keys: []
+        values: []
+      goDatasByInstanceId:
+        keys: 
+        values: []
+    - goDatasByGlobalId:
+        keys: []
+        values: []
+      goDatasByInstanceId:
+        keys: 
+        values: []
+    - goDatasByGlobalId:
+        keys: []
+        values: []
+      goDatasByInstanceId:
+        keys: 
+        values: []
+    - goDatasByGlobalId:
+        keys:
+        - GlobalObjectId_V1-2-374a0505954cac84dbed630adc2b30f7-2103386969-0
+        - GlobalObjectId_V1-2-374a0505954cac84dbed630adc2b30f7-391984826-0
+        values:
+        - iColor: 2
+          icon: Terrain Icon
+        - iColor: 7
+          icon: MeshCollider Icon
+      goDatasByInstanceId:
+        keys: 
+        values: []
+    - goDatasByGlobalId:
+        keys: []
+        values: []
+      goDatasByInstanceId:
+        keys: 
+        values: []
+    - goDatasByGlobalId:
+        keys: []
+        values: []
+      goDatasByInstanceId:
+        keys: 
+        values: []
+    - goDatasByGlobalId:
+        keys:
+        - GlobalObjectId_V1-2-ce3fe018429179547b659eb52a22d03f-639667418-0
+        - GlobalObjectId_V1-2-ce3fe018429179547b659eb52a22d03f-2065734295-0
+        - GlobalObjectId_V1-2-ce3fe018429179547b659eb52a22d03f-702137099-0
+        - GlobalObjectId_V1-2-ce3fe018429179547b659eb52a22d03f-1481020781-0
+        values:
+        - iColor: 2
+          icon: MeshCollider Icon
+        - iColor: 9
+          icon: WheelCollider Icon
+        - iColor: 3
+          icon: AudioReverbZone Icon
+        - iColor: 6
+          icon: 
+      goDatasByInstanceId:
+        keys: 
+        values: []
+    - goDatasByGlobalId:
+        keys:
+        - GlobalObjectId_V1-2-40cc32290cb764540940dd513e4a20d9-639667418-0
+        - GlobalObjectId_V1-2-40cc32290cb764540940dd513e4a20d9-1738739674-0
+        - GlobalObjectId_V1-2-40cc32290cb764540940dd513e4a20d9-2065734295-0
+        - GlobalObjectId_V1-2-40cc32290cb764540940dd513e4a20d9-170718297-0
+        - GlobalObjectId_V1-2-40cc32290cb764540940dd513e4a20d9-206480499-0
+        - GlobalObjectId_V1-2-40cc32290cb764540940dd513e4a20d9-1481020781-0
+        values:
+        - iColor: 2
+          icon: Terrain Icon
+        - iColor: 0
+          icon: Terrain Icon
+        - iColor: 9
+          icon: WheelCollider Icon
+        - iColor: 3
+          icon: AudioReverbZone Icon
+        - iColor: 0
+          icon: 
+        - iColor: 6
+          icon: 
+      goDatasByInstanceId:
+        keys: 
+        values: []
+    - goDatasByGlobalId:
+        keys:
+        - GlobalObjectId_V1-2-a49ee43a386090745a27b36181c2d3f8-639667418-0
+        - GlobalObjectId_V1-2-a49ee43a386090745a27b36181c2d3f8-2065734295-0
+        - GlobalObjectId_V1-2-a49ee43a386090745a27b36181c2d3f8-1687936687-0
+        - GlobalObjectId_V1-2-a49ee43a386090745a27b36181c2d3f8-1848890812-0
+        - GlobalObjectId_V1-2-a49ee43a386090745a27b36181c2d3f8-1481020781-0
+        values:
+        - iColor: 2
+          icon: Terrain Icon
+        - iColor: 9
+          icon: WheelCollider Icon
+        - iColor: 3
+          icon: AudioReverbZone Icon
+        - iColor: 0
+          icon: 
+        - iColor: 6
+          icon: 
+      goDatasByInstanceId:
+        keys: 
+        values: []
+    - goDatasByGlobalId:
+        keys:
+        - GlobalObjectId_V1-2-a979df9c1dbdaa842aa00d1b6e50808d-1589505927-0
+        - GlobalObjectId_V1-2-a979df9c1dbdaa842aa00d1b6e50808d-1481020781-0
+        values:
+        - iColor: 4
+          icon: AudioReverbZone Icon
+        - iColor: 6
+          icon: 
+      goDatasByInstanceId:
+        keys: 
+        values: []
+    - goDatasByGlobalId:
+        keys: []
+        values: []
+      goDatasByInstanceId:
+        keys: 
+        values: []
+    - goDatasByGlobalId:
+        keys: []
+        values: []
+      goDatasByInstanceId:
+        keys: 
+        values: []
+    - goDatasByGlobalId:
+        keys: []
+        values: []
+      goDatasByInstanceId:
+        keys: 
+        values: []
+    - goDatasByGlobalId:
+        keys: []
+        values: []
+      goDatasByInstanceId:
+        keys: 
+        values: []
+    - goDatasByGlobalId:
+        keys: []
+        values: []
+      goDatasByInstanceId:
+        keys: 
+        values: []
+    - goDatasByGlobalId:
+        keys:
+        - GlobalObjectId_V1-2-cdffb13e48b649945a26a21d218aa4f3-1836591624-0
+        - GlobalObjectId_V1-2-cdffb13e48b649945a26a21d218aa4f3-1212852977-0
+        values:
+        - iColor: 9
+          icon: AudioReverbZone Icon
+        - iColor: 0
+          icon: 
+      goDatasByInstanceId:
+        keys: 4c3401004c2f0100
+        values:
+        - iColor: 9
+          icon: AudioReverbZone Icon
+        - iColor: 0
+          icon: 
+    - goDatasByGlobalId:
+        keys:
+        - GlobalObjectId_V1-2-404aa258f18d63e44b5005f014e3d95c-566001005-0
+        values:
+        - iColor: 0
+          icon: 
+      goDatasByInstanceId:
+        keys: 
+        values: []
+    - goDatasByGlobalId:
+        keys:
+        - GlobalObjectId_V1-2-ed22645195e017841b67752fe23c6541-901212604-0
+        - GlobalObjectId_V1-2-ed22645195e017841b67752fe23c6541-385055113-0
+        values:
+        - iColor: 4
+          icon: Material Icon
+        - iColor: 8
+          icon: AvatarMask On Icon
+      goDatasByInstanceId:
+        keys: 2247020072460200
+        values:
+        - iColor: 4
+          icon: Material Icon
+        - iColor: 8
+          icon: AvatarMask On Icon
+    - goDatasByGlobalId:
+        keys: []
+        values: []
+      goDatasByInstanceId:
+        keys: 
+        values: []
+    - goDatasByGlobalId:
+        keys:
+        - GlobalObjectId_V1-2-20a2b0e20add1054991975d01a7cca7a-1481020781-0
+        values:
+        - iColor: 9
+          icon: 
+      goDatasByInstanceId:
+        keys: 5e5c02009e6d0200
+        values:
+        - iColor: 9
+          icon: 
+        - iColor: 9
+          icon: 
+    - goDatasByGlobalId:
+        keys: []
+        values: []
+      goDatasByInstanceId:
+        keys: 
+        values: []
+    - goDatasByGlobalId:
+        keys: []
+        values: []
+      goDatasByInstanceId:
+        keys: 
+        values: []
+    - goDatasByGlobalId:
+        keys: []
+        values: []
+      goDatasByInstanceId:
+        keys: 
+        values: []
+    - goDatasByGlobalId:
+        keys: []
+        values: []
+      goDatasByInstanceId:
+        keys: 
+        values: []
+    - goDatasByGlobalId:
+        keys: []
+        values: []
+      goDatasByInstanceId:
+        keys: 
+        values: []

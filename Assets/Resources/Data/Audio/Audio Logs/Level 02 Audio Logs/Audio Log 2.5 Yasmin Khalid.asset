@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba1a68ea32b5ff042977598151f7ca3c, type: 3}
+  m_Name: Audio Log 2.5 Yasmin Khalid
+  m_EditorClassIdentifier: 
+  logTitle: Yasmin Khalid 23.02.2558
+  logDescription: 
+  audioClip: {fileID: 8300000, guid: fcd5c682f86e85c48a461caf8ba2a7b4, type: 3}
+  speakerName: Yasmin Khaled
+  recordingDate: 23rd February 2558, 01:42
+  speakerPortrait: {fileID: 21300000, guid: 21ce6d3430e6e1f408f1bc0f1740df11, type: 3}
+  logIcon: {fileID: 0}
+  hasSubtitles: 1
+  subtitles:
+  - timestamp: 0
+    text: Found Saskia Chen's locked files. She was good - proper encryption, multiple
+      layers. Took me six hours to crack them.
+  - timestamp: 11
+    text: She knew. About the falsified survey, the ecosystem collapse, all of it.
+      She was documenting everything. Preparing to go public, looks like.
+  - timestamp: 22.2
+    text: Then her oxygen system "malfunctioned" two weeks after she transmitted
+      something to Earth... Fuck Off.
+  - timestamp: 32
+    text: They killed her. Obviously they killed her. When we hold that tower, if
+      security comes... I won't lose sleep.
+  - timestamp: 41
+    text: Marcus needs to see this.

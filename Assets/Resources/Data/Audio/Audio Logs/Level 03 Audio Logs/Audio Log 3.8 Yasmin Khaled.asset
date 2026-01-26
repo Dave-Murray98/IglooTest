@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba1a68ea32b5ff042977598151f7ca3c, type: 3}
+  m_Name: Audio Log 3.8 Yasmin Khaled
+  m_EditorClassIdentifier: 
+  logTitle: Yasmin Khaled 04.03.2558
+  logDescription: 
+  audioClip: {fileID: 8300000, guid: a84db684ebc5d8a4692889b22147f7b4, type: 3}
+  speakerName: Yasmin Khaled
+  recordingDate: 4th March 2558, 22:34
+  speakerPortrait: {fileID: 21300000, guid: 21ce6d3430e6e1f408f1bc0f1740df11, type: 3}
+  logIcon: {fileID: 0}
+  hasSubtitles: 1
+  subtitles:
+  - timestamp: 0
+    text: Upload's at seventy-three percent! Shit - we need more time!
+  - timestamp: 7.4
+    text: "Marcus, they're pushing through the east corridor! Joel's trying to hold
+      but\u2014"
+  - timestamp: 13.6
+    text: "No, no, the bulkheads\u2014"

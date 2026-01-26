@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba1a68ea32b5ff042977598151f7ca3c, type: 3}
+  m_Name: Audio Log 1.7 Thomas Henderson
+  m_EditorClassIdentifier: 
+  logTitle: Thomas Henderson 15.12.2553
+  logDescription: 
+  audioClip: {fileID: 8300000, guid: 18bebb88e6ee3fa42816605887546607, type: 3}
+  speakerName: Thomas Henderson
+  recordingDate: 15th December 2553, 10:05
+  speakerPortrait: {fileID: 21300000, guid: 322ac5bc290eeb14d98e853adbded121, type: 3}
+  logIcon: {fileID: 0}
+  hasSubtitles: 1
+  subtitles:
+  - timestamp: 0
+    text: Director's log, Henderson. Benthic-7 operational review, six-month mark.
+  - timestamp: 7
+    text: 'Facility construction completed on schedule and under budget. '
+  - timestamp: 12.5
+    text: The mineral concentrations are exceeding even our optimistic projections.
+      The iridium compounds alone will recoup construction costs within a matter
+      of months.
+  - timestamp: 23
+    text: We did have initial challenges with the local fauna - large eel-like predators,
+      more aggressive than anticipated.
+  - timestamp: 30.5
+    text: Security has implemented effective deterrent protocols. Situation is well
+      under control.
+  - timestamp: 38
+    text: Environmental compliance officer arrived last week - Dr Chen.
+  - timestamp: 43
+    text: I've made it clear her job is to monitor and report, not interfere with
+      operations.
+  - timestamp: 50.5
+    text: All metrics are green. Benthic-7 is going very well.

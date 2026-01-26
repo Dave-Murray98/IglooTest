@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba1a68ea32b5ff042977598151f7ca3c, type: 3}
+  m_Name: Audio Log 2.2Joel Whitmore
+  m_EditorClassIdentifier: 
+  logTitle: Joel Whitmore 20.02.2558
+  logDescription: 
+  audioClip: {fileID: 8300000, guid: c0f6f49f86cf5fc49b288be8fc56ccde, type: 3}
+  speakerName: Joel Whitmore
+  recordingDate: 20th February 2558, 14:19
+  speakerPortrait: {fileID: 21300000, guid: 99425c1e915e8134cbbdc26ea3f7a7de, type: 3}
+  logIcon: {fileID: 0}
+  hasSubtitles: 1
+  subtitles:
+  - timestamp: 0
+    text: Just a few more questions. The culls you mentioned - how often do those
+      happen?
+  - timestamp: 6.3
+    text: Oh, every two, three months maybe? Whenever sensors pick up eel activity
+      near the facility.
+  - timestamp: 15
+    text: And roughly how many would you say security eliminates each time?
+  - timestamp: 21.5
+    text: I... I don't know exact numbers. Ten? Twenty? They don't exactly give us
+      reports.
+  - timestamp: 30.5
+    text: That seems like quite a lot for a planet that was surveyed as having minimal
+      life.
+  - timestamp: 37.5
+    text: Well, I mean... TDI said...
+  - timestamp: 40
+    text: Sorry, should I not be talking about this?

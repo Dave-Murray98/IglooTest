@@ -1,0 +1,137 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3943def95315f084d917e2efd64303a2, type: 3}
+  m_Name: Level 02 ID Card 03
+  m_EditorClassIdentifier: 
+  itemName: ID Card - Wendy Sanders
+  description: Opens the Control Centre
+  itemType: 6
+  shapeType: 0
+  itemSprite: {fileID: 21300000, guid: 7c6c5a2d4f6a0664fb0eb930ed01eead, type: 3}
+  spriteScaleX: 1.3
+  spriteScaleY: 1.3
+  spritePositionOffset: {x: 0, y: -1}
+  equippedItemPrefab: {fileID: 1313226525731080958, guid: 85ca1ac8c319f1d45b0f5925ed021128, type: 3}
+  equippedPositionOffset: {x: 0, y: 0, z: 0}
+  equippedRotationOffset: {x: 0, y: 0, z: 0}
+  equippedScaleOverride: {x: 1, y: 1, z: 1}
+  visualPrefab: {fileID: 1313226525731080958, guid: 85ca1ac8c319f1d45b0f5925ed021128, type: 3}
+  visualPrefabScale: {x: 0, y: 0, z: 0}
+  groundHeightOffset: 0.1
+  usePhysicsOnDrop: 1
+  objectMass: 1
+  shouldFloat: 0
+  interactionColliderSize: {x: 0, y: 0, z: 0}
+  isRotatable: 1
+  canUseOnGround: 1
+  canUseInWater: 1
+  canUseInVehicle: 0
+  effectNoiseVolume: 10
+  degradationType: 0
+  maxDurability: 100
+  degradationRate: 1
+  degradationInterval: 1
+  useLeftHandHurtBox: 1
+  usesMeleePositionOffset: 0
+  meleeHurtBoxPositionOffset: {x: 0, y: 0, z: 0}
+  playerBodyAnimationDatabase: {fileID: 11400000, guid: 49059571443b2744e855a1071498c405, type: 2}
+  playerItemAnimationDatabase: {fileID: 0}
+  weaponSwayMultiplier: 1
+  consumableData:
+    healthRestore: 0
+    hungerRestore: 0
+    thirstRestore: 0
+    consumeTime: 2
+    multiUse: 0
+    maxUses: 1
+    effectAudioClip: {fileID: 0}
+    useAudioClip: {fileID: 0}
+  rangedWeaponData:
+    damage: 10
+    range: 5
+    projectileForce: 50
+    requiredAmmoType: {fileID: 0}
+    maxAmmo: 30
+    defaultStartingAmmo: 0
+    adsFOV: 45
+    adsTransitionTime: 0.25
+    adsPositionOffset: {x: 0, y: 0, z: 0}
+    adsRotationOffset: {x: 0, y: 0, z: 0}
+    adsSetupInfo: Not configured
+    adsSetupVersion: 1
+    projectileSpawnPoint: {x: 0, y: 0, z: 0}
+    projectileSpawnRotation: {x: 0, y: 0, z: 0}
+    shootSounds: []
+    reloadStartSounds: []
+    reloadEndSounds: []
+  ammoData:
+    compatibleWeapons: []
+    projectilePrefab: {fileID: 0}
+    damageModifier: 1
+    maxAmmoPerStack: 50
+  clothingData:
+    clothingType: 0
+    validLayers: 
+    defenseValue: 0
+    warmthValue: 0
+    rainResistance: 0
+    maxCondition: 100
+    damageRate: 1
+    canBeRepaired: 1
+    minimumRepairCondition: 20
+  meleeWeaponData:
+    damage: 10
+    weaponType: 0
+  toolData:
+    isActionHeld: 0
+    requiresEnergySource: 0
+    requiredEnergySourceType: {fileID: 0}
+    energyConsumptionRate: 1
+    maxEnergyCapacity: 100
+    fxSpawnPoint: {x: 0, y: 0, z: 0}
+    fxSpawnRotation: {x: 0, y: 0, z: 0}
+    reloadClips: []
+    startUseClip: {fileID: 0}
+    useLoopClip: {fileID: 0}
+    stopUseClip: {fileID: 0}
+  throwableData:
+    damage: 10
+    throwableType: 0
+    effectRadius: 5
+    fuseTime: 3
+    throwableSpawnPoint: {x: 0, y: 0, z: 0}
+    throwableSpawnRotation: {x: 0, y: 0, z: 0}
+    throwablePrefab: {fileID: 0}
+    canCancelThrow: 1
+    throwSound: {fileID: 0}
+  bowData:
+    damage: 10
+    range: 20
+    requiredAmmoType: {fileID: 0}
+    adsFOV: 45
+    adsTransitionTime: 0.25
+    adsPositionOffset: {x: 0, y: 0, z: 0}
+    adsRotationOffset: {x: 0, y: 0, z: 0}
+    adsSetupInfo: Not configured
+    adsSetupVersion: 1
+    projectileSpawnPoint: {x: 0, y: 0, z: 0}
+    projectileSpawnRotation: {x: 0, y: 0, z: 0}
+  keyItemData:
+    useCompleteSound: {fileID: 8300000, guid: f629d11b72e16444cba29c3b8139b982, type: 3}
+  oxygenTankData:
+    maxCapacity: 100
+    canBeRefilled: 1
+    refillCost: 10
+  toolEnergySourceData:
+    compatibleTools: []
+    maxEnergyCapacity: 50
+  showDebugInfo: 0

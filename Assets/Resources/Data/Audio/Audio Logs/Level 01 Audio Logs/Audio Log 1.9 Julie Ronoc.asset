@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba1a68ea32b5ff042977598151f7ca3c, type: 3}
+  m_Name: Audio Log 1.9 Julie Ronoc
+  m_EditorClassIdentifier: 
+  logTitle: Julie Ronoc 04.03.2558
+  logDescription: 
+  audioClip: {fileID: 8300000, guid: 661c0dd5df56a6248a72048eade3cdcb, type: 3}
+  speakerName: Julie Ronoc
+  recordingDate: 4th March 2558, 23:18
+  speakerPortrait: {fileID: 21300000, guid: 3ac3765fb15ec4b42a9a30fcf03630a4, type: 3}
+  logIcon: {fileID: 0}
+  hasSubtitles: 1
+  subtitles:
+  - timestamp: 0
+    text: Power's gone. Emergency lights only. Water's up to my waist and rising.
+    duration: 0
+  - timestamp: 8
+    text: The escape pods... I tried. They're all damaged. Power failures fried the
+      launch systems.
+    duration: 0
+  - timestamp: 17
+    text: I'm in section 6-C. I don't think anyone's coming.
+    duration: 0
+  - timestamp: 23
+    text: Mum, if somehow you hear this... I'm sorry. I love you. I should have come
+      home when you asked.
+    duration: 0
+  - timestamp: 31.5
+    text: It's getting hard to breathe. The water's so cold.
+    duration: 0
+  - timestamp: 36.2
+    text: "I'm sorry. I'm so\u2014"
+    duration: 0

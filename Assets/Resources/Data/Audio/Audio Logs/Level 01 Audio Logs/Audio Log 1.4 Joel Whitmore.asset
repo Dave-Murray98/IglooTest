@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba1a68ea32b5ff042977598151f7ca3c, type: 3}
+  m_Name: Audio Log 1.4 Joel Whitmore
+  m_EditorClassIdentifier: 
+  logTitle: Joel Whitmore 18.02.2558
+  logDescription: 
+  audioClip: {fileID: 8300000, guid: bcadf159b9c22ae49916be2befb1630d, type: 3}
+  speakerName: Joel Whitmore
+  recordingDate: '18th February 2558, 15:34 '
+  speakerPortrait: {fileID: 21300000, guid: 99425c1e915e8134cbbdc26ea3f7a7de, type: 3}
+  logIcon: {fileID: 0}
+  hasSubtitles: 1
+  subtitles:
+  - timestamp: 0
+    text: So, just for the documentary - in your own words, what's a typical work
+      day like here?
+  - timestamp: 5.5
+    text: 'Oh, it''s not too bad, really. Up at six, breakfast in the canteen. Down
+      to the drilling sector by seven. '
+  - timestamp: 12.5
+    text: We work in four-hour shifts - company's good about that, don't want us
+      getting too fatigued down here.
+  - timestamp: 17.5
+    text: And the... what do you call them? The eels?
+  - timestamp: 21.2
+    text: 'Yeah, they were a right pain when we first got here. Big aggressive bastards. '
+  - timestamp: 25.6
+    text: But we've sorted that problem now. Sonic grenades, mostly.
+  - timestamp: 28.5
+    text: Well, that and the culls. Don't get many anymore.
+  - timestamp: 31.5
+    text: Culls?
+  - timestamp: 32.7
+    text: Yeah, security runs them every few months. Keeps the population down.

@@ -1,0 +1,124 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3943def95315f084d917e2efd64303a2, type: 3}
+  m_Name: M9
+  m_EditorClassIdentifier: 
+  itemName: M9
+  description: Great Gun
+  itemType: 2
+  shapeType: 6
+  itemSprite: {fileID: 21300000, guid: a442ba673c4686a4a9b03969a6317a60, type: 3}
+  spriteScaleX: 1
+  spriteScaleY: 1
+  spritePositionOffset: {x: 0, y: -1}
+  equippedItemPrefab: {fileID: 686731071648148501, guid: a3099f321edb4c344a9b00f70cc40a9d, type: 3}
+  equippedPositionOffset: {x: 0, y: 0, z: 0}
+  equippedRotationOffset: {x: 0, y: 0, z: 0}
+  equippedScaleOverride: {x: 1, y: 1, z: 1}
+  visualPrefab: {fileID: 686731071648148501, guid: 0be4d8a92635f9f43a475abdd734a446, type: 3}
+  visualPrefabScale: {x: 0, y: 0, z: 0}
+  groundHeightOffset: 0.1
+  usePhysicsOnDrop: 1
+  objectMass: 5
+  shouldFloat: 0
+  interactionColliderSize: {x: 0, y: 0, z: 0}
+  isRotatable: 1
+  canUseOnGround: 1
+  canUseInWater: 0
+  canUseInVehicle: 0
+  degradationType: 0
+  maxDurability: 100
+  degradationRate: 1
+  degradationInterval: 1
+  useLeftHandHurtBox: 1
+  usesMeleePositionOffset: 0
+  meleeHurtBoxPositionOffset: {x: 0, y: 0, z: 0}
+  playerBodyAnimationDatabase: {fileID: 11400000, guid: e33979d3d58ee564e8b5bae4bb75ea21, type: 2}
+  playerItemAnimationDatabase: {fileID: 11400000, guid: 3f75bb38a61a5484b85013864666c9d4, type: 2}
+  weaponSwayMultiplier: 1
+  consumableData:
+    healthRestore: 0
+    hungerRestore: 0
+    thirstRestore: 0
+    consumeTime: 2
+    multiUse: 0
+    maxUses: 1
+  rangedWeaponData:
+    damage: 10
+    range: 5
+    projectileForce: 50
+    requiredAmmoType: {fileID: 11400000, guid: 25f969d44188eea43899e8cf3bbff93e, type: 2}
+    maxAmmo: 30
+    defaultStartingAmmo: 30
+    adsFOV: 45
+    adsTransitionTime: 0.25
+    adsPositionOffset: {x: 0.172, y: -0.1428, z: 0.1511}
+    adsRotationOffset: {x: 351.9, y: 349.80002, z: 6.6899977}
+    adsSetupInfo: Configured on 2025-08-18 12:32:34 for M9
+    adsSetupVersion: 1
+    projectileSpawnPoint: {x: -0.072, y: 0.025, z: 0.201}
+    projectileSpawnRotation: {x: 0, y: -6.447, z: 0}
+  ammoData:
+    compatibleWeapons: []
+    projectilePrefab: {fileID: 0}
+    damageModifier: 1
+    maxAmmoPerStack: 50
+  clothingData:
+    clothingType: 0
+    validLayers: 
+    defenseValue: 0
+    warmthValue: 0
+    rainResistance: 0
+    maxCondition: 100
+    damageRate: 1
+    canBeRepaired: 1
+    minimumRepairCondition: 20
+  meleeWeaponData:
+    damage: 10
+    weaponType: 0
+  toolData:
+    isActionHeld: 0
+    requiresEnergySource: 0
+    requiredEnergySourceType: {fileID: 0}
+    energyConsumptionRate: 1
+    maxEnergyCapacity: 100
+    fxSpawnPoint: {x: 0, y: 0, z: 0}
+    fxSpawnRotation: {x: 0, y: 0, z: 0}
+  throwableData:
+    damage: 10
+    throwableType: 0
+    effectRadius: 5
+    fuseTime: 3
+    throwableSpawnPoint: {x: 0, y: 0, z: 0}
+    throwableSpawnRotation: {x: 0, y: 0, z: 0}
+    throwablePrefab: {fileID: 0}
+    canCancelThrow: 1
+  bowData:
+    damage: 10
+    range: 20
+    requiredAmmoType: {fileID: 0}
+    adsFOV: 45
+    adsTransitionTime: 0.25
+    adsPositionOffset: {x: 0, y: 0, z: 0}
+    adsRotationOffset: {x: 0, y: 0, z: 0}
+    adsSetupInfo: Not configured
+    adsSetupVersion: 1
+    projectileSpawnPoint: {x: 0, y: 0, z: 0}
+    projectileSpawnRotation: {x: 0, y: 0, z: 0}
+  oxygenTankData:
+    maxCapacity: 100
+    canBeRefilled: 1
+    refillCost: 10
+  toolEnergySourceData:
+    compatibleTools: []
+    maxEnergyCapacity: 50
+  showDebugInfo: 0

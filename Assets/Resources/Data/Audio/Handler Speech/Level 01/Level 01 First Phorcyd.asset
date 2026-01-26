@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1116a520d9e98d94c8c624c4fb301754, type: 3}
+  m_Name: Level 01 First Phorcyd
+  m_EditorClassIdentifier: 
+  speechID: Level_01_First_Phorcyd
+  speechTitle: Level 01 on see first phorcyd
+  speechDescription: 
+  audioClip: {fileID: 8300000, guid: 4eb746f9157ba2d44b3b97dd87f96714, type: 3}
+  canInterrupt: 1
+  canBeInterrupted: 0
+  mustPlayIfCantInterrupt: 0
+  priority: 5
+  speechIcon: {fileID: 0}

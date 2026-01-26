@@ -1,0 +1,892 @@
+fileFormatVersion: 2
+guid: 2cf28e08069eb4f4a9ea9443013fd3b7
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable: []
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: "\nClip 'Syringe_Gun_Run' has import animation warnings
+      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'Rigged_Synty_Character:Elbow_L' has translation
+      animation that will be discarded.\n\nClip 'Syringe_Gun_Consume' has import
+      animation warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'Rigged_Synty_Character:Elbow_R'
+      has translation animation that will be discarded.\n\nClip 'Syringe_Gun_Melee'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Rigged_Synty_Character:Elbow_L'
+      has translation animation that will be discarded.\n\t'Rigged_Synty_Character:Elbow_R'
+      has translation animation that will be discarded.\n"
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Syringe_Gun_Idle
+      takeName: Syringe_Gun_Idle
+      internalID: -8822272242860385776
+      firstFrame: 2
+      lastFrame: 62
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Syringe_Gun_Run
+      takeName: Syringe_Gun_Run
+      internalID: 7289976342734778095
+      firstFrame: 63
+      lastFrame: 87
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Syringe_Gun_Consume
+      takeName: Syringe_Gun_Consume
+      internalID: 6774754261480498906
+      firstFrame: 88
+      lastFrame: 140
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Syringe_Gun_Melee_Start
+      takeName: Syringe_Gun_Melee
+      internalID: 7345938013702476221
+      firstFrame: 141
+      lastFrame: 156
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 141
+    - serializedVersion: 16
+      name: Syringe_Gun_Melee_Loop
+      takeName: Syringe_Gun_Melee
+      internalID: -6921361223157114902
+      firstFrame: 157
+      lastFrame: 169
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 141
+    - serializedVersion: 16
+      name: Syringe_Gun_Melee_End
+      takeName: Syringe_Gun_Melee
+      internalID: 8733433217345265553
+      firstFrame: 170
+      lastFrame: 193
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 141
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human:
+    - boneName: Rigged_Synty_Character:Hips
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Rigged_Synty_Character:UpperLeg_L
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Rigged_Synty_Character:UpperLeg_R
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Rigged_Synty_Character:LowerLeg_L
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Rigged_Synty_Character:LowerLeg_R
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Rigged_Synty_Character:Ankle_L
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Rigged_Synty_Character:Ankle_R
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Rigged_Synty_Character:Spine_01
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Rigged_Synty_Character:Spine_02
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Rigged_Synty_Character:Neck
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Rigged_Synty_Character:Head
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Rigged_Synty_Character:Clavicle_L
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Rigged_Synty_Character:Clavicle_R
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Rigged_Synty_Character:Shoulder_L
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Rigged_Synty_Character:Shoulder_R
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Rigged_Synty_Character:Elbow_L
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Rigged_Synty_Character:Elbow_R
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Rigged_Synty_Character:Hand_L
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Rigged_Synty_Character:Hand_R
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Rigged_Synty_Character:Ball_L
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Rigged_Synty_Character:Ball_R
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Rigged_Synty_Character:Eyes
+      humanName: RightEye
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Rigged_Synty_Character:Eyebrows
+      humanName: Jaw
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Rigged_Synty_Character:Thumb_01_L
+      humanName: Left Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Rigged_Synty_Character:Thumb_02_L
+      humanName: Left Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Rigged_Synty_Character:Thumb_03_L
+      humanName: Left Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Rigged_Synty_Character:IndexFinger_01_L
+      humanName: Left Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Rigged_Synty_Character:IndexFinger_02_L
+      humanName: Left Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Rigged_Synty_Character:IndexFinger_03_L
+      humanName: Left Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Rigged_Synty_Character:MiddleFinger_01_L
+      humanName: Left Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Rigged_Synty_Character:MiddleFinger_02_L
+      humanName: Left Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Rigged_Synty_Character:MiddleFinger_03_L
+      humanName: Left Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Rigged_Synty_Character:Thumb_01_R
+      humanName: Right Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Rigged_Synty_Character:Thumb_02_R
+      humanName: Right Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Rigged_Synty_Character:Thumb_03_R
+      humanName: Right Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Rigged_Synty_Character:IndexFinger_01_R
+      humanName: Right Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Rigged_Synty_Character:IndexFinger_02_R
+      humanName: Right Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Rigged_Synty_Character:IndexFinger_03_R
+      humanName: Right Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Rigged_Synty_Character:MiddleFinger_01
+      humanName: Right Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Rigged_Synty_Character:MiddleFinger_02
+      humanName: Right Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Rigged_Synty_Character:MiddleFinger_03
+      humanName: Right Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Rigged_Synty_Character:Spine_03
+      humanName: UpperChest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: Syringe_Gun_Character(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Rigged_Synty_Character:Mesh
+      parentName: Syringe_Gun_Character(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Rigged_Synty_Character:Character_Dummy_Male_01
+      parentName: Rigged_Synty_Character:Mesh
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Rigged_Synty_Character:Skeleton
+      parentName: Syringe_Gun_Character(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Rigged_Synty_Character:Root
+      parentName: Rigged_Synty_Character:Skeleton
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Rigged_Synty_Character:Hips
+      parentName: Rigged_Synty_Character:Root
+      position: {x: 2.2737356e-15, y: 0.90429085, z: 0.00000006198879}
+      rotation: {x: 0.4611366, y: -0.5360532, z: -0.4611366, w: 0.5360532}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1}
+    - name: Rigged_Synty_Character:Spine_01
+      parentName: Rigged_Synty_Character:Hips
+      position: {x: -0.103932604, y: -0.000000029127111, z: 4.615524e-17}
+      rotation: {x: -0.9950197, y: 0.099679, z: -0, w: 0}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1.0000001}
+    - name: Rigged_Synty_Character:Spine_02
+      parentName: Rigged_Synty_Character:Spine_01
+      position: {x: -0.18151167, y: -0.0000000015705167, z: -0.000000002482186}
+      rotation: {x: 0.99518615, y: -0.09800263, z: -0.000000028168564, w: -0.000000017797614}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1.0000002}
+    - name: Rigged_Synty_Character:Spine_03
+      parentName: Rigged_Synty_Character:Spine_02
+      position: {x: -0.17903724, y: -0.000000016287228, z: 0.0000000023933433}
+      rotation: {x: -0.99381036, y: 0.11109012, z: -0.0000000019205615, w: -0.000000047918828}
+      scale: {x: 1, y: 0.99999994, z: 1.0000001}
+    - name: Rigged_Synty_Character:Neck
+      parentName: Rigged_Synty_Character:Spine_03
+      position: {x: -0.11188975, y: 0.000000057351453, z: -0.0000000015302396}
+      rotation: {x: -0.000000001398945, y: -0.0000000010668444, z: 0.04173351, w: 0.9991288}
+      scale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
+    - name: Rigged_Synty_Character:Head
+      parentName: Rigged_Synty_Character:Neck
+      position: {x: -0.1216443, y: 0.00000021272474, z: -0.000000018341323}
+      rotation: {x: 0.45857093, y: -0.5382498, z: 0.45857087, w: 0.5382497}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: Rigged_Synty_Character:Eyes
+      parentName: Rigged_Synty_Character:Head
+      position: {x: -2.0510383e-31, y: 0.09447606, z: 0.12272215}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Rigged_Synty_Character:Eyebrows
+      parentName: Rigged_Synty_Character:Head
+      position: {x: 2.5243548e-31, y: 0.1276692, z: 0.12272215}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Rigged_Synty_Character:Clavicle_L
+      parentName: Rigged_Synty_Character:Spine_03
+      position: {x: -0.05801177, y: -0.041914467, z: -0.07447154}
+      rotation: {x: 0.54901916, y: -0.5984773, z: 0.39792916, w: 0.4266793}
+      scale: {x: 0.99999994, y: 0.99999994, z: 1}
+    - name: Rigged_Synty_Character:Shoulder_L
+      parentName: Rigged_Synty_Character:Clavicle_L
+      position: {x: -0.13197862, y: 0.000000043494524, z: -0.00000000754567}
+      rotation: {x: 0.007733137, y: 0.1976972, z: 0.01191783, w: 0.9801602}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1.0000001}
+    - name: Rigged_Synty_Character:Elbow_L
+      parentName: Rigged_Synty_Character:Shoulder_L
+      position: {x: -0.33947402, y: -0.0014446707, z: -0.0014460236}
+      rotation: {x: 0.0005641752, y: 0.0017216951, z: -0.028798835, w: 0.9995836}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: Rigged_Synty_Character:Hand_L
+      parentName: Rigged_Synty_Character:Elbow_L
+      position: {x: -0.2711455, y: -0.0000023991872, z: -0.0003816371}
+      rotation: {x: 0.000000022351742, y: -0.035830624, z: 0.00000006434493, w: 0.99935794}
+      scale: {x: 1, y: 1.0000001, z: 1.0000002}
+    - name: Rigged_Synty_Character:Thumb_01_L
+      parentName: Rigged_Synty_Character:Hand_L
+      position: {x: -0.03514039, y: -0.011707038, z: 0.045055345}
+      rotation: {x: 0.02200544, y: 0.2691661, z: 0.07326651, w: 0.9600507}
+      scale: {x: 1.0000005, y: 1.0000002, z: 1.0000007}
+    - name: Rigged_Synty_Character:Thumb_02_L
+      parentName: Rigged_Synty_Character:Thumb_01_L
+      position: {x: -0.063702196, y: 0.00000008198347, z: 0.00000002761051}
+      rotation: {x: -0.040613897, y: -0.02191088, z: 0.02633566, w: 0.9985874}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: Rigged_Synty_Character:Thumb_03_L
+      parentName: Rigged_Synty_Character:Thumb_02_L
+      position: {x: -0.05665577, y: 0.000000017276829, z: 0.000000023083162}
+      rotation: {x: -0.036403432, y: -0.15203469, z: -0.22999519, w: 0.9605533}
+      scale: {x: 1.0000001, y: 1.0000002, z: 1.0000004}
+    - name: Rigged_Synty_Character:IndexFinger_01_L
+      parentName: Rigged_Synty_Character:Hand_L
+      position: {x: -0.10396567, y: 0.003987103, z: 0.026726548}
+      rotation: {x: 0.0009836302, y: -0.08288022, z: 0.005307492, w: 0.99654496}
+      scale: {x: 1.0000004, y: 1.0000005, z: 0.99999994}
+    - name: Rigged_Synty_Character:IndexFinger_02_L
+      parentName: Rigged_Synty_Character:IndexFinger_01_L
+      position: {x: -0.040936224, y: 0.0000000070707467, z: -0.00000008119501}
+      rotation: {x: -0.0011588368, y: -0.0041999584, z: 0.03843182, w: 0.9992517}
+      scale: {x: 1.0000004, y: 1.0000001, z: 1.0000002}
+    - name: Rigged_Synty_Character:IndexFinger_03_L
+      parentName: Rigged_Synty_Character:IndexFinger_02_L
+      position: {x: -0.037911933, y: 0.00000002502119, z: 0.000000032204124}
+      rotation: {x: -0.0069200597, y: -0.016655412, z: 0.036915567, w: 0.9991557}
+      scale: {x: 0.9999998, y: 1.0000005, z: 1.0000006}
+    - name: Rigged_Synty_Character:IndexFinger_04_L
+      parentName: Rigged_Synty_Character:IndexFinger_03_L
+      position: {x: -0.037797954, y: -0.00000008957243, z: 0.00000012452024}
+      rotation: {x: -0.004519701, y: -0.028039973, z: -0.15906805, w: 0.9868591}
+      scale: {x: 1.0000001, y: 1.0000004, z: 1.0000002}
+    - name: Rigged_Synty_Character:MiddleFinger_01_L
+      parentName: Rigged_Synty_Character:Hand_L
+      position: {x: -0.09982528, y: -0.0011597135, z: -0.032833476}
+      rotation: {x: 0.0005999479, y: -0.08457176, z: 0.038876373, w: 0.9956586}
+      scale: {x: 1.0000005, y: 1.000001, z: 0.99999994}
+    - name: Rigged_Synty_Character:MiddleFinger_02_L
+      parentName: Rigged_Synty_Character:MiddleFinger_01_L
+      position: {x: -0.042488147, y: -0.000000011808812, z: 0.000000042051074}
+      rotation: {x: 0.0026371386, y: 0.01949199, z: 0.021269424, w: 0.9995803}
+      scale: {x: 1.000001, y: 1.0000005, z: 1.0000008}
+    - name: Rigged_Synty_Character:MiddleFinger_03_L
+      parentName: Rigged_Synty_Character:MiddleFinger_02_L
+      position: {x: -0.03513326, y: 0.000000051406474, z: 0.000000042984986}
+      rotation: {x: -0.01826127, y: -0.023076126, z: 0.029867435, w: 0.99912065}
+      scale: {x: 0.9999997, y: 1, z: 1.0000001}
+    - name: Rigged_Synty_Character:MiddleFinger_04_L
+      parentName: Rigged_Synty_Character:MiddleFinger_03_L
+      position: {x: -0.03003243, y: -0.00000008394452, z: -0.00000010149477}
+      rotation: {x: 0.016646272, y: 0.096525066, z: -0.16913009, w: 0.98071444}
+      scale: {x: 1.0000001, y: 1, z: 0.9999998}
+    - name: Rigged_Synty_Character:Clavicle_R
+      parentName: Rigged_Synty_Character:Spine_03
+      position: {x: -0.05801542, y: -0.041914172, z: 0.0744715}
+      rotation: {x: 0.59847397, y: 0.54902214, z: 0.42668486, w: -0.3979242}
+      scale: {x: 0.99999994, y: 0.99999994, z: 1}
+    - name: Rigged_Synty_Character:Shoulder_R
+      parentName: Rigged_Synty_Character:Clavicle_R
+      position: {x: 0.1319785, y: 0.000006516776, z: 0.000000059473326}
+      rotation: {x: 0.007735012, y: 0.19769031, z: 0.01193389, w: 0.98016137}
+      scale: {x: 0.9999998, y: 1, z: 0.9999996}
+    - name: Rigged_Synty_Character:Elbow_R
+      parentName: Rigged_Synty_Character:Shoulder_R
+      position: {x: 0.33947462, y: 0.0014307717, z: 0.0014368907}
+      rotation: {x: 0.0005640233, y: 0.0017273424, z: -0.028802212, w: 0.9995835}
+      scale: {x: 1.0000006, y: 1.0000004, z: 1.0000004}
+    - name: Rigged_Synty_Character:Hand_R
+      parentName: Rigged_Synty_Character:Elbow_R
+      position: {x: 0.27114493, y: 0.0000005369858, z: 0.0003809026}
+      rotation: {x: 0.000000048894435, y: -0.035830736, z: 0.000000072238436, w: 0.9993579}
+      scale: {x: 1, y: 1.0000002, z: 1.0000002}
+    - name: Rigged_Synty_Character:Thumb_01_R
+      parentName: Rigged_Synty_Character:Hand_R
+      position: {x: 0.035140015, y: 0.01170998, z: -0.045055527}
+      rotation: {x: 0.022017114, y: 0.26918823, z: 0.073318295, w: 0.9600403}
+      scale: {x: 1.0000004, y: 1.0000002, z: 1.0000004}
+    - name: Rigged_Synty_Character:Thumb_02_R
+      parentName: Rigged_Synty_Character:Thumb_01_R
+      position: {x: 0.0637015, y: -0.0000078762405, z: 0.0000005015375}
+      rotation: {x: -0.040608067, y: -0.021909455, z: 0.026277421, w: 0.9985893}
+      scale: {x: 1.0000001, y: 1.0000006, z: 1.0000006}
+    - name: Rigged_Synty_Character:Thumb_03_R
+      parentName: Rigged_Synty_Character:Thumb_02_R
+      position: {x: 0.056655034, y: 0.00000012989946, z: -0.00000022596592}
+      rotation: {x: -0.03640334, y: -0.15203479, z: -0.22999516, w: 0.9605533}
+      scale: {x: 1.0000002, y: 1.0000001, z: 1}
+    - name: Rigged_Synty_Character:IndexFinger_01_R
+      parentName: Rigged_Synty_Character:Hand_R
+      position: {x: 0.103966, y: -0.0039900104, z: -0.026726583}
+      rotation: {x: 0.0009863138, y: -0.08288094, z: 0.0053012124, w: 0.9965449}
+      scale: {x: 1.0000001, y: 1.0000002, z: 1.0000004}
+    - name: Rigged_Synty_Character:IndexFinger_02_R
+      parentName: Rigged_Synty_Character:IndexFinger_01_R
+      position: {x: 0.040935963, y: 0.00000094904516, z: -0.000000049739235}
+      rotation: {x: -0.001159097, y: -0.004197858, z: 0.03839798, w: 0.9992531}
+      scale: {x: 0.99999815, y: 1.0000001, z: 1.0000002}
+    - name: Rigged_Synty_Character:IndexFinger_03_R
+      parentName: Rigged_Synty_Character:IndexFinger_02_R
+      position: {x: 0.03791221, y: 0.000003227966, z: -0.000000068708346}
+      rotation: {x: -0.0069198343, y: -0.016684113, z: 0.037018497, w: 0.9991514}
+      scale: {x: 1.0000006, y: 1, z: 0.9999997}
+    - name: Rigged_Synty_Character:IndexFinger_04_R
+      parentName: Rigged_Synty_Character:IndexFinger_03_R
+      position: {x: 0.037793376, y: -0.0000053487593, z: -0.00000013541404}
+      rotation: {x: -0.00451963, y: -0.028040018, z: -0.15906799, w: 0.9868591}
+      scale: {x: 1.0000019, y: 1.0000002, z: 1.0000005}
+    - name: Rigged_Synty_Character:MiddleFinger_01
+      parentName: Rigged_Synty_Character:Hand_R
+      position: {x: 0.09982505, y: 0.0011599304, z: 0.032833256}
+      rotation: {x: 0.0006002587, y: -0.08457127, z: 0.038874954, w: 0.9956587}
+      scale: {x: 1.0000002, y: 1.0000001, z: 1.0000002}
+    - name: Rigged_Synty_Character:MiddleFinger_02
+      parentName: Rigged_Synty_Character:MiddleFinger_01
+      position: {x: 0.042487986, y: 0.00000027386525, z: 0.00000009173804}
+      rotation: {x: 0.0026372094, y: 0.019491976, z: 0.021269364, w: 0.99958026}
+      scale: {x: 0.9999988, y: 1, z: 1.0000002}
+    - name: Rigged_Synty_Character:MiddleFinger_03
+      parentName: Rigged_Synty_Character:MiddleFinger_02
+      position: {x: 0.035133373, y: -0.0000002865052, z: -0.00000005456732}
+      rotation: {x: -0.01826213, y: -0.023070736, z: 0.029845903, w: 0.9991214}
+      scale: {x: 0.9999998, y: 0.9999996, z: 0.99999934}
+    - name: Rigged_Synty_Character:MiddleFinger_04
+      parentName: Rigged_Synty_Character:MiddleFinger_03
+      position: {x: 0.03003119, y: 0.0000012039565, z: 0.00000033262828}
+      rotation: {x: 0.016646374, y: 0.09652515, z: -0.16913001, w: 0.98071444}
+      scale: {x: 1.0000015, y: 0.9999998, z: 1.0000001}
+    - name: Rigged_Synty_Character:UpperLeg_R
+      parentName: Rigged_Synty_Character:Hips
+      position: {x: 0.041157663, y: -0.026920669, z: -0.098966956}
+      rotation: {x: 0.04177526, y: 0.7058717, z: -0.7041901, w: -0.06415946}
+      scale: {x: 0.9999996, y: 0.99999976, z: 0.99999976}
+    - name: Rigged_Synty_Character:LowerLeg_R
+      parentName: Rigged_Synty_Character:UpperLeg_R
+      position: {x: -0.39930838, y: 0.000000883785, z: -0.000010936032}
+      rotation: {x: 0.64437765, y: 0.024462774, z: -0.0047376095, w: 0.76430136}
+      scale: {x: 1.0000002, y: 1, z: 1.0000004}
+    - name: Rigged_Synty_Character:Ankle_R
+      parentName: Rigged_Synty_Character:LowerLeg_R
+      position: {x: -0.37712318, y: 0.0000024752528, z: 0.00000011518174}
+      rotation: {x: -0.8576701, y: -0.5072128, z: -0.039752793, w: 0.074543655}
+      scale: {x: 1.0000004, y: 1.0000005, z: 1.0000004}
+    - name: Rigged_Synty_Character:Ball_R
+      parentName: Rigged_Synty_Character:Ankle_R
+      position: {x: -0.11284026, y: -0.0000000033655523, z: 0.0000000357557}
+      rotation: {x: 0.000000029802322, y: -0.000000059604645, z: -0.27001584, w: 0.96285594}
+      scale: {x: 1.0000005, y: 0.9999998, z: 1.0000005}
+    - name: Rigged_Synty_Character:Toes_R
+      parentName: Rigged_Synty_Character:Ball_R
+      position: {x: -0.07295756, y: 0.0000000018362861, z: 0.00000003478083}
+      rotation: {x: -0.000000109697645, y: -0.7071068, z: -0.000000069116304, w: 0.7071068}
+      scale: {x: 0.99999994, y: 1, z: 0.9999998}
+    - name: Rigged_Synty_Character:UpperLeg_L
+      parentName: Rigged_Synty_Character:Hips
+      position: {x: 0.04115781, y: -0.02692073, z: 0.09896701}
+      rotation: {x: -0.7058717, y: 0.041775316, z: -0.06415939, w: 0.70419}
+      scale: {x: 1.0000002, y: 1, z: 1}
+    - name: Rigged_Synty_Character:LowerLeg_L
+      parentName: Rigged_Synty_Character:UpperLeg_L
+      position: {x: 0.39930853, y: -0.0000013087819, z: 0.000009496669}
+      rotation: {x: 0.6443777, y: 0.024462674, z: -0.004737714, w: 0.7643013}
+      scale: {x: 0.99999976, y: 1.0000001, z: 0.9999999}
+    - name: Rigged_Synty_Character:Ankle_L
+      parentName: Rigged_Synty_Character:LowerLeg_L
+      position: {x: 0.37712288, y: -0.0000022949857, z: -0.0000009594876}
+      rotation: {x: 0.8576702, y: 0.5072129, z: 0.039752796, w: -0.07454368}
+      scale: {x: 1.0000006, y: 1.000001, z: 1.0000006}
+    - name: Rigged_Synty_Character:Ball_L
+      parentName: Rigged_Synty_Character:Ankle_L
+      position: {x: 0.11284022, y: -0.00000001595958, z: -0.000000009154854}
+      rotation: {x: -0.0000000037252903, y: -0.00000004284084, z: -0.2700159, w: 0.9628559}
+      scale: {x: 0.99999994, y: 1.0000004, z: 1.0000001}
+    - name: Rigged_Synty_Character:Toes_L
+      parentName: Rigged_Synty_Character:Ball_L
+      position: {x: 0.07295749, y: -0.000000004693376, z: -0.000000043521837}
+      rotation: {x: 0.00000007704214, y: -0.7071069, z: -0.000000032338658, w: 0.7071067}
+      scale: {x: 1.0000001, y: 1.0000004, z: 1.0000005}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 3
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

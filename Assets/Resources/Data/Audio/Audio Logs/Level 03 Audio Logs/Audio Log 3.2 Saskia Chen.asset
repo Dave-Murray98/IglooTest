@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba1a68ea32b5ff042977598151f7ca3c, type: 3}
+  m_Name: Audio Log 3.2 Saskia Chen
+  m_EditorClassIdentifier: 
+  logTitle: Saskia Chen 10.01.2558
+  logDescription: 
+  audioClip: {fileID: 8300000, guid: dfccec9fa116c274fb63485e901cd5ac, type: 3}
+  speakerName: Saskia Chen
+  recordingDate: 10th January 2558, 02:34
+  speakerPortrait: {fileID: 21300000, guid: c21968e6cb725f24da2ea842026d3a19, type: 3}
+  logIcon: {fileID: 0}
+  hasSubtitles: 1
+  subtitles:
+  - timestamp: 0
+    text: Personal log, Dr Saskia Chen.
+  - timestamp: 3
+    text: 'I''ve compiled everything. Five years of environmental data showing systematic
+      ecosystem collapse. '
+  - timestamp: 10
+    text: The falsified planetary survey - signed by TDI executives who knew exactly
+      what they were authorising.
+  - timestamp: 16.5
+    text: Water chemistry records proving our alkaline waste is destroying the native
+      habitat.
+  - timestamp: 22.5
+    text: The Phorcyds - the "eels" - there were hundreds when we arrived. Now there's
+      maybe a dozen left. They're not aggressive predators. They're dying out.
+  - timestamp: 32
+    text: I sent everything to a journalist contact Earth-side three weeks ago. TDI's
+      security flagged the transmission. Now they're watching me constantly.
+  - timestamp: 41.5
+    text: "My oxygen system maintenance is scheduled for tomorrow. I've checked my
+      equipment three times. If something goes wrong\u2026 "
+  - timestamp: 49
+    text: Someone needs to know the truth.

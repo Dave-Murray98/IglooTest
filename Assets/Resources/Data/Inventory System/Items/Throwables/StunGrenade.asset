@@ -1,0 +1,137 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3943def95315f084d917e2efd64303a2, type: 3}
+  m_Name: StunGrenade
+  m_EditorClassIdentifier: 
+  itemName: StunGrenade
+  description: Stuns all nearby
+  itemType: 4
+  shapeType: 0
+  itemSprite: {fileID: 21300000, guid: ad4b7574c34c7ba47983ddbe06a0f0b0, type: 3}
+  spriteScaleX: 1.2
+  spriteScaleY: 1.2
+  spritePositionOffset: {x: 0, y: -1}
+  equippedItemPrefab: {fileID: 3003388207989667646, guid: e545c6f4e75dea54491e566677e69cf6, type: 3}
+  equippedPositionOffset: {x: -0.073, y: -0.103, z: -0.033}
+  equippedRotationOffset: {x: 7.518, y: 0.13, z: -18.9}
+  equippedScaleOverride: {x: 0.1, y: 0.1, z: 0.1}
+  visualPrefab: {fileID: 3003388207989667646, guid: 591692f6e1e0d714882f1cf743d5b33d, type: 3}
+  visualPrefabScale: {x: 0, y: 0, z: 0}
+  groundHeightOffset: 0.1
+  usePhysicsOnDrop: 1
+  objectMass: 5
+  shouldFloat: 0
+  interactionColliderSize: {x: 0, y: 0, z: 0}
+  isRotatable: 1
+  canUseOnGround: 1
+  canUseInWater: 1
+  canUseInVehicle: 0
+  effectNoiseVolume: 10
+  degradationType: 1
+  maxDurability: 100
+  degradationRate: 1
+  degradationInterval: 1
+  useLeftHandHurtBox: 1
+  usesMeleePositionOffset: 0
+  meleeHurtBoxPositionOffset: {x: 0, y: 0, z: 0}
+  playerBodyAnimationDatabase: {fileID: 11400000, guid: a834da6e07b8a2e47aa3dd27364abd9d, type: 2}
+  playerItemAnimationDatabase: {fileID: 11400000, guid: fca364adddae70e40b86de9dda4ff5c6, type: 2}
+  weaponSwayMultiplier: 1
+  consumableData:
+    healthRestore: 5
+    hungerRestore: 10
+    thirstRestore: 0
+    consumeTime: 2
+    multiUse: 0
+    maxUses: 1
+    effectAudioClip: {fileID: 0}
+    useAudioClip: {fileID: 0}
+  rangedWeaponData:
+    damage: 10
+    range: 5
+    projectileForce: 50
+    requiredAmmoType: {fileID: 0}
+    maxAmmo: 30
+    defaultStartingAmmo: 0
+    adsFOV: 45
+    adsTransitionTime: 0.25
+    adsPositionOffset: {x: 0, y: 0, z: 0}
+    adsRotationOffset: {x: 0, y: 0, z: 0}
+    adsSetupInfo: Not configured
+    adsSetupVersion: 1
+    projectileSpawnPoint: {x: 0, y: 0, z: 0}
+    projectileSpawnRotation: {x: 0, y: 0, z: 0}
+    shootSounds: []
+    reloadStartSounds: []
+    reloadEndSounds: []
+  ammoData:
+    compatibleWeapons: []
+    projectilePrefab: {fileID: 0}
+    damageModifier: 1
+    maxAmmoPerStack: 50
+  clothingData:
+    clothingType: 0
+    validLayers: 
+    defenseValue: 0
+    warmthValue: 0
+    rainResistance: 0
+    maxCondition: 100
+    damageRate: 1
+    canBeRepaired: 1
+    minimumRepairCondition: 20
+  meleeWeaponData:
+    damage: 10
+    weaponType: 0
+  toolData:
+    isActionHeld: 0
+    requiresEnergySource: 0
+    requiredEnergySourceType: {fileID: 0}
+    energyConsumptionRate: 1
+    maxEnergyCapacity: 100
+    fxSpawnPoint: {x: 0, y: 0, z: 0}
+    fxSpawnRotation: {x: 0, y: 0, z: 0}
+    reloadClips: []
+    startUseClip: {fileID: 0}
+    useLoopClip: {fileID: 0}
+    stopUseClip: {fileID: 0}
+  throwableData:
+    damage: 10
+    throwableType: 0
+    effectRadius: 5
+    fuseTime: 3
+    throwableSpawnPoint: {x: 0, y: 0, z: 0}
+    throwableSpawnRotation: {x: 0, y: 0, z: 0}
+    throwablePrefab: {fileID: 3003388207989667646, guid: 442f545ed1836c243bfc5fc0e2c0857c, type: 3}
+    canCancelThrow: 0
+    throwSound: {fileID: 8300000, guid: c51943bff6fe4a64895b90c14a6dd2ee, type: 3}
+  bowData:
+    damage: 10
+    range: 20
+    requiredAmmoType: {fileID: 0}
+    adsFOV: 45
+    adsTransitionTime: 0.25
+    adsPositionOffset: {x: 0, y: 0, z: 0}
+    adsRotationOffset: {x: 0, y: 0, z: 0}
+    adsSetupInfo: Not configured
+    adsSetupVersion: 1
+    projectileSpawnPoint: {x: 0, y: 0, z: 0}
+    projectileSpawnRotation: {x: 0, y: 0, z: 0}
+  keyItemData:
+    useCompleteSound: {fileID: 0}
+  oxygenTankData:
+    maxCapacity: 100
+    canBeRefilled: 1
+    refillCost: 10
+  toolEnergySourceData:
+    compatibleTools: []
+    maxEnergyCapacity: 50
+  showDebugInfo: 0

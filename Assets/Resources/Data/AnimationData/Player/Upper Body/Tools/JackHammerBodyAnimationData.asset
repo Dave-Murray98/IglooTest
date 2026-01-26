@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f3574f259f0d204481bdf848bfe3661, type: 3}
+  m_Name: JackHammerBodyAnimationData
+  m_EditorClassIdentifier: 
+  itemType: 5
+  displayName: JackHammer
+  groundAnimations:
+    idle: {fileID: 7400000, guid: 45d8dc42fef19c74c853f33d89306d7c, type: 2}
+    walk: {fileID: 7400000, guid: ec0419f72ff7114408781971ca2edec0, type: 2}
+    runForward: {fileID: 7400000, guid: 284d95c32c8597149865ada93f977936, type: 2}
+  waterAnimations:
+    swimIdle: {fileID: 7400000, guid: 60f16d01aeda2444bb504605b2e5756c, type: 2}
+    swimForward: {fileID: 7400000, guid: 46692d41e6c81054aa09d02e3bb77a01, type: 2}
+    swimBackward: {fileID: 7400000, guid: e2d77bf9c1d97e644a989a650d2117d2, type: 2}
+    swimLeft: {fileID: 7400000, guid: b9eba3216e2562145a6ccf9a7ad298de, type: 2}
+    swimRight: {fileID: 7400000, guid: ef29b8e4ae7a114488348916eeffac12, type: 2}
+    swimFastForward: {fileID: 7400000, guid: 4d1d0fe8d03488940b3dce110b87b207, type: 2}
+  vehicleAnimations:
+    vehicleIdleStanding: {fileID: 0}
+    vehicleIdleSitting: {fileID: 0}
+  climbingAnimations:
+    ledgeClimb: {fileID: 0}
+  actionAnimations:
+    primaryAction: {fileID: 7400000, guid: 2664cb7332b8fb54db56b17e8ae6625e, type: 2}
+    heldPrimaryActionStart: {fileID: 7400000, guid: a1f7ee963a2540b4db98cb2d67b95c23, type: 2}
+    heldPrimaryActionLoop: {fileID: 7400000, guid: 0b08c31c64f86e747ad58d4202349137, type: 2}
+    heldPrimaryActionEnd: {fileID: 7400000, guid: 72b504e47cefdf44c85b7f54c654e836, type: 2}
+    cancelHeldPrimaryAction: {fileID: 7400000, guid: 72b504e47cefdf44c85b7f54c654e836, type: 2}
+    secondaryAction: {fileID: 0}
+    heldSecondaryActionStart: {fileID: 7400000, guid: b2063e91aa81a09498d216938e4578a9, type: 2}
+    heldSecondaryActionLoop: {fileID: 7400000, guid: 1e99b419b2cf59c40a1474975f42aaf3, type: 2}
+    heldSecondaryActionEnd: {fileID: 7400000, guid: e77d2c16e7066164d8ed04688d54eea4, type: 2}
+    cancelHeldSecondaryAction: {fileID: 7400000, guid: e77d2c16e7066164d8ed04688d54eea4, type: 2}
+    reloadAction: {fileID: 7400000, guid: 77b3e61cfb0961f418f9d86e51f58bfe, type: 2}
+    meleeAction: {fileID: 7400000, guid: 2664cb7332b8fb54db56b17e8ae6625e, type: 2}
+    meleeActionStart: {fileID: 7400000, guid: a1f7ee963a2540b4db98cb2d67b95c23, type: 2}
+    meleeActionEndLight: {fileID: 7400000, guid: 72b504e47cefdf44c85b7f54c654e836, type: 2}
+    meleeActionEndHeavy: {fileID: 7400000, guid: 72b504e47cefdf44c85b7f54c654e836, type: 2}
+    meleeActionCancel: {fileID: 7400000, guid: 72b504e47cefdf44c85b7f54c654e836, type: 2}
+    meleeActionLoop: {fileID: 7400000, guid: 0b08c31c64f86e747ad58d4202349137, type: 2}
+  enableDebugLogs: 0

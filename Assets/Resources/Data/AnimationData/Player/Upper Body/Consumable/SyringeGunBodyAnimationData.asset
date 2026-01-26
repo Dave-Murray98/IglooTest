@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f3574f259f0d204481bdf848bfe3661, type: 3}
+  m_Name: SyringeGunBodyAnimationData
+  m_EditorClassIdentifier: 
+  itemType: 1
+  displayName: SyringeGun
+  groundAnimations:
+    idle: {fileID: 7400000, guid: 47d0ded714cd0964fa905e8e47c9e7e9, type: 2}
+    walk: {fileID: 7400000, guid: d085596524963cb44a66e5d07757c61c, type: 2}
+    runForward: {fileID: 7400000, guid: 05e41d152048eef4c9f25ed7c1e7da70, type: 2}
+  waterAnimations:
+    swimIdle: {fileID: 7400000, guid: 4c11102e65e4ba04d91b920358c5ced5, type: 2}
+    swimForward: {fileID: 7400000, guid: 53d7ae2fbe5917f48bf03cbee8a20b9b, type: 2}
+    swimBackward: {fileID: 7400000, guid: d239e128c31535c499172321038c8d60, type: 2}
+    swimLeft: {fileID: 7400000, guid: 02baec8a4f3bfdb468bd7c0a9ebdcc72, type: 2}
+    swimRight: {fileID: 7400000, guid: edc4d13928a489d4597f23c531d9a466, type: 2}
+    swimFastForward: {fileID: 7400000, guid: 2acef111e6bfb404ca8da36ca5f6af65, type: 2}
+  vehicleAnimations:
+    vehicleIdleStanding: {fileID: 7400000, guid: 79c8b69662648bf4a9006654cacb78de, type: 2}
+    vehicleIdleSitting: {fileID: 7400000, guid: 2e71a49a1d0475e48ae065c0ae63555e, type: 2}
+  climbingAnimations:
+    ledgeClimb: {fileID: 0}
+  actionAnimations:
+    primaryAction: {fileID: 7400000, guid: 791707e2caf4c1b4596333a343311df9, type: 2}
+    heldPrimaryActionStart: {fileID: 0}
+    heldPrimaryActionLoop: {fileID: 0}
+    heldPrimaryActionEnd: {fileID: 0}
+    cancelHeldPrimaryAction: {fileID: 0}
+    secondaryAction: {fileID: 7400000, guid: 401a94157420eab488b498518c6e4fdc, type: 2}
+    heldSecondaryActionStart: {fileID: 0}
+    heldSecondaryActionLoop: {fileID: 0}
+    heldSecondaryActionEnd: {fileID: 0}
+    cancelHeldSecondaryAction: {fileID: 0}
+    reloadAction: {fileID: 0}
+    meleeAction: {fileID: 7400000, guid: d0e8d042b3d1e464598fa57b34775d94, type: 2}
+    meleeActionStart: {fileID: 7400000, guid: 9ee73ddf516f6294485ac16ab56215e6, type: 2}
+    meleeActionEndLight: {fileID: 7400000, guid: 6b86bbdde1979734c94f05b1b3c8aac7, type: 2}
+    meleeActionEndHeavy: {fileID: 7400000, guid: 6b86bbdde1979734c94f05b1b3c8aac7, type: 2}
+    meleeActionCancel: {fileID: 7400000, guid: 0c78e4a70611d894396580017a674f7d, type: 2}
+    meleeActionLoop: {fileID: 7400000, guid: c7bc57d933047844dbe2636a2c39740c, type: 2}
+  enableDebugLogs: 0

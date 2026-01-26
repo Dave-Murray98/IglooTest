@@ -24,41 +24,10 @@ public class InputManager : MonoBehaviour, IManager, IManagerState
 
     [Header("UI Actions")]
     private InputAction pauseAction;
-    private InputAction uiInteractAction;
 
     [Header("Core Movement Actions")]
     private InputAction moveAction;
     private InputAction lookAction;
-
-    [Header("Ground Locomotion Actions")]
-    private InputAction jumpAction;
-    private InputAction sprintAction;
-    private InputAction crouchAction;
-
-    [Header("Swimming Actions")]
-    private InputAction surfaceAction;
-    private InputAction swimSpeedAction;
-    private InputAction diveAction;
-
-    [Header("Vehicle Actions")]
-    private InputAction exitVehicleAction;
-    private InputAction brakeAction;
-
-    [Header("Gameplay Actions")]
-    private InputAction primaryAction;      // Separate primary action (shoot, use, etc.)
-    private InputAction secondaryAction;    // Separate secondary action (aim, alt use, etc.)
-    private InputAction reloadAction;       // Reload action
-    private InputAction cancelAction;      // Cancel action (for held inputs)
-    private InputAction interactAction;
-    private InputAction leftClickAction;
-    private InputAction rightClickAction;
-    private InputAction scrollWheelAction;
-    private InputAction[] hotkeyActions = new InputAction[10];
-    private InputAction adsAction;
-
-    [Header("Inventory Actions")]
-    private InputAction toggleInventoryAction;
-    private InputAction rotateInventoryItemAction;
 
     #endregion
 
@@ -66,82 +35,25 @@ public class InputManager : MonoBehaviour, IManager, IManagerState
     public Vector2 MovementInput { get; private set; }
     public Vector2 LookInput { get; private set; }
 
-    // Movement action states (jump, crouch, surface, dive)
-    public bool JumpPressed { get; private set; }
-    public bool JumpHeld { get; private set; }
-    public bool CrouchPressed { get; private set; }
-    public bool CrouchHeld { get; private set; }
-    public bool SurfacePressed { get; private set; }
-    public bool SurfaceHeld { get; private set; }
-    public bool DivePressed { get; private set; }
-    public bool DiveHeld { get; private set; }
-    public bool BrakePressed { get; private set; }
-    public bool BrakeHeld { get; private set; }
-
-    // Gameplay action states (primary, secondary, reload)
-    public bool PrimaryActionPressed { get; private set; }
-    public bool PrimaryActionHeld { get; private set; }
-    public bool SecondaryActionPressed { get; private set; }
-    public bool SecondaryActionHeld { get; private set; }
-    public bool ReloadPressed { get; private set; }
-    public bool CancelActionPressed { get; private set; }
-
-    public bool SpeedModifierHeld { get; private set; }
     #endregion
 
     #region Events
 
-    // Movement action events (jump, crouch, surface, dive)
-    public event Action OnJumpPressed;
-    public event Action OnJumpReleased;
-    public event Action OnCrouchPressed;
-    public event Action OnCrouchReleased;
-    public event Action OnSurfacePressed;
-    public event Action OnSurfaceReleased;
-    public event Action OnDivePressed;
-    public event Action OnDiveReleased;
 
     // Gameplay action events (primary, secondary, reload)
     public event Action OnPrimaryActionPressed;
     public event Action OnPrimaryActionReleased;
     public event Action OnSecondaryActionPressed;
     public event Action OnSecondaryActionReleased;
-    public event Action OnReloadPressed;
-    public event Action OnCancelActionPressed; // For cancelling held actions
-
-    // Other gameplay events
-    public event Action OnInteractPressed;
-    public event Action OnRotateInventoryItemPressed;
-    public event Action OnLeftClickPressed;
-    public event Action OnRightClickPressed;
-    public event Action OnADSHeldStart;
-    public event Action OnADSReleased;
     public static event Action<InputManager> OnInputManagerReady;
-
-    // UI events
-    public event Action OnUIInteractPressed;
-    public System.Action<Vector2> OnScrollWheelInput;
-    public System.Action<int> OnHotkeyPressed;
-
-    // Vehicle events
-    public event Action OnExitVehiclePressed;
-    public event Action OnBrakePressed;
-    public event Action OnBrakeReleased;
 
     #endregion
 
     // Action maps
     private InputActionMap uiActionMap;
     private InputActionMap coreMovementActionMap;
-    private InputActionMap groundLocomotionActionMap;
-    private InputActionMap swimmingActionMap;
-    private InputActionMap vehicleActionMap;
-    private InputActionMap gameplayActionMap;
-    private InputActionMap inventoryActionMap;
 
     // State tracking
-    private InputActionMap currentMovementActionMap;
-    [SerializeField] private MovementMode currentMovementMode = MovementMode.Ground;
     private bool gameplayInputEnabled = true;
     private bool isCleanedUp = false;
     private bool isFullyInitialized = false;
@@ -201,11 +113,6 @@ public class InputManager : MonoBehaviour, IManager, IManagerState
         // Get action maps
         uiActionMap = inputActions.FindActionMap("UI");
         coreMovementActionMap = inputActions.FindActionMap("CoreMovement");
-        groundLocomotionActionMap = inputActions.FindActionMap("GroundLocomotion");
-        swimmingActionMap = inputActions.FindActionMap("Swimming");
-        vehicleActionMap = inputActions.FindActionMap("Vehicle");
-        gameplayActionMap = inputActions.FindActionMap("Gameplay");
-        inventoryActionMap = inputActions.FindActionMap("Inventory");
 
         // Validate critical action maps exist
         if (uiActionMap == null)
@@ -214,7 +121,7 @@ public class InputManager : MonoBehaviour, IManager, IManagerState
             return;
         }
 
-        if (coreMovementActionMap == null || groundLocomotionActionMap == null)
+        if (coreMovementActionMap == null)
         {
             Debug.LogError("[InputManager] Core movement ActionMaps not found! Movement won't work!");
             return;
@@ -223,21 +130,12 @@ public class InputManager : MonoBehaviour, IManager, IManagerState
         // Setup actions
         SetupUIInputActions();
         SetupCoreMovementInputActions();
-        SetupGroundLocomotionInputActions();
-        SetupSwimmingInputActions();
-        SetupVehicleInputActions();
-        SetupGameplayInputActions();
-        SetupInventoryInputActions();
 
         // Subscribe to events
         SubscribeToInputActions();
 
         // CRITICAL: Enable essential ActionMaps immediately
         EnableEssentialActionMapsImmediate();
-
-        // Set initial movement mode
-        currentMovementMode = MovementMode.Ground;
-        currentMovementActionMap = groundLocomotionActionMap;
 
         DebugLog("[InputManager] Immediate input setup complete - Input should work now!");
     }
@@ -275,36 +173,6 @@ public class InputManager : MonoBehaviour, IManager, IManagerState
             coreMovementActionMap.Enable();
             DebugLog("[InputManager] Core Movement ActionMap enabled");
         }
-
-        if (groundLocomotionActionMap != null)
-        {
-            groundLocomotionActionMap.Enable();
-            DebugLog("[InputManager] Ground Locomotion ActionMap enabled");
-        }
-
-        if (swimmingActionMap != null)
-        {
-            swimmingActionMap.Enable();
-            DebugLog("[InputManager] Swimming ActionMap enabled");
-        }
-
-        if (gameplayActionMap != null)
-        {
-            gameplayActionMap.Enable();
-            DebugLog("[InputManager] Gameplay ActionMap enabled");
-        }
-
-        if (inventoryActionMap != null)
-        {
-            inventoryActionMap.Enable();
-            DebugLog("[InputManager] Inventory ActionMap enabled");
-        }
-
-        if (vehicleActionMap != null)
-        {
-            vehicleActionMap.Enable();
-            DebugLog("[InputManager] Vehicle ActionMap enabled");
-        }
     }
 
     /// <summary>
@@ -313,12 +181,6 @@ public class InputManager : MonoBehaviour, IManager, IManagerState
     private void DisableGameplayActionMaps()
     {
         coreMovementActionMap?.Disable();
-        groundLocomotionActionMap?.Disable();
-        swimmingActionMap?.Disable();
-        gameplayActionMap?.Disable();
-        inventoryActionMap?.Disable();
-        vehicleActionMap?.Disable();
-
         DebugLog("[InputManager] All gameplay ActionMaps disabled");
     }
 
@@ -389,9 +251,6 @@ public class InputManager : MonoBehaviour, IManager, IManagerState
             uiActionMap.Disable();
         }
 
-
-        //unlock the cursor
-
         // Clear any held input states
         ClearAllInputStates();
 
@@ -446,26 +305,6 @@ public class InputManager : MonoBehaviour, IManager, IManagerState
     {
         MovementInput = Vector2.zero;
         LookInput = Vector2.zero;
-
-        JumpPressed = false;
-        JumpHeld = false;
-        CrouchPressed = false;
-        CrouchHeld = false;
-        SurfacePressed = false;
-        SurfaceHeld = false;
-        DivePressed = false;
-        DiveHeld = false;
-        BrakePressed = false;
-        BrakeHeld = false;
-
-        PrimaryActionPressed = false;
-        PrimaryActionHeld = false;
-        SecondaryActionPressed = false;
-        SecondaryActionHeld = false;
-        ReloadPressed = false;
-        CancelActionPressed = false;
-
-        SpeedModifierHeld = false;
 
         DebugLog("All input states cleared");
     }
@@ -528,75 +367,6 @@ public class InputManager : MonoBehaviour, IManager, IManagerState
 
     #endregion
 
-    #region Movement Mode Management
-
-    public void SetMovementMode(MovementMode mode)
-    {
-        if (currentMovementMode == mode && currentMovementActionMap != null && currentMovementActionMap.enabled)
-        {
-            return; // Already in correct mode and working
-        }
-
-        // Disable current movement ActionMap (but keep others enabled)
-        if (currentMovementActionMap != null)
-        {
-            currentMovementActionMap.Disable();
-        }
-
-        // Set new movement ActionMap
-        switch (mode)
-        {
-            case MovementMode.Ground:
-                currentMovementActionMap = groundLocomotionActionMap;
-                break;
-            case MovementMode.Swimming:
-                currentMovementActionMap = swimmingActionMap;
-                break;
-            case MovementMode.Vehicle:
-                currentMovementActionMap = vehicleActionMap;
-                break;
-            case MovementMode.Climbing:
-                currentMovementActionMap = groundLocomotionActionMap; // just copy ground for now, as player will most likely transition to ground when climbing finishes
-                break;
-            default:
-                Debug.LogWarning($"[InputManager] Unknown movement mode {mode}, defaulting to Ground");
-                currentMovementActionMap = groundLocomotionActionMap;
-                mode = MovementMode.Ground;
-                break;
-        }
-
-        currentMovementMode = mode;
-
-        // Enable new movement ActionMap
-        if (currentMovementActionMap != null && gameplayInputEnabled)
-        {
-            currentMovementActionMap.Enable();
-        }
-    }
-
-    public MovementMode GetCurrentMovementMode() => currentMovementMode;
-
-    public void ForceResetToGroundMode()
-    {
-        Debug.LogWarning("[InputManager] FORCE RESET: Resetting to Ground mode");
-
-        // Disable all movement ActionMaps
-        groundLocomotionActionMap?.Disable();
-        swimmingActionMap?.Disable();
-
-        // Force set to ground mode
-        currentMovementMode = MovementMode.Ground;
-        currentMovementActionMap = groundLocomotionActionMap;
-
-        // Enable ground ActionMap
-        if (currentMovementActionMap != null && gameplayInputEnabled)
-        {
-            currentMovementActionMap.Enable();
-            DebugLog("[InputManager] Ground mode reset complete");
-        }
-    }
-
-    #endregion
 
     #region Input State Management
 
@@ -610,9 +380,6 @@ public class InputManager : MonoBehaviour, IManager, IManagerState
 
         // Disable gameplay ActionMaps but KEEP UI enabled
         coreMovementActionMap?.Disable();
-        currentMovementActionMap?.Disable();
-        gameplayActionMap?.Disable();
-        inventoryActionMap?.Disable();
 
         // UI ActionMap stays enabled for pause functionality
         DebugLog("[InputManager] Gameplay input disabled, UI remains active");
@@ -642,29 +409,10 @@ public class InputManager : MonoBehaviour, IManager, IManagerState
         return true;
     }
 
-
-
-    //disables just player gameplay (shooting, reloading, etc)
-    public void DisableGameplayInput()
-    {
-        gameplayActionMap?.Disable();
-    }
-
-    //re-enables just player gameplay
-    public void EnableGameplayInput()
-    {
-        gameplayActionMap?.Enable();
-    }
-
     private void DisableAllInputActions()
     {
         uiActionMap?.Disable();
         coreMovementActionMap?.Disable();
-        groundLocomotionActionMap?.Disable();
-        swimmingActionMap?.Disable();
-        gameplayActionMap?.Disable();
-        inventoryActionMap?.Disable();
-        vehicleActionMap?.Disable();
     }
 
     #endregion
@@ -679,17 +427,6 @@ public class InputManager : MonoBehaviour, IManager, IManagerState
             Debug.LogError("[InputManager] Pause action not found in UI ActionMap!");
         }
 
-        uiInteractAction = uiActionMap.FindAction("UIInteract");
-
-        // Hotkey actions
-        for (int i = 1; i <= 10; i++)
-        {
-            string actionName = i == 10 ? "Hotkey0" : $"Hotkey{i}";
-            hotkeyActions[i - 1] = uiActionMap.FindAction(actionName);
-        }
-
-        scrollWheelAction = uiActionMap.FindAction("ScrollWheel");
-
     }
 
     private void SetupCoreMovementInputActions()
@@ -698,58 +435,6 @@ public class InputManager : MonoBehaviour, IManager, IManagerState
         lookAction = coreMovementActionMap.FindAction("Look");
     }
 
-    private void SetupGroundLocomotionInputActions()
-    {
-        jumpAction = groundLocomotionActionMap.FindAction("Jump");
-        sprintAction = groundLocomotionActionMap.FindAction("Sprint");
-        crouchAction = groundLocomotionActionMap.FindAction("Crouch");
-    }
-
-    private void SetupSwimmingInputActions()
-    {
-        surfaceAction = swimmingActionMap.FindAction("Surface");
-        swimSpeedAction = swimmingActionMap.FindAction("SwimSpeed");
-        diveAction = swimmingActionMap.FindAction("Dive");
-    }
-
-    private void SetupVehicleInputActions()
-    {
-        exitVehicleAction = vehicleActionMap.FindAction("ExitVehicle");
-        brakeAction = vehicleActionMap.FindAction("Brake");
-    }
-
-    private void SetupGameplayInputActions()
-    {
-        //Setup proper gameplay actions
-        primaryAction = gameplayActionMap.FindAction("PrimaryAction");
-        secondaryAction = gameplayActionMap.FindAction("SecondaryAction");
-        reloadAction = gameplayActionMap.FindAction("Reload");
-        cancelAction = gameplayActionMap.FindAction("CancelAction");
-
-        interactAction = gameplayActionMap.FindAction("Interact");
-        leftClickAction = gameplayActionMap.FindAction("LeftClick");
-        rightClickAction = gameplayActionMap.FindAction("RightClick");
-
-
-        adsAction = gameplayActionMap.FindAction("AimDownSights");
-
-        // Validate that the new actions exist
-        if (primaryAction == null)
-            Debug.LogError("[InputManager] PrimaryAction not found in Gameplay ActionMap!");
-        if (secondaryAction == null)
-            Debug.LogError("[InputManager] SecondaryAction not found in Gameplay ActionMap!");
-        if (reloadAction == null)
-            Debug.LogError("[InputManager] Reload not found in Gameplay ActionMap!");
-
-        if (cancelAction == null)
-            Debug.LogError("[InputManager] CancelAction not found in Gameplay ActionMap!");
-    }
-
-    private void SetupInventoryInputActions()
-    {
-        toggleInventoryAction = inventoryActionMap.FindAction("ToggleInventory");
-        rotateInventoryItemAction = inventoryActionMap.FindAction("RotateInventoryItem");
-    }
 
     #endregion
 
@@ -758,28 +443,10 @@ public class InputManager : MonoBehaviour, IManager, IManagerState
     private void ClearAllEvents()
     {
         // FIXED: Clear all events properly
-        OnJumpPressed = null;
-        OnJumpReleased = null;
-        OnCrouchPressed = null;
-        OnCrouchReleased = null;
-        OnSurfacePressed = null;
-        OnSurfaceReleased = null;
-        OnDivePressed = null;
-        OnDiveReleased = null;
         OnPrimaryActionPressed = null;
         OnPrimaryActionReleased = null;
         OnSecondaryActionPressed = null;
         OnSecondaryActionReleased = null;
-        OnReloadPressed = null;
-        OnCancelActionPressed = null;
-        OnInteractPressed = null;
-        OnRotateInventoryItemPressed = null;
-        OnLeftClickPressed = null;
-        OnRightClickPressed = null;
-        OnScrollWheelInput = null;
-        OnHotkeyPressed = null;
-        OnADSHeldStart = null;
-        OnADSReleased = null;
     }
 
     #endregion
@@ -789,10 +456,6 @@ public class InputManager : MonoBehaviour, IManager, IManagerState
     private void SubscribeToInputActions()
     {
         SubscribeToUIInputActions();
-        SubscribeToMovementActions(); // FIXED: Separate movement actions
-        SubscribeToGameplayInputActions(); // FIXED: Separate gameplay actions
-        SubscribeToInventoryInputActions();
-        SubscribeToVehicleInputActions();
     }
 
     private void SubscribeToUIInputActions()
@@ -801,137 +464,6 @@ public class InputManager : MonoBehaviour, IManager, IManagerState
         {
             pauseAction.performed += OnPausePerformed;
         }
-
-        if (uiInteractAction != null)
-        {
-            uiInteractAction.performed += OnUIInteractPerformed;
-        }
-
-        // Subscribe to hotkey actions
-        for (int i = 0; i < hotkeyActions.Length; i++)
-        {
-            if (hotkeyActions[i] != null)
-            {
-                int slotNumber = i + 1;
-                hotkeyActions[i].performed += _ => OnHotkeyPerformed(slotNumber);
-            }
-        }
-
-        if (scrollWheelAction != null)
-        {
-            scrollWheelAction.performed += OnScrollWheelPerformed;
-        }
-    }
-
-    /// <summary>
-    /// FIXED: Subscribe to movement actions (jump, crouch, surface, dive)
-    /// </summary>
-    private void SubscribeToMovementActions()
-    {
-        // Ground locomotion actions
-        if (jumpAction != null)
-        {
-            jumpAction.performed += OnJumpPerformed;
-            jumpAction.canceled += OnJumpCanceled;
-        }
-
-        if (crouchAction != null)
-        {
-            crouchAction.performed += OnCrouchPerformed;
-            crouchAction.canceled += OnCrouchCanceled;
-        }
-
-        // Swimming actions
-        if (surfaceAction != null)
-        {
-            surfaceAction.performed += OnSurfacePerformed;
-            surfaceAction.canceled += OnSurfaceCanceled;
-        }
-
-        if (diveAction != null)
-        {
-            diveAction.performed += OnDivePerformed;
-            diveAction.canceled += OnDiveCanceled;
-        }
-    }
-
-    /// <summary>
-    /// FIXED: Subscribe to gameplay actions (primary, secondary, reload)
-    /// </summary>
-    private void SubscribeToGameplayInputActions()
-    {
-        // Primary and secondary actions
-        if (primaryAction != null)
-        {
-            primaryAction.performed += OnPrimaryActionPerformed;
-            primaryAction.canceled += OnPrimaryActionCanceled;
-        }
-
-        if (secondaryAction != null)
-        {
-            secondaryAction.performed += OnSecondaryActionPerformed;
-            secondaryAction.canceled += OnSecondaryActionCanceled;
-        }
-
-        if (reloadAction != null)
-        {
-            reloadAction.performed += OnReloadPerformed;
-        }
-
-        if (cancelAction != null)
-        {
-            cancelAction.performed += OnCancelActionPerformed;
-        }
-
-        // Other gameplay actions
-        if (interactAction != null)
-        {
-            interactAction.performed += OnInteractPerformed;
-        }
-
-        if (leftClickAction != null)
-        {
-            leftClickAction.performed += OnLeftClickPerformed;
-        }
-
-        if (rightClickAction != null)
-        {
-            rightClickAction.performed += OnRightClickPerformed;
-        }
-
-        if (adsAction != null)
-        {
-            adsAction.performed += OnADSPerformed;
-            adsAction.canceled += OnADSCanceled;
-        }
-    }
-
-    private void SubscribeToInventoryInputActions()
-    {
-        if (toggleInventoryAction != null)
-        {
-            toggleInventoryAction.performed += OnToggleInventoryPerformed;
-        }
-
-        if (rotateInventoryItemAction != null)
-        {
-            rotateInventoryItemAction.performed += OnRotateInventoryItemPerformed;
-        }
-    }
-
-    private void SubscribeToVehicleInputActions()
-    {
-        if (exitVehicleAction != null)
-        {
-            exitVehicleAction.performed += OnExitVehiclePerformed;
-        }
-
-        if (brakeAction != null)
-        {
-            brakeAction.performed += OnBrakePerformed;
-            brakeAction.canceled += OnBrakeCanceled;
-        }
-
     }
 
 
@@ -941,119 +473,6 @@ public class InputManager : MonoBehaviour, IManager, IManagerState
         if (pauseAction != null)
         {
             pauseAction.performed -= OnPausePerformed;
-        }
-
-        if (uiInteractAction != null)
-        {
-            uiInteractAction.performed -= OnUIInteractPerformed;
-        }
-
-        // Hotkey actions
-        for (int i = 0; i < hotkeyActions.Length; i++)
-        {
-            if (hotkeyActions[i] != null)
-            {
-                int slotNumber = i + 1;
-                hotkeyActions[i].performed -= _ => OnHotkeyPerformed(slotNumber);
-            }
-        }
-
-        if (scrollWheelAction != null)
-        {
-            scrollWheelAction.performed -= OnScrollWheelPerformed;
-        }
-
-        // FIXED: Movement actions
-        if (jumpAction != null)
-        {
-            jumpAction.performed -= OnJumpPerformed;
-            jumpAction.canceled -= OnJumpCanceled;
-        }
-
-        if (crouchAction != null)
-        {
-            crouchAction.performed -= OnCrouchPerformed;
-            crouchAction.canceled -= OnCrouchCanceled;
-        }
-
-        if (surfaceAction != null)
-        {
-            surfaceAction.performed -= OnSurfacePerformed;
-            surfaceAction.canceled -= OnSurfaceCanceled;
-        }
-
-        if (diveAction != null)
-        {
-            diveAction.performed -= OnDivePerformed;
-            diveAction.canceled -= OnDiveCanceled;
-        }
-
-        // FIXED: Gameplay actions
-        if (primaryAction != null)
-        {
-            primaryAction.performed -= OnPrimaryActionPerformed;
-            primaryAction.canceled -= OnPrimaryActionCanceled;
-        }
-
-        if (secondaryAction != null)
-        {
-            secondaryAction.performed -= OnSecondaryActionPerformed;
-            secondaryAction.canceled -= OnSecondaryActionCanceled;
-        }
-
-        if (reloadAction != null)
-        {
-            reloadAction.performed -= OnReloadPerformed;
-        }
-
-        if (cancelAction != null)
-        {
-            cancelAction.performed -= OnCancelActionPerformed;
-        }
-
-        // Other gameplay actions
-        if (interactAction != null)
-        {
-            interactAction.performed -= OnInteractPerformed;
-        }
-
-        if (leftClickAction != null)
-        {
-            leftClickAction.performed -= OnLeftClickPerformed;
-        }
-
-        if (rightClickAction != null)
-        {
-            rightClickAction.performed -= OnRightClickPerformed;
-        }
-
-        if (adsAction != null)
-        {
-            adsAction.performed -= OnADSPerformed;
-            adsAction.canceled -= OnADSCanceled;
-        }
-
-        // Inventory actions
-        if (toggleInventoryAction != null)
-        {
-            toggleInventoryAction.performed -= OnToggleInventoryPerformed;
-        }
-
-        if (rotateInventoryItemAction != null)
-        {
-            rotateInventoryItemAction.performed -= OnRotateInventoryItemPerformed;
-        }
-
-        // Vehicle actions
-        if (exitVehicleAction != null)
-        {
-            exitVehicleAction.performed -= OnExitVehiclePerformed;
-        }
-
-        if (brakeAction != null)
-        {
-            brakeAction.performed -= OnBrakePerformed;
-            brakeAction.canceled -= OnBrakeCanceled;
         }
     }
 
@@ -1080,196 +499,6 @@ public class InputManager : MonoBehaviour, IManager, IManagerState
         }
     }
 
-    private void OnUIInteractPerformed(InputAction.CallbackContext context)
-    {
-        if (isCleanedUp) return;
-        OnUIInteractPressed?.Invoke();
-    }
-
-
-    private void OnHotkeyPerformed(int slotNumber)
-    {
-        if (isCleanedUp) return;
-        OnHotkeyPressed?.Invoke(slotNumber);
-    }
-
-    private void OnScrollWheelPerformed(InputAction.CallbackContext context)
-    {
-        Vector2 scrollValue = context.ReadValue<Vector2>();
-        OnScrollWheelInput?.Invoke(scrollValue);
-    }
-
-    // FIXED: Movement action handlers
-    private void OnJumpPerformed(InputAction.CallbackContext context)
-    {
-        if (isCleanedUp) return;
-        JumpPressed = true;
-        OnJumpPressed?.Invoke();
-    }
-
-    private void OnJumpCanceled(InputAction.CallbackContext context)
-    {
-        if (isCleanedUp) return;
-        OnJumpReleased?.Invoke();
-    }
-
-    private void OnCrouchPerformed(InputAction.CallbackContext context)
-    {
-        if (isCleanedUp) return;
-        CrouchPressed = true;
-        OnCrouchPressed?.Invoke();
-    }
-
-    private void OnCrouchCanceled(InputAction.CallbackContext context)
-    {
-        if (isCleanedUp) return;
-        OnCrouchReleased?.Invoke();
-    }
-
-    private void OnSurfacePerformed(InputAction.CallbackContext context)
-    {
-        if (isCleanedUp) return;
-        SurfacePressed = true;
-        OnSurfacePressed?.Invoke();
-        DebugLog("[InputManager] Surface input detected!");
-    }
-
-    private void OnSurfaceCanceled(InputAction.CallbackContext context)
-    {
-        if (isCleanedUp) return;
-        OnSurfaceReleased?.Invoke();
-    }
-
-    private void OnDivePerformed(InputAction.CallbackContext context)
-    {
-        if (isCleanedUp) return;
-        DivePressed = true;
-        OnDivePressed?.Invoke();
-        DebugLog("[InputManager] Dive input detected!");
-    }
-
-    private void OnDiveCanceled(InputAction.CallbackContext context)
-    {
-        if (isCleanedUp) return;
-        OnDiveReleased?.Invoke();
-    }
-
-    // FIXED: Gameplay action handlers
-    private void OnPrimaryActionPerformed(InputAction.CallbackContext context)
-    {
-        if (isCleanedUp) return;
-        PrimaryActionPressed = true;
-        OnPrimaryActionPressed?.Invoke();
-    }
-
-    private void OnPrimaryActionCanceled(InputAction.CallbackContext context)
-    {
-        if (isCleanedUp) return;
-        OnPrimaryActionReleased?.Invoke();
-    }
-
-    private void OnSecondaryActionPerformed(InputAction.CallbackContext context)
-    {
-        if (isCleanedUp) return;
-        SecondaryActionPressed = true;
-        OnSecondaryActionPressed?.Invoke();
-    }
-
-    private void OnSecondaryActionCanceled(InputAction.CallbackContext context)
-    {
-        if (isCleanedUp) return;
-        OnSecondaryActionReleased?.Invoke();
-    }
-
-    private void OnReloadPerformed(InputAction.CallbackContext context)
-    {
-        if (isCleanedUp) return;
-        ReloadPressed = true;
-        OnReloadPressed?.Invoke();
-    }
-
-    private void OnCancelActionPerformed(InputAction.CallbackContext context)
-    {
-        if (isCleanedUp) return;
-        CancelActionPressed = true;
-        OnCancelActionPressed?.Invoke();
-    }
-
-    // Other event handlers remain the same
-    private void OnInteractPerformed(InputAction.CallbackContext context)
-    {
-        if (isCleanedUp) return;
-        OnInteractPressed?.Invoke();
-    }
-
-    private void OnToggleInventoryPerformed(InputAction.CallbackContext context)
-    {
-        if (isCleanedUp) return;
-
-        if (GameManager.Instance?.uiManager != null)
-        {
-            if (GameManager.Instance.uiManager.isInventoryOpen)
-            {
-                GameEvents.TriggerInventoryClosed();
-            }
-            else
-            {
-                GameEvents.TriggerInventoryOpened();
-            }
-        }
-    }
-
-    private void OnRotateInventoryItemPerformed(InputAction.CallbackContext context)
-    {
-        if (isCleanedUp) return;
-        OnRotateInventoryItemPressed?.Invoke();
-    }
-
-    private void OnLeftClickPerformed(InputAction.CallbackContext context)
-    {
-        if (isCleanedUp) return;
-        OnLeftClickPressed?.Invoke();
-    }
-
-    private void OnRightClickPerformed(InputAction.CallbackContext context)
-    {
-        if (isCleanedUp) return;
-        OnRightClickPressed?.Invoke();
-    }
-
-
-    private void OnADSPerformed(InputAction.CallbackContext context)
-    {
-        if (isCleanedUp) return;
-        OnADSHeldStart?.Invoke();
-    }
-
-    private void OnADSCanceled(InputAction.CallbackContext context)
-    {
-        if (isCleanedUp) return;
-        OnADSReleased?.Invoke();
-    }
-
-    private void OnExitVehiclePerformed(InputAction.CallbackContext context)
-    {
-        if (isCleanedUp) return;
-        DebugLog("[InputManager] Exit vehicle input detected!");
-        OnExitVehiclePressed?.Invoke();
-    }
-
-    private void OnBrakePerformed(InputAction.CallbackContext context)
-    {
-        if (isCleanedUp) return;
-        BrakePressed = true;
-        OnBrakePressed?.Invoke();
-    }
-
-    private void OnBrakeCanceled(InputAction.CallbackContext context)
-    {
-        if (isCleanedUp) return;
-        OnBrakeReleased?.Invoke();
-    }
-
     #endregion
 
     #region Update Loop
@@ -1293,63 +522,9 @@ public class InputManager : MonoBehaviour, IManager, IManagerState
 
     private void UpdateContextualInputValues()
     {
-        // Update speed modifier based on current movement mode
-        switch (currentMovementMode)
-        {
-            case MovementMode.Ground:
-                SpeedModifierHeld = sprintAction?.IsPressed() ?? false;
-                JumpHeld = jumpAction?.IsPressed() ?? false;
-                CrouchHeld = crouchAction?.IsPressed() ?? false;
-                break;
-            case MovementMode.Swimming:
-                SpeedModifierHeld = swimSpeedAction?.IsPressed() ?? false;
-                SurfaceHeld = surfaceAction?.IsPressed() ?? false;
-                DiveHeld = diveAction?.IsPressed() ?? false;
-                break;
-            case MovementMode.Vehicle:
-                BrakeHeld = brakeAction?.IsPressed() ?? false;
-                break;
-            case MovementMode.Climbing:                                 // just copy ground for now, as player will most likely transition to ground when climbing finishes
-                SpeedModifierHeld = sprintAction?.IsPressed() ?? false;
-                JumpHeld = jumpAction?.IsPressed() ?? false;
-                CrouchHeld = crouchAction?.IsPressed() ?? false;
-                break;
-
-        }
-
         // Update gameplay action held states
-        PrimaryActionHeld = primaryAction?.IsPressed() ?? false;
-        SecondaryActionHeld = secondaryAction?.IsPressed() ?? false;
-
-        // Reset pressed states after they've been read
-        if (JumpPressed) JumpPressed = false;
-        if (CrouchPressed) CrouchPressed = false;
-        if (SurfacePressed) SurfacePressed = false;
-        if (DivePressed) DivePressed = false;
-        if (BrakePressed) BrakePressed = false;
-        if (PrimaryActionPressed) PrimaryActionPressed = false;
-        if (SecondaryActionPressed) SecondaryActionPressed = false;
-        if (ReloadPressed) ReloadPressed = false;
-        if (CancelActionPressed) CancelActionPressed = false;
     }
 
-    #endregion
-
-    #region Utility Methods
-
-    public void SetInputEnabled(string actionName, bool enabled)
-    {
-        if (isCleanedUp) return;
-
-        var action = currentMovementActionMap?.FindAction(actionName);
-        if (action != null)
-        {
-            if (enabled)
-                action.Enable();
-            else
-                action.Disable();
-        }
-    }
     #endregion
 
     private void OnDestroy()
@@ -1360,18 +535,6 @@ public class InputManager : MonoBehaviour, IManager, IManagerState
             Instance = null;
         }
         Cleanup();
-    }
-
-    [Button]
-    private void CheckWhichInputMapsAreEnabled()
-    {
-        DebugLog($"UI ActionMap enabled: {uiActionMap?.enabled}");
-        DebugLog($"Core Movement ActionMap enabled: {coreMovementActionMap?.enabled}");
-        DebugLog($"Ground Locomotion ActionMap enabled: {groundLocomotionActionMap?.enabled}");
-        DebugLog($"Swimming ActionMap enabled: {swimmingActionMap?.enabled}");
-        DebugLog($"Vehicle ActionMap enabled: {vehicleActionMap?.enabled}");
-        DebugLog($"Gameplay ActionMap enabled: {gameplayActionMap?.enabled}");
-        DebugLog($"Inventory ActionMap enabled: {inventoryActionMap?.enabled}");
     }
 
     private void DebugLog(string message)

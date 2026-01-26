@@ -10,10 +10,6 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class HazardManager : MonoBehaviour
 {
-    [Header("Manager Settings")]
-    [Tooltip("Should this manager persist between scene loads? If false, each scene should have its own manager.")]
-    [SerializeField] private bool persistBetweenScenes = false;
-
     // Singleton pattern so any hazard can easily access this manager
     public static HazardManager Instance { get; private set; }
 
@@ -24,46 +20,12 @@ public class HazardManager : MonoBehaviour
     {
         // Set up singleton
         if (Instance == null)
-        {
             Instance = this;
-
-            // If set to persist, make this manager survive scene loads
-            if (persistBetweenScenes)
-            {
-                DontDestroyOnLoad(gameObject);
-                // Subscribe to scene loading events for cleanup
-                SceneManager.sceneLoaded += OnSceneLoaded;
-            }
-        }
         else
         {
-            // If there's already an instance and we're NOT persisting, destroy the old one (new scene's manager takes over)
-            if (!persistBetweenScenes && Instance.persistBetweenScenes == false)
-            {
-                Debug.Log("New scene loaded with new ContinuousHazardManager. Replacing previous manager.");
-                Destroy(Instance.gameObject);
-                Instance = this;
-            }
-            else
-            {
-                // Otherwise, we have a duplicate (probably an error)
-                Debug.LogWarning("Multiple ContinuousHazardManagers detected! Destroying duplicate.");
-                Destroy(gameObject);
-            }
-        }
-    }
-
-    /// <summary>
-    /// Called when a new scene is loaded. Cleans up any hazards from the previous scene.
-    /// </summary>
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        // Clear all hazards since they're from the old scene
-        // Hazards in the new scene will register themselves when the player enters them
-        if (activeHazards.Count > 0)
-        {
-            Debug.Log($"Scene changed to {scene.name}. Clearing {activeHazards.Count} hazards from previous scene.");
-            activeHazards.Clear();
+            // Otherwise, we have a duplicate (probably an error)
+            Debug.LogWarning("Multiple ContinuousHazardManagers detected! Destroying duplicate.");
+            Destroy(gameObject);
         }
     }
 

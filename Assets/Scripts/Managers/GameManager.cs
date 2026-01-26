@@ -38,18 +38,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private string startingSceneName = "Level00";
 
 
-    [Header("Configurations")]
-    public PlayerData playerData;
-
     [Header("Scene-Based Managers")]
-    public PlayerManager playerManager;
     public UIManager uiManager;
-    //public InGameTimeManager timeManager;
-    //public WeatherManager weatherManager;
+
 
     [Header("Persistent Managers")]
     [ShowInInspector, ReadOnly] private InputManager inputManagerReference;
-    [ShowInInspector, ReadOnly] private PlayerStateManager stateManagerReference;
     [ShowInInspector, ReadOnly] private AudioManager audioManagerReference;
 
     [Header("Game State")]
@@ -78,8 +72,6 @@ public class GameManager : MonoBehaviour
 
     // Public accessors for persistent managers
     public InputManager InputManager => InputManager.Instance;
-    public PlayerStateManager PlayerStateManager => PlayerStateManager.Instance;
-
     public AudioManager AudioManager => AudioManager.Instance;
 
     // Public accessor for operational state
@@ -317,18 +309,7 @@ public class GameManager : MonoBehaviour
 
         // Transition to menu state
         SetOperationalState(ManagerOperationalState.Transition);
-
-        // Load main menu scene
-        if (SceneTransitionManager.Instance != null)
-        {
-            // Use a simple scene load - no save file context needed
-            UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
-        }
-        else
-        {
-            Debug.LogWarning("SceneTransitionManager not found - using direct scene load");
-            UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
-        }
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
     }
 
     #endregion
@@ -364,9 +345,6 @@ public class GameManager : MonoBehaviour
 
         // InputManager initialization
         InitializeInputManager();
-
-        // PlayerStateManager initialization
-        InitializePlayerStateManager();
 
         InitializeAudioManager();
 
@@ -411,31 +389,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Initialize or refresh PlayerStateManager
-    /// </summary>
-    private void InitializePlayerStateManager()
-    {
-        if (PlayerStateManager.Instance == null)
-        {
-            DebugLog("PlayerStateManager singleton not found! Returning.");
-            return;
-        }
-
-        PlayerStateManager.Initialize();
-
-        // Update reference and add to persistent managers
-        stateManagerReference = PlayerStateManager.Instance;
-        if (stateManagerReference != null)
-        {
-            if (!persistentManagers.Contains(stateManagerReference))
-            {
-                persistentManagers.Add(stateManagerReference);
-            }
-            DebugLog("PlayerStateManager ready");
-        }
-    }
-
     private void InitializeAudioManager()
     {
         if (AudioManager.Instance == null)
@@ -477,17 +430,9 @@ public class GameManager : MonoBehaviour
     {
         sceneBasedManagers.Clear();
 
-        // Find scene-based managers (not persistent singletons)
-        playerManager = FindFirstObjectByType<PlayerManager>();
-        uiManager = FindFirstObjectByType<UIManager>();
-        // timeManager = FindFirstObjectByType<InGameTimeManager>();
-        // weatherManager = FindFirstObjectByType<WeatherManager>();
-
         // Register scene-based managers that implement IManager
-        if (playerManager != null) sceneBasedManagers.Add(playerManager);
+
         if (uiManager != null) sceneBasedManagers.Add(uiManager);
-        // if (timeManager != null) sceneBasedManagers.Add(timeManager);
-        // if (weatherManager != null) sceneBasedManagers.Add(weatherManager);
 
         DebugLog($"Found {sceneBasedManagers.Count} scene-based managers");
 
@@ -603,30 +548,9 @@ public class GameManager : MonoBehaviour
             inputManagerReference = null;
         }
 
-        // Refresh PlayerStateManager
-        if (PlayerStateManager.Instance != null)
-        {
-            try
-            {
-                PlayerStateManager.Instance.RefreshReferences();
-                stateManagerReference = PlayerStateManager.Instance;
-                DebugLog("Refreshed PlayerStateManager singleton");
-            }
-            catch (System.Exception e)
-            {
-                Debug.LogError($"Failed to refresh PlayerStateManager: {e.Message}");
-            }
-        }
-        else
-        {
-            Debug.LogWarning("PlayerStateManager singleton is null during refresh!");
-            stateManagerReference = null;
-        }
-
         // Update persistent managers list
         persistentManagers.Clear();
         if (inputManagerReference != null) persistentManagers.Add(inputManagerReference);
-        if (stateManagerReference != null) persistentManagers.Add(stateManagerReference);
     }
 
     /// <summary>
@@ -637,38 +561,6 @@ public class GameManager : MonoBehaviour
         persistentManagerCount = persistentManagers.Count;
         sceneBasedManagerCount = sceneBasedManagers.Count;
         totalManagedManagers = allManagers.Count;
-    }
-
-    /// <summary>
-    /// Initiates a game save operation via SaveManager.
-    /// </summary>
-    [Button]
-    public void SaveGame()
-    {
-        SaveManager.Instance?.SaveGame();
-    }
-
-    /// <summary>
-    /// Initiates a game load operation via SaveManager.
-    /// </summary>
-    [Button]
-    public void LoadGame()
-    {
-        SaveManager.Instance?.LoadGame();
-    }
-
-    /// <summary>
-    /// Initializes a fresh game state with default values.
-    /// </summary>
-    public void NewGame()
-    {
-        if (playerManager != null && playerData != null)
-        {
-            playerManager.health.currentHealth = playerData.maxHealth;
-        }
-
-        SceneTransitionManager.Instance?.StartNewGame(startingSceneName);
-        DebugLog("New game started");
     }
 
     /// <summary>
@@ -728,13 +620,6 @@ public class GameManager : MonoBehaviour
         return InputManager.Instance;
     }
 
-    /// <summary>
-    /// Gets the PlayerStateManager instance (singleton)
-    /// </summary>
-    public PlayerStateManager GetPlayerStateManager()
-    {
-        return PlayerStateManager.Instance;
-    }
 
     /// <summary>
     /// Checks if all critical managers are available and properly initialized
@@ -749,11 +634,8 @@ public class GameManager : MonoBehaviour
             return inputManagerReady; // Only need input for menus
         }
 
-        // In gameplay state, need all managers
-        bool playerManagerReady = playerManager != null;
-        bool stateManagerReady = PlayerStateManager.Instance != null && PlayerStateManager.Instance.IsProperlyInitialized;
 
-        return inputManagerReady && playerManagerReady && stateManagerReady;
+        return inputManagerReady;
     }
 
     /// <summary>
@@ -777,19 +659,10 @@ public class GameManager : MonoBehaviour
         if (InputManager.Instance != null)
         {
             DebugLog($"  - Initialized: {InputManager.Instance.IsProperlyInitialized}");
-            DebugLog($"  - Current Mode: {InputManager.Instance.GetCurrentMovementMode()}");
             if (InputManager.Instance is IManagerState stateAware)
             {
                 DebugLog($"  - Operational State: {stateAware.CurrentOperationalState}");
             }
-        }
-
-        DebugLog($"PlayerStateManager: {(PlayerStateManager.Instance != null ? "Available" : "NULL")}");
-        if (PlayerStateManager.Instance != null)
-        {
-            DebugLog($"  - Initialized: {PlayerStateManager.Instance.IsProperlyInitialized}");
-            DebugLog($"  - Current State: {PlayerStateManager.Instance.CurrentStateType}");
-            DebugLog($"  - References Valid: {PlayerStateManager.Instance.IsProperlyInitialized}");
         }
 
         // State-Aware Managers
@@ -808,7 +681,6 @@ public class GameManager : MonoBehaviour
         // Scene-Based Managers
         DebugLog("");
         DebugLog("=== SCENE-BASED MANAGERS ===");
-        DebugLog($"PlayerManager: {(playerManager != null ? "Available" : "NULL")}");
         DebugLog($"UIManager: {(uiManager != null ? "Available" : "NULL")}");
         // DebugLog($"TimeManager: {(timeManager != null ? "Available" : "NULL")}");
         // DebugLog($"WeatherManager: {(weatherManager != null ? "Available" : "NULL")}");
@@ -836,16 +708,6 @@ public class GameManager : MonoBehaviour
         summary.AppendLine($"Total Managers: {totalManagedManagers}");
         summary.AppendLine($"All Managers Ready: {AreManagersReady()}");
         summary.AppendLine($"InputManager Ready: {InputManager.Instance != null && InputManager.Instance.IsProperlyInitialized}");
-
-        if (currentOperationalState == ManagerOperationalState.Gameplay)
-        {
-            summary.AppendLine($"PlayerStateManager Ready: {PlayerStateManager.Instance != null && PlayerStateManager.Instance.IsProperlyInitialized}");
-            summary.AppendLine($"PlayerManager Ready: {playerManager != null}");
-        }
-        else
-        {
-            summary.AppendLine("Menu State: Gameplay managers not required");
-        }
 
         return summary.ToString();
     }

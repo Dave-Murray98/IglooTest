@@ -8292,7 +8292,7 @@ MonoBehaviour:
   _debug:
     _drawBounds: 0
     _drawSlicesInEditor: 0
-  _waveBuffers: {fileID: 1697542010}
+  _waveBuffers: {fileID: 2005261911}
 --- !u!1 &805249120
 GameObject:
   m_ObjectHideFlags: 0
@@ -8471,7 +8471,7 @@ MonoBehaviour:
   combinedInertiaTensor: {x: 0, y: 0, z: 0}
   combinedMass: 500000
   dimensions: {x: 1.8044281, y: 6.8196955, z: 63.756035}
-  inertiaTensor: {x: 21915808, y: 20442156, z: 1699843.2}
+  inertiaTensor: {x: 22828696, y: 21255028, z: 1799862.2}
   useDefaultCenterOfMass: 0
   useDefaultInertia: 1
   useDefaultMass: 0
@@ -8503,10 +8503,10 @@ MonoBehaviour:
   engines:
   - applyThrustWhenAboveWater: 0
     isOn: 0
-    maxRPM: 30000
+    maxRPM: 3000
     maxSpeed: 20
-    maxThrust: 800000
-    minRPM: 5000
+    maxThrust: 8000
+    minRPM: 500
     name: Engine
     pitch: 0.4
     pitchRange: 0.6
@@ -8775,7 +8775,6 @@ GameObject:
   - component: {fileID: 853536749}
   - component: {fileID: 853536751}
   - component: {fileID: 853536752}
-  - component: {fileID: 853536750}
   m_Layer: 1
   m_Name: Foreground Clouds
   m_TagString: Untagged
@@ -8798,18 +8797,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1374664638}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &853536750
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 853536748}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4602dab00c2b51546a1902c362a3cda4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!33 &853536751
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -9942,7 +9929,6 @@ GameObject:
   - component: {fileID: 1376128341}
   - component: {fileID: 1376128343}
   - component: {fileID: 1376128344}
-  - component: {fileID: 1376128342}
   m_Layer: 1
   m_Name: Fog
   m_TagString: Untagged
@@ -9965,18 +9951,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1374664638}
   m_LocalEulerAnglesHint: {x: 30.507, y: -143.801, z: -72.6}
---- !u!114 &1376128342
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1376128340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4602dab00c2b51546a1902c362a3cda4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!33 &1376128343
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -15569,43 +15543,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!84 &1697542010
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: GerstnerCascades
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 6
-  m_Width: 64
-  m_Height: 64
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthStencilFormat: 0
-  m_ColorFormat: 48
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_UseDynamicScaleExplicit: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_EnableRandomWrite: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 0
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 5
-  m_VolumeDepth: 16
-  m_ShadowSamplingMode: 2
 --- !u!1 &1710834800
 GameObject:
   m_ObjectHideFlags: 0
@@ -15631,7 +15568,7 @@ Transform:
   m_GameObject: {fileID: 1710834800}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.95, z: -10.87}
+  m_LocalPosition: {x: 0, y: -4.02, z: -11.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -21720,7 +21657,6 @@ GameObject:
   - component: {fileID: 1845347060}
   - component: {fileID: 1845347062}
   - component: {fileID: 1845347063}
-  - component: {fileID: 1845347061}
   m_Layer: 1
   m_Name: Skydome
   m_TagString: Untagged
@@ -21743,18 +21679,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1374664638}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1845347061
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1845347059}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4602dab00c2b51546a1902c362a3cda4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!33 &1845347062
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -22278,6 +22202,43 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!84 &2005261911
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: GerstnerCascades
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 6
+  m_Width: 64
+  m_Height: 64
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthStencilFormat: 0
+  m_ColorFormat: 48
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_UseDynamicScaleExplicit: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_EnableRandomWrite: 1
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 0
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 5
+  m_VolumeDepth: 16
+  m_ShadowSamplingMode: 2
 --- !u!1 &2041167476
 GameObject:
   m_ObjectHideFlags: 0

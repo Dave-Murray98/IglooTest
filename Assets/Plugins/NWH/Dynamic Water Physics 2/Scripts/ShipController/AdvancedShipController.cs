@@ -220,7 +220,7 @@ namespace NWH.DWP2.ShipController
                 }
 
                 // Reset bool inputs
-                input.Anchor          = false;
+                input.Anchor = false;
                 input.EngineStartStop = false;
 
                 if (stabilizePitch || stabilizeRoll)
@@ -252,12 +252,12 @@ namespace NWH.DWP2.ShipController
                 Gizmos.color = Color.magenta;
             }
 
-            foreach (Engine e in engines)
-            {
-                Gizmos.color = Color.red;
-                Gizmos.DrawSphere(e.ThrustPosition, 0.2f);
-                Gizmos.DrawRay(new Ray(e.ThrustPosition, e.ThrustDirection));
-            }
+            // foreach (Engine e in engines)
+            // {
+            //     Gizmos.color = Color.red;
+            //     Gizmos.DrawSphere(e.ThrustPosition, 0.2f);
+            //     Gizmos.DrawRay(new Ray(e.ThrustPosition, e.ThrustDirection));
+            // }
 
             foreach (Thruster thruster in thrusters)
             {
@@ -324,8 +324,8 @@ namespace NWH.DWP2.ShipController
         public float GetPitchAngle()
         {
             Vector3 right = transform.right;
-            right.y =  0;
-            right   *= Mathf.Sign(transform.up.y);
+            right.y = 0;
+            right *= Mathf.Sign(transform.up.y);
             Vector3 fwd = Vector3.Cross(right, Vector3.up).normalized;
             return Vector3.Angle(fwd, transform.forward) * Mathf.Sign(transform.forward.y);
         }
@@ -339,8 +339,8 @@ namespace NWH.DWP2.ShipController
         public float GetRollAngle()
         {
             Vector3 fwd = transform.forward;
-            fwd.y =  0;
-            fwd   *= Mathf.Sign(transform.up.y);
+            fwd.y = 0;
+            fwd *= Mathf.Sign(transform.up.y);
             Vector3 right = Vector3.Cross(Vector3.up, fwd).normalized;
             return Vector3.Angle(right, transform.right) * Mathf.Sign(transform.right.y);
         }

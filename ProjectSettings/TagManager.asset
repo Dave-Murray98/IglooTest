@@ -4,7 +4,6 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - WarpBlendOutputCamera
   - LoadingScreen
   - FX Block Zone
   - Ship
@@ -19,22 +18,22 @@ TagManager:
   - Water
   - UI
   - Player
-  - 
-  - IglooScreen
+  - Portal
+  - ItemPickup
   - Water Clipping
-  - IglooPlayer
-  - IglooCompositeQuad
-  - 
+  - Equipment
+  - Interactable
+  - Vehicle
   - WaterInteractor
-  - 
+  - FirstPerson
   - NPC
   - ComplexPathfindingWaterZoneTrigger
-  - 
+  - ACSCulling
   - NPCVision
   - NPCHearing
   - Noise
   - NPCHurtBox
-  - 
+  - Vent
   - PlayerHurtBox
   - NPCHitBox
   - EnvironmentalDestructible
@@ -42,7 +41,7 @@ TagManager:
   - WorldItem
   - EventTrigger
   - Invisible Wall
-  - 
+  - PlayerWallDustParticleDetector
   - 
   m_SortingLayers:
   - name: Default

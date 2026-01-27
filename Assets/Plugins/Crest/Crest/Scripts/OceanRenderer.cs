@@ -1416,6 +1416,16 @@ namespace Crest
 
                 // Transmittance is for Physically Based Sky.
                 var hdCamera = HDCamera.GetOrCreate(ViewCamera);
+#if UNITY_6000_0_OR_NEWER
+                if (hdCamera == null || VolumeManager.instance == null || !VolumeManager.instance.isInitialized || hdCamera.volumeStack == null)
+#else
+                if (hdCamera == null || hdCamera.volumeStack == null)
+#endif
+                {
+                    Shader.SetGlobalVector(sp_primaryLightDirection, lightDirection);
+                    Shader.SetGlobalVector(sp_primaryLightIntensity, lightIntensity);
+                    return;
+                }
                 var settings = SkyManager.GetSkySetting(hdCamera.volumeStack);
                 var transmittance = settings != null
                     ? settings.EvaluateAtmosphericAttenuation(lightDirection, hdCamera.camera.transform.position)
@@ -2004,6 +2014,16 @@ namespace Crest
 #endif
             }
 
+            if (_primaryLight != null && _primaryLight.type != LightType.Directional)
+            {
+                showMessage
+                (
+                    "The primary light is not a directional light. The water surface may appear magenta/pink.",
+                    "Please set the primary light to a directional light.",
+                    ValidatedHelper.MessageType.Warning, ocean
+                );
+            }
+
             // SimSettingsAnimatedWaves
             if (_simSettingsAnimatedWaves)
             {
@@ -2313,6 +2333,12 @@ namespace Crest
             if (GUILayout.Button("Validate Setup"))
             {
                 OceanRenderer.RunValidation(target);
+            }
+
+            // Repair by re-importing.
+            if (target._material != null && target._material.shader != null && GUILayout.Button("Repair Shaders"))
+            {
+                AssetDatabase.ImportAsset(System.IO.Path.GetDirectoryName(AssetDatabase.GetAssetPath(target._material.shader)), ImportAssetOptions.ImportRecursive | ImportAssetOptions.DontDownloadFromCacheServer);
             }
 
             if (GUILayout.Button("Open Material Online Help"))

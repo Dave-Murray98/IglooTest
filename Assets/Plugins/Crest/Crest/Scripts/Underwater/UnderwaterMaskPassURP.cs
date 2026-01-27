@@ -180,11 +180,14 @@ namespace Crest
 #endif
                 _underwaterRenderer.PopulateVolumeFront(commandBuffer, _underwaterRenderer._volumeFrontFaceTarget, _underwaterRenderer._volumeBackFaceTarget);
 
+                if (_underwaterRenderer._mode == UnderwaterRenderer.Mode.Volume || _underwaterRenderer._mode == UnderwaterRenderer.Mode.VolumeFlyThrough)
+                {
 #if UNITY_6000_0_OR_NEWER
-                CoreUtils.SetRenderTarget(commandBuffer, _volumeBackFaceRT);
-                ScaleViewport(camera, commandBuffer, _volumeBackFaceRT);
+                    CoreUtils.SetRenderTarget(commandBuffer, _volumeBackFaceRT);
+                    ScaleViewport(camera, commandBuffer, _volumeBackFaceRT);
 #endif
-                _underwaterRenderer.PopulateVolumeBack(commandBuffer, _underwaterRenderer._volumeFrontFaceTarget, _underwaterRenderer._volumeBackFaceTarget);
+                    _underwaterRenderer.PopulateVolumeBack(commandBuffer, _underwaterRenderer._volumeFrontFaceTarget, _underwaterRenderer._volumeBackFaceTarget);
+                }
 
                 // Copy only the stencil by copying everything and clearing depth.
                 commandBuffer.CopyTexture(_underwaterRenderer._mode == UnderwaterRenderer.Mode.Portal ? _underwaterRenderer._volumeFrontFaceTarget : _underwaterRenderer._volumeBackFaceTarget, _underwaterRenderer._depthTarget);

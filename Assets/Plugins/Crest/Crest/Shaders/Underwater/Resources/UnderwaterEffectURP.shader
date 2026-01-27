@@ -10,23 +10,23 @@ Shader "Hidden/Crest/Underwater/Underwater Effect URP"
 
 	// #pragma enable_d3d11_debug_symbols
 
-	#pragma multi_compile _ _MAIN_LIGHT_SHADOWS
-	#pragma multi_compile _ _MAIN_LIGHT_SHADOWS_CASCADE
-	#pragma multi_compile _ _SHADOWS_SOFT
+	#pragma multi_compile_fragment _ _MAIN_LIGHT_SHADOWS
+	#pragma multi_compile_fragment _ _MAIN_LIGHT_SHADOWS_CASCADE
+	#pragma multi_compile_fragment _ _SHADOWS_SOFT
 
 	// Use multi_compile because these keywords are copied over from the ocean material. With shader_feature,
 	// the keywords would be stripped from builds. Unused shader variants are stripped using a build processor.
-	#pragma multi_compile_local __ _SUBSURFACESCATTERING_ON
-	#pragma multi_compile_local __ _SUBSURFACESHALLOWCOLOUR_ON
-	#pragma multi_compile_local __ _CAUSTICS_ON
-	#pragma multi_compile_local __ _SHADOWS_ON
-	#pragma multi_compile_local __ _PROJECTION_PERSPECTIVE _PROJECTION_ORTHOGRAPHIC
+	#pragma multi_compile_local_fragment __ _SUBSURFACESCATTERING_ON
+	#pragma multi_compile_local_fragment __ _SUBSURFACESHALLOWCOLOUR_ON
+	#pragma multi_compile_local_fragment __ _CAUSTICS_ON
+	#pragma multi_compile_local_fragment __ _SHADOWS_ON
+	#pragma multi_compile_local_fragment __ _PROJECTION_PERSPECTIVE _PROJECTION_ORTHOGRAPHIC
 
-	#pragma multi_compile_local __ CREST_MENISCUS
-	#pragma multi_compile_local __ _DEBUG_VIEW_OCEAN_MASK
-	#pragma multi_compile_local __ _DEBUG_VIEW_STENCIL
+	#pragma multi_compile_local_fragment __ CREST_MENISCUS
+	#pragma multi_compile_local_fragment __ _DEBUG_VIEW_OCEAN_MASK
+	#pragma multi_compile_local_fragment __ _DEBUG_VIEW_STENCIL
 
-	#pragma multi_compile _ CREST_FLOATING_ORIGIN
+	#pragma multi_compile_fragment _ CREST_FLOATING_ORIGIN
 
 	#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Common.hlsl"
 	#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
@@ -43,6 +43,8 @@ Shader "Hidden/Crest/Underwater/Underwater Effect URP"
 
 	SubShader
 	{
+		Blend One Zero, One One
+		BlendOp Add
 		ZWrite Off
 
 		Pass
@@ -54,7 +56,7 @@ Shader "Hidden/Crest/Underwater/Underwater Effect URP"
 			HLSLPROGRAM
 			// Both "__" and "_FULL_SCREEN_EFFECT" are fullscreen triangles. The latter only denotes an optimisation of
 			// whether to skip the horizon calculation.
-			#pragma multi_compile_local __ _FULL_SCREEN_EFFECT
+			#pragma multi_compile_local_fragment __ _FULL_SCREEN_EFFECT
 
 			#include "../UnderwaterEffect.hlsl"
 			ENDHLSL

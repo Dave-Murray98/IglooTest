@@ -203,6 +203,8 @@ Shader "Crest/Ocean URP"
 
 		Pass
 		{
+			Blend SrcAlpha OneMinusSrcAlpha
+
 			Tags
 			{
 				"LightMode" = "UniversalForward"
@@ -213,12 +215,6 @@ Shader "Crest/Ocean URP"
 
 			// Culling user defined - can be inverted for under water
 			Cull[_CullMode]
-			Stencil  //ADDED FOR COZY INTEGRATION
-			{
-				Ref 221
-				Comp Always
-				Pass Replace
-			}
 
 			HLSLPROGRAM
 			// Required to compile gles 2.0 with standard SRP library
@@ -281,7 +277,6 @@ Shader "Crest/Ocean URP"
 
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
-			#include "Packages/com.distantlands.cozy.core/Runtime/Shaders/Includes/StylizedFogIncludes.cginc" //ADDED FOR COZY INTEGRATION
 #if UNITY_VERSION >= 202230
 			#include_with_pragmas "Packages/com.unity.render-pipelines.core/ShaderLibrary/FoveatedRenderingKeywords.hlsl"
 			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/FoveatedRendering.hlsl"
@@ -321,7 +316,7 @@ Shader "Crest/Ocean URP"
 				float4 positionCS : SV_POSITION;
 				float4 lodAlpha_worldXZUndisplaced_oceanDepth : TEXCOORD0;
 				real4 n_shadow : TEXCOORD1;
-				real4 screenPos : TEXCOORD2;
+				float4 screenPos : TEXCOORD2;
 				float4 positionWS_fogFactor : TEXCOORD3;
 				#if _FLOW_ON
 				real2 flow : TEXCOORD4;
@@ -507,8 +502,8 @@ Shader "Crest/Ocean URP"
 				const float wt_smallerLod = (1.0 - lodAlpha) * cascadeData0._weight;
 				const float wt_biggerLod = (1.0 - wt_smallerLod) * cascadeData1._weight;
 
-				real3 screenPos = input.screenPos.xyw;
-				real2 uvDepth = screenPos.xy / screenPos.z;
+				const float3 screenPos = input.screenPos.xyw;
+				const float2 uvDepth = screenPos.xy / screenPos.z;
 
 				real3 view = normalize(GetCameraPositionWS() - input.positionWS_fogFactor.xyz);
 
@@ -729,12 +724,12 @@ Shader "Crest/Ocean URP"
 				#if _UNDERWATER_ON
 				if (underwater)
 				{
-					ApplyReflectionUnderwater(view, n_pixel, lightDir, shadow.y, screenPos.xyzz, scatterCol, reflAlpha, col);
+					ApplyReflectionUnderwater(view, n_pixel, lightDir, shadow.y, screenPos.xyzz, scatterCol, 1.0, col);
 				}
 				else
 				#endif
 				{
-					ApplyReflectionSky(view, n_pixel, lightDir, shadow.y, screenPos.xyzz, pixelZ, reflAlpha, input.positionWS_fogFactor.xyz, col);
+					ApplyReflectionSky(view, n_pixel, lightDir, shadow.y, screenPos.xyzz, pixelZ, 1.0, input.positionWS_fogFactor.xyz, col);
 				}
 
 				// Override final result with white foam - bubbles on surface
@@ -744,16 +739,14 @@ Shader "Crest/Ocean URP"
 
 				// Composite albedo input on top
 				#if _ALBEDO_ON
-				col = lerp(col, albedo.xyz, albedo.w * reflAlpha);
+				col = lerp(col, albedo.xyz, albedo.w);
 				#endif
 
 				// Fog
 				if (!underwater)
 				{
 					// Above water - do atmospheric fog. If you are using a third party sky package such as Azure, replace this with their stuff!
-					//col = MixFog(col, m_InitializeInputDataFog(float4(input.positionWS_fogFactor.xyz, 1.0), input.positionWS_fogFactor.w));
-				    col = BlendStylizedFog(input.positionWS_fogFactor, float4(col.xyz, 1)); //REPLACED FOR COZY INTEGRATION
-
+					col = MixFog(col, m_InitializeInputDataFog(float4(input.positionWS_fogFactor.xyz, 1.0), input.positionWS_fogFactor.w));
 				}
 #if CREST_UNDERWATER_BEFORE_TRANSPARENT
 				else
@@ -786,7 +779,7 @@ Shader "Crest/Ocean URP"
 				}
 #endif
 
-				return real4(col, 1.0);
+				return real4(col, reflAlpha);
 			}
 
 			ENDHLSL

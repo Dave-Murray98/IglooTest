@@ -11,6 +11,6 @@ AssetOrigin:
   serializedVersion: 1
   productId: 141674
   packageName: Crest Water 4 URP (Ocean, Rivers & Lakes)
-  packageVersion: 4.22.1
-  assetPath: Assets/Crest/Crest/Shaders/ShadergraphFramework/CrestNodeLightWaterVolume.hlsl
-  uploadId: 749267
+  packageVersion: 4.22.3
+  assetPath: Assets/Plugins/Crest/Crest/Shaders/ShadergraphFramework/CrestNodeLightWaterVolume.hlsl
+  uploadId: 779608

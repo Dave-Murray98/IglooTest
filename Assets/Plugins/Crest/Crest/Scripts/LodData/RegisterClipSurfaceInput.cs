@@ -290,11 +290,10 @@ namespace Crest
 
             if (_mode == Mode.Geometry)
             {
-                // commented out as this was causing a warning debug log spam for some meshes
-                // if (TryGetComponent<MeshFilter>(out var mf))
-                // {
-                //     Gizmos.DrawWireMesh(mf.sharedMesh, 0, transform.position, transform.rotation, transform.lossyScale);
-                // }
+                if (TryGetComponent<MeshFilter>(out var mf))
+                {
+                    Gizmos.DrawWireMesh(mf.sharedMesh, 0, transform.position, transform.rotation, transform.lossyScale);
+                }
 
                 return;
             }

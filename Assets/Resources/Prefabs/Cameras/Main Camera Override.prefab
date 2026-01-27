@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4060818792757879170}
   - component: {fileID: 2667959905416669211}
   - component: {fileID: 7675503860392931003}
+  - component: {fileID: 6247663514182832320}
   m_Layer: 0
   m_Name: Main Camera Override
   m_TagString: MainCamera
@@ -151,12 +152,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _version: 0
-  _mode: 0
+  _mode: 1
   _filterOceanData: 13
   _meniscus: 1
   _depthFogDensityFactor: 1
-  _volumeGeometry: {fileID: 0}
-  _invertCulling: 0
+  _volumeGeometry: {fileID: 6247663514182832320}
+  _invertCulling: 1
   _enableShaderAPI: 0
   _transparentObjectLayers:
     serializedVersion: 2
@@ -169,3 +170,11 @@ MonoBehaviour:
     _viewStencil: 0
     _disableHeightAboveWaterOptimization: 0
     _disableArtifactCorrection: 0
+--- !u!33 &6247663514182832320
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7200544413838864335}
+  m_Mesh: {fileID: 4300000, guid: 55d255ba15c35e142972d63f4cb1df3a, type: 2}

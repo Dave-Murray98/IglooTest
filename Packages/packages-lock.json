@@ -43,6 +43,14 @@
       "source": "embedded",
       "dependencies": {}
     },
+    "com.igloo.toolkit": {
+      "version": "file:C:/Users/Dave-/Downloads/com.igloo.toolkit-2.0.7.tgz",
+      "depth": 0,
+      "source": "local-tarball",
+      "dependencies": {
+        "com.unity.ugui": "1.0.0"
+      }
+    },
     "com.nwh.common": {
       "version": "file:com.nwh.common",
       "depth": 0,

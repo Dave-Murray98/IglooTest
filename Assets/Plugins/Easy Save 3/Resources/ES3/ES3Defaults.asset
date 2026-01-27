@@ -45,6 +45,7 @@ MonoBehaviour:
     - Crest
     - DistantLands.Cozy.Runtime
     - Drawing
+    - IglooToolkit
     - Infohazard.Core
     - Infohazard.Core.Data
     - Infohazard.HyperNav

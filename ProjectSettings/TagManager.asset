@@ -18,22 +18,22 @@ TagManager:
   - Water
   - UI
   - Player
-  - Portal
-  - ItemPickup
+  - 
+  - 
   - Water Clipping
-  - Equipment
-  - Interactable
-  - Vehicle
+  - 
+  - 
+  - 
   - WaterInteractor
-  - FirstPerson
+  - 
   - NPC
   - ComplexPathfindingWaterZoneTrigger
-  - ACSCulling
+  - 
   - NPCVision
   - NPCHearing
   - Noise
   - NPCHurtBox
-  - Vent
+  - 
   - PlayerHurtBox
   - NPCHitBox
   - EnvironmentalDestructible
@@ -41,7 +41,7 @@ TagManager:
   - WorldItem
   - EventTrigger
   - Invisible Wall
-  - PlayerWallDustParticleDetector
+  - 
   - 
   m_SortingLayers:
   - name: Default

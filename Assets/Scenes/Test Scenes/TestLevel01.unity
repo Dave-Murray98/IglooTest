@@ -8471,7 +8471,7 @@ MonoBehaviour:
   combinedInertiaTensor: {x: 0, y: 0, z: 0}
   combinedMass: 500000
   dimensions: {x: 1.8044281, y: 6.8196955, z: 63.756035}
-  inertiaTensor: {x: 21915808, y: 20442154, z: 1699844.6}
+  inertiaTensor: {x: 21915808, y: 20442156, z: 1699843.2}
   useDefaultCenterOfMass: 0
   useDefaultInertia: 1
   useDefaultMass: 0
@@ -8503,10 +8503,10 @@ MonoBehaviour:
   engines:
   - applyThrustWhenAboveWater: 0
     isOn: 0
-    maxRPM: 300000
-    maxSpeed: 80
-    maxThrust: 3200000
-    minRPM: 50000
+    maxRPM: 30000
+    maxSpeed: 20
+    maxThrust: 800000
+    minRPM: 5000
     name: Engine
     pitch: 0.4
     pitchRange: 0.6
@@ -8518,7 +8518,7 @@ MonoBehaviour:
     runningSource: {fileID: 0}
     spinUpTime: 2
     startDuration: 1.3
-    startingRPM: 300000
+    startingRPM: 300
     startingSource: {fileID: 0}
     startOnThrottle: 0
     stopDuration: 0.8

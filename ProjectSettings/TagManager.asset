@@ -11,6 +11,7 @@ TagManager:
   - FirstPersonRenderCamera
   - Vehicle
   - Wheel
+  - CrestWaterPortal
   layers:
   - Default
   - TransparentFX

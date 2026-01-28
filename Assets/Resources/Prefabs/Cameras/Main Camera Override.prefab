@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1766512379924967066}
+  - component: {fileID: 260526128534772389}
   - component: {fileID: 8710879723209878960}
   - component: {fileID: 4060818792757879170}
   - component: {fileID: 2667959905416669211}
   - component: {fileID: 7675503860392931003}
-  - component: {fileID: 6247663514182832320}
   m_Layer: 0
   m_Name: Main Camera Override
   m_TagString: MainCamera
@@ -29,13 +29,26 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7200544413838864335}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &260526128534772389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7200544413838864335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3ee700ffc3250241a0c0b388f1b543d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crestUnderwaterRenderer: {fileID: 7675503860392931003}
 --- !u!20 &8710879723209878960
 Camera:
   m_ObjectHideFlags: 0
@@ -152,11 +165,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _version: 0
-  _mode: 1
+  _mode: 0
   _filterOceanData: 13
   _meniscus: 1
   _depthFogDensityFactor: 1
-  _volumeGeometry: {fileID: 6247663514182832320}
+  _volumeGeometry: {fileID: 0}
   _invertCulling: 1
   _enableShaderAPI: 0
   _transparentObjectLayers:
@@ -170,11 +183,3 @@ MonoBehaviour:
     _viewStencil: 0
     _disableHeightAboveWaterOptimization: 0
     _disableArtifactCorrection: 0
---- !u!33 &6247663514182832320
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7200544413838864335}
-  m_Mesh: {fileID: 4300000, guid: 044377ebf5016204495903bfc0b3ce04, type: 2}

@@ -2,10 +2,7 @@ using System;
 using NWH.Common.CoM;
 using NWH.DWP2.ShipController;
 using Sirenix.OdinInspector;
-using Sirenix.OdinInspector.Editor.StateUpdaters;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
@@ -18,7 +15,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float throttleResponseSpeed = 2f;
     [SerializeField] private float steeringResponseSpeed = 3f;
     [SerializeField] private bool invertSteering = false;
-
 
     [Header("Submarine Config")]
     [SerializeField] private float maxThrottleInput = 1f;

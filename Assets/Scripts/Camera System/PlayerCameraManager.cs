@@ -1,14 +1,15 @@
 using System.Collections.Generic;
-using Igloo.Common;
 using UnityEngine;
 
 public class PlayerCameraManager : MonoBehaviour
 {
+    [Header("References")]
     public MeshFilter waterPortalMeshFilter;
 
-    public static PlayerCameraManager Instance { get; private set; }
-
+    [Header("Cameras")]
     public List<PlayerCamera> playerCameras;
+
+    public static PlayerCameraManager Instance { get; private set; }
 
     private void Awake()
     {
@@ -24,19 +25,5 @@ public class PlayerCameraManager : MonoBehaviour
         }
 
     }
-
-    // private void Start()
-    // {
-    //     SetUpPlayerCameras();
-    // }
-
-    // private void SetUpPlayerCameras()
-    // {
-    //     foreach (PlayerCamera cam in GetComponentsInChildren<PlayerCamera>())
-    //     {
-    //         playerCameras.Add(cam);
-    //         cam.Initialize(waterPortalMeshFilter);
-    //     }
-    // }
 
 }

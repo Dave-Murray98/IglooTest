@@ -1,12 +1,11 @@
 using Crest;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour
 {
-    [SerializeField]
-    private UnderwaterRenderer crestUnderwaterRenderer;
 
+    [Header("References")]
+    [SerializeField] private UnderwaterRenderer crestUnderwaterRenderer;
 
     private void Awake()
     {

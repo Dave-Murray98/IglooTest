@@ -91,6 +91,7 @@ public class PlayerController : MonoBehaviour
     {
         // DWP2 uses Steering for left/right turning
         shipController.input.Steering = -currentSteeringInput;
+        shipController.input.BowThruster = currentSteeringInput;
     }
     private void ApplyDepthInput()
     {

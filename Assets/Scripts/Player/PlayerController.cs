@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Vehicle Controllers")]
     [SerializeField] private AdvancedShipController shipController;
-    [SerializeField] private Submarine submarineController;
+    [SerializeField] private SubmarineBallastController ballastController; // CHANGED
     [SerializeField] private VariableCenterOfMass vcom;
 
     [Header("Input Response")]
@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         if (shipController == null) shipController = GetComponent<AdvancedShipController>();
-        if (submarineController == null) submarineController = GetComponent<Submarine>();
+        if (ballastController == null) ballastController = GetComponent<SubmarineBallastController>();
         if (vcom == null) vcom = GetComponent<VariableCenterOfMass>();
 
         InitializeVehicleControllers();
@@ -94,34 +94,27 @@ public class PlayerController : MonoBehaviour
     }
     private void ApplyDepthInput()
     {
-        float newDepthInput = 0f;
+        SubmarineBallastController.BuoyancyState desiredState;
 
-        // Check for conflicting inputs
-        if (currentSurfaceInput && currentDiveInput)
+        // Determine state from input
+        if (currentSurfaceInput && !currentDiveInput)
         {
-            // Both pressed - maintain current depth (neutral)
-            newDepthInput = 0f;
+            desiredState = SubmarineBallastController.BuoyancyState.Positive;
         }
-        else if (currentSurfaceInput)
+        else if (currentDiveInput && !currentSurfaceInput)
         {
-            // Surface only
-            newDepthInput = -1f;
+            desiredState = SubmarineBallastController.BuoyancyState.Negative;
         }
-        else if (currentDiveInput)
+        else // Both or neither pressed
         {
-            // Dive only
-            newDepthInput = 1f;
-        }
-        else
-        {
-            // Neither pressed - maintain current depth
-            newDepthInput = 0f;
+            desiredState = SubmarineBallastController.BuoyancyState.Neutral;
         }
 
-        submarineController.DepthInput = newDepthInput;
-        vcom.MarkDirty();
-
-
+        // Apply to ballast controller
+        if (ballastController != null)
+        {
+            ballastController.SetBuoyancyState(desiredState);
+        }
     }
 
     private void DebugLog(string message)

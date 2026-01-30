@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 /// <summary>
 /// Manages player roles and controller assignments for local multiplayer.
 /// Handles spawning PlayerInput components and assigning them to Pilot or Gunner roles.
+/// PlayerInputManager uses Evoke Unity Events to send messages to this script.
 /// </summary>
 public class PlayerRoleManager : MonoBehaviour
 {

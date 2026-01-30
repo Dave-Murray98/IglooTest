@@ -4,11 +4,16 @@ using NWH.DWP2.ShipController;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+/// <summary>
+/// Controls the submarine based on pilot input.
+/// Renamed from PlayerController to clarify its role in multiplayer context.
+/// Now reads from PilotInputHandler instead of the singleton InputManager.
+/// </summary>
+public class PilotController : MonoBehaviour
 {
     [Header("Vehicle Controllers")]
     [SerializeField] private AdvancedShipController shipController;
-    [SerializeField] private SubmarineBallastController ballastController; // CHANGED
+    [SerializeField] private SubmarineBallastController ballastController;
     [SerializeField] private VariableCenterOfMass vcom;
 
     [Header("Input Response")]
@@ -24,6 +29,8 @@ public class PlayerController : MonoBehaviour
     [Header("Debug")]
     [SerializeField] private bool enableDebugLogs = false;
 
+    // Input handler reference
+    private PilotInputHandler inputHandler;
 
     // Current input values
     [ShowInInspector, ReadOnly] private float currentThrottleInput = 0f;
@@ -31,7 +38,6 @@ public class PlayerController : MonoBehaviour
     private float currentBrake = 0f;
 
     [ShowInInspector, ReadOnly] private bool currentSurfaceInput;
-
     [ShowInInspector, ReadOnly] private bool currentDiveInput;
 
     private void Start()
@@ -42,6 +48,25 @@ public class PlayerController : MonoBehaviour
 
         InitializeVehicleControllers();
 
+        // Subscribe to pilot assignment
+        PlayerRoleManager.OnPilotAssigned += OnPilotAssigned;
+
+        // Check if pilot already exists
+        if (PlayerRoleManager.Instance != null && PlayerRoleManager.Instance.HasPilot)
+        {
+            inputHandler = PlayerRoleManager.Instance.GetPilotHandler();
+            DebugLog($"Connected to existing pilot (Player {inputHandler.PlayerIndex})");
+        }
+        else
+        {
+            DebugLog("Waiting for pilot to connect...");
+        }
+    }
+
+    private void OnPilotAssigned(PilotInputHandler handler)
+    {
+        inputHandler = handler;
+        DebugLog($"Pilot assigned (Player {handler.PlayerIndex})");
     }
 
     private void InitializeVehicleControllers()
@@ -52,18 +77,30 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        GetPilotInputs();
+        // Only process input if we have a pilot
+        if (inputHandler == null || !inputHandler.IsActive)
+        {
+            // No pilot - keep submarine stationary
+            currentThrottleInput = 0f;
+            currentSteeringInput = 0f;
+            currentSurfaceInput = false;
+            currentDiveInput = false;
+        }
+        else
+        {
+            GetPilotInputs();
+        }
+
         ApplyMovementInputs();
     }
 
-
     private void GetPilotInputs()
     {
-        currentThrottleInput = Mathf.Clamp(InputManager.Instance.MovementInput.y, -maxThrottleInput, maxThrottleInput);
-        currentSteeringInput = Mathf.Clamp(InputManager.Instance.MovementInput.x, -maxSteeringInput, maxSteeringInput);
+        currentThrottleInput = Mathf.Clamp(inputHandler.MovementInput.y, -maxThrottleInput, maxThrottleInput);
+        currentSteeringInput = Mathf.Clamp(inputHandler.MovementInput.x, -maxSteeringInput, maxSteeringInput);
 
-        currentSurfaceInput = InputManager.Instance.SurfaceHeld;
-        currentDiveInput = InputManager.Instance.DiveHeld;
+        currentSurfaceInput = inputHandler.SurfaceHeld;
+        currentDiveInput = inputHandler.DiveHeld;
     }
 
     private void ApplyMovementInputs()
@@ -93,6 +130,7 @@ public class PlayerController : MonoBehaviour
         shipController.input.Steering = -currentSteeringInput;
         shipController.input.BowThruster = currentSteeringInput;
     }
+
     private void ApplyDepthInput()
     {
         SubmarineBallastController.BuoyancyState desiredState;
@@ -118,12 +156,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        // Unsubscribe from events
+        PlayerRoleManager.OnPilotAssigned -= OnPilotAssigned;
+    }
+
     private void DebugLog(string message)
     {
         if (enableDebugLogs)
         {
-            Debug.Log($"[PlayerController] {message}");
+            Debug.Log($"[PilotController] {message}");
         }
     }
-
 }

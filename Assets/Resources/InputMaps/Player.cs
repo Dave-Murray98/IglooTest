@@ -102,15 +102,6 @@ public partial class @Player: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Look"",
-                    ""type"": ""Value"",
-                    ""id"": ""8cf499dc-e6b4-497d-8e3e-d5a2b180bbfd"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
                     ""name"": ""Surface"",
                     ""type"": ""Button"",
                     ""id"": ""b43c1161-d4b4-430d-b094-61415e302f52"",
@@ -198,28 +189,6 @@ public partial class @Player: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""a0743009-e91a-4ee5-980e-db1a7c066527"",
-                    ""path"": ""<Gamepad>/rightStick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Look"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""20f02548-6b56-4745-bf34-92c5ecd2201b"",
-                    ""path"": ""<Mouse>/delta"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Look"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""77fe7216-f21e-45b2-9b31-8e008b1f37ea"",
                     ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
@@ -265,6 +234,76 @@ public partial class @Player: IInputActionCollection2, IDisposable
             ]
         },
         {
+            ""name"": ""Gunner"",
+            ""id"": ""51679abc-906a-4c13-8803-9000a3862d54"",
+            ""actions"": [
+                {
+                    ""name"": ""Look"",
+                    ""type"": ""Value"",
+                    ""id"": ""053d0e82-58a6-4627-944e-b56c50bb44c9"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""067be0b2-be7d-4bdd-9944-c99bad817bc2"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""74e3d02a-92c4-42db-9978-7f7f4b023030"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a0217cd3-9b7d-4b99-a59b-7e262494e7a6"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e1945e29-c3f2-4956-a567-477bab93f348"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b9fc8925-9462-4c30-bfd1-0eb4ce178b8c"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
             ""name"": ""UI"",
             ""id"": ""697f3c70-0268-47e5-84fc-1ab1f52c446c"",
             ""actions"": [
@@ -304,14 +343,45 @@ public partial class @Player: IInputActionCollection2, IDisposable
             ]
         }
     ],
-    ""controlSchemes"": []
+    ""controlSchemes"": [
+        {
+            ""name"": ""Keyboard&Mouse"",
+            ""bindingGroup"": ""Keyboard&Mouse"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Keyboard>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                },
+                {
+                    ""devicePath"": ""<Mouse>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Gamepad"",
+            ""bindingGroup"": ""Gamepad"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Gamepad>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        }
+    ]
 }");
         // Pilot
         m_Pilot = asset.FindActionMap("Pilot", throwIfNotFound: true);
         m_Pilot_Move = m_Pilot.FindAction("Move", throwIfNotFound: true);
-        m_Pilot_Look = m_Pilot.FindAction("Look", throwIfNotFound: true);
         m_Pilot_Surface = m_Pilot.FindAction("Surface", throwIfNotFound: true);
         m_Pilot_Dive = m_Pilot.FindAction("Dive", throwIfNotFound: true);
+        // Gunner
+        m_Gunner = asset.FindActionMap("Gunner", throwIfNotFound: true);
+        m_Gunner_Look = m_Gunner.FindAction("Look", throwIfNotFound: true);
+        m_Gunner_Shoot = m_Gunner.FindAction("Shoot", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
@@ -320,6 +390,7 @@ public partial class @Player: IInputActionCollection2, IDisposable
     ~@Player()
     {
         UnityEngine.Debug.Assert(!m_Pilot.enabled, "This will cause a leak and performance issues, Player.Pilot.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Gunner.enabled, "This will cause a leak and performance issues, Player.Gunner.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, Player.UI.Disable() has not been called.");
     }
 
@@ -397,7 +468,6 @@ public partial class @Player: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Pilot;
     private List<IPilotActions> m_PilotActionsCallbackInterfaces = new List<IPilotActions>();
     private readonly InputAction m_Pilot_Move;
-    private readonly InputAction m_Pilot_Look;
     private readonly InputAction m_Pilot_Surface;
     private readonly InputAction m_Pilot_Dive;
     /// <summary>
@@ -415,10 +485,6 @@ public partial class @Player: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Pilot/Move".
         /// </summary>
         public InputAction @Move => m_Wrapper.m_Pilot_Move;
-        /// <summary>
-        /// Provides access to the underlying input action "Pilot/Look".
-        /// </summary>
-        public InputAction @Look => m_Wrapper.m_Pilot_Look;
         /// <summary>
         /// Provides access to the underlying input action "Pilot/Surface".
         /// </summary>
@@ -456,9 +522,6 @@ public partial class @Player: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
-            @Look.started += instance.OnLook;
-            @Look.performed += instance.OnLook;
-            @Look.canceled += instance.OnLook;
             @Surface.started += instance.OnSurface;
             @Surface.performed += instance.OnSurface;
             @Surface.canceled += instance.OnSurface;
@@ -479,9 +542,6 @@ public partial class @Player: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
-            @Look.started -= instance.OnLook;
-            @Look.performed -= instance.OnLook;
-            @Look.canceled -= instance.OnLook;
             @Surface.started -= instance.OnSurface;
             @Surface.performed -= instance.OnSurface;
             @Surface.canceled -= instance.OnSurface;
@@ -521,6 +581,113 @@ public partial class @Player: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="PilotActions" /> instance referencing this action map.
     /// </summary>
     public PilotActions @Pilot => new PilotActions(this);
+
+    // Gunner
+    private readonly InputActionMap m_Gunner;
+    private List<IGunnerActions> m_GunnerActionsCallbackInterfaces = new List<IGunnerActions>();
+    private readonly InputAction m_Gunner_Look;
+    private readonly InputAction m_Gunner_Shoot;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "Gunner".
+    /// </summary>
+    public struct GunnerActions
+    {
+        private @Player m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public GunnerActions(@Player wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "Gunner/Look".
+        /// </summary>
+        public InputAction @Look => m_Wrapper.m_Gunner_Look;
+        /// <summary>
+        /// Provides access to the underlying input action "Gunner/Shoot".
+        /// </summary>
+        public InputAction @Shoot => m_Wrapper.m_Gunner_Shoot;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_Gunner; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="GunnerActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(GunnerActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="GunnerActions" />
+        public void AddCallbacks(IGunnerActions instance)
+        {
+            if (instance == null || m_Wrapper.m_GunnerActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_GunnerActionsCallbackInterfaces.Add(instance);
+            @Look.started += instance.OnLook;
+            @Look.performed += instance.OnLook;
+            @Look.canceled += instance.OnLook;
+            @Shoot.started += instance.OnShoot;
+            @Shoot.performed += instance.OnShoot;
+            @Shoot.canceled += instance.OnShoot;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="GunnerActions" />
+        private void UnregisterCallbacks(IGunnerActions instance)
+        {
+            @Look.started -= instance.OnLook;
+            @Look.performed -= instance.OnLook;
+            @Look.canceled -= instance.OnLook;
+            @Shoot.started -= instance.OnShoot;
+            @Shoot.performed -= instance.OnShoot;
+            @Shoot.canceled -= instance.OnShoot;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="GunnerActions.UnregisterCallbacks(IGunnerActions)" />.
+        /// </summary>
+        /// <seealso cref="GunnerActions.UnregisterCallbacks(IGunnerActions)" />
+        public void RemoveCallbacks(IGunnerActions instance)
+        {
+            if (m_Wrapper.m_GunnerActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="GunnerActions.AddCallbacks(IGunnerActions)" />
+        /// <seealso cref="GunnerActions.RemoveCallbacks(IGunnerActions)" />
+        /// <seealso cref="GunnerActions.UnregisterCallbacks(IGunnerActions)" />
+        public void SetCallbacks(IGunnerActions instance)
+        {
+            foreach (var item in m_Wrapper.m_GunnerActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_GunnerActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="GunnerActions" /> instance referencing this action map.
+    /// </summary>
+    public GunnerActions @Gunner => new GunnerActions(this);
 
     // UI
     private readonly InputActionMap m_UI;
@@ -617,6 +784,32 @@ public partial class @Player: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="UIActions" /> instance referencing this action map.
     /// </summary>
     public UIActions @UI => new UIActions(this);
+    private int m_KeyboardMouseSchemeIndex = -1;
+    /// <summary>
+    /// Provides access to the input control scheme.
+    /// </summary>
+    /// <seealso cref="UnityEngine.InputSystem.InputControlScheme" />
+    public InputControlScheme KeyboardMouseScheme
+    {
+        get
+        {
+            if (m_KeyboardMouseSchemeIndex == -1) m_KeyboardMouseSchemeIndex = asset.FindControlSchemeIndex("Keyboard&Mouse");
+            return asset.controlSchemes[m_KeyboardMouseSchemeIndex];
+        }
+    }
+    private int m_GamepadSchemeIndex = -1;
+    /// <summary>
+    /// Provides access to the input control scheme.
+    /// </summary>
+    /// <seealso cref="UnityEngine.InputSystem.InputControlScheme" />
+    public InputControlScheme GamepadScheme
+    {
+        get
+        {
+            if (m_GamepadSchemeIndex == -1) m_GamepadSchemeIndex = asset.FindControlSchemeIndex("Gamepad");
+            return asset.controlSchemes[m_GamepadSchemeIndex];
+        }
+    }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Pilot" which allows adding and removing callbacks.
     /// </summary>
@@ -632,13 +825,6 @@ public partial class @Player: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMove(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Look" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnLook(InputAction.CallbackContext context);
-        /// <summary>
         /// Method invoked when associated input action "Surface" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
@@ -652,6 +838,28 @@ public partial class @Player: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnDive(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Gunner" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="GunnerActions.AddCallbacks(IGunnerActions)" />
+    /// <seealso cref="GunnerActions.RemoveCallbacks(IGunnerActions)" />
+    public interface IGunnerActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "Look" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnLook(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Shoot" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnShoot(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

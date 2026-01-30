@@ -204,7 +204,8 @@ MonoBehaviour:
   minPitch: -30
   maxPitch: 60
   firePoint: {fileID: 4503427860597407425}
-  projectilePrefab: {fileID: 0}
+  turretProjectile: {fileID: 11400000, guid: 0f6e4ff8a709fee44bf13d329df39f9f, type: 2}
+  projectileForce: 10
   fireRate: 0.5
   enableDebugLogs: 1
   showGizmos: 1

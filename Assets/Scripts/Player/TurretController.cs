@@ -34,8 +34,12 @@ public class TurretController : MonoBehaviour
     [Tooltip("Point where projectiles spawn")]
     [SerializeField] private Transform firePoint;
 
-    [Tooltip("Projectile prefab (optional for Phase 2)")]
-    [SerializeField] private GameObject projectilePrefab;
+    [Tooltip("Projectile for this gun to shoot")]
+    [SerializeField] private ItemData turretProjectile;
+
+    [Tooltip("Force applied to projectile")]
+    [SerializeField] private float projectileForce = 10f;
+    [SerializeField] private float projectileDamage = 1f;
 
     [SerializeField] private float fireRate = 0.5f; // Shots per second
 
@@ -183,28 +187,44 @@ public class TurretController : MonoBehaviour
     {
         DebugLog("FIRE!");
 
-        // If we have a projectile prefab and fire point, spawn projectile
-        if (projectilePrefab != null && firePoint != null)
-        {
-            GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
-            DebugLog($"Spawned projectile: {projectile.name}");
-        }
-        else if (firePoint != null)
-        {
-            // No projectile prefab - do a simple raycast for hit detection
-            RaycastHit hit;
-            if (Physics.Raycast(firePoint.position, firePoint.forward, out hit, 1000f))
-            {
-                DebugLog($"Hit: {hit.collider.gameObject.name} at distance {hit.distance:F2}m");
+        // // If we have a projectile prefab and fire point, spawn projectile
+        // if (projectilePrefab != null && firePoint != null)
+        // {
+        //     GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+        //     DebugLog($"Spawned projectile: {projectile.name}");
+        // }
+        // else if (firePoint != null)
+        // {
+        //     // No projectile prefab - do a simple raycast for hit detection
+        //     RaycastHit hit;
+        //     if (Physics.Raycast(firePoint.position, firePoint.forward, out hit, 1000f))
+        //     {
+        //         DebugLog($"Hit: {hit.collider.gameObject.name} at distance {hit.distance:F2}m");
 
-                // Visualize hit in Scene view
-                Debug.DrawLine(firePoint.position, hit.point, Color.red, 0.5f);
-            }
-            else
-            {
-                DebugLog("Missed - no hit");
-            }
+        //         // Visualize hit in Scene view
+        //         Debug.DrawLine(firePoint.position, hit.point, Color.red, 0.5f);
+        //     }
+        //     else
+        //     {
+        //         DebugLog("Missed - no hit");
+        //     }
+        // }
+
+        PlayerProjectile projectile = PlayerBulletPool.Instance.GetProjectile(turretProjectile, firePoint.position, firePoint.rotation);
+
+        projectile.Initialize(projectileDamage, turretProjectile, firePoint.position, firePoint.rotation);
+
+        // Apply force using projectile's forward direction
+        Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
+        if (projectileRb != null)
+        {
+            Vector3 forceDirection = projectile.transform.up;
+
+            projectileRb.AddForce(forceDirection * projectileForce, ForceMode.Impulse);
+
+            DebugLog($"Applied force: {projectileForce} in direction {forceDirection}");
         }
+
     }
 
     /// <summary>

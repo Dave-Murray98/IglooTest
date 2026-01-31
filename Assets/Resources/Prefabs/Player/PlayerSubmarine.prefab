@@ -1617,7 +1617,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1100760947686817492, guid: 6f2e3de75a4ae1148946178401bda68b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1
+      value: -1.15
       objectReference: {fileID: 0}
     - target: {fileID: 1100760947686817492, guid: 6f2e3de75a4ae1148946178401bda68b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1664,6 +1664,22 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5363393173364276818, guid: 6f2e3de75a4ae1148946178401bda68b, type: 3}
+      propertyPath: maxYaw
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 5363393173364276818, guid: 6f2e3de75a4ae1148946178401bda68b, type: 3}
+      propertyPath: minYaw
+      value: -70
+      objectReference: {fileID: 0}
+    - target: {fileID: 5363393173364276818, guid: 6f2e3de75a4ae1148946178401bda68b, type: 3}
+      propertyPath: maxPitch
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 5363393173364276818, guid: 6f2e3de75a4ae1148946178401bda68b, type: 3}
+      propertyPath: minPitch
+      value: -75
+      objectReference: {fileID: 0}
+    - target: {fileID: 5363393173364276818, guid: 6f2e3de75a4ae1148946178401bda68b, type: 3}
       propertyPath: assignedGunnerNumber
       value: 3
       objectReference: {fileID: 0}
@@ -1707,7 +1723,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1100760947686817492, guid: 6f2e3de75a4ae1148946178401bda68b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1
+      value: 1.15
       objectReference: {fileID: 0}
     - target: {fileID: 1100760947686817492, guid: 6f2e3de75a4ae1148946178401bda68b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1752,6 +1768,22 @@ PrefabInstance:
     - target: {fileID: 4298742066955031404, guid: 6f2e3de75a4ae1148946178401bda68b, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5363393173364276818, guid: 6f2e3de75a4ae1148946178401bda68b, type: 3}
+      propertyPath: maxYaw
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 5363393173364276818, guid: 6f2e3de75a4ae1148946178401bda68b, type: 3}
+      propertyPath: minYaw
+      value: -70
+      objectReference: {fileID: 0}
+    - target: {fileID: 5363393173364276818, guid: 6f2e3de75a4ae1148946178401bda68b, type: 3}
+      propertyPath: maxPitch
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 5363393173364276818, guid: 6f2e3de75a4ae1148946178401bda68b, type: 3}
+      propertyPath: minPitch
+      value: -75
       objectReference: {fileID: 0}
     - target: {fileID: 5363393173364276818, guid: 6f2e3de75a4ae1148946178401bda68b, type: 3}
       propertyPath: assignedGunnerNumber
@@ -2002,6 +2034,14 @@ PrefabInstance:
     - target: {fileID: 4298742066955031404, guid: 6f2e3de75a4ae1148946178401bda68b, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5363393173364276818, guid: 6f2e3de75a4ae1148946178401bda68b, type: 3}
+      propertyPath: maxYaw
+      value: 160
+      objectReference: {fileID: 0}
+    - target: {fileID: 5363393173364276818, guid: 6f2e3de75a4ae1148946178401bda68b, type: 3}
+      propertyPath: minYaw
+      value: -30
       objectReference: {fileID: 0}
     - target: {fileID: 5363393173364276818, guid: 6f2e3de75a4ae1148946178401bda68b, type: 3}
       propertyPath: assignedGunnerNumber

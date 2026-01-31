@@ -23,12 +23,12 @@ public class TurretController : MonoBehaviour
 
     [Header("Rotation Constraints")]
     [Tooltip("Horizontal rotation limits (left/right in degrees)")]
-    [SerializeField] private float minYaw = -180f;
-    [SerializeField] private float maxYaw = 180f;
+    [SerializeField] private float minYaw = -160f;
+    [SerializeField] private float maxYaw = 30f;
 
     [Tooltip("Vertical rotation limits (up/down in degrees)")]
-    [SerializeField] private float minPitch = -30f;
-    [SerializeField] private float maxPitch = 60f;
+    [SerializeField] private float minPitch = -85f;
+    [SerializeField] private float maxPitch = 85f;
 
     [Header("Shooting")]
     [Tooltip("Point where projectiles spawn")]

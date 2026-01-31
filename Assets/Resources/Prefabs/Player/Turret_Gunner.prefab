@@ -199,13 +199,14 @@ MonoBehaviour:
   yawPivot: {fileID: 4452277237985312778}
   pitchPivot: {fileID: 4555664886658437806}
   rotationSpeed: 100
-  minYaw: -180
-  maxYaw: 180
-  minPitch: -30
-  maxPitch: 60
+  minYaw: -160
+  maxYaw: 30
+  minPitch: -85
+  maxPitch: 85
   firePoint: {fileID: 4503427860597407425}
   turretProjectile: {fileID: 11400000, guid: 0f6e4ff8a709fee44bf13d329df39f9f, type: 2}
   projectileForce: 10
+  projectileDamage: 1
   fireRate: 0.5
   enableDebugLogs: 1
   showGizmos: 1

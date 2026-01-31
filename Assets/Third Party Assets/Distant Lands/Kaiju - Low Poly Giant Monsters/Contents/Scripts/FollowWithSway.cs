@@ -1,8 +1,6 @@
 ﻿//Simple navigation script to show off how the procedural animation can be used.
 
 
-
-
 using UnityEngine;
 
 
@@ -47,7 +45,7 @@ namespace DistantLands
 
                     currentTilt = Mathf.Clamp(Mathf.MoveTowards(currentTilt, AngleDir(transform.forward, target.position - transform.position, Vector3.up) * Vector3.Angle(transform.forward, target.position - transform.position) * 0.05f * tiltFactor, tiltSpeed * Time.deltaTime), -maxTilt, maxTilt);
 
-                    sinMove.transform.localEulerAngles = new Vector3 (0, 0, currentTilt);
+                    sinMove.transform.localEulerAngles = new Vector3(0, 0, currentTilt);
 
                     transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(target.position - transform.position,
                         Vector3.up), (angularSpeed + Remap(Mathf.Abs(currentTilt), 0, maxTilt, 0, maxTiltHelpFactor)) * Time.deltaTime);

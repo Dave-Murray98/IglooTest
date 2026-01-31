@@ -259,12 +259,12 @@ namespace NWH.DWP2.ShipController
             //     Gizmos.DrawRay(new Ray(e.ThrustPosition, e.ThrustDirection));
             // }
 
-            foreach (Thruster thruster in thrusters)
-            {
-                Gizmos.color = Color.cyan;
-                Gizmos.DrawSphere(transform.TransformPoint(thruster.position), 0.2f);
-                Gizmos.DrawRay(new Ray(thruster.WorldPosition, transform.right));
-            }
+            // foreach (Thruster thruster in thrusters)
+            // {
+            //     Gizmos.color = Color.cyan;
+            //     Gizmos.DrawSphere(transform.TransformPoint(thruster.position), 0.2f);
+            //     Gizmos.DrawRay(new Ray(thruster.WorldPosition, transform.right));
+            // }
         }
 
 

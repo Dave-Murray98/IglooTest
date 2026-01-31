@@ -15,21 +15,23 @@ public class SubmarineBallastController : MonoBehaviour, IMassAffector
     [SerializeField] private float positiveBuoyancyMass = 0f;
 
     [Tooltip("Ballast mass for neutral buoyancy (maintaining depth)")]
-    [SerializeField] private float neutralBuoyancyMass = 13915f;
+    [SerializeField] private float neutralBuoyancyMass = 19600f;
 
     [Tooltip("Ballast mass for negative buoyancy (diving deeper)")]
-    [SerializeField] private float negativeBuoyancyMass = 20000f;
+    [SerializeField] private float negativeBuoyancyMass = 30000f;
 
     [Header("Transition")]
     [Tooltip("Speed at which ballast mass changes (kg/second)")]
     [SerializeField] private float ballastTransitionSpeed = 2000f;
+
+    [Header("References")]
+    [SerializeField] private VariableCenterOfMass vcom;
 
     [Header("Debug")]
     [SerializeField] private bool enableDebugLogs = false;
 
     private float currentBallastMass = 0f;
     private BuoyancyState targetBuoyancyState = BuoyancyState.Neutral;
-    private VariableCenterOfMass vcom;
 
     private void Start()
     {

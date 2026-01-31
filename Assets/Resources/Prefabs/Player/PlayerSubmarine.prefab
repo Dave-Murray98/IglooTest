@@ -762,7 +762,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shipController: {fileID: 432319468387849730}
   ballastController: {fileID: 3768133145417087292}
-  vcom: {fileID: 7256037246595816380}
   throttleResponseSpeed: 2
   steeringResponseSpeed: 3
   invertSteering: 0
@@ -968,10 +967,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positiveBuoyancyMass: 0
-  neutralBuoyancyMass: 13915
-  negativeBuoyancyMass: 20000
+  neutralBuoyancyMass: 19600
+  negativeBuoyancyMass: 30000
   ballastTransitionSpeed: 2000
-  enableDebugLogs: 0
+  vcom: {fileID: 7256037246595816380}
+  enableDebugLogs: 1
 --- !u!114 &7256037246595816380
 MonoBehaviour:
   m_ObjectHideFlags: 0

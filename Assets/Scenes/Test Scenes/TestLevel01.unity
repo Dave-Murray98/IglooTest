@@ -119,43 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!84 &53423916
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: GerstnerCascades
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 6
-  m_Width: 64
-  m_Height: 64
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthStencilFormat: 0
-  m_ColorFormat: 48
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_UseDynamicScaleExplicit: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_EnableRandomWrite: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 0
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 5
-  m_VolumeDepth: 16
-  m_ShadowSamplingMode: 2
 --- !u!1 &70930810
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,7 +145,7 @@ Transform:
   m_GameObject: {fileID: 70930810}
   serializedVersion: 2
   m_LocalRotation: {x: 0.0000000037252899, y: -0, z: -0.0000000074505797, w: 1}
-  m_LocalPosition: {x: -0.92819345, y: 4.512447, z: 4.2596264}
+  m_LocalPosition: {x: -0.9282603, y: 4.5123816, z: 4.259606}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1280,7 +1243,7 @@ MonoBehaviour:
   _debug:
     _drawBounds: 0
     _drawSlicesInEditor: 0
-  _waveBuffers: {fileID: 53423916}
+  _waveBuffers: {fileID: 237441766}
 --- !u!1 &207055349
 GameObject:
   m_ObjectHideFlags: 0
@@ -1987,6 +1950,43 @@ Transform:
   - {fileID: 541076548}
   m_Father: {fileID: 451259709}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!84 &237441766
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: GerstnerCascades
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 6
+  m_Width: 64
+  m_Height: 64
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthStencilFormat: 0
+  m_ColorFormat: 48
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_UseDynamicScaleExplicit: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_EnableRandomWrite: 1
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 0
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 5
+  m_VolumeDepth: 16
+  m_ShadowSamplingMode: 2
 --- !u!1 &265578315
 GameObject:
   m_ObjectHideFlags: 0
@@ -7959,6 +7959,14 @@ PrefabInstance:
     - target: {fileID: 3526274509115952538, guid: a7ad26c4755273c4cb548890d32c8ea1, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3768133145417087292, guid: a7ad26c4755273c4cb548890d32c8ea1, type: 3}
+      propertyPath: neutralBuoyancyMass
+      value: 19600
+      objectReference: {fileID: 0}
+    - target: {fileID: 3768133145417087292, guid: a7ad26c4755273c4cb548890d32c8ea1, type: 3}
+      propertyPath: negativeBuoyancyMass
+      value: 30000
       objectReference: {fileID: 0}
     - target: {fileID: 3922106670421637791, guid: a7ad26c4755273c4cb548890d32c8ea1, type: 3}
       propertyPath: m_Layer

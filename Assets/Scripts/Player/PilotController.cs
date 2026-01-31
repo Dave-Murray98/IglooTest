@@ -14,7 +14,6 @@ public class PilotController : MonoBehaviour
     [Header("Vehicle Controllers")]
     [SerializeField] private AdvancedShipController shipController;
     [SerializeField] private SubmarineBallastController ballastController;
-    [SerializeField] private VariableCenterOfMass vcom;
 
     [Header("Input Response")]
     [SerializeField] private float throttleResponseSpeed = 2f;
@@ -44,7 +43,6 @@ public class PilotController : MonoBehaviour
     {
         if (shipController == null) shipController = GetComponent<AdvancedShipController>();
         if (ballastController == null) ballastController = GetComponent<SubmarineBallastController>();
-        if (vcom == null) vcom = GetComponent<VariableCenterOfMass>();
 
         InitializeVehicleControllers();
 

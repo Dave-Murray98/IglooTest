@@ -45,35 +45,20 @@ MonoBehaviour:
     values:
     - goDatasByGlobalId:
         keys:
-        - GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-639667418-0
-        - GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-1342972582-0
-        - GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-328802275-0
-        - GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-1752032061-0
-        - GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-347147957-0
+        - GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-451259708-0
+        - GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-1068654184-0
         values:
         - iColor: 2
-          icon: Terrain Icon
+          icon: 
         - iColor: 4
-          icon: ParticleSystem Icon
-        - iColor: 8
-          icon: MeshCollider Icon
-        - iColor: 9
-          icon: 
-        - iColor: 5
-          icon: 
+          icon: Material Icon
       goDatasByInstanceId:
-        keys: eae90200a2eb02001ee9020078ec020022e90200
+        keys: 26830100fa840100
         values:
         - iColor: 2
-          icon: Terrain Icon
+          icon: 
         - iColor: 4
-          icon: ParticleSystem Icon
-        - iColor: 8
-          icon: MeshCollider Icon
-        - iColor: 9
-          icon: 
-        - iColor: 5
-          icon: 
+          icon: Material Icon
     - goDatasByGlobalId:
         keys: []
         values: []
@@ -243,12 +228,8 @@ MonoBehaviour:
         - iColor: 0
           icon: 
       goDatasByInstanceId:
-        keys: 4c3401004c2f0100
-        values:
-        - iColor: 9
-          icon: AudioReverbZone Icon
-        - iColor: 0
-          icon: 
+        keys: 
+        values: []
     - goDatasByGlobalId:
         keys:
         - GlobalObjectId_V1-2-404aa258f18d63e44b5005f014e3d95c-566001005-0
@@ -268,12 +249,8 @@ MonoBehaviour:
         - iColor: 8
           icon: AvatarMask On Icon
       goDatasByInstanceId:
-        keys: 2247020072460200
-        values:
-        - iColor: 4
-          icon: Material Icon
-        - iColor: 8
-          icon: AvatarMask On Icon
+        keys: 
+        values: []
     - goDatasByGlobalId:
         keys: []
         values: []
@@ -287,12 +264,8 @@ MonoBehaviour:
         - iColor: 9
           icon: 
       goDatasByInstanceId:
-        keys: 5e5c02009e6d0200
-        values:
-        - iColor: 9
-          icon: 
-        - iColor: 9
-          icon: 
+        keys: 
+        values: []
     - goDatasByGlobalId:
         keys: []
         values: []

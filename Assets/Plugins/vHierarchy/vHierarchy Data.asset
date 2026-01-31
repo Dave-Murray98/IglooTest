@@ -47,18 +47,42 @@ MonoBehaviour:
         keys:
         - GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-451259708-0
         - GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-1068654184-0
+        - GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-482625761-0
+        - GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-777674156-0
+        - GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-1678455096-0
+        - GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-2482531440913398984-797395267
         values:
         - iColor: 2
           icon: 
         - iColor: 4
           icon: Material Icon
+        - iColor: 9
+          icon: 
+        - iColor: 8
+          icon: 
+        - iColor: 8
+          icon: AvatarMask On Icon
+        - iColor: 4
+          icon: 
       goDatasByInstanceId:
-        keys: 26830100fa840100
+        keys: 26830100fa840100ac7c0200707d0200a814f7ffba28f7ffda28f7ff0439f7ff
         values:
         - iColor: 2
           icon: 
         - iColor: 4
           icon: Material Icon
+        - iColor: 2
+          icon: 
+        - iColor: 4
+          icon: Material Icon
+        - iColor: 9
+          icon: 
+        - iColor: 8
+          icon: 
+        - iColor: 8
+          icon: AvatarMask On Icon
+        - iColor: 4
+          icon: 
     - goDatasByGlobalId:
         keys: []
         values: []

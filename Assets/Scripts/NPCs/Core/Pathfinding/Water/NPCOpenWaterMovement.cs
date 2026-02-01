@@ -1,8 +1,4 @@
-using System;
-using NWH.DWP2.WaterObjects;
-using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Assertions.Must;
 
 /// <summary>
 /// OPTIMIZED open water movement with direct pathfinding and obstacle avoidance.

@@ -1995,7 +1995,7 @@ MonoBehaviour:
     m_SharedVariableGroupsData: []
   m_StartWhenEnabled: 1
   m_PauseWhenDisabled: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 1
   m_EvaluationType: 0
   m_MaxEvaluationCount: 1
   m_Subtree: {fileID: 0}

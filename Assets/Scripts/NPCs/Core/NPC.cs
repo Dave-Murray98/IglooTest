@@ -8,24 +8,19 @@ using UnityEngine;
 public class NPC : MonoBehaviour
 {
     [Header("NPC Components")]
-    // [SerializeField] private NPCSimpleUnderwaterMovement movementScript;
-    [SerializeField] private NPCManagedUnderwaterMovement managedMovementScript;
-    [SerializeField] private Rigidbody rb;
-
-    // public NPCSimpleUnderwaterMovement MovementScript => movementScript;
-    public NPCManagedUnderwaterMovement ManagedMovementScript => managedMovementScript;
-    public Rigidbody Rigidbody => rb;
+    public NPCManagedUnderwaterMovement movementScript;
+    public Rigidbody rb;
+    public NPCStateMachine stateMachine;
 
     private void Awake()
     {
-        // Auto-find components if not assigned
-        // if (movementScript == null)
-        //     movementScript = GetComponent<NPCSimpleUnderwaterMovement>();
-
-        if (managedMovementScript == null)
-            managedMovementScript = GetComponent<NPCManagedUnderwaterMovement>();
+        if (movementScript == null)
+            movementScript = GetComponent<NPCManagedUnderwaterMovement>();
 
         if (rb == null)
             rb = GetComponent<Rigidbody>();
+
+        if (stateMachine == null)
+            stateMachine = GetComponent<NPCStateMachine>();
     }
 }

@@ -1,6 +1,7 @@
 using Infohazard.HyperNav;
 using Infohazard.Core;
 using UnityEngine;
+using System;
 
 /// <summary>
 /// Underwater movement script that works with NPCPathfindingManager.
@@ -14,7 +15,7 @@ public class NPCManagedUnderwaterMovement : MonoBehaviour
     [SerializeField] private Rigidbody rb;
 
     [Header("Pathfinding Settings")]
-    [SerializeField] private Transform destinationTransform;
+    private Vector3 destination = Vector3.zero;
 
     [SerializeField]
     [Tooltip("A new path will be calculated if the destination moves by this distance.")]
@@ -36,6 +37,9 @@ public class NPCManagedUnderwaterMovement : MonoBehaviour
     [Header("Rotation Settings")]
     [SerializeField] private float rotationSpeed = 5f;
 
+    [Header("Debug")]
+    [SerializeField] private bool enableDebugLogs = false;
+
     // Logic variables
     private bool hasHadFirstUpdate;
     private bool dataChanged;
@@ -44,6 +48,10 @@ public class NPCManagedUnderwaterMovement : MonoBehaviour
     /// Last destination set.
     /// </summary>
     protected Vector3 lastDestination;
+
+    // Events - this is how the movement system communicates outward
+    public event Action OnDestinationReached;
+    public event Action OnPathFailed;
 
     /// <summary>
     /// Subscribe to nav data change events.
@@ -69,6 +77,8 @@ public class NPCManagedUnderwaterMovement : MonoBehaviour
     {
         if (rb == null) rb = GetComponent<Rigidbody>();
         if (navAgent == null) navAgent = GetComponent<SplineNavAgent>();
+
+        navAgent.PathFailed += OnPathFailed;
     }
 
     /// <summary>
@@ -88,7 +98,7 @@ public class NPCManagedUnderwaterMovement : MonoBehaviour
     public void TryUpdatePath()
     {
         // Check if we have the necessary data to pathfind
-        if (destinationTransform &&
+        if (destination != Vector3.zero &&
             (NavVolume.NativeDataMap.IsCreated || NavSurface.NativeDataMap.IsCreated) &&
             (!hasHadFirstUpdate || dataChanged || CheckRepath()))
         {
@@ -102,15 +112,36 @@ public class NPCManagedUnderwaterMovement : MonoBehaviour
     /// </summary>
     protected virtual void UpdatePath()
     {
-        if (!destinationTransform && !dataChanged) return;
+        if (destination == Vector3.zero && !dataChanged) return;
+
+        if (navAgent.Arrived)
+        {
+            OnArrivedAtDestination();
+        }
 
         dataChanged = false;
-        if (destinationTransform)
+        if (destination != Vector3.zero)
         {
-            lastDestination = destinationTransform.position;
+            lastDestination = destination;
         }
 
         navAgent.Destination = lastDestination;
+    }
+
+    private void OnArrivedAtDestination()
+    {
+        DebugLog("Arrived at destination");
+
+        // Stop the rigidbody
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+        }
+
+        OnDestinationReached?.Invoke();
+
+        destination = Vector3.zero;
     }
 
     private void FixedUpdate()
@@ -161,7 +192,7 @@ public class NPCManagedUnderwaterMovement : MonoBehaviour
     /// <returns>True if a new path should be calculated.</returns>
     protected virtual bool CheckRepath()
     {
-        if ((destinationTransform.position - lastDestination).sqrMagnitude >
+        if ((destination - lastDestination).sqrMagnitude >
             repathDistanceThreshold * repathDistanceThreshold)
             return true;
 
@@ -171,9 +202,42 @@ public class NPCManagedUnderwaterMovement : MonoBehaviour
         return false;
     }
 
+    private bool HasArrived()
+    {
+        return navAgent.Arrived;
+    }
+
+    /// <summary>
+    /// Sets a completely random wander destination.
+    /// </summary>
+    public void SetRandomWanderDestination()
+    {
+        Vector3 randomPosition = NPCPathfindingUtilities.Instance.GetRandomValidPosition(transform.position);
+
+        if (randomPosition == Vector3.zero)
+        {
+            DebugLog("Warning: Failed to get random valid position");
+            return;
+        }
+
+        SetDestination(randomPosition);
+        DebugLog($"Set random wander destination: {randomPosition}");
+    }
+
+    /// <summary>
+    /// Sets the destination for the NPC to move toward.
+    /// The movement system automatically picks up this change and starts pathfinding.
+    /// This is the PRIMARY method behavior trees use to control movement.
+    /// </summary>
+    public void SetDestination(Vector3 newTarget)
+    {
+        destination = newTarget;
+        DebugLog($"Destination set to: {newTarget}");
+    }
+
     private void ChangeNavDataDataChanging()
     {
-        if (!destinationTransform)
+        if (destination != Vector3.zero)
             lastDestination = navAgent.Destination;
 
         navAgent.Stop(true);
@@ -182,5 +246,11 @@ public class NPCManagedUnderwaterMovement : MonoBehaviour
     private void ChangeNavDataDataChanged()
     {
         dataChanged = true;
+    }
+
+    private void DebugLog(string message)
+    {
+        if (enableDebugLogs)
+            Debug.Log("[NPCManagedUnderwaterMovement]" + message);
     }
 }

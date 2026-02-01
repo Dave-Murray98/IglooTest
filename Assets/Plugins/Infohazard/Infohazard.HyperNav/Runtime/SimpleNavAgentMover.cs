@@ -7,7 +7,8 @@ using Infohazard.HyperNav.Jobs.Utility;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace Infohazard.HyperNav {
+namespace Infohazard.HyperNav
+{
     /// <summary>
     /// A script that enables using a NavAgent without writing any code.
     /// </summary>
@@ -15,7 +16,8 @@ namespace Infohazard.HyperNav {
     /// It is completely optional to use this script, and for more advanced uses you will likely need to write your own
     /// code to handle the movement.
     /// </remarks>
-    public class SimpleNavAgentMover : MonoBehaviour {
+    public class SimpleNavAgentMover : MonoBehaviour
+    {
         #region Serialized Fields
 
         [SerializeField]
@@ -132,7 +134,8 @@ namespace Infohazard.HyperNav {
         /// <summary>
         /// This is used to refer to the names of private fields in this class from a custom Editor.
         /// </summary>
-        public static class PropNames {
+        public static class PropNames
+        {
             public const string NavAgent = nameof(_navAgent);
             public const string MovementMode = nameof(_movementMode);
             public const string Rigidbody = nameof(_rigidbody);
@@ -168,18 +171,23 @@ namespace Infohazard.HyperNav {
         /// <summary>
         /// The NavAgent that calculates the path.
         /// </summary>
-        public NavAgent NavAgent {
+        public NavAgent NavAgent
+        {
             get => _navAgent;
-            set {
+            set
+            {
                 if (ReferenceEquals(_navAgent, value)) return;
                 if (!value) throw new ArgumentNullException(nameof(value), "NavAgent cannot be null.");
 
                 NavAgent oldAgent = _navAgent;
                 _navAgent = value;
 
-                if (_destinationTransform) {
+                if (_destinationTransform)
+                {
                     UpdatePath();
-                } else {
+                }
+                else
+                {
                     _navAgent.Destination = oldAgent.Destination;
                 }
 
@@ -190,7 +198,8 @@ namespace Infohazard.HyperNav {
         /// <summary>
         /// If set, movement will be handled by this Rigidbody.
         /// </summary>
-        public Rigidbody Rigidbody {
+        public Rigidbody Rigidbody
+        {
             get => _rigidbody;
             set => _rigidbody = value;
         }
@@ -198,12 +207,15 @@ namespace Infohazard.HyperNav {
         /// <summary>
         /// If set, the agent will move to this destination.
         /// </summary>
-        public Transform DestinationTransform {
+        public Transform DestinationTransform
+        {
             get => _destinationTransform;
-            set {
+            set
+            {
                 if (ReferenceEquals(_destinationTransform, value)) return;
                 _destinationTransform = value;
-                if (value && _hasHadFirstUpdate) {
+                if (value && _hasHadFirstUpdate)
+                {
                     UpdatePath();
                 }
             }
@@ -212,7 +224,8 @@ namespace Infohazard.HyperNav {
         /// <summary>
         /// The radius to sample around the agent for volumes.
         /// </summary>
-        public float SampleRadius {
+        public float SampleRadius
+        {
             get => _sampleRadius;
             set => _sampleRadius = value;
         }
@@ -220,7 +233,8 @@ namespace Infohazard.HyperNav {
         /// <summary>
         /// Enable automatically calculating a new path to the destination.
         /// </summary>
-        public bool EnableRepathing {
+        public bool EnableRepathing
+        {
             get => _enableRepathing;
             set => _enableRepathing = value;
         }
@@ -228,7 +242,8 @@ namespace Infohazard.HyperNav {
         /// <summary>
         /// If enabled, a new path will be calculated at a set interval.
         /// </summary>
-        public bool RepathAtInterval {
+        public bool RepathAtInterval
+        {
             get => _repathAtInterval;
             set => _repathAtInterval = value;
         }
@@ -236,9 +251,11 @@ namespace Infohazard.HyperNav {
         /// <summary>
         /// Interval to calculate a new path.
         /// </summary>
-        public float RepathInterval {
+        public float RepathInterval
+        {
             get => _repathInterval;
-            set {
+            set
+            {
                 _repathInterval = value;
                 RepathTimer.Interval = _repathInterval;
             }
@@ -247,7 +264,8 @@ namespace Infohazard.HyperNav {
         /// <summary>
         /// If enabled, a new path will be calculated when the destination moves.
         /// </summary>
-        public bool RepathOnDestinationTransformMove {
+        public bool RepathOnDestinationTransformMove
+        {
             get => _repathOnDestinationTransformMove;
             set => _repathOnDestinationTransformMove = value;
         }
@@ -255,7 +273,8 @@ namespace Infohazard.HyperNav {
         /// <summary>
         /// Distance threshold to repath when the destination moves.
         /// </summary>
-        public float RepathDistanceThreshold {
+        public float RepathDistanceThreshold
+        {
             get => _repathDistanceThreshold;
             set => _repathDistanceThreshold = value;
         }
@@ -263,7 +282,8 @@ namespace Infohazard.HyperNav {
         /// <summary>
         /// Enable to repath when the agent nears the end of its path.
         /// </summary>
-        public bool RepathOnReachEnd {
+        public bool RepathOnReachEnd
+        {
             get => _repathOnReachEnd;
             set => _repathOnReachEnd = value;
         }
@@ -271,7 +291,8 @@ namespace Infohazard.HyperNav {
         /// <summary>
         /// Distance from the end of the path to repath.
         /// </summary>
-        public float RepathOnReachEndDistance {
+        public float RepathOnReachEndDistance
+        {
             get => _repathOnReachEndDistance;
             set => _repathOnReachEndDistance = value;
         }
@@ -279,7 +300,8 @@ namespace Infohazard.HyperNav {
         /// <summary>
         /// The maximum speed the agent can move in units/second when in a volume.
         /// </summary>
-        public float MaxSpeedInVolume {
+        public float MaxSpeedInVolume
+        {
             get => _maxSpeedInVolume;
             set => _maxSpeedInVolume = value;
         }
@@ -287,7 +309,8 @@ namespace Infohazard.HyperNav {
         /// <summary>
         /// The acceleration of the agent in units/second^2 when in a volume.
         /// </summary>
-        public float AccelerationInVolume {
+        public float AccelerationInVolume
+        {
             get => _accelerationInVolume;
             set => _accelerationInVolume = value;
         }
@@ -295,7 +318,8 @@ namespace Infohazard.HyperNav {
         /// <summary>
         /// The maximum speed the agent can move in units/second when on a surface.
         /// </summary>
-        public float MaxSpeedOnSurface {
+        public float MaxSpeedOnSurface
+        {
             get => _maxSpeedOnSurface;
             set => _maxSpeedOnSurface = value;
         }
@@ -303,7 +327,8 @@ namespace Infohazard.HyperNav {
         /// <summary>
         /// The acceleration of the agent in units/second^2 when on a surface.
         /// </summary>
-        public float AccelerationOnSurface {
+        public float AccelerationOnSurface
+        {
             get => _accelerationOnSurface;
             set => _accelerationOnSurface = value;
         }
@@ -311,7 +336,8 @@ namespace Infohazard.HyperNav {
         /// <summary>
         /// How the agent's rotation is determined.
         /// </summary>
-        public RotateModeType RotateMode {
+        public RotateModeType RotateMode
+        {
             get => _rotateMode;
             set => _rotateMode = value;
         }
@@ -319,7 +345,8 @@ namespace Infohazard.HyperNav {
         /// <summary>
         /// The speed at which the agent rotates in degrees/second.
         /// </summary>
-        public float RotationSpeed {
+        public float RotationSpeed
+        {
             get => _rotationSpeed;
             set => _rotationSpeed = value;
         }
@@ -327,7 +354,8 @@ namespace Infohazard.HyperNav {
         /// <summary>
         /// If enabled, rotation will be done with Slerp instead of RotateTowards.
         /// </summary>
-        public bool RotateBySlerp {
+        public bool RotateBySlerp
+        {
             get => _rotateBySlerp;
             set => _rotateBySlerp = value;
         }
@@ -335,7 +363,8 @@ namespace Infohazard.HyperNav {
         /// <summary>
         /// Once within this distance of a surface while flying, the agent will rotate to align with the surface normal.
         /// </summary>
-        public float DistanceToRotateToSurfaceUp {
+        public float DistanceToRotateToSurfaceUp
+        {
             get => _distanceToRotateToSurfaceUp;
             set => _distanceToRotateToSurfaceUp = value;
         }
@@ -343,7 +372,8 @@ namespace Infohazard.HyperNav {
         /// <summary>
         /// When moving on a surface, keep the agent aligned to the ground normal.
         /// </summary>
-        public bool KeepAlignedToGroundNormal {
+        public bool KeepAlignedToGroundNormal
+        {
             get => _keepAlignedToGroundNormal;
             set => _keepAlignedToGroundNormal = value;
         }
@@ -351,7 +381,8 @@ namespace Infohazard.HyperNav {
         /// <summary>
         /// When moving on a surface, keep the agent on the ground by raycasting and moving if necessary.
         /// </summary>
-        public bool KeepOnGround {
+        public bool KeepOnGround
+        {
             get => _keepOnGround;
             set => _keepOnGround = value;
         }
@@ -359,7 +390,8 @@ namespace Infohazard.HyperNav {
         /// <summary>
         /// Layer mask to use for ground check.
         /// </summary>
-        public LayerMask GroundCheckLayerMask {
+        public LayerMask GroundCheckLayerMask
+        {
             get => _groundCheckLayerMask;
             set => _groundCheckLayerMask = value;
         }
@@ -367,7 +399,8 @@ namespace Infohazard.HyperNav {
         /// <summary>
         /// Radius to use for ground check.
         /// </summary>
-        public float GroundCheckQueryRadius {
+        public float GroundCheckQueryRadius
+        {
             get => _groundCheckQueryRadius;
             set => _groundCheckQueryRadius = value;
         }
@@ -375,7 +408,8 @@ namespace Infohazard.HyperNav {
         /// <summary>
         /// Distance to check for ground.
         /// </summary>
-        public float GroundCheckDistance {
+        public float GroundCheckDistance
+        {
             get => _groundCheckDistance;
             set => _groundCheckDistance = value;
         }
@@ -383,7 +417,8 @@ namespace Infohazard.HyperNav {
         /// <summary>
         /// When aligning to ground, ground normal must be within this angle of up vector.
         /// </summary>
-        public float GroundCheckNormalAngle {
+        public float GroundCheckNormalAngle
+        {
             get => _groundCheckNormalAngle;
             set => _groundCheckNormalAngle = value;
         }
@@ -391,7 +426,8 @@ namespace Infohazard.HyperNav {
         /// <summary>
         /// Desired vertical offset from the center of this agent to the ground.
         /// </summary>
-        public float DesiredOffsetToGround {
+        public float DesiredOffsetToGround
+        {
             get => _desiredOffsetToGround;
             set => _desiredOffsetToGround = value;
         }
@@ -434,10 +470,12 @@ namespace Infohazard.HyperNav {
         /// <summary>
         /// Reset state so next Update will calculate a new path.
         /// </summary>
-        protected void OnEnable() {
+        protected void OnEnable()
+        {
             _hasHadFirstUpdate = false;
 
-            if (_enableRepathing && _repathAtInterval) {
+            if (_enableRepathing && _repathAtInterval)
+            {
                 RepathTimer = new PassiveTimer(_repathInterval);
             }
 
@@ -448,7 +486,8 @@ namespace Infohazard.HyperNav {
         /// <summary>
         /// Unsubscribe from events.
         /// </summary>
-        private void OnDisable() {
+        private void OnDisable()
+        {
             ChangeNavAreaData.DataChanging -= ChangeNavDataDataChanging;
             ChangeNavAreaData.DataChanged -= ChangeNavDataDataChanged;
         }
@@ -456,19 +495,24 @@ namespace Infohazard.HyperNav {
         /// <summary>
         /// Update the path if needed, and move the agent if not using a Rigidbody.
         /// </summary>
-        protected virtual void Update() {
+        protected virtual void Update()
+        {
             _navAgent.AccelerationEstimate = Acceleration;
 
             if (_destinationTransform &&
                 (NavVolume.NativeDataMap.IsCreated || NavSurface.NativeDataMap.IsCreated) &&
-                (!_hasHadFirstUpdate || _dataChanged || CheckRepath())) {
+                (!_hasHadFirstUpdate || _dataChanged || CheckRepath()))
+            {
                 _hasHadFirstUpdate = true;
                 UpdatePath();
             }
 
-            if (!_navAgent.Arrived && _movementMode == MovementModeType.Transform) {
+            if (!_navAgent.Arrived && _movementMode == MovementModeType.Transform)
+            {
                 UpdateMovementTransform();
-            } else {
+            }
+            else
+            {
                 KinematicVelocity = Vector3.zero;
             }
         }
@@ -476,11 +520,16 @@ namespace Infohazard.HyperNav {
         /// <summary>
         /// Move the agent if using a Rigidbody.
         /// </summary>
-        protected virtual void FixedUpdate() {
-            if (_movementMode == MovementModeType.Rigidbody) {
-                if (!_navAgent.Arrived) {
+        protected virtual void FixedUpdate()
+        {
+            if (_movementMode == MovementModeType.Rigidbody)
+            {
+                if (!_navAgent.Arrived)
+                {
                     UpdateMovementRigidbody();
-                } else {
+                }
+                else
+                {
                     Vector3 deltaV = Vector3.ClampMagnitude(-_rigidbody.GetLinearVelocity(),
                                                             Acceleration * Time.fixedDeltaTime);
                     _rigidbody.AddForce(deltaV, ForceMode.VelocityChange);
@@ -491,17 +540,22 @@ namespace Infohazard.HyperNav {
         /// <summary>
         /// Get references to components.
         /// </summary>
-        protected virtual void Reset() {
+        protected virtual void Reset()
+        {
             _navAgent = GetComponent<NavAgent>();
 
-            if (TryGetComponent(out _rigidbody)) {
+            if (TryGetComponent(out _rigidbody))
+            {
                 _movementMode = MovementModeType.Rigidbody;
-            } else {
+            }
+            else
+            {
                 _movementMode = MovementModeType.Transform;
             }
 
             _keepOnGround = true;
-            if (TryGetComponent(out CapsuleCollider capsule)) {
+            if (TryGetComponent(out CapsuleCollider capsule))
+            {
                 _groundCheckQueryRadius = capsule.radius;
                 _desiredOffsetToGround = -capsule.height * 0.5f + capsule.center.y;
                 _groundCheckDistance = capsule.height * 0.05f;
@@ -512,30 +566,36 @@ namespace Infohazard.HyperNav {
 
         #region Internal Methods
 
-        private void ChangeNavDataDataChanging() {
-            if (!_destinationTransform) {
+        private void ChangeNavDataDataChanging()
+        {
+            if (!_destinationTransform)
+            {
                 LastDestination = _navAgent.Destination;
             }
 
             _navAgent.Stop(true);
         }
 
-        private void ChangeNavDataDataChanged() {
+        private void ChangeNavDataDataChanged()
+        {
             _dataChanged = true;
         }
 
         /// <summary>
         /// Calculate a new path to <see cref="DestinationTransform"/>.
         /// </summary>
-        protected virtual void UpdatePath() {
+        protected virtual void UpdatePath()
+        {
             if (!_destinationTransform && !_dataChanged) return;
 
             _dataChanged = false;
-            if (RepathTimer.IsInitialized) {
+            if (RepathTimer.IsInitialized)
+            {
                 RepathTimer.StartInterval();
             }
 
-            if (_destinationTransform) {
+            if (_destinationTransform)
+            {
                 LastDestination = _destinationTransform.position;
             }
 
@@ -546,20 +606,24 @@ namespace Infohazard.HyperNav {
         /// Check if a new path should be calculated.
         /// </summary>
         /// <returns>True if a new path should be calculated.</returns>
-        protected virtual bool CheckRepath() {
+        protected virtual bool CheckRepath()
+        {
             if (!_enableRepathing) return false;
 
-            if (_repathAtInterval && RepathTimer.IsIntervalEnded) {
+            if (_repathAtInterval && RepathTimer.IsIntervalEnded)
+            {
                 return true;
             }
 
             if (_repathOnDestinationTransformMove &&
                 (_destinationTransform.position - LastDestination).sqrMagnitude >
-                _repathDistanceThreshold * _repathDistanceThreshold) {
+                _repathDistanceThreshold * _repathDistanceThreshold)
+            {
                 return true;
             }
 
-            if (_repathOnReachEnd && _navAgent.RemainingDistance < _repathOnReachEndDistance) {
+            if (_repathOnReachEnd && _navAgent.RemainingDistance < _repathOnReachEndDistance)
+            {
                 return true;
             }
 
@@ -572,7 +636,8 @@ namespace Infohazard.HyperNav {
         /// <remarks>
         /// Should only be called in Update and only if not using a Rigidbody.
         /// </remarks>
-        protected virtual void UpdateMovementTransform() {
+        protected virtual void UpdateMovementTransform()
+        {
             Vector3 desiredVel = _navAgent.DesiredVelocity * MaxSpeed;
             Vector3 deltaV = Vector3.ClampMagnitude(desiredVel - KinematicVelocity, Acceleration * Time.deltaTime);
 
@@ -583,11 +648,13 @@ namespace Infohazard.HyperNav {
             _isGroundDetected = TryGetGroundCheckPosition(transform.position, transform.rotation,
                                                           out Vector3 newPosition, out _groundNormal);
 
-            if (_rotateMode != RotateModeType.None) {
+            if (_rotateMode != RotateModeType.None)
+            {
                 transform.rotation = GetNewRotation(transform.rotation, KinematicVelocity, Time.deltaTime);
             }
 
-            if (_keepOnGround && _isGroundDetected) {
+            if (_keepOnGround && _isGroundDetected)
+            {
                 transform.position = newPosition;
             }
         }
@@ -598,7 +665,8 @@ namespace Infohazard.HyperNav {
         /// <remarks>
         /// Should only be called in FixedUpdate and only if using a Rigidbody.
         /// </remarks>
-        protected virtual void UpdateMovementRigidbody() {
+        protected virtual void UpdateMovementRigidbody()
+        {
             Vector3 desiredVel = _navAgent.DesiredVelocity * MaxSpeed;
             Vector3 deltaV =
                 Vector3.ClampMagnitude(desiredVel - _rigidbody.GetLinearVelocity(),
@@ -609,20 +677,24 @@ namespace Infohazard.HyperNav {
             _isGroundDetected = TryGetGroundCheckPosition(_rigidbody.position, _rigidbody.rotation,
                                                           out Vector3 newPosition, out _groundNormal);
 
-            if (_rotateMode != RotateModeType.None) {
+            if (_rotateMode != RotateModeType.None)
+            {
                 _rigidbody.MoveRotation(GetNewRotation(_rigidbody.rotation, _rigidbody.GetLinearVelocity(),
                                                        Time.fixedDeltaTime));
             }
 
-            if (_keepOnGround && _isGroundDetected) {
+            if (_keepOnGround && _isGroundDetected)
+            {
                 _rigidbody.MovePosition(newPosition);
             }
         }
 
         protected virtual bool TryGetGroundCheckPosition(Vector3 currentPosition, Quaternion currentRotation,
-                                                         out Vector3 newPosition, out Vector3 groundNormal) {
+                                                         out Vector3 newPosition, out Vector3 groundNormal)
+        {
             if (_navAgent.PreviousWaypoint is not
-                { Type: NavWaypointType.EnterSurface or NavWaypointType.InsideSurface }) {
+                { Type: NavWaypointType.EnterSurface or NavWaypointType.InsideSurface })
+            {
                 newPosition = currentPosition;
                 groundNormal = Vector3.zero;
                 return false;
@@ -636,15 +708,19 @@ namespace Infohazard.HyperNav {
 
             bool result;
             RaycastHit hit;
-            if (_sampleRadius > 0) {
+            if (_sampleRadius > 0)
+            {
                 result = Physics.SphereCast(startPos, _groundCheckQueryRadius, -up, out hit, distance,
                                             _groundCheckLayerMask, QueryTriggerInteraction.Ignore);
-            } else {
+            }
+            else
+            {
                 result = Physics.Raycast(startPos, -up, out hit, distance, _groundCheckLayerMask,
                                          QueryTriggerInteraction.Ignore);
             }
 
-            if (result && Vector3.Angle(hit.normal, up) < _groundCheckNormalAngle) {
+            if (result && Vector3.Angle(hit.normal, up) < _groundCheckNormalAngle)
+            {
                 newPosition = currentPosition - up * (hit.distance - padding);
                 groundNormal = hit.normal;
                 return true;
@@ -662,7 +738,8 @@ namespace Infohazard.HyperNav {
         /// <param name="velocity">Current velocity.</param>
         /// <param name="deltaTime">Time since last rotation update.</param>
         /// <returns>New rotation to use.</returns>
-        protected virtual Quaternion GetNewRotation(Quaternion current, Vector3 velocity, float deltaTime) {
+        protected virtual Quaternion GetNewRotation(Quaternion current, Vector3 velocity, float deltaTime)
+        {
             if (velocity.sqrMagnitude < 0.0001f) return current;
 
             Vector3 vel = velocity.normalized;
@@ -672,13 +749,18 @@ namespace Infohazard.HyperNav {
             Quaternion desired;
             if ((_navAgent.IsNavigatingOnSurface || _navAgent.Arrived) &&
                 _keepAlignedToGroundNormal &&
-                _isGroundDetected) {
+                _isGroundDetected)
+            {
                 desired = MathUtility.YZRotation(_groundNormal, vel);
-            } else if (_navAgent.IsNavigatingOnSurface &&
+            }
+            else if (_navAgent.IsNavigatingOnSurface &&
                        _navAgent.SamplePathPosition(NavAreaTypes.Surface, _distanceToRotateToSurfaceUp,
-                                                    out NavSampleResult result, out _)) {
+                                                    out NavSampleResult result, out _))
+            {
                 desired = MathUtility.YZRotation(result.Up.xyz, vel);
-            } else {
+            }
+            else
+            {
                 Vector3 up = _rotateMode == RotateModeType.FollowMovementWithWorldUp
                     ? Vector3.up
                     : current * Vector3.up;
@@ -695,8 +777,10 @@ namespace Infohazard.HyperNav {
         /// <param name="to">Target rotation.</param>
         /// <param name="delta">Delta value (meaning depends on interpolation method).</param>
         /// <returns>Interpolated rotation.</returns>
-        protected virtual Quaternion InterpolateRotation(Quaternion from, Quaternion to, float delta) {
-            if (_rotateBySlerp) {
+        protected virtual Quaternion InterpolateRotation(Quaternion from, Quaternion to, float delta)
+        {
+            if (_rotateBySlerp)
+            {
                 return Quaternion.Slerp(from, to, delta);
             }
 
@@ -708,13 +792,15 @@ namespace Infohazard.HyperNav {
         /// <summary>
         /// Used to specify the modes for rotating the agent.
         /// </summary>
-        public enum RotateModeType {
+        public enum RotateModeType
+        {
             FollowMovement,
             FollowMovementWithWorldUp,
             None,
         }
 
-        public enum MovementModeType {
+        public enum MovementModeType
+        {
             Transform,
             Rigidbody,
         }

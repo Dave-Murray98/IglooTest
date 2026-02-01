@@ -145,7 +145,7 @@ Transform:
   m_GameObject: {fileID: 70930810}
   serializedVersion: 2
   m_LocalRotation: {x: 0.0000000037252899, y: -0, z: -0.0000000074505797, w: 1}
-  m_LocalPosition: {x: 19.554544, y: -46.379623, z: -28.823431}
+  m_LocalPosition: {x: 34.12909, y: -9.627365, z: -40.0922}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -692,7 +692,7 @@ MonoBehaviour:
   _debug:
     _drawBounds: 0
     _drawSlicesInEditor: 0
-  _waveBuffers: {fileID: 1611777189}
+  _waveBuffers: {fileID: 1186372000}
 --- !u!1 &207055349
 GameObject:
   m_ObjectHideFlags: 0
@@ -1173,7 +1173,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.7320508, y: 1.7320508, z: 1.7320508}
+  m_LocalScale: {x: 3.4641016, y: 3.4641016, z: 3.4641016}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 385304240}
@@ -1356,7 +1356,7 @@ Transform:
   m_GameObject: {fileID: 482625761}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.42, y: -61.3, z: -14}
+  m_LocalPosition: {x: -10.42, y: -33.4, z: -69.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5905,7 +5905,7 @@ GameObject:
   - component: {fileID: 777674159}
   - component: {fileID: 777674158}
   - component: {fileID: 777674162}
-  - component: {fileID: 777674161}
+  - component: {fileID: 777674164}
   - component: {fileID: 777674163}
   m_Layer: 0
   m_Name: NPC Agent 01
@@ -6005,47 +6005,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 777674156}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &777674161
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 777674156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3811b6f7a6b54757afc9cc0b75a7faed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _navAgent: {fileID: 777674162}
-  _movementMode: 1
-  _rigidbody: {fileID: 777674163}
-  _destinationTransform: {fileID: 482625762}
-  _sampleRadius: 0.5
-  _enableRepathing: 1
-  _repathAtInterval: 0
-  _repathInterval: 0.5
-  _repathOnDestinationTransformMove: 1
-  _repathDistanceThreshold: 1
-  _repathOnReachEnd: 1
-  _repathOnReachEndDistance: 1
-  _maxSpeedInVolume: 4
-  _accelerationInVolume: 6
-  _maxSpeedOnSurface: 4
-  _accelerationOnSurface: 6
-  _rotateMode: 0
-  _rotationSpeed: 5
-  _rotateBySlerp: 1
-  _distanceToRotateToSurfaceUp: 4
-  _keepAlignedToGroundNormal: 1
-  _keepOnGround: 1
-  _groundCheckLayerMask:
-    serializedVersion: 2
-    m_Bits: 1
-  _groundCheckQueryRadius: 0.5
-  _groundCheckDistance: 0.1
-  _groundCheckNormalAngle: 45
-  _desiredOffsetToGround: -1
 --- !u!114 &777674162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6130,6 +6089,28 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &777674164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777674156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 176544d3314496c4e9371e53a7be832c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  navAgent: {fileID: 777674162}
+  rb: {fileID: 777674163}
+  destinationTransform: {fileID: 482625762}
+  _repathDistanceThreshold: 1
+  _repathOnReachEnd: 1
+  _repathOnReachEndDistance: 1
+  maxSpeed: 4
+  acceleration: 6
+  deceleration: 6
+  rotationSpeed: 5
 --- !u!1001 &797395267
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7244,6 +7225,43 @@ Transform:
   m_Children: []
   m_Father: {fileID: 668542756}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!84 &1186372000
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: GerstnerCascades
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 6
+  m_Width: 64
+  m_Height: 64
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthStencilFormat: 0
+  m_ColorFormat: 48
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_UseDynamicScaleExplicit: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_EnableRandomWrite: 1
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 0
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 5
+  m_VolumeDepth: 16
+  m_ShadowSamplingMode: 2
 --- !u!1 &1228128938
 GameObject:
   m_ObjectHideFlags: 0
@@ -18399,43 +18417,6 @@ MonoBehaviour:
     transitioning: 1
   defaultFilter: {fileID: 11400000, guid: b3b90f04f4696264c9aab62e9c3c68a5, type: 2}
   defaultClouds: {fileID: 11400000, guid: 40c748033998bf243ae542ca195124b7, type: 2}
---- !u!84 &1611777189
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: GerstnerCascades
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 6
-  m_Width: 64
-  m_Height: 64
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthStencilFormat: 0
-  m_ColorFormat: 48
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_UseDynamicScaleExplicit: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_EnableRandomWrite: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 0
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 5
-  m_VolumeDepth: 16
-  m_ShadowSamplingMode: 2
 --- !u!1 &1620125442
 GameObject:
   m_ObjectHideFlags: 0
@@ -26134,7 +26115,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1657826000841624915
 GameObject:
   m_ObjectHideFlags: 0

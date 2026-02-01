@@ -30,6 +30,10 @@ public class NPCManager : MonoBehaviour
             RegisterNPC(npc);
         }
 
+    }
+
+    private void Start()
+    {
         NPCDistanceActivationManager.Instance.InitializeInactiveNPCs(registeredNPCs);
     }
 

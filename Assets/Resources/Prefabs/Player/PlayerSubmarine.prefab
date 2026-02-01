@@ -1095,7 +1095,7 @@ MonoBehaviour:
     isOn: 0
     maxRPM: 5000
     maxSpeed: 15
-    maxThrust: 35000
+    maxThrust: 30000
     minRPM: 500
     name: Engine
     pitch: 0.4
@@ -1177,7 +1177,7 @@ MonoBehaviour:
   stabilizePitch: 1
   stabilizeRoll: 1
   thrusters:
-  - maxThrust: 30000
+  - maxThrust: 25000
     name: Left Thruster
     position: {x: -1, y: 0, z: 0}
     propellerRotationDirection: 0
@@ -1185,7 +1185,7 @@ MonoBehaviour:
     propellerTransform: {fileID: 7211350580769999285}
     spinUpSpeed: 1
     thrusterPosition: 0
-  - maxThrust: 30000
+  - maxThrust: 25000
     name: Right Thruster
     position: {x: 1, y: 0, z: 0}
     propellerRotationDirection: 0
@@ -1206,12 +1206,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82d3a99cab73ef24690b5b9e4e99df4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positiveBuoyancyMass: 0
+  positiveBuoyancyMass: 15000
   neutralBuoyancyMass: 19600
-  negativeBuoyancyMass: 30000
-  ballastTransitionSpeed: 2000
+  negativeBuoyancyMass: 25000
+  ballastTransitionSpeed: 10000
   vcom: {fileID: 7256037246595816380}
-  enableDebugLogs: 1
+  enableDebugLogs: 0
 --- !u!114 &7256037246595816380
 MonoBehaviour:
   m_ObjectHideFlags: 0

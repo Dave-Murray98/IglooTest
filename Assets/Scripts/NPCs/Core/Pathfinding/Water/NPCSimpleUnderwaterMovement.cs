@@ -11,16 +11,18 @@ public class NPCSimpleUnderwaterMovement : MonoBehaviour
 
     [Header("Pathfinding Settings")]
     [SerializeField] private Transform destinationTransform;
+
     [SerializeField]
     [Tooltip("A new path will be calculated if the destination moves by this distance.")]
-    private float _repathDistanceThreshold = 1.0f;
+    private float repathDistanceThreshold = 1.0f;
+
     [SerializeField]
     [Tooltip("Enable to repath when the agent reaches the end of its path.")]
-    private bool _repathOnReachEnd = true;
+    private bool repathOnReachEnd = true;
 
     [SerializeField]
     [Tooltip("Distance from the end of the path to repath.")]
-    private float _repathOnReachEndDistance = 1f;
+    private float repathOnReachEndDistance = 1f;
 
 
     [Header("Movement Settings")]
@@ -148,10 +150,10 @@ public class NPCSimpleUnderwaterMovement : MonoBehaviour
     protected virtual bool CheckRepath()
     {
         if ((destinationTransform.position - lastDestination).sqrMagnitude >
-            _repathDistanceThreshold * _repathDistanceThreshold)
+            repathDistanceThreshold * repathDistanceThreshold)
             return true;
 
-        if (_repathOnReachEnd && navAgent.RemainingDistance < _repathOnReachEndDistance)
+        if (repathOnReachEnd && navAgent.RemainingDistance < repathOnReachEndDistance)
             return true;
 
         return false;

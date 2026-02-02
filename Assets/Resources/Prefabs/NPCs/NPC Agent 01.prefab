@@ -49,6 +49,7 @@ GameObject:
   - component: {fileID: 7378414024554187399}
   - component: {fileID: 3062646254544939116}
   - component: {fileID: 3054315210863043189}
+  - component: {fileID: 8825946562653235120}
   m_Layer: 15
   m_Name: NPC Agent 01
   m_TagString: Untagged
@@ -176,6 +177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   navAgent: {fileID: 3062646254544939116}
+  avoidanceAgent: {fileID: 8825946562653235120}
   rb: {fileID: 3054315210863043189}
   repathDistanceThreshold: 1
   repathOnReachEnd: 1
@@ -231,7 +233,7 @@ MonoBehaviour:
   _surfaceCostMultiplier: 1
   _acceptance: 1
   _accelerationEstimate: 0
-  _rigidbody: {fileID: 0}
+  _rigidbody: {fileID: 3054315210863043189}
   _desiredSpeedRatio: 1
   _debugPath: 1
   _keepPathWhileCalculating: 1
@@ -244,7 +246,7 @@ MonoBehaviour:
   _skippingCheckColliderPadding: 0.1
   _skippingCheckStaticOnly: 0
   _backtrackCheckStaticOnly: 1
-  _avoidanceAgent: {fileID: 0}
+  _avoidanceAgent: {fileID: 8825946562653235120}
   _controlAvoidanceIsActive: 1
   _tangentScale: 0.5
   _raycastTangents: 1
@@ -287,6 +289,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &8825946562653235120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4194650917746827220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d0d0c1edc38442bb8c8fed8394744be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _radius: 0.5
+  _maxSpeed: 4
+  _avoidanceWeight: 1
+  _avoidancePadding: 0.1
+  _debugAvoidance: 0
+  _avoidedTags:
+    _value: -1
 --- !u!1 &6303145067345391959
 GameObject:
   m_ObjectHideFlags: 0
@@ -561,8 +582,8 @@ MonoBehaviour:
     - m_ObjectType: Opsive.BehaviorDesigner.Runtime.Tasks.Actions.StackedAction
       m_ValueHashes: 
       m_LongValueHashes: 30b77c28f48d1b2966cb3cf98c4bd96480f6501333363a66622a4da7e5588b5847627e5c3afba34a63ad8e209576aa808ae2a9580c6842a13d4462dd347c8cc142ca56693207c52f86f36655b76842a1e4a06bb554569d8946fff10c773614c9
-      m_ValuePositions: 000000000200000004000000060000000a0000003b0000003b0000003b0000003b0000003c0000003c0000003c000000
-      m_Values: 010000000200010000004f70736976652e4265686176696f7244657369676e65722e52756e74696d652e5461736b732e416374696f6e732e4c6f670000000000
+      m_ValuePositions: 000000000200000004000000060000000a0000003b0000003b0000003b0000003b0000003c0000004f0000004f000000
+      m_Values: 010000000200010000004f70736976652e4265686176696f7244657369676e65722e52756e74696d652e5461736b732e416374696f6e732e4c6f6700456e74657265642057616e646572205472656500000000
       m_UnityObjects: []
       m_Version: 3.4
     - m_ObjectType: Opsive.BehaviorDesigner.Runtime.Tasks.Actions.StackedAction
@@ -618,7 +639,7 @@ MonoBehaviour:
     m_SharedVariableData: []
     m_DisabledEventNodesData: []
     m_DisabledLogicNodesData: []
-    m_UniqueID: -452887196
+    m_UniqueID: 2073181954
     m_LogicNodePropertiesData:
     - m_ObjectType: Opsive.GraphDesigner.Runtime.LogicNodeProperties
       m_ValueHashes: 

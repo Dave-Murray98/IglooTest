@@ -12,6 +12,7 @@ public class NPCManagedUnderwaterMovement : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private SplineNavAgent navAgent;
+    [SerializeField] private AvoidanceAgent avoidanceAgent;
     [SerializeField] private Rigidbody rb;
 
     [Header("Pathfinding Settings")]
@@ -77,6 +78,9 @@ public class NPCManagedUnderwaterMovement : MonoBehaviour
     {
         if (rb == null) rb = GetComponent<Rigidbody>();
         if (navAgent == null) navAgent = GetComponent<SplineNavAgent>();
+        if (avoidanceAgent == null) avoidanceAgent = GetComponent<AvoidanceAgent>();
+
+        avoidanceAgent.MaxSpeed = maxSpeed;
 
         navAgent.PathFailed += OnPathFailed;
     }

@@ -11,6 +11,7 @@ public class NPC : MonoBehaviour
     public NPCManagedUnderwaterMovement movementScript;
     public Rigidbody rb;
     public NPCStateMachine stateMachine;
+    public NPCHealth health;
 
     private void Awake()
     {
@@ -22,5 +23,8 @@ public class NPC : MonoBehaviour
 
         if (stateMachine == null)
             stateMachine = GetComponent<NPCStateMachine>();
+
+        if (health == null)
+            health = GetComponent<NPCHealth>();
     }
 }

@@ -6,11 +6,13 @@ public class NPCStateMachine : StateMachine
     #region Behaviour Trees
     [Header("Behaviour Trees")]
     public BehaviorTree wanderBehaviourTree;
+    public BehaviorTree retreatBehaviourTree;
     #endregion
 
     #region States
     [HideInInspector]
     public WanderState wanderState;
+    public RetreatState retreatState;
 
     #endregion
 
@@ -45,7 +47,7 @@ public class NPCStateMachine : StateMachine
     protected virtual void InitializeStates()
     {
         wanderState = new WanderState(this);
-
+        retreatState = new RetreatState(this);
     }
 
     public void ForceChangeState(NPCState newState)
@@ -88,6 +90,8 @@ public class NPCStateMachine : StateMachine
     {
         if (state == wanderState)
             return wanderBehaviourTree;
+        else if (state == retreatState)
+            return retreatBehaviourTree;
         else
             return null;
     }

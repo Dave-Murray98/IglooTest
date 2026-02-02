@@ -22,6 +22,10 @@ public class WanderState : NPCState
     {
         base.UpdateLogic();
 
+        if (npc.health.isDead)
+            stateMachine.ChangeState(sm.retreatState);
+
+
         // Note: Behavior tree updates are handled by NPCStateMachineManager
         // No need to manually call UpdateCurrentBehaviourTree() here
     }

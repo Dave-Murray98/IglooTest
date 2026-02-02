@@ -92,6 +92,15 @@ public class NPCStateMachine : StateMachine
             return null;
     }
 
+    public virtual void UpdateCurrentBehaviourTree()
+    {
+        if (currentState != null)
+        {
+            NPCState currentNPCState = (NPCState)currentState;
+            currentNPCState.UpdateCurrentBehaviourTree();
+        }
+    }
+
     private void OnDestroy()
     {
         GameEvents.OnGamePaused -= PauseCurrentBehaviorTree;

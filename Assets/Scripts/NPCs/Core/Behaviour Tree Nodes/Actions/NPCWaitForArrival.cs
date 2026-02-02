@@ -14,7 +14,7 @@ using UnityEngine;
 public class NPCWaitForArrival : NPCAction
 {
     [Tooltip("Maximum time to wait for arrival before giving up (0 = wait forever)")]
-    [SerializeField] private float timeout = 30f;
+    [SerializeField] private float timeout = 60f;
 
     [Tooltip("If true, give up if path calculation fails")]
     [SerializeField] private bool failOnPathFailure = true;

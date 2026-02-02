@@ -1,14 +1,11 @@
 using Opsive.BehaviorDesigner.Runtime.Tasks;
 
 /// <summary>
-/// Sets a new patrol destination using the awareness system.
+/// Sets a new wander destination using the awareness system.
 /// This is a ONE-SHOT action that completes immediately after setting the destination.
-/// 
-/// The awareness system intelligently chooses patrol points based on player distance,
-/// creating Alien Isolation-style behavior.
-/// 
+///  
 /// Usage in behavior tree:
-/// Sequence -> SetPatrolDestination -> WaitForArrival -> Idle -> (repeat)
+/// Sequence -> SetWanderDestination -> WaitForArrival -> Idle -> (repeat)
 /// </summary>
 public class SetWanderDestination : NPCAction
 {

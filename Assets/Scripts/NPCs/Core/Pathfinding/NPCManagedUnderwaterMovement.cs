@@ -98,9 +98,7 @@ public class NPCManagedUnderwaterMovement : MonoBehaviour
     public void TryUpdatePath()
     {
         // Check if we have the necessary data to pathfind
-        if (destination != Vector3.zero &&
-            (NavVolume.NativeDataMap.IsCreated || NavSurface.NativeDataMap.IsCreated) &&
-            (!hasHadFirstUpdate || dataChanged || CheckRepath()))
+        if (destination != Vector3.zero && NavVolume.NativeDataMap.IsCreated && !hasHadFirstUpdate || dataChanged || CheckRepath())
         {
             hasHadFirstUpdate = true;
             UpdatePath();
@@ -114,11 +112,6 @@ public class NPCManagedUnderwaterMovement : MonoBehaviour
     {
         if (destination == Vector3.zero && !dataChanged) return;
 
-        if (navAgent.Arrived)
-        {
-            OnArrivedAtDestination();
-        }
-
         dataChanged = false;
         if (destination != Vector3.zero)
         {
@@ -126,6 +119,12 @@ public class NPCManagedUnderwaterMovement : MonoBehaviour
         }
 
         navAgent.Destination = lastDestination;
+
+        if (navAgent.Arrived)
+        {
+            OnArrivedAtDestination();
+        }
+
     }
 
     private void OnArrivedAtDestination()
@@ -231,6 +230,7 @@ public class NPCManagedUnderwaterMovement : MonoBehaviour
     /// </summary>
     public void SetDestination(Vector3 newTarget)
     {
+        lastDestination = destination;
         destination = newTarget;
         DebugLog($"Destination set to: {newTarget}");
     }

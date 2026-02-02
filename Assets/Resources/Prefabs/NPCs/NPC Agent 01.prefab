@@ -182,9 +182,9 @@ MonoBehaviour:
   repathDistanceThreshold: 1
   repathOnReachEnd: 1
   repathOnReachEndDistance: 1
-  maxSpeed: 4
-  acceleration: 6
-  deceleration: 6
+  maxSpeed: 10
+  acceleration: 12
+  deceleration: 12
   rotationSpeed: 5
   enableDebugLogs: 0
 --- !u!114 &7378414024554187399
@@ -302,7 +302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _radius: 0.5
-  _maxSpeed: 4
+  _maxSpeed: 10
   _avoidanceWeight: 1
   _avoidancePadding: 0.1
   _debugAvoidance: 0

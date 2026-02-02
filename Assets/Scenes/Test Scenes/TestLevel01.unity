@@ -145,7 +145,7 @@ Transform:
   m_GameObject: {fileID: 70930810}
   serializedVersion: 2
   m_LocalRotation: {x: 0.0000000037252899, y: -0, z: -0.0000000074505797, w: 1}
-  m_LocalPosition: {x: -102.77355, y: -0.1450336, z: -11.549642}
+  m_LocalPosition: {x: -4.0021224, y: -18.848385, z: -16.30815}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -672,6 +672,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1092027319}
+  - {fileID: 1227184307}
   - {fileID: 1991035923}
   - {fileID: 1887629812}
   - {fileID: 482625762}
@@ -1214,7 +1215,7 @@ MonoBehaviour:
   _debug:
     _drawBounds: 0
     _drawSlicesInEditor: 0
-  _waveBuffers: {fileID: 1220218895}
+  _waveBuffers: {fileID: 1525451149}
 --- !u!1 &207055349
 GameObject:
   m_ObjectHideFlags: 0
@@ -11125,8 +11126,7 @@ Transform:
   m_LocalPosition: {x: -27.412395, y: -1.320047, z: -9.189045}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1227184307}
+  m_Children: []
   m_Father: {fileID: 92827348}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1092027320
@@ -11597,43 +11597,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8104029802493145867, guid: 929aadb05a8e8484f8b67e3f8c649bb4, type: 3}
   m_PrefabInstance: {fileID: 1200727059}
   m_PrefabAsset: {fileID: 0}
---- !u!84 &1220218895
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: GerstnerCascades
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 6
-  m_Width: 64
-  m_Height: 64
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthStencilFormat: 0
-  m_ColorFormat: 48
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_UseDynamicScaleExplicit: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_EnableRandomWrite: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 0
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 5
-  m_VolumeDepth: 16
-  m_ShadowSamplingMode: 2
 --- !u!1 &1227184306
 GameObject:
   m_ObjectHideFlags: 0
@@ -11659,12 +11622,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1227184306}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -27.412395, y: -1.320047, z: -9.189045}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1092027319}
+  m_Father: {fileID: 92827348}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1227184308
 MonoBehaviour:
@@ -11679,7 +11642,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _updateMode: 0
-  _timeHorizon: 5
+  _timeHorizon: 2
   _maxObstaclesConsidered: 10
 --- !u!1 &1228128938
 GameObject:
@@ -23738,6 +23701,43 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8104029802493145867, guid: 929aadb05a8e8484f8b67e3f8c649bb4, type: 3}
   m_PrefabInstance: {fileID: 1484036333}
   m_PrefabAsset: {fileID: 0}
+--- !u!84 &1525451149
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: GerstnerCascades
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 6
+  m_Width: 64
+  m_Height: 64
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthStencilFormat: 0
+  m_ColorFormat: 48
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_UseDynamicScaleExplicit: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_EnableRandomWrite: 1
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 0
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 5
+  m_VolumeDepth: 16
+  m_ShadowSamplingMode: 2
 --- !u!1 &1537187916
 GameObject:
   m_ObjectHideFlags: 0
@@ -35406,7 +35406,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7923587834651082482, guid: 929aadb05a8e8484f8b67e3f8c649bb4, type: 3}
       propertyPath: m_Data.m_UniqueID
-      value: -633695486
+      value: -1163132684
       objectReference: {fileID: 0}
     - target: {fileID: 7923587834651082482, guid: 929aadb05a8e8484f8b67e3f8c649bb4, type: 3}
       propertyPath: 'm_Data.m_EventNodePropertiesData.Array.data[0].m_Values.Array.data[44]'
@@ -35426,23 +35426,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7923587834651082482, guid: 929aadb05a8e8484f8b67e3f8c649bb4, type: 3}
       propertyPath: 'm_Data.m_LogicNodePropertiesData.Array.data[1].m_Values.Array.data[36]'
-      value: 128
+      value: 94
       objectReference: {fileID: 0}
     - target: {fileID: 7923587834651082482, guid: 929aadb05a8e8484f8b67e3f8c649bb4, type: 3}
       propertyPath: 'm_Data.m_LogicNodePropertiesData.Array.data[1].m_Values.Array.data[37]'
-      value: 131
+      value: 58
       objectReference: {fileID: 0}
     - target: {fileID: 7923587834651082482, guid: 929aadb05a8e8484f8b67e3f8c649bb4, type: 3}
       propertyPath: 'm_Data.m_LogicNodePropertiesData.Array.data[1].m_Values.Array.data[38]'
-      value: 78
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 7923587834651082482, guid: 929aadb05a8e8484f8b67e3f8c649bb4, type: 3}
       propertyPath: 'm_Data.m_LogicNodePropertiesData.Array.data[1].m_Values.Array.data[40]'
-      value: 137
+      value: 101
       objectReference: {fileID: 0}
     - target: {fileID: 7923587834651082482, guid: 929aadb05a8e8484f8b67e3f8c649bb4, type: 3}
       propertyPath: 'm_Data.m_LogicNodePropertiesData.Array.data[1].m_Values.Array.data[41]'
-      value: 80
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7923587834651082482, guid: 929aadb05a8e8484f8b67e3f8c649bb4, type: 3}
       propertyPath: 'm_Data.m_LogicNodePropertiesData.Array.data[1].m_Values.Array.data[42]'
@@ -35522,7 +35522,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7923587834651082482, guid: 929aadb05a8e8484f8b67e3f8c649bb4, type: 3}
       propertyPath: 'm_Data.m_LogicNodePropertiesData.Array.data[5].m_Values.Array.data[46]'
-      value: 236
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 7923587834651082482, guid: 929aadb05a8e8484f8b67e3f8c649bb4, type: 3}
       propertyPath: 'm_Data.m_LogicNodePropertiesData.Array.data[6].m_Values.Array.data[44]'

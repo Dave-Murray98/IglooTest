@@ -145,7 +145,7 @@ Transform:
   m_GameObject: {fileID: 70930810}
   serializedVersion: 2
   m_LocalRotation: {x: 0.0000000037252899, y: -0, z: -0.0000000074505797, w: 1}
-  m_LocalPosition: {x: 25.164116, y: 1.4001613, z: 19.844755}
+  m_LocalPosition: {x: -11.726629, y: -18.297527, z: -12.267716}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1066,7 +1066,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 24.24871, y: 24.24871, z: 24.24871}
+  m_LocalScale: {x: 3.4641016, y: 3.4641016, z: 3.4641016}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 385304240}
@@ -24836,7 +24836,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4194650917746827220, guid: 929aadb05a8e8484f8b67e3f8c649bb4, type: 3}
       propertyPath: m_Name
-      value: NPC Agent 01
+      value: Passive NPC Agent 01
       objectReference: {fileID: 0}
     - target: {fileID: 6339075913325058811, guid: 929aadb05a8e8484f8b67e3f8c649bb4, type: 3}
       propertyPath: enableDebugLogs

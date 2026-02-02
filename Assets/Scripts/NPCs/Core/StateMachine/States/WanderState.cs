@@ -4,8 +4,8 @@ public class WanderState : NPCState
 {
     public WanderState(NPCStateMachine stateMachine) : base("Wander", stateMachine) { }
 
-    private float updateTreeDelay = 0.5f;
-    private float updateTreeTimer = 0f;
+    // private float updateTreeDelay = 0.5f;
+    // private float updateTreeTimer = 0f;
 
     public override void Enter()
     {
@@ -25,13 +25,13 @@ public class WanderState : NPCState
     {
         base.UpdateLogic();
 
-        updateTreeTimer += Time.deltaTime;
+        // updateTreeTimer += Time.deltaTime;
 
-        if (updateTreeTimer >= updateTreeDelay)
-        {
-            updateTreeTimer = 0f;
-            UpdateCurrentBehaviourTree();
-        }
+        // if (updateTreeTimer >= updateTreeDelay)
+        // {
+        //     updateTreeTimer = 0f;
+        //     UpdateCurrentBehaviourTree();
+        // }
     }
 
     public override void UpdateCurrentBehaviourTree()

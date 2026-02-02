@@ -218,7 +218,7 @@ public class TurretController : MonoBehaviour
         Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
         if (projectileRb != null)
         {
-            Vector3 forceDirection = projectile.transform.up;
+            Vector3 forceDirection = projectile.transform.forward;
 
             projectileRb.AddForce(forceDirection * projectileForce, ForceMode.Impulse);
 

@@ -222,7 +222,7 @@ MonoBehaviour:
       m_Calls: []
   enableDebugLog: 0
   wanderBehaviourTree: {fileID: 7923587834651082482}
-  retreatBehaviourTree: {fileID: 4014248466120932428}
+  fleeBehaviourTree: {fileID: 0}
   npc: {fileID: 2320319321020941611}
 --- !u!114 &3062646254544939116
 MonoBehaviour:
@@ -446,7 +446,7 @@ GameObject:
   - component: {fileID: 3592162654851366773}
   - component: {fileID: 4014248466120932428}
   m_Layer: 15
-  m_Name: Retreat Behaviour Tree
+  m_Name: Flee Behaviour Tree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

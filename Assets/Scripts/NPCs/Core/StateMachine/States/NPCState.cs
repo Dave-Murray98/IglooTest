@@ -16,7 +16,7 @@ public class NPCState : State
 
     // References to behavior trees for each state
     protected BehaviorTree wanderBehaivourTree;
-    protected BehaviorTree retreatBehaviourTree;
+    protected BehaviorTree fleeBehaviourTree;
 
     public NPCState(string name, NPCStateMachine stateMachine) : base(name, stateMachine)
     {
@@ -24,11 +24,14 @@ public class NPCState : State
 
         // Get references to all behavior trees
         wanderBehaivourTree = sm.wanderBehaviourTree;
-        retreatBehaviourTree = sm.retreatBehaviourTree;
+        fleeBehaviourTree = sm.fleeBehaviourTree;
 
         npc = sm.npc;
     }
 
-    // each behaviour tree has it's update mode set to manual, so whenever we want to update the behaviour tree, we call this function
+    /// <summary>
+    /// Called by NPCStateMachineManager to update the behavior tree
+    /// Behaviour Trees are set to update manually
+    /// </summary>
     public virtual void UpdateCurrentBehaviourTree() { }
 }

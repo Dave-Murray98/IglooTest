@@ -28,4 +28,10 @@ public class NPCHealth : MonoBehaviour
         isDead = true;
         OnDeath?.Invoke();
     }
+
+    public void Revive()
+    {
+        currentHealth = maxHealth;
+        isDead = false;
+    }
 }

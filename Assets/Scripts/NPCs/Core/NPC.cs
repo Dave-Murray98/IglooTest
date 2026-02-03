@@ -7,11 +7,15 @@ using UnityEngine;
 /// </summary>
 public class NPC : MonoBehaviour
 {
+
+    [Header("Configuration")]
+    public NPCConfig config;
     [Header("NPC Components")]
     public NPCManagedUnderwaterMovement movementScript;
     public Rigidbody rb;
     public NPCStateMachine stateMachine;
     public NPCHealth health;
+    public NPCAttack attack;
 
     private void Awake()
     {
@@ -26,5 +30,14 @@ public class NPC : MonoBehaviour
 
         if (health == null)
             health = GetComponent<NPCHealth>();
+
+        if (attack == null)
+            attack = GetComponent<NPCAttack>();
+    }
+
+    public void Attack()
+    {
+        if (attack != null)
+            attack.Attack();
     }
 }

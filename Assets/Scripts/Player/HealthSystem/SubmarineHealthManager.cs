@@ -11,6 +11,9 @@ using Sirenix.OdinInspector;
 /// </summary>
 public class SubmarineHealthManager : MonoBehaviour
 {
+    [Header("References")]
+    [SerializeField] private NPC npc;
+
     [Header("Health Regions")]
     [Tooltip("Reference to the Front region health component")]
     [SerializeField] private SubmarineHealthRegion frontRegion;
@@ -61,6 +64,8 @@ public class SubmarineHealthManager : MonoBehaviour
 
     private void Awake()
     {
+        if (npc = null) npc = GetComponent<NPC>();
+
         // Gather all regions into a list for easy iteration
         allRegions = new List<SubmarineHealthRegion>
         {
@@ -98,7 +103,7 @@ public class SubmarineHealthManager : MonoBehaviour
     /// </summary>
     /// <param name="worldPosition">Where in the world the damage occurred</param>
     /// <param name="damageAmount">How much damage to apply</param>
-    public void TakeDamageAtPoint(Vector3 worldPosition, float damageAmount)
+    public void TakeDamageAtPoint(Vector3 worldPosition, float damageAmount, Vector3 damageDirection, float damageForce = 0f)
     {
         // Find the closest region to the damage point
         SubmarineHealthRegion closestRegion = GetClosestRegion(worldPosition);
@@ -111,6 +116,11 @@ public class SubmarineHealthManager : MonoBehaviour
         else
         {
             Debug.LogWarning("[SubmarineHealthManager] Could not find closest region for damage!");
+        }
+
+        if (npc != null)
+        {
+            npc.rb.AddForce(damageDirection * damageForce, ForceMode.Impulse);
         }
     }
 

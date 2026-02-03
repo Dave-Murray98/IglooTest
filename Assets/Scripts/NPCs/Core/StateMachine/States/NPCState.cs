@@ -17,6 +17,7 @@ public class NPCState : State
     // References to behavior trees for each state
     protected BehaviorTree wanderBehaivourTree;
     protected BehaviorTree fleeBehaviourTree;
+    protected BehaviorTree combatBehaviourTree;
 
     public NPCState(string name, NPCStateMachine stateMachine) : base(name, stateMachine)
     {
@@ -25,6 +26,7 @@ public class NPCState : State
         // Get references to all behavior trees
         wanderBehaivourTree = sm.wanderBehaviourTree;
         fleeBehaviourTree = sm.fleeBehaviourTree;
+        combatBehaviourTree = sm.combatBehaviourTree;
 
         npc = sm.npc;
     }

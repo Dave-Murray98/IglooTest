@@ -16,7 +16,7 @@ public class NPCManagedUnderwaterMovement : MonoBehaviour
     [SerializeField] private Rigidbody rb;
 
     [Header("Pathfinding Settings")]
-    private Vector3 destination = Vector3.zero;
+    public Vector3 destination = Vector3.zero;
 
     [SerializeField]
     [Tooltip("A new path will be calculated if the destination moves by this distance.")]

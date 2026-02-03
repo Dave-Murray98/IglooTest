@@ -107,7 +107,7 @@ public class SubmarineDamageDetector : MonoBehaviour
         // Apply damage through the health manager
         if (healthManager != null)
         {
-            healthManager.TakeDamageAtPoint(collisionPoint, damage);
+            healthManager.TakeDamageAtPoint(collisionPoint, damage, Vector3.zero);
             lastDamageTime = Time.time;
 
             DebugLog($"Applied {damage:F1} damage at {collisionPoint}");
@@ -161,11 +161,11 @@ public class SubmarineDamageDetector : MonoBehaviour
     /// </summary>
     /// <param name="attackPosition">Where the attack hit in world space</param>
     /// <param name="damageAmount">How much damage the attack does</param>
-    public void TakeDamageFromAttack(Vector3 attackPosition, float damageAmount)
+    public void TakeDamageFromAttack(Vector3 attackPosition, float damageAmount, Vector3 attackDirection, float attackForce)
     {
         if (healthManager != null)
         {
-            healthManager.TakeDamageAtPoint(attackPosition, damageAmount);
+            healthManager.TakeDamageAtPoint(attackPosition, damageAmount, attackDirection, attackForce);
             DebugLog($"Took {damageAmount} damage from attack at {attackPosition}");
         }
     }
@@ -202,17 +202,4 @@ public class SubmarineDamageDetector : MonoBehaviour
             Gizmos.DrawWireSphere(transform.position, maxDamageSpeed * 0.1f);
         }
     }
-
-#if UNITY_EDITOR
-    // Inspector button for testing (only visible in Unity Editor)
-    [Button("Simulate Collision Damage (30)"), PropertyOrder(300)]
-    private void TestCollisionDamage()
-    {
-        if (healthManager != null)
-        {
-            // Simulate damage at submarine center
-            healthManager.TakeDamageAtPoint(transform.position, 30f);
-        }
-    }
-#endif
 }

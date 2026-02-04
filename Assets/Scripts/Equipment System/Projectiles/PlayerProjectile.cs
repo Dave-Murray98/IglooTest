@@ -18,6 +18,7 @@ public class PlayerProjectile : MonoBehaviour
 
     // Runtime state
     private float damage;
+    private float knockBackForce;
     private ItemData sourceAmmoType;
     private float activeTime;
     private bool isActive;
@@ -44,7 +45,7 @@ public class PlayerProjectile : MonoBehaviour
     /// Initialize projectile when spawned from pool.
     /// Called by PlayerBulletPool AFTER position/rotation are set.
     /// </summary>
-    public void Initialize(float projectileDamage, ItemData ammoType, Vector3 position, Quaternion rotation)
+    public void Initialize(float projectileDamage, float knockBackForce, ItemData ammoType, Vector3 position, Quaternion rotation)
     {
         damage = projectileDamage;
         sourceAmmoType = ammoType;
@@ -95,17 +96,17 @@ public class PlayerProjectile : MonoBehaviour
 
         DebugLog($"Projectile hit: {other.gameObject.name}, at position {transform.position}");
 
-        // Check for MonsterHealth component
-        MonsterHitBox monsterHitBox = other.GetComponent<MonsterHitBox>();
+        // Check for Hit Box component
+        NPCHitBox hitBox = other.GetComponent<NPCHitBox>();
 
         // get the position of the hit point
         Vector3 slightlyFurtherBackPos = transform.position - rb.linearVelocity.normalized * 0.5f;
         Vector3 hitPoint = other.ClosestPoint(slightlyFurtherBackPos);
 
-        if (monsterHitBox != null)
+        if (hitBox != null)
         {
             // Apply damage to monster
-            monsterHitBox.TakeDamage(damage, hitPoint);
+            hitBox.TakeDamage(damage, hitPoint, rb.linearVelocity.normalized, knockBackForce);
             DebugLog($"Dealt {damage} damage to {other.gameObject.name}");
         }
         else

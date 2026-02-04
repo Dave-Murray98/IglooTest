@@ -85,9 +85,9 @@ MonoBehaviour:
       m_Version: 3.4
     - m_ObjectType: Opsive.BehaviorDesigner.Runtime.Tasks.Conditionals.StackedConditional
       m_ValueHashes: 
-      m_LongValueHashes: 30b77c28f48d1b2966cb3cf98c4bd96480f6501333363a66622a4da7e5588b5847627e5c3afba34aa4abff55ed3cea09e4a06bb554569d8946fff10c773614c9
-      m_ValuePositions: 000000000200000004000000060000000a0000001f0000002300000023000000
-      m_Values: 050004000600010000004973506c61796572496e41747461636b52616e67650000204100000000
+      m_LongValueHashes: 30b77c28f48d1b2966cb3cf98c4bd96480f6501333363a66622a4da7e5588b5847627e5c3afba34ae4a06bb554569d8946fff10c773614c9
+      m_ValuePositions: 000000000200000004000000060000000a0000001f0000001f000000
+      m_Values: 050004000600010000004973506c61796572496e41747461636b52616e676500000000
       m_UnityObjects: []
       m_Version: 3.4
     - m_ObjectType: Opsive.BehaviorDesigner.Runtime.Tasks.Actions.StackedAction
@@ -113,23 +113,9 @@ MonoBehaviour:
       m_Version: 3.4
     - m_ObjectType: Opsive.BehaviorDesigner.Runtime.Tasks.Actions.StackedAction
       m_ValueHashes: 
-      m_LongValueHashes: 30b77c28f48d1b2966cb3cf98c4bd96480f6501333363a66622a4da7e5588b5847627e5c3afba34ab372aa5266e1b14ce4a06bb554569d8946fff10c773614c9
-      m_ValuePositions: 000000000200000004000000060000000a000000200000002100000021000000
-      m_Values: 090008000a000100000053657444657374696e6174696f6e546f506c617965720100000000
-      m_UnityObjects: []
-      m_Version: 3.4
-    - m_ObjectType: Opsive.BehaviorDesigner.Runtime.Tasks.Actions.StackedAction
-      m_ValueHashes: 
-      m_LongValueHashes: 30b77c28f48d1b2966cb3cf98c4bd96480f6501333363a66622a4da7e5588b5847627e5c3afba34a812bd7c3741457e9cabbbf176a889203e4a06bb554569d8946fff10c773614c9
+      m_LongValueHashes: 30b77c28f48d1b2966cb3cf98c4bd96480f6501333363a66622a4da7e5588b5847627e5c3afba34ac012e8ba4edf19cdb372aa5266e1b14ce4a06bb554569d8946fff10c773614c9
       m_ValuePositions: 000000000200000004000000060000000a0000001b0000001f0000002000000020000000
-      m_Values: 0a0008000b00010000004e504357616974466f724172726976616c000070420100000000
-      m_UnityObjects: []
-      m_Version: 3.4
-    - m_ObjectType: Opsive.BehaviorDesigner.Runtime.Tasks.Actions.Wait
-      m_ValueHashes: 
-      m_LongValueHashes: 30b77c28f48d1b2966cb3cf98c4bd96480f6501333363a66cd0a949b290f69290007e2f6b86743c4fb62f7264f8d1b29f4600b8daa7462418fcaef1f3561b54c99d5ef1f3561b54c
-      m_ValuePositions: 000000000200000004000000060000000a0000000b0000000f0000000f00000013000000
-      m_Values: 0b000800ffff0000803f00000000000000803f0000803f
+      m_Values: 09000800ffff010000004d6f7665546f7761726473506c61796572000000400000000000
       m_UnityObjects: []
       m_Version: 3.4
     m_EventTaskData:
@@ -143,7 +129,7 @@ MonoBehaviour:
     m_SharedVariableData: []
     m_DisabledEventNodesData: []
     m_DisabledLogicNodesData: []
-    m_UniqueID: 1433879713
+    m_UniqueID: 460249577
     m_LogicNodePropertiesData:
     - m_ObjectType: Opsive.GraphDesigner.Runtime.LogicNodeProperties
       m_ValueHashes: 
@@ -212,21 +198,7 @@ MonoBehaviour:
       m_ValueHashes: 
       m_LongValueHashes: bc124df8ef5e104cf36ca30dee0de9958dd19827f48d1b29bd8814239a1bb7642f6406e2580d1e294f869cc9196b0c27aea3bc2e18d5b803a034c7c2b541f015557e981535906112a98ff48b9e8a66b37f542abda0a249c23a7f01b1f88d1a7b
       m_ValuePositions: 00000000240000002c000000300000003000000030000000400000004100000045000000450000004700000049000000
-      m_Values: 66633032316366632d303665392d346239362d626566662d356266323632333434653063c96908440b453b440000124300000000000000000000000000000000000000000008000a0000
-      m_UnityObjects: []
-      m_Version: 3.4
-    - m_ObjectType: Opsive.GraphDesigner.Runtime.LogicNodeProperties
-      m_ValueHashes: 
-      m_LongValueHashes: bc124df8ef5e104cf36ca30dee0de9958dd19827f48d1b29bd8814239a1bb7642f6406e2580d1e294f869cc9196b0c27aea3bc2e18d5b803a034c7c2b541f015557e981535906112a98ff48b9e8a66b37f542abda0a249c23a7f01b1f88d1a7b
-      m_ValuePositions: 00000000240000002c000000300000003000000030000000400000004100000045000000450000004700000049000000
-      m_Values: 35366464353561372d336439642d343161312d616131622d3830346265363330373230647b3c2c44f4af3a440000eb4200000000000000000000000000000000000000000008000b0000
-      m_UnityObjects: []
-      m_Version: 3.4
-    - m_ObjectType: Opsive.GraphDesigner.Runtime.LogicNodeProperties
-      m_ValueHashes: 
-      m_LongValueHashes: bc124df8ef5e104cf36ca30dee0de9958dd19827f48d1b29bd8814239a1bb7642f6406e2580d1e294f869cc9196b0c27aea3bc2e18d5b803a034c7c2b541f015557e981535906112a98ff48b9e8a66b37f542abda0a249c23a7f01b1f88d1a7b
-      m_ValuePositions: 00000000240000002c000000300000003000000030000000400000004100000045000000450000004700000049000000
-      m_Values: 66636465663537302d343934302d346664392d383936632d6233633262383535313439376e444a4478d939440000dc420000000000000000000000000000000000000000000800ffff00
+      m_Values: 64333832646530312d363830632d343539632d613838312d666133333733343335346330ee962c44ba103844008000430000000000000000000000000000000000000000000800ffff00
       m_UnityObjects: []
       m_Version: 3.4
     m_EventNodePropertiesData:
@@ -532,6 +504,7 @@ Transform:
   - {fileID: 5150084354317579230}
   - {fileID: 8735363108311275147}
   - {fileID: 6040637559924870385}
+  - {fileID: 1490235442374914299}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &685425530722936647
@@ -638,9 +611,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dc1f9e443419a64eb5c3d7f969466be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nPC: {fileID: 4286054108652517374}
   maxHealth: 100
   currentHealth: 100
   isDead: 0
+  enableDebugLogs: 0
 --- !u!114 &4227920609456074248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -685,6 +660,7 @@ MonoBehaviour:
   fleeBehaviourTree: {fileID: 3271075596433947042}
   combatBehaviourTree: {fileID: 246195278540581418}
   npc: {fileID: 4286054108652517374}
+  enableDebugLogs: 0
 --- !u!114 &6800899912182209861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -822,6 +798,74 @@ Transform:
   - {fileID: 5022543923217920491}
   m_Father: {fileID: 6564795912893128902}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7776113255563619592
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5699110339157075517}
+  - component: {fileID: 1126870214711409571}
+  - component: {fileID: 1506084314059816212}
+  m_Layer: 24
+  m_Name: HitBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5699110339157075517
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7776113255563619592}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1490235442374914299}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1126870214711409571
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7776113255563619592}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1506084314059816212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7776113255563619592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d23bd0928ae66a43a8f04f562caf314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcHealth: {fileID: 101658765690410194}
+  enableDebugLogs: 0
 --- !u!1 &7838643590338315220
 GameObject:
   m_ObjectHideFlags: 0
@@ -1306,3 +1350,35 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &8335941735274436550
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1490235442374914299}
+  m_Layer: 24
+  m_Name: HitBoxes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1490235442374914299
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8335941735274436550}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5699110339157075517}
+  m_Father: {fileID: 6564795912893128902}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

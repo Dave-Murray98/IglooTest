@@ -40,6 +40,7 @@ public class TurretController : MonoBehaviour
     [Tooltip("Force applied to projectile")]
     [SerializeField] private float projectileForce = 10f;
     [SerializeField] private float projectileDamage = 1f;
+    [SerializeField] private float knockBackForce = 10f;
 
     [SerializeField] private float fireRate = 0.5f; // Shots per second
 
@@ -212,7 +213,7 @@ public class TurretController : MonoBehaviour
 
         PlayerProjectile projectile = PlayerBulletPool.Instance.GetProjectile(turretProjectile, firePoint.position, firePoint.rotation);
 
-        projectile.Initialize(projectileDamage, turretProjectile, firePoint.position, firePoint.rotation);
+        projectile.Initialize(projectileDamage, knockBackForce, turretProjectile, firePoint.position, firePoint.rotation);
 
         // Apply force using projectile's forward direction
         Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();

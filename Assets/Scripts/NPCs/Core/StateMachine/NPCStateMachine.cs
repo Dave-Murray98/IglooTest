@@ -23,6 +23,8 @@ public class NPCStateMachine : StateMachine
     [Header("References")]
     public NPC npc;
 
+    [Header("Debug")]
+    [SerializeField] private bool enableDebugLogs = false;
 
     protected override void Awake()
     {
@@ -33,6 +35,13 @@ public class NPCStateMachine : StateMachine
 
         GameEvents.OnGamePaused += PauseCurrentBehaviorTree;
         GameEvents.OnGameResumed += ResumeCurrentBehaviorTree;
+
+        // NEW: Subscribe to universal path failure handling
+        if (npc != null && npc.movementScript != null)
+        {
+            npc.movementScript.OnPathFailed += HandlePathFailure;
+            DebugLog("Subscribed to path failure events");
+        }
     }
 
     private void AssignComponents()
@@ -67,12 +76,23 @@ public class NPCStateMachine : StateMachine
         }
     }
 
+    /// <summary>
+    /// NEW: Universal path failure handler.
+    /// When any path fails (in any state), transition to flee state.
+    /// Flee state will pick a new valid destination and eventually return to normal behavior.
+    /// </summary>
+    private void HandlePathFailure()
+    {
+        DebugLog($"Path failure detected in {currentState?.GetType().Name}, transitioning to flee state");
+        ForceChangeState(fleeState);
+    }
+
     public void ForceChangeState(NPCState newState)
     {
         if (newState == null)
             return;
 
-        DebugLog("Forcing change to" + newState);
+        DebugLog("Forcing change to " + newState);
 
         ChangeState(newState);
     }
@@ -128,5 +148,19 @@ public class NPCStateMachine : StateMachine
     {
         GameEvents.OnGamePaused -= PauseCurrentBehaviorTree;
         GameEvents.OnGameResumed -= ResumeCurrentBehaviorTree;
+
+        // NEW: Unsubscribe from path failure events
+        if (npc != null && npc.movementScript != null)
+        {
+            npc.movementScript.OnPathFailed -= HandlePathFailure;
+        }
+    }
+
+    public override void DebugLog(string message)
+    {
+        if (enableDebugLogs)
+        {
+            Debug.Log($"[NPCStateMachine - {gameObject.name}] {message}");
+        }
     }
 }

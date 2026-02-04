@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Hostile NPC
   m_EditorClassIdentifier: 
   isHostile: 1
-  combatEngageDistance: 20
-  combatDisengageDistance: 25
+  combatEngageDistance: 15
+  combatDisengageDistance: 20

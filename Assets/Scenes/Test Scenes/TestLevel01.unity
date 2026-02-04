@@ -145,7 +145,7 @@ Transform:
   m_GameObject: {fileID: 70930810}
   serializedVersion: 2
   m_LocalRotation: {x: 0.0000000037252899, y: -0, z: -0.0000000074505797, w: 1}
-  m_LocalPosition: {x: 39.168243, y: -1.5791259, z: -9.709668}
+  m_LocalPosition: {x: -9.566538, y: -17.953548, z: -13.90108}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -585,7 +585,7 @@ MonoBehaviour:
   _debug:
     _drawBounds: 0
     _drawSlicesInEditor: 0
-  _waveBuffers: {fileID: 584474835}
+  _waveBuffers: {fileID: 493186279}
 --- !u!1 &207055349
 GameObject:
   m_ObjectHideFlags: 0
@@ -1066,7 +1066,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 12.902121, y: 12.902121, z: 12.902121}
+  m_LocalScale: {x: 3.4641016, y: 3.4641016, z: 3.4641016}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 385304240}
@@ -1308,6 +1308,43 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 482625761}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!84 &493186279
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: GerstnerCascades
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 6
+  m_Width: 64
+  m_Height: 64
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthStencilFormat: 0
+  m_ColorFormat: 48
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_UseDynamicScaleExplicit: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_EnableRandomWrite: 1
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 0
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 5
+  m_VolumeDepth: 16
+  m_ShadowSamplingMode: 2
 --- !u!1 &494586662
 GameObject:
   m_ObjectHideFlags: 0
@@ -1482,43 +1519,6 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
---- !u!84 &584474835
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: GerstnerCascades
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 6
-  m_Width: 64
-  m_Height: 64
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthStencilFormat: 0
-  m_ColorFormat: 48
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_UseDynamicScaleExplicit: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_EnableRandomWrite: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 0
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 5
-  m_VolumeDepth: 16
-  m_ShadowSamplingMode: 2
 --- !u!1 &592760766
 GameObject:
   m_ObjectHideFlags: 0
@@ -29249,6 +29249,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6564795912893128902, guid: e1cc223afef2d5e4292db3ec398ae464, type: 3}
   m_PrefabInstance: {fileID: 8451861906749813221}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4972565854870791395 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4286054108652517374, guid: e1cc223afef2d5e4292db3ec398ae464, type: 3}
+  m_PrefabInstance: {fileID: 8451861906749813221}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b22bc5c723fad0b42abdd86e94566a56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8451861906749813221
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29257,6 +29268,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1678455097}
     m_Modifications:
+    - target: {fileID: 101658765690410194, guid: e1cc223afef2d5e4292db3ec398ae464, type: 3}
+      propertyPath: nPC
+      value: 
+      objectReference: {fileID: 4972565854870791395}
     - target: {fileID: 246195278540581418, guid: e1cc223afef2d5e4292db3ec398ae464, type: 3}
       propertyPath: m_Data.m_UniqueID
       value: 953616458
@@ -29321,6 +29336,10 @@ PrefabInstance:
       propertyPath: 'm_Data.m_LogicNodePropertiesData.Array.data[5].m_Values.Array.data[45]'
       value: 128
       objectReference: {fileID: 0}
+    - target: {fileID: 1506084314059816212, guid: e1cc223afef2d5e4292db3ec398ae464, type: 3}
+      propertyPath: enableDebugLogs
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4227920609456074248, guid: e1cc223afef2d5e4292db3ec398ae464, type: 3}
       propertyPath: enableDebugLogs
       value: 1
@@ -29335,7 +29354,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6564795912893128902, guid: e1cc223afef2d5e4292db3ec398ae464, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -18.6
+      value: -25.1
       objectReference: {fileID: 0}
     - target: {fileID: 6564795912893128902, guid: e1cc223afef2d5e4292db3ec398ae464, type: 3}
       propertyPath: m_LocalPosition.z

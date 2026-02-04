@@ -45,6 +45,7 @@ public class NPCManagedUnderwaterMovement : MonoBehaviour
     private bool hasHadFirstUpdate;
     private bool dataChanged;
     private bool hasReachedCurrentDestination = false;
+    private bool hasValidPath = false; // NEW: Track if current path is valid
 
     /// <summary>
     /// Last destination set.
@@ -83,7 +84,21 @@ public class NPCManagedUnderwaterMovement : MonoBehaviour
 
         avoidanceAgent.MaxSpeed = maxSpeed;
 
-        navAgent.PathFailed += OnPathFailed;
+        // FIXED: Subscribe to the actual callback method, not the event itself
+        navAgent.PathFailed += HandlePathFailed;
+    }
+
+    /// <summary>
+    /// NEW: Callback method for when HyperNav fails to find a path.
+    /// This is the actual handler that gets called by the navAgent.
+    /// </summary>
+    private void HandlePathFailed()
+    {
+        DebugLog("Path calculation failed - destination unreachable");
+        hasValidPath = false;
+
+        // Fire the event so other systems (like state machine) can react
+        OnPathFailed?.Invoke();
     }
 
     /// <summary>
@@ -125,7 +140,11 @@ public class NPCManagedUnderwaterMovement : MonoBehaviour
 
         navAgent.Destination = lastDestination;
 
-        if (navAgent.Arrived && !hasReachedCurrentDestination)
+        // MODIFIED: Assume path is valid when we request it (will be set to false if it fails)
+        hasValidPath = true;
+
+        // MODIFIED: Only trigger arrival if we have a valid path
+        if (navAgent.Arrived && hasValidPath && !hasReachedCurrentDestination)
         {
             OnArrivedAtDestination();
         }
@@ -247,6 +266,7 @@ public class NPCManagedUnderwaterMovement : MonoBehaviour
         destination = Vector3.zero;
         lastDestination = Vector3.zero;
         hasReachedCurrentDestination = false;
+        hasValidPath = false;
         navAgent.Stop(true);
         DebugLog("Destination cleared");
     }
@@ -268,5 +288,11 @@ public class NPCManagedUnderwaterMovement : MonoBehaviour
     {
         if (enableDebugLogs)
             Debug.Log("[NPCManagedUnderwaterMovement]" + message);
+    }
+
+    // NEW: Public method to check if current path is valid (useful for debugging)
+    public bool HasValidPath()
+    {
+        return hasValidPath;
     }
 }

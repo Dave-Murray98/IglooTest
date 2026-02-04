@@ -6,9 +6,6 @@ using UnityEngine;
 /// </summary>
 public class IsPlayerInAttackRange : NPCConditional
 {
-    [Tooltip("Distance to check for player")]
-    [SerializeField] private float detectionRange = 10f;
-
     public override TaskStatus OnUpdate()
     {
         return nPC.attack.playerInAttackRange ? TaskStatus.Success : TaskStatus.Failure;

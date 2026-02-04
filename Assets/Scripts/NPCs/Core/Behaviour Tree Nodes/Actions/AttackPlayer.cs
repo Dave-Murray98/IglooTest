@@ -6,27 +6,31 @@ using UnityEngine;
 /// This is a BLOCKING action that stays running until the attack finishes.
 /// 
 /// Usage in behavior tree:
-/// Sequence -> IsPlayerInRange -> NPCAttackPlayer -> Wait
+/// Sequence -> IsPlayerInRange -> AttackPlayer -> Wait
 /// </summary>
 public class AttackPlayer : NPCAction
 {
     [Tooltip("Safety timeout in case attack gets stuck")]
     [SerializeField] private float timeout = 5f;
 
-    private float startTime;
+    private float backupTimer = 0f;
+
+    [SerializeField] private bool enableDebugLogs = false;
 
     public override void OnStart()
     {
         base.OnStart();
 
-        startTime = Time.time;
+        backupTimer = 0f;
         nPC.Attack();
     }
 
     public override TaskStatus OnUpdate()
     {
+        backupTimer += Time.deltaTime;
+
         // Safety check: timeout
-        if (Time.time - startTime >= timeout)
+        if (backupTimer >= timeout)
         {
             Debug.LogWarning($"[NPCAttackPlayer] Attack timed out after {timeout} seconds");
             nPC.attack.isAttacking = false;
@@ -36,6 +40,8 @@ public class AttackPlayer : NPCAction
         // Check if player left attack range during attack
         if (!nPC.attack.playerInAttackRange)
         {
+            DebugLog($"Player left attack range during attack, aborting attack");
+            nPC.attack.OnAttackAborted();
             return TaskStatus.Failure;
         }
 
@@ -45,7 +51,22 @@ public class AttackPlayer : NPCAction
             return TaskStatus.Running;
         }
 
+        DebugLog("Attack completed");
         // Attack completed successfully
         return TaskStatus.Success;
+    }
+
+    public override void OnEnd()
+    {
+        base.OnEnd();
+        backupTimer = 0f;
+    }
+
+    private void DebugLog(string message)
+    {
+        if (enableDebugLogs)
+        {
+            Debug.Log("[AttackPlayer Node]" + message);
+        }
     }
 }

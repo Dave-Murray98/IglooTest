@@ -40,7 +40,6 @@ public class NPCAttack : MonoBehaviour
     private Quaternion targetRotation;
     public event Action OnPerformingAttack;
 
-
     private void Awake()
     {
         if (hurtBox == null)
@@ -195,6 +194,17 @@ public class NPCAttack : MonoBehaviour
 
         // Movement resumes automatically when behavior tree sets new destination
         DebugLog("Attack sequence complete");
+    }
+
+    public void OnAttackAborted()
+    {
+        hurtBox.gameObject.SetActive(false);
+        isAttacking = false;
+
+        StopAllCoroutines();
+
+        // Movement resumes automatically when behavior tree sets new destination
+        DebugLog("Attack sequence aborted");
     }
 
     #endregion

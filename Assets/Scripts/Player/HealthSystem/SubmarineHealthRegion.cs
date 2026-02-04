@@ -41,6 +41,8 @@ public class SubmarineHealthRegion : MonoBehaviour
 
     private GameObject activeDestroyedEffect;
 
+    [SerializeField] private bool enableDebugLogs = false;
+
     private void Awake()
     {
         // Start with full health
@@ -63,7 +65,7 @@ public class SubmarineHealthRegion : MonoBehaviour
         float previousHealth = currentHealth;
         currentHealth = Mathf.Max(0f, currentHealth - damageAmount);
 
-        Debug.Log($"[{regionName}] Took {damageAmount} damage. Health: {currentHealth}/{maxHealth}");
+        DebugLog($"[{regionName}] Took {damageAmount} damage. Health: {currentHealth}/{maxHealth}");
 
         // Notify listeners that damage was taken
         OnDamageTaken?.Invoke(this, damageAmount);
@@ -92,7 +94,7 @@ public class SubmarineHealthRegion : MonoBehaviour
 
         if (actualHealed > 0)
         {
-            Debug.Log($"[{regionName}] Restored {actualHealed} health. Health: {currentHealth}/{maxHealth}");
+            DebugLog($"[{regionName}] Restored {actualHealed} health. Health: {currentHealth}/{maxHealth}");
 
             // Notify listeners
             OnHealthRestored?.Invoke(this, actualHealed);
@@ -155,7 +157,7 @@ public class SubmarineHealthRegion : MonoBehaviour
     /// </summary>
     private void HandleRegionRepaired()
     {
-        Debug.Log($"[{regionName}] Region repaired!");
+        DebugLog($"[{regionName}] Region repaired!");
 
         // Remove destroyed effect if it exists
         if (activeDestroyedEffect != null)
@@ -193,4 +195,12 @@ public class SubmarineHealthRegion : MonoBehaviour
         FullyRepair();
     }
 #endif
+
+    private void DebugLog(string message)
+    {
+        if (enableDebugLogs)
+        {
+            Debug.Log(message);
+        }
+    }
 }

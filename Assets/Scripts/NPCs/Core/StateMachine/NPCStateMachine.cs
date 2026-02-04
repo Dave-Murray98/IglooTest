@@ -1,3 +1,4 @@
+using System.Net.Security;
 using Opsive.BehaviorDesigner.Runtime;
 using UnityEngine;
 
@@ -22,9 +23,6 @@ public class NPCStateMachine : StateMachine
 
     [Header("References")]
     public NPC npc;
-
-    [Header("Debug")]
-    [SerializeField] private bool enableDebugLogs = false;
 
     protected override void Awake()
     {

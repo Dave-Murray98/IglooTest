@@ -36,4 +36,12 @@ public class NPCState : State
     /// Behaviour Trees are set to update manually
     /// </summary>
     public virtual void UpdateCurrentBehaviourTree() { }
+
+
+    protected void DebugLog(string message)
+    {
+        if (sm.enableDebugLogs)
+            DebugLog(message);
+
+    }
 }

@@ -76,10 +76,10 @@ public class CombatState : NPCState
     public override void UpdateCurrentBehaviourTree()
     {
         base.UpdateCurrentBehaviourTree();
-
         if (sm.combatBehaviourTree != null)
         {
             sm.combatBehaviourTree.Tick();
         }
     }
+
 }

@@ -136,7 +136,7 @@ public class NPCAttack : MonoBehaviour
         Vector3 startAngularVelocity = npc.rb.angularVelocity;
 
         // Store starting rotation for smooth interpolation
-        Quaternion startRotation = transform.rotation;
+        Quaternion startRotation = npc.transform.rotation;
 
         while (elapsedTime < decelerationTime)
         {
@@ -152,7 +152,7 @@ public class NPCAttack : MonoBehaviour
 
             // === ROTATION TOWARDS PLAYER ===
             // Smoothly rotate towards the target rotation
-            transform.rotation = Quaternion.Slerp(startRotation, targetRotation, smoothProgress);
+            npc.transform.rotation = Quaternion.Slerp(startRotation, targetRotation, smoothProgress);
 
             // Stop any existing angular velocity during the rotation
             npc.rb.angularVelocity = Vector3.Lerp(startAngularVelocity, Vector3.zero, smoothProgress);
@@ -164,7 +164,7 @@ public class NPCAttack : MonoBehaviour
         // Ensure we're completely stopped and facing the right direction
         npc.rb.linearVelocity = Vector3.zero;
         npc.rb.angularVelocity = Vector3.zero;
-        transform.rotation = targetRotation;
+        npc.transform.rotation = targetRotation;
 
         DebugLog("Deceleration and rotation complete - monster locked on target");
     }

@@ -11,7 +11,7 @@ using UnityEngine;
 /// Usage in behavior tree:
 /// Sequence -> SetPatrolDestination -> WaitForArrival -> Idle -> (repeat)
 /// </summary>
-public class NPCWaitForArrival : NPCAction
+public class WaitForArrival : NPCAction
 {
     [Tooltip("Maximum time to wait for arrival before giving up (0 = wait forever)")]
     [SerializeField] private float timeout = 60f;

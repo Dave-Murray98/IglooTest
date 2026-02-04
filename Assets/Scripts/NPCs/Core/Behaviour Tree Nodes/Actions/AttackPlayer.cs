@@ -8,7 +8,7 @@ using UnityEngine;
 /// Usage in behavior tree:
 /// Sequence -> IsPlayerInRange -> NPCAttackPlayer -> Wait
 /// </summary>
-public class NPCAttackPlayer : NPCAction
+public class AttackPlayer : NPCAction
 {
     [Tooltip("Safety timeout in case attack gets stuck")]
     [SerializeField] private float timeout = 5f;

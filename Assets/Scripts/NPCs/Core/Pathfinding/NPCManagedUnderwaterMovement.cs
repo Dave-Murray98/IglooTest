@@ -44,6 +44,7 @@ public class NPCManagedUnderwaterMovement : MonoBehaviour
     // Logic variables
     private bool hasHadFirstUpdate;
     private bool dataChanged;
+    private bool hasReachedCurrentDestination = false;
 
     /// <summary>
     /// Last destination set.
@@ -124,16 +125,17 @@ public class NPCManagedUnderwaterMovement : MonoBehaviour
 
         navAgent.Destination = lastDestination;
 
-        if (navAgent.Arrived)
+        if (navAgent.Arrived && !hasReachedCurrentDestination)
         {
             OnArrivedAtDestination();
         }
-
     }
 
     private void OnArrivedAtDestination()
     {
         DebugLog("Arrived at destination");
+
+        hasReachedCurrentDestination = true;
 
         // Stop the rigidbody
         if (rb != null)
@@ -144,6 +146,7 @@ public class NPCManagedUnderwaterMovement : MonoBehaviour
 
         OnDestinationReached?.Invoke();
 
+        // Clear destination after arrival
         destination = Vector3.zero;
     }
 
@@ -205,11 +208,6 @@ public class NPCManagedUnderwaterMovement : MonoBehaviour
         return false;
     }
 
-    private bool HasArrived()
-    {
-        return navAgent.Arrived;
-    }
-
     /// <summary>
     /// Sets a completely random wander destination.
     /// </summary>
@@ -236,7 +234,21 @@ public class NPCManagedUnderwaterMovement : MonoBehaviour
     {
         lastDestination = destination;
         destination = newTarget;
+        hasReachedCurrentDestination = false; // Reset arrival state when new destination is set
         DebugLog($"Destination set to: {newTarget}");
+    }
+
+    /// <summary>
+    /// Clears the current destination and stops movement.
+    /// Used when interrupting movement (e.g., during attacks).
+    /// </summary>
+    public void ClearDestination()
+    {
+        destination = Vector3.zero;
+        lastDestination = Vector3.zero;
+        hasReachedCurrentDestination = false;
+        navAgent.Stop(true);
+        DebugLog("Destination cleared");
     }
 
     private void ChangeNavDataDataChanging()

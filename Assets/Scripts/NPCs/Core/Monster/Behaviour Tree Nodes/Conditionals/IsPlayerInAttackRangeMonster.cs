@@ -1,6 +1,6 @@
 using Opsive.BehaviorDesigner.Runtime.Tasks;
 
-public class IsPlayerInAttackRange : EnemyConditional
+public class IsPlayerInAttackRangeMonster : EnemyConditional
 {
     public override TaskStatus OnUpdate()
     {

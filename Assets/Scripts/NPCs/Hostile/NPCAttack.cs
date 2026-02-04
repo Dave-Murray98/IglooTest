@@ -94,8 +94,8 @@ public class NPCAttack : MonoBehaviour
 
         DebugLog($"Starting attack sequence. Initial velocity: {initialVelocity.magnitude:F2}");
 
-        // SIMPLIFIED: Pause movement by clearing target
-        npc.movementScript.SetDestination(Vector3.zero);
+        // Clear movement destination to pause pathfinding
+        npc.movementScript.ClearDestination();
 
         // Phase 1: Gradual deceleration + rotation towards player
         yield return StartCoroutine(GradualDecelerationAndRotation());
@@ -183,10 +183,7 @@ public class NPCAttack : MonoBehaviour
         hurtBox.gameObject.SetActive(false);
         isAttacking = false;
 
-        // SIMPLIFIED: Movement resumes automatically
-        // The behavior tree will set a new destination
-        // No need to manually activate anything
-
+        // Movement resumes automatically when behavior tree sets new destination
         DebugLog("Attack sequence complete");
     }
 
@@ -199,5 +196,4 @@ public class NPCAttack : MonoBehaviour
             Debug.Log($"[NPCAttack] {message}");
         }
     }
-
 }

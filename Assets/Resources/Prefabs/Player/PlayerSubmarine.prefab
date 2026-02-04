@@ -361,7 +361,7 @@ GameObject:
   - component: {fileID: 714231904905435667}
   - component: {fileID: 7954327294376373950}
   m_Layer: 6
-  m_Name: Thruster 02
+  m_Name: Right Turn Thruster 01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -376,7 +376,7 @@ Transform:
   m_GameObject: {fileID: 666577522823866846}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.275, y: 0, z: 0}
+  m_LocalPosition: {x: 1.23, y: 0, z: -1.3000002}
   m_LocalScale: {x: 0.3, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -784,7 +784,7 @@ GameObject:
   - component: {fileID: 2217967875687705476}
   - component: {fileID: 8295905926940394517}
   m_Layer: 6
-  m_Name: Thruster 01
+  m_Name: Left Turn Thruster 01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -799,7 +799,7 @@ Transform:
   m_GameObject: {fileID: 2031558601495933400}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.275, y: 0, z: 0}
+  m_LocalPosition: {x: -1.2299998, y: 0, z: -1.3}
   m_LocalScale: {x: 0.3, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1030,7 +1030,7 @@ MonoBehaviour:
   rightRegion: {fileID: 1318871917068846915}
   bottomRegion: {fileID: 453211013417184346}
   destroySubmarineWhenAllRegionsDestroyed: 1
-  enableDebugLogs: 1
+  enableDebugLogs: 0
   showDebugGizmos: 1
 --- !u!114 &2568921799066710355
 MonoBehaviour:
@@ -1140,7 +1140,7 @@ MonoBehaviour:
   - applyThrustWhenAboveWater: 0
     isOn: 0
     maxRPM: 5000
-    maxSpeed: 15
+    maxSpeed: 17
     maxThrust: 30000
     minRPM: 500
     name: Engine
@@ -1148,7 +1148,7 @@ MonoBehaviour:
     pitchRange: 0.6
     propellerRpmRatio: 0.1
     propellerTransform: {fileID: 289443146112001856}
-    reverseThrustCoefficient: 0.6
+    reverseThrustCoefficient: 1
     rotationDirection: 0
     rudderTransform: {fileID: 4601137275165780727}
     runningSource: {fileID: 0}
@@ -1223,20 +1223,36 @@ MonoBehaviour:
   stabilizePitch: 1
   stabilizeRoll: 1
   thrusters:
-  - maxThrust: 25000
-    name: Left Thruster
-    position: {x: -1, y: 0, z: 0}
+  - maxThrust: 10000
+    name: Left Turn Thruster 01
+    position: {x: -1.23, y: 0, z: -1.3}
     propellerRotationDirection: 0
     propellerRotationSpeed: 0
     propellerTransform: {fileID: 7211350580769999285}
     spinUpSpeed: 1
+    thrusterPosition: 1
+  - maxThrust: 10000
+    name: Left Turn Thruster 02
+    position: {x: 1.23, y: 0, z: 2.14}
+    propellerRotationDirection: 0
+    propellerRotationSpeed: 0
+    propellerTransform: {fileID: 2447620552240983733}
+    spinUpSpeed: 1
     thrusterPosition: 0
-  - maxThrust: 25000
-    name: Right Thruster
-    position: {x: 1, y: 0, z: 0}
+  - maxThrust: 10000
+    name: Right Turn Thruster 01
+    position: {x: 1.23, y: 0, z: -1.3}
     propellerRotationDirection: 0
     propellerRotationSpeed: 0
     propellerTransform: {fileID: 6605326402303301009}
+    spinUpSpeed: 1
+    thrusterPosition: 1
+  - maxThrust: 10000
+    name: Right Turn Thruster 02
+    position: {x: -1.23, y: 0, z: 1.4}
+    propellerRotationDirection: 0
+    propellerRotationSpeed: 0
+    propellerTransform: {fileID: 3234478967510890275}
     spinUpSpeed: 1
     thrusterPosition: 0
   weighAnchorWhenActive: 1
@@ -1276,7 +1292,7 @@ MonoBehaviour:
   combinedInertiaTensor: {x: 0, y: 0, z: 0}
   combinedMass: 5150
   dimensions: {x: 1.8044281, y: 6.8196955, z: 63.756035}
-  inertiaTensor: {x: 18635.615, y: 15572.514, z: 6410.791}
+  inertiaTensor: {x: 18650.168, y: 15594.8545, z: 6413.9985}
   useDefaultCenterOfMass: 0
   useDefaultInertia: 1
   useDefaultMass: 0
@@ -1511,12 +1527,14 @@ Transform:
   m_GameObject: {fileID: 2876924958730489617}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7211350580769999285}
+  - {fileID: 2447620552240983733}
   - {fileID: 6605326402303301009}
+  - {fileID: 3234478967510890275}
   m_Father: {fileID: 7337299441925571645}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3443288307394072592
@@ -1616,6 +1634,114 @@ Transform:
   - {fileID: 5060314162323681110}
   m_Father: {fileID: 7337299441925571645}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4754323658723800082
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2447620552240983733}
+  - component: {fileID: 1056285533578939643}
+  - component: {fileID: 3945136289265779113}
+  - component: {fileID: 4837753139038750418}
+  m_Layer: 6
+  m_Name: Left Turn Thruster 02
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2447620552240983733
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4754323658723800082}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.23, y: 0, z: 2.14}
+  m_LocalScale: {x: 0.3, y: 0.2, z: 0.2}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7348161197817831586}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &1056285533578939643
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4754323658723800082}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &3945136289265779113
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4754323658723800082}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4837753139038750418
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4754323658723800082}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5339072924836620174
 GameObject:
   m_ObjectHideFlags: 0
@@ -2023,6 +2149,114 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &8835257261160712345
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3234478967510890275}
+  - component: {fileID: 8099328674188127761}
+  - component: {fileID: 6134781874920695412}
+  - component: {fileID: 6431474436921928755}
+  m_Layer: 6
+  m_Name: Right Turn Thruster 02
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3234478967510890275
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8835257261160712345}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.23, y: 0, z: 2.14}
+  m_LocalScale: {x: 0.3, y: 0.2, z: 0.2}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7348161197817831586}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &8099328674188127761
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8835257261160712345}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &6134781874920695412
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8835257261160712345}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6431474436921928755
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8835257261160712345}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8863925723650619794
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using UnityEditor.Callbacks;
 
 /// <summary>
 /// Central manager for the submarine's health system.
@@ -11,9 +12,6 @@ using Sirenix.OdinInspector;
 /// </summary>
 public class SubmarineHealthManager : MonoBehaviour
 {
-    [Header("References")]
-    [SerializeField] private NPC npc;
-
     [Header("Health Regions")]
     [Tooltip("Reference to the Front region health component")]
     [SerializeField] private SubmarineHealthRegion frontRegion;
@@ -64,8 +62,6 @@ public class SubmarineHealthManager : MonoBehaviour
 
     private void Awake()
     {
-        if (npc = null) npc = GetComponent<NPC>();
-
         // Gather all regions into a list for easy iteration
         allRegions = new List<SubmarineHealthRegion>
         {
@@ -118,10 +114,7 @@ public class SubmarineHealthManager : MonoBehaviour
             Debug.LogWarning("[SubmarineHealthManager] Could not find closest region for damage!");
         }
 
-        if (npc != null)
-        {
-            npc.rb.AddForce(damageDirection * damageForce, ForceMode.Impulse);
-        }
+        // Apply force to rigid body here
     }
 
     /// <summary>

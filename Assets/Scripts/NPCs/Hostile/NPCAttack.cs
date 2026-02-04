@@ -61,12 +61,22 @@ public class NPCAttack : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        playerInAttackRange = true;
+        SubmarineHealthManager submarineHealthManager = other.GetComponent<SubmarineHealthManager>();
+
+        if (submarineHealthManager != null)
+        {
+            playerInAttackRange = true;
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        playerInAttackRange = false;
+        SubmarineHealthManager submarineHealthManager = other.GetComponent<SubmarineHealthManager>();
+
+        if (submarineHealthManager != null)
+        {
+            playerInAttackRange = false;
+        }
     }
 
     public void Attack()

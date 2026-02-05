@@ -5,6 +5,7 @@ using Sirenix.OdinInspector;
 /// <summary>
 /// Represents a single damageable region of the submarine (front, back, left, right, or bottom).
 /// Each region has its own health pool and can be damaged/healed independently.
+/// Now includes automatic crack visual feedback through CrackVisualController.
 /// </summary>
 public class SubmarineHealthRegion : MonoBehaviour
 {
@@ -27,6 +28,12 @@ public class SubmarineHealthRegion : MonoBehaviour
     [Tooltip("Optional: Transform where the destroyed effect should spawn")]
     [SerializeField] private Transform effectSpawnPoint;
 
+    [Tooltip("Optional: Reference to the crack visual controller for this region")]
+    [SerializeField] private CrackVisualController crackVisualController;
+
+    [Tooltip("Should crack visuals update automatically when health changes?")]
+    [SerializeField] private bool autoUpdateCrackVisuals = true;
+
     // Events that other systems can listen to
     public event Action<SubmarineHealthRegion, float> OnDamageTaken;  // Fires when damage is taken
     public event Action<SubmarineHealthRegion> OnRegionDestroyed;     // Fires when health reaches zero
@@ -47,6 +54,20 @@ public class SubmarineHealthRegion : MonoBehaviour
     {
         // Start with full health
         currentHealth = maxHealth;
+
+        // Try to find crack visual controller if not assigned
+        if (crackVisualController == null && autoUpdateCrackVisuals)
+        {
+            crackVisualController = GetComponentInChildren<CrackVisualController>();
+
+            if (crackVisualController != null)
+            {
+                DebugLog($"Auto-found CrackVisualController in children");
+            }
+        }
+
+        // Initialize crack visuals to show full health (no cracks)
+        UpdateCrackVisuals();
     }
 
     /// <summary>
@@ -66,6 +87,9 @@ public class SubmarineHealthRegion : MonoBehaviour
         currentHealth = Mathf.Max(0f, currentHealth - damageAmount);
 
         DebugLog($"[{regionName}] Took {damageAmount} damage. Health: {currentHealth}/{maxHealth}");
+
+        // Update crack visuals to reflect new health
+        UpdateCrackVisuals();
 
         // Notify listeners that damage was taken
         OnDamageTaken?.Invoke(this, damageAmount);
@@ -96,6 +120,9 @@ public class SubmarineHealthRegion : MonoBehaviour
         {
             DebugLog($"[{regionName}] Restored {actualHealed} health. Health: {currentHealth}/{maxHealth}");
 
+            // Update crack visuals to reflect healing
+            UpdateCrackVisuals();
+
             // Notify listeners
             OnHealthRestored?.Invoke(this, actualHealed);
 
@@ -123,6 +150,9 @@ public class SubmarineHealthRegion : MonoBehaviour
         float previousHealth = currentHealth;
         currentHealth = Mathf.Clamp(newHealth, 0f, maxHealth);
 
+        // Update crack visuals
+        UpdateCrackVisuals();
+
         // Check if we crossed the destroyed threshold
         if (currentHealth <= 0f && previousHealth > 0f)
         {
@@ -132,6 +162,28 @@ public class SubmarineHealthRegion : MonoBehaviour
         {
             HandleRegionRepaired();
         }
+    }
+
+    /// <summary>
+    /// Update the crack visual controller to match current health
+    /// </summary>
+    private void UpdateCrackVisuals()
+    {
+        if (autoUpdateCrackVisuals && crackVisualController != null)
+        {
+            crackVisualController.UpdateCrackVisibility(HealthPercentage);
+        }
+    }
+
+    /// <summary>
+    /// Manually set a reference to the crack visual controller
+    /// Useful if you want to set it up at runtime
+    /// </summary>
+    public void SetCrackVisualController(CrackVisualController controller)
+    {
+        crackVisualController = controller;
+        UpdateCrackVisuals();
+        DebugLog($"Crack visual controller assigned");
     }
 
     /// <summary>
@@ -193,6 +245,13 @@ public class SubmarineHealthRegion : MonoBehaviour
     private void TestFullRepair()
     {
         FullyRepair();
+    }
+
+    [Button("Test Crack Visual Update"), PropertyOrder(103)]
+    private void TestCrackVisualUpdate()
+    {
+        UpdateCrackVisuals();
+        DebugLog($"Manually updated crack visuals - Health: {HealthPercentage:P0}");
     }
 #endif
 

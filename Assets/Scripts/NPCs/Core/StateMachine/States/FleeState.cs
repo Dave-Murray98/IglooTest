@@ -49,6 +49,11 @@ public class FleeState : NPCState
     public override void UpdateCurrentBehaviourTree()
     {
         base.UpdateCurrentBehaviourTree();
+
+        if (!fleeBehaviourTree.didStart)
+            return;
+
+
         fleeBehaviourTree.Tick();
     }
 }

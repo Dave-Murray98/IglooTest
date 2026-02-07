@@ -1,5 +1,8 @@
+using System.Collections;
+using System.Security.Cryptography;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 /// <summary>
 /// Controls a turret based on gunner input.
@@ -44,6 +47,11 @@ public class TurretController : MonoBehaviour
 
     [SerializeField] private float fireRate = 0.5f; // Shots per second
 
+    [Header("Rumble Settings")]
+    [SerializeField] private float lowFrequency = 0.5f;
+    [SerializeField] private float highFrequency = 0.5f;
+    [SerializeField] private float rumbleDuration = 0.2f;
+
     [Header("Debug")]
     [SerializeField] private bool enableDebugLogs = false;
     [SerializeField] private bool showGizmos = true;
@@ -61,6 +69,8 @@ public class TurretController : MonoBehaviour
 
     // State
     [ShowInInspector, ReadOnly] private bool isAssigned = false;
+
+    private Gamepad assignedGamepad;
 
     private void Start()
     {
@@ -125,6 +135,12 @@ public class TurretController : MonoBehaviour
         // Subscribe to shooting events
         inputHandler.OnShootPressed += HandleShoot;
 
+        // Get assigned gamepad for rumble
+        if (inputHandler.PlayerIndex >= 0 && inputHandler.PlayerIndex < Gamepad.all.Count)
+        {
+            assignedGamepad = Gamepad.all[inputHandler.PlayerIndex];
+        }
+
         DebugLog($"Assigned to Gunner {assignedGunnerNumber + 1} (Player {handler.PlayerIndex})");
     }
 
@@ -188,29 +204,6 @@ public class TurretController : MonoBehaviour
     {
         DebugLog("FIRE!");
 
-        // // If we have a projectile prefab and fire point, spawn projectile
-        // if (projectilePrefab != null && firePoint != null)
-        // {
-        //     GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
-        //     DebugLog($"Spawned projectile: {projectile.name}");
-        // }
-        // else if (firePoint != null)
-        // {
-        //     // No projectile prefab - do a simple raycast for hit detection
-        //     RaycastHit hit;
-        //     if (Physics.Raycast(firePoint.position, firePoint.forward, out hit, 1000f))
-        //     {
-        //         DebugLog($"Hit: {hit.collider.gameObject.name} at distance {hit.distance:F2}m");
-
-        //         // Visualize hit in Scene view
-        //         Debug.DrawLine(firePoint.position, hit.point, Color.red, 0.5f);
-        //     }
-        //     else
-        //     {
-        //         DebugLog("Missed - no hit");
-        //     }
-        // }
-
         PlayerProjectile projectile = PlayerBulletPool.Instance.GetProjectile(turretProjectile, firePoint.position, firePoint.rotation);
 
         projectile.Initialize(projectileDamage, knockBackForce, turretProjectile, firePoint.position, firePoint.rotation);
@@ -225,6 +218,9 @@ public class TurretController : MonoBehaviour
 
             DebugLog($"Applied force: {projectileForce} in direction {forceDirection}");
         }
+
+        // Rumble gamepad
+        RumblePulse(lowFrequency, highFrequency, rumbleDuration);
 
     }
 
@@ -250,6 +246,27 @@ public class TurretController : MonoBehaviour
             {
                 AssignToGunner(handler);
             }
+        }
+    }
+
+    public void RumblePulse(float lowFrequency, float highFrequency, float duration)
+    {
+        if (assignedGamepad != null)
+        {
+            //start rumble 
+            assignedGamepad.SetMotorSpeeds(lowFrequency, highFrequency);
+
+            //stop rumble after duration
+            StartCoroutine(StopRumbleAfterDuration(duration));
+        }
+    }
+
+    private IEnumerator StopRumbleAfterDuration(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        if (assignedGamepad != null)
+        {
+            assignedGamepad.SetMotorSpeeds(0f, 0f);
         }
     }
 

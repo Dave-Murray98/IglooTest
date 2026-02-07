@@ -136,10 +136,7 @@ public class TurretController : MonoBehaviour
         inputHandler.OnShootPressed += HandleShoot;
 
         // Get assigned gamepad for rumble
-        if (inputHandler.PlayerIndex >= 0 && inputHandler.PlayerIndex < Gamepad.all.Count)
-        {
-            assignedGamepad = Gamepad.all[inputHandler.PlayerIndex];
-        }
+        assignedGamepad = handler.GetAssignedGamepad();
 
         DebugLog($"Assigned to Gunner {assignedGunnerNumber + 1} (Player {handler.PlayerIndex})");
     }

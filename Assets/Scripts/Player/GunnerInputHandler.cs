@@ -137,4 +137,13 @@ public class GunnerInputHandler : MonoBehaviour
 
     // Utility methods
     public bool IsLooking() => LookInput.magnitude > 0.1f;
+
+    public Gamepad GetAssignedGamepad()
+    {
+        if (PlayerIndex >= 0 && PlayerIndex < Gamepad.all.Count)
+        {
+            return Gamepad.all[PlayerIndex];
+        }
+        return null;
+    }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 /// <summary>
 /// Controls the engineer's repair functionality.
@@ -8,8 +9,6 @@ using UnityEngine;
 /// </summary>
 public class EngineerController : MonoBehaviour
 {
-    [Header("References")]
-    [SerializeField] private SubmarineHealthManager healthManager;
 
     [Header("Repair Settings")]
     [Tooltip("How much health is restored per repair button press")]
@@ -28,6 +27,11 @@ public class EngineerController : MonoBehaviour
     [Header("Region Selection Settings")]
     [Tooltip("Input threshold for selecting a direction (0-1)")]
     [SerializeField] private float directionThreshold = 0.6f;
+
+    [Header("Rumble Settings")]
+    [SerializeField] private float lowFrequency = 0.4f;
+    [SerializeField] private float highFrequency = 0.4f;
+    [SerializeField] private float rumbleDuration = 0.1f;
 
     [Header("Debug")]
     [SerializeField] private bool enableDebugLogs = false;
@@ -50,19 +54,10 @@ public class EngineerController : MonoBehaviour
     // State
     [ShowInInspector, ReadOnly] private bool isAssigned = false;
 
+    private Gamepad assignedGamepad;
     private void Start()
     {
-        // Try to find health manager if not assigned
-        if (healthManager == null)
-        {
-            healthManager = FindFirstObjectByType<SubmarineHealthManager>();
-            if (healthManager == null)
-            {
-                Debug.LogError("[EngineerController] Could not find SubmarineHealthManager!");
-                enabled = false;
-                return;
-            }
-        }
+
 
         // Subscribe to engineer assignment
         PlayerRoleManager.OnEngineerAssigned += OnEngineerAssigned;
@@ -77,6 +72,9 @@ public class EngineerController : MonoBehaviour
         {
             DebugLog("Waiting for engineer to connect...");
         }
+
+        SubmarineHealthManager.Instance.OnSubmarineTakenDamage += RumblePulse;
+
     }
 
     private void OnEngineerAssigned(EngineerInputHandler handler)
@@ -95,6 +93,9 @@ public class EngineerController : MonoBehaviour
         inputHandler.OnRepairButtonPressed += HandleRepairButtonPressed;
 
         DebugLog($"Assigned to Engineer (Player {handler.PlayerIndex})");
+
+        // Get assigned gamepad for rumble
+        assignedGamepad = handler.GetAssignedGamepad();
     }
 
     private void Update()
@@ -137,7 +138,7 @@ public class EngineerController : MonoBehaviour
         // No input or very small input = Bottom region (default)
         if (input.magnitude < 0.1f)
         {
-            return healthManager.GetRegionByName("Bottom");
+            return SubmarineHealthManager.Instance.GetRegionByName("Bottom");
         }
 
         // Check which direction has the strongest input
@@ -150,12 +151,12 @@ public class EngineerController : MonoBehaviour
             if (input.y > 0)
             {
                 // Forward = Front region
-                return healthManager.GetRegionByName("Front");
+                return SubmarineHealthManager.Instance.GetRegionByName("Front");
             }
             else
             {
                 // Backward = Back region
-                return healthManager.GetRegionByName("Back");
+                return SubmarineHealthManager.Instance.GetRegionByName("Back");
             }
         }
         // Horizontal input is stronger
@@ -164,17 +165,17 @@ public class EngineerController : MonoBehaviour
             if (input.x > 0)
             {
                 // Right = Right region
-                return healthManager.GetRegionByName("Right");
+                return SubmarineHealthManager.Instance.GetRegionByName("Right");
             }
             else
             {
                 // Left = Left region
-                return healthManager.GetRegionByName("Left");
+                return SubmarineHealthManager.Instance.GetRegionByName("Left");
             }
         }
 
         // If input doesn't meet threshold in any direction, default to bottom
-        return healthManager.GetRegionByName("Bottom");
+        return SubmarineHealthManager.Instance.GetRegionByName("Bottom");
     }
 
     /// <summary>
@@ -346,7 +347,32 @@ public class EngineerController : MonoBehaviour
         DebugLog($"Repaired {currentSelectedRegion.RegionName} by {actualRepair:F1} " +
                  $"({currentSelectedRegion.CurrentHealth:F0}/{currentSelectedRegion.MaxHealth:F0})");
 
+
+        // Rumble gamepad
+        RumblePulse(lowFrequency, highFrequency, rumbleDuration);
+
         // The crack visuals will automatically update via SubmarineHealthRegion's UpdateCrackVisuals()
+    }
+
+    public void RumblePulse(float lowFrequency, float highFrequency, float duration)
+    {
+        if (assignedGamepad != null)
+        {
+            //start rumble 
+            assignedGamepad.SetMotorSpeeds(lowFrequency, highFrequency);
+
+            //stop rumble after duration
+            StartCoroutine(StopRumbleAfterDuration(duration));
+        }
+    }
+
+    private IEnumerator StopRumbleAfterDuration(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        if (assignedGamepad != null)
+        {
+            assignedGamepad.SetMotorSpeeds(0f, 0f);
+        }
     }
 
     #endregion
@@ -409,9 +435,9 @@ public class EngineerController : MonoBehaviour
     [Button("Select Front Region"), PropertyOrder(101)]
     private void TestSelectFront()
     {
-        if (healthManager != null)
+        if (SubmarineHealthManager.Instance != null)
         {
-            SelectRegion(healthManager.GetRegionByName("Front"));
+            SelectRegion(SubmarineHealthManager.Instance.GetRegionByName("Front"));
             isInSelectMode = true;
         }
     }

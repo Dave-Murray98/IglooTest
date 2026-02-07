@@ -137,6 +137,25 @@ public class PilotInputHandler : MonoBehaviour
         DebugLog($"Input handler set to {(active ? "active" : "inactive")}");
     }
 
+    public Gamepad GetAssignedGamepad()
+    {
+        // Get the actual device this PlayerInput is using
+        if (playerInput != null && playerInput.devices.Count > 0)
+        {
+            // Check each device to find a gamepad
+            foreach (var device in playerInput.devices)
+            {
+                if (device is Gamepad gamepad)
+                {
+                    return gamepad;
+                }
+            }
+        }
+
+        // No gamepad found for this player
+        return null;
+    }
+
     private void OnDestroy()
     {
         // Unsubscribe from events

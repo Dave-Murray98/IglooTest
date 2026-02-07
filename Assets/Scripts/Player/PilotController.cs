@@ -1,8 +1,10 @@
 using System;
+using System.Collections;
 using NWH.Common.CoM;
 using NWH.DWP2.ShipController;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 /// <summary>
 /// Controls the submarine based on pilot input.
@@ -25,6 +27,13 @@ public class PilotController : MonoBehaviour
     [SerializeField] private float maxSteeringInput = 1f;
     [SerializeField] private float maxBrake = 1f;
 
+
+    [Header("Rumble Settings")]
+    [SerializeField] private float lowFrequency = 0.4f;
+    [SerializeField] private float highFrequency = 0.4f;
+    [SerializeField] private float rumbleDuration = 0.1f;
+
+
     [Header("Debug")]
     [SerializeField] private bool enableDebugLogs = false;
 
@@ -38,6 +47,9 @@ public class PilotController : MonoBehaviour
 
     [ShowInInspector, ReadOnly] private bool currentSurfaceInput;
     [ShowInInspector, ReadOnly] private bool currentDiveInput;
+
+    private Gamepad assignedGamepad;
+
 
     private void Start()
     {
@@ -59,12 +71,18 @@ public class PilotController : MonoBehaviour
         {
             DebugLog("Waiting for pilot to connect...");
         }
+
+        SubmarineHealthManager.Instance.OnSubmarineTakenDamage += RumblePulse;
     }
 
     private void OnPilotAssigned(PilotInputHandler handler)
     {
         inputHandler = handler;
         DebugLog($"Pilot assigned (Player {handler.PlayerIndex})");
+
+
+        // Get assigned gamepad for rumble
+        assignedGamepad = handler.GetAssignedGamepad();
     }
 
     private void InitializeVehicleControllers()
@@ -151,6 +169,28 @@ public class PilotController : MonoBehaviour
         if (ballastController != null)
         {
             ballastController.SetBuoyancyState(desiredState);
+        }
+    }
+
+
+    public void RumblePulse(float lowFrequency, float highFrequency, float duration)
+    {
+        if (assignedGamepad != null)
+        {
+            //start rumble 
+            assignedGamepad.SetMotorSpeeds(lowFrequency, highFrequency);
+
+            //stop rumble after duration
+            StartCoroutine(StopRumbleAfterDuration(duration));
+        }
+    }
+
+    private IEnumerator StopRumbleAfterDuration(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        if (assignedGamepad != null)
+        {
+            assignedGamepad.SetMotorSpeeds(0f, 0f);
         }
     }
 

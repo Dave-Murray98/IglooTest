@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using UnityEngine.InputSystem.XR.Haptics;
 
 
 /// <summary>
@@ -12,6 +13,8 @@ using Sirenix.OdinInspector;
 /// </summary>
 public class SubmarineHealthManager : MonoBehaviour
 {
+    public static SubmarineHealthManager Instance { get; private set; }
+
     [Header("Health Regions")]
     [Tooltip("Reference to the Front region health component")]
     [SerializeField] private SubmarineHealthRegion frontRegion;
@@ -32,12 +35,20 @@ public class SubmarineHealthManager : MonoBehaviour
     [Tooltip("Should the submarine be destroyed when all regions are destroyed?")]
     [SerializeField] private bool destroySubmarineWhenAllRegionsDestroyed = true;
 
+
+    [Header("On Take Damage Rumble Settings")]
+    [SerializeField] private float lowFrequency = 1f;
+    [SerializeField] private float highFrequency = 1f;
+    [SerializeField] private float rumbleDuration = 0.3f;
+
+
     [Header("Debug")]
     [SerializeField] private bool enableDebugLogs = true;
     [SerializeField] private bool showDebugGizmos = true;
 
     // Events for other systems to listen to
     public event Action<SubmarineHealthRegion, float> OnAnyRegionDamaged;
+    public event Action<float, float, float> OnSubmarineTakenDamage; // (rumbleLow, rumbleHigh, rumbleDuration)
     public event Action<SubmarineHealthRegion> OnAnyRegionDestroyed;
     public event Action OnSubmarineDestroyed;
 
@@ -62,6 +73,15 @@ public class SubmarineHealthManager : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance != null)
+        {
+            Debug.LogError("Multiple instances of SubmarineHealthManager detected! There should only be one SubmarineHealthManager in the scene.");
+            Destroy(this);
+            return;
+        }
+
+        Instance = this;
+
         // Gather all regions into a list for easy iteration
         allRegions = new List<SubmarineHealthRegion>
         {
@@ -228,6 +248,7 @@ public class SubmarineHealthManager : MonoBehaviour
 
         // Notify listeners
         OnAnyRegionDamaged?.Invoke(region, damageAmount);
+        OnSubmarineTakenDamage?.Invoke(lowFrequency, highFrequency, rumbleDuration);
     }
 
     /// <summary>

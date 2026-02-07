@@ -116,6 +116,8 @@ public class TurretController : MonoBehaviour
                 DebugLog($"Waiting for Gunner {assignedGunnerNumber + 1} to connect...");
             }
         }
+
+        SubmarineHealthManager.Instance.OnSubmarineTakenDamage += RumblePulse;
     }
 
     private void OnGunnerAssigned(GunnerInputHandler handler, int gunnerNumber)

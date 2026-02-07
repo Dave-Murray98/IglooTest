@@ -6938,18 +6938,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerSubmarine
       objectReference: {fileID: 0}
-    - target: {fileID: 5037309244168899538, guid: a7ad26c4755273c4cb548890d32c8ea1, type: 3}
-      propertyPath: flashSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5037309244168899538, guid: a7ad26c4755273c4cb548890d32c8ea1, type: 3}
-      propertyPath: maxOutlineWidth
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5037309244168899538, guid: a7ad26c4755273c4cb548890d32c8ea1, type: 3}
-      propertyPath: repairAmountPerPress
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 7337299441925571645, guid: a7ad26c4755273c4cb548890d32c8ea1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -32.54

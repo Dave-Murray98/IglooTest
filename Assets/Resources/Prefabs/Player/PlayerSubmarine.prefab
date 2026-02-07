@@ -1168,10 +1168,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthManager: {fileID: 2564051555669736998}
-  repairAmountPerPress: 1
+  repairAmountPerPress: 0.5
   repairCooldown: 0.1
-  maxOutlineWidth: 5
-  flashSpeed: 2
+  maxOutlineWidth: 10
+  flashSpeed: 10
   directionThreshold: 0.6
   enableDebugLogs: 0
   showDebugGizmos: 1
@@ -1455,7 +1455,7 @@ MonoBehaviour:
   combinedInertiaTensor: {x: 0, y: 0, z: 0}
   combinedMass: 5150
   dimensions: {x: 1.8044281, y: 6.8196955, z: 63.756035}
-  inertiaTensor: {x: 18650.168, y: 15594.856, z: 6413.999}
+  inertiaTensor: {x: 18650.168, y: 15594.8545, z: 6413.9995}
   useDefaultCenterOfMass: 0
   useDefaultInertia: 1
   useDefaultMass: 0

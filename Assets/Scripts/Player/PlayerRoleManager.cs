@@ -5,8 +5,9 @@ using UnityEngine.InputSystem;
 
 /// <summary>
 /// Manages player roles and controller assignments for local multiplayer.
-/// Handles spawning PlayerInput components and assigning them to Pilot or Gunner roles.
+/// Handles spawning PlayerInput components and assigning them to Pilot, Engineer, or Gunner roles.
 /// PlayerInputManager uses Evoke Unity Events to send messages to this script.
+/// UPDATED: Now assigns Engineer as 2nd player (for testing purposes)
 /// </summary>
 public class PlayerRoleManager : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class PlayerRoleManager : MonoBehaviour
     [Header("Configuration")]
     [SerializeField] private int maxGunners = 4;
     [SerializeField] private GameObject pilotInputPrefab;
+    [SerializeField] private GameObject engineerInputPrefab;
     [SerializeField] private GameObject gunnerInputPrefab;
 
     [Header("References")]
@@ -25,18 +27,21 @@ public class PlayerRoleManager : MonoBehaviour
 
     // Role tracking
     private PilotInputHandler pilotHandler;
+    private EngineerInputHandler engineerHandler;
     private List<GunnerInputHandler> gunnerHandlers = new List<GunnerInputHandler>();
 
     // Events
     public static event Action<PilotInputHandler> OnPilotAssigned;
+    public static event Action<EngineerInputHandler> OnEngineerAssigned;
     public static event Action<GunnerInputHandler, int> OnGunnerAssigned; // handler, gunner number
     public static event Action<int> OnPlayerJoinedEvent; // player index - renamed to avoid conflict
     public static event Action<int> OnPlayerLeftEvent; // player index - renamed to avoid conflict
 
     // State
     public bool HasPilot => pilotHandler != null;
+    public bool HasEngineer => engineerHandler != null;
     public int ConnectedGunnersCount => gunnerHandlers.Count;
-    public int TotalPlayersConnected => (HasPilot ? 1 : 0) + ConnectedGunnersCount;
+    public int TotalPlayersConnected => (HasPilot ? 1 : 0) + (HasEngineer ? 1 : 0) + ConnectedGunnersCount;
 
     private void Awake()
     {
@@ -120,22 +125,28 @@ public class PlayerRoleManager : MonoBehaviour
 
     /// <summary>
     /// Called when a new player joins via PlayerInputManager
+    /// UPDATED: Priority order for testing - Pilot -> Engineer -> Gunners
     /// </summary>
     private void OnPlayerInputJoined(PlayerInput playerInput)
     {
         DebugLog($"=== OnPlayerInputJoined CALLED ===");
         DebugLog($"Player {playerInput.playerIndex} joined with device: {playerInput.currentControlScheme}");
-        DebugLog($"Current state - HasPilot: {HasPilot}, Gunners: {gunnerHandlers.Count}/{maxGunners}");
+        DebugLog($"Current state - HasPilot: {HasPilot}, HasEngineer: {HasEngineer}, Gunners: {gunnerHandlers.Count}/{maxGunners}");
 
-        // Assign role based on what's available
+        // Assign role based on what's available (TESTING PRIORITY: Pilot -> Engineer -> Gunners)
         if (!HasPilot)
         {
             DebugLog("No pilot exists, assigning this player as pilot...");
             AssignAsPilot(playerInput);
         }
+        else if (!HasEngineer)
+        {
+            DebugLog("Pilot exists but no engineer, assigning this player as engineer...");
+            AssignAsEngineer(playerInput);
+        }
         else if (gunnerHandlers.Count < maxGunners)
         {
-            DebugLog($"Pilot exists, assigning this player as gunner {gunnerHandlers.Count + 1}...");
+            DebugLog($"Pilot and engineer exist, assigning this player as gunner {gunnerHandlers.Count + 1}...");
             AssignAsGunner(playerInput);
         }
         else
@@ -160,6 +171,14 @@ public class PlayerRoleManager : MonoBehaviour
         {
             DebugLog("Pilot disconnected!");
             pilotHandler = null;
+            // Could reassign roles here or pause game
+        }
+
+        // Check if it was the engineer
+        if (engineerHandler != null && engineerHandler.PlayerIndex == playerInput.playerIndex)
+        {
+            DebugLog("Engineer disconnected!");
+            engineerHandler = null;
             // Could reassign roles here or pause game
         }
 
@@ -199,6 +218,27 @@ public class PlayerRoleManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Assigns a PlayerInput as the engineer
+    /// </summary>
+    private void AssignAsEngineer(PlayerInput playerInput)
+    {
+        // Add or get EngineerInputHandler component
+        var handler = playerInput.gameObject.GetComponent<EngineerInputHandler>();
+        if (handler == null)
+        {
+            handler = playerInput.gameObject.AddComponent<EngineerInputHandler>();
+        }
+
+        engineerHandler = handler;
+
+        // Switch to Engineer action map
+        playerInput.SwitchCurrentActionMap("Engineer");
+
+        DebugLog($"Player {playerInput.playerIndex} assigned as ENGINEER");
+        OnEngineerAssigned?.Invoke(handler);
+    }
+
+    /// <summary>
     /// Assigns a PlayerInput as a gunner
     /// </summary>
     private void AssignAsGunner(PlayerInput playerInput)
@@ -227,6 +267,14 @@ public class PlayerRoleManager : MonoBehaviour
     public PilotInputHandler GetPilotHandler()
     {
         return pilotHandler;
+    }
+
+    /// <summary>
+    /// Gets the engineer input handler
+    /// </summary>
+    public EngineerInputHandler GetEngineerHandler()
+    {
+        return engineerHandler;
     }
 
     /// <summary>

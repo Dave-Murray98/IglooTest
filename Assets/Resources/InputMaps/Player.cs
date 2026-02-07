@@ -304,6 +304,162 @@ public partial class @Player: IInputActionCollection2, IDisposable
             ]
         },
         {
+            ""name"": ""Engineer"",
+            ""id"": ""7b81bd7c-63e4-4de2-99f8-7bd4e24cf662"",
+            ""actions"": [
+                {
+                    ""name"": ""SelectMode"",
+                    ""type"": ""Button"",
+                    ""id"": ""c6e1d088-d8ce-48f2-91cc-eea3e4728d74"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RegionSelection"",
+                    ""type"": ""Value"",
+                    ""id"": ""dd999c24-facd-41f4-86b9-8f83b584a131"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Repair"",
+                    ""type"": ""Button"",
+                    ""id"": ""0d0f0c74-f076-41a2-a320-771aa38deb6d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""4bbd6784-6cae-4b2f-9d2f-c1d69a2c8530"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectMode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1c6dd299-20d1-424d-880e-2c1042bd9d59"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectMode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d06dc21a-fe38-4137-bfa8-24ad0be7306c"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RegionSelection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""52385b6e-9026-419f-bdc9-c4ec73318812"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RegionSelection"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""f359dd39-eb77-484f-a004-3b74abca86a1"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RegionSelection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""6fbe9032-4a97-4107-a647-bd2c7927a1e4"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RegionSelection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""06095eb8-3573-45f8-bfb2-4119d06a8dcb"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RegionSelection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""4aa84a3c-17b9-463a-94a2-2788a6fa85c7"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RegionSelection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1a37f2da-f15f-4789-ab65-87fdc9632297"",
+                    ""path"": ""<Gamepad>/dpad"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RegionSelection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""65a6af28-92c8-4cf3-ae6c-b61ede0ddc6c"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Repair"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5b044d2a-bd59-481d-bdb1-f7d6fb84bb7c"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Repair"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
             ""name"": ""UI"",
             ""id"": ""697f3c70-0268-47e5-84fc-1ab1f52c446c"",
             ""actions"": [
@@ -382,6 +538,11 @@ public partial class @Player: IInputActionCollection2, IDisposable
         m_Gunner = asset.FindActionMap("Gunner", throwIfNotFound: true);
         m_Gunner_Look = m_Gunner.FindAction("Look", throwIfNotFound: true);
         m_Gunner_Shoot = m_Gunner.FindAction("Shoot", throwIfNotFound: true);
+        // Engineer
+        m_Engineer = asset.FindActionMap("Engineer", throwIfNotFound: true);
+        m_Engineer_SelectMode = m_Engineer.FindAction("SelectMode", throwIfNotFound: true);
+        m_Engineer_RegionSelection = m_Engineer.FindAction("RegionSelection", throwIfNotFound: true);
+        m_Engineer_Repair = m_Engineer.FindAction("Repair", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
@@ -391,6 +552,7 @@ public partial class @Player: IInputActionCollection2, IDisposable
     {
         UnityEngine.Debug.Assert(!m_Pilot.enabled, "This will cause a leak and performance issues, Player.Pilot.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Gunner.enabled, "This will cause a leak and performance issues, Player.Gunner.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Engineer.enabled, "This will cause a leak and performance issues, Player.Engineer.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, Player.UI.Disable() has not been called.");
     }
 
@@ -689,6 +851,124 @@ public partial class @Player: IInputActionCollection2, IDisposable
     /// </summary>
     public GunnerActions @Gunner => new GunnerActions(this);
 
+    // Engineer
+    private readonly InputActionMap m_Engineer;
+    private List<IEngineerActions> m_EngineerActionsCallbackInterfaces = new List<IEngineerActions>();
+    private readonly InputAction m_Engineer_SelectMode;
+    private readonly InputAction m_Engineer_RegionSelection;
+    private readonly InputAction m_Engineer_Repair;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "Engineer".
+    /// </summary>
+    public struct EngineerActions
+    {
+        private @Player m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public EngineerActions(@Player wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "Engineer/SelectMode".
+        /// </summary>
+        public InputAction @SelectMode => m_Wrapper.m_Engineer_SelectMode;
+        /// <summary>
+        /// Provides access to the underlying input action "Engineer/RegionSelection".
+        /// </summary>
+        public InputAction @RegionSelection => m_Wrapper.m_Engineer_RegionSelection;
+        /// <summary>
+        /// Provides access to the underlying input action "Engineer/Repair".
+        /// </summary>
+        public InputAction @Repair => m_Wrapper.m_Engineer_Repair;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_Engineer; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="EngineerActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(EngineerActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="EngineerActions" />
+        public void AddCallbacks(IEngineerActions instance)
+        {
+            if (instance == null || m_Wrapper.m_EngineerActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_EngineerActionsCallbackInterfaces.Add(instance);
+            @SelectMode.started += instance.OnSelectMode;
+            @SelectMode.performed += instance.OnSelectMode;
+            @SelectMode.canceled += instance.OnSelectMode;
+            @RegionSelection.started += instance.OnRegionSelection;
+            @RegionSelection.performed += instance.OnRegionSelection;
+            @RegionSelection.canceled += instance.OnRegionSelection;
+            @Repair.started += instance.OnRepair;
+            @Repair.performed += instance.OnRepair;
+            @Repair.canceled += instance.OnRepair;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="EngineerActions" />
+        private void UnregisterCallbacks(IEngineerActions instance)
+        {
+            @SelectMode.started -= instance.OnSelectMode;
+            @SelectMode.performed -= instance.OnSelectMode;
+            @SelectMode.canceled -= instance.OnSelectMode;
+            @RegionSelection.started -= instance.OnRegionSelection;
+            @RegionSelection.performed -= instance.OnRegionSelection;
+            @RegionSelection.canceled -= instance.OnRegionSelection;
+            @Repair.started -= instance.OnRepair;
+            @Repair.performed -= instance.OnRepair;
+            @Repair.canceled -= instance.OnRepair;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="EngineerActions.UnregisterCallbacks(IEngineerActions)" />.
+        /// </summary>
+        /// <seealso cref="EngineerActions.UnregisterCallbacks(IEngineerActions)" />
+        public void RemoveCallbacks(IEngineerActions instance)
+        {
+            if (m_Wrapper.m_EngineerActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="EngineerActions.AddCallbacks(IEngineerActions)" />
+        /// <seealso cref="EngineerActions.RemoveCallbacks(IEngineerActions)" />
+        /// <seealso cref="EngineerActions.UnregisterCallbacks(IEngineerActions)" />
+        public void SetCallbacks(IEngineerActions instance)
+        {
+            foreach (var item in m_Wrapper.m_EngineerActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_EngineerActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="EngineerActions" /> instance referencing this action map.
+    /// </summary>
+    public EngineerActions @Engineer => new EngineerActions(this);
+
     // UI
     private readonly InputActionMap m_UI;
     private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
@@ -860,6 +1140,35 @@ public partial class @Player: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnShoot(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Engineer" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="EngineerActions.AddCallbacks(IEngineerActions)" />
+    /// <seealso cref="EngineerActions.RemoveCallbacks(IEngineerActions)" />
+    public interface IEngineerActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "SelectMode" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSelectMode(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "RegionSelection" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnRegionSelection(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Repair" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnRepair(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

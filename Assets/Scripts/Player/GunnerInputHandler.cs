@@ -140,10 +140,20 @@ public class GunnerInputHandler : MonoBehaviour
 
     public Gamepad GetAssignedGamepad()
     {
-        if (PlayerIndex >= 0 && PlayerIndex < Gamepad.all.Count)
+        // Get the actual device this PlayerInput is using
+        if (playerInput != null && playerInput.devices.Count > 0)
         {
-            return Gamepad.all[PlayerIndex];
+            // Check each device to find a gamepad
+            foreach (var device in playerInput.devices)
+            {
+                if (device is Gamepad gamepad)
+                {
+                    return gamepad;
+                }
+            }
         }
+
+        // No gamepad found for this player
         return null;
     }
 }

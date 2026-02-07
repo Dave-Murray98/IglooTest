@@ -34,6 +34,9 @@ public class SubmarineHealthRegion : MonoBehaviour
     [Tooltip("Should crack visuals update automatically when health changes?")]
     [SerializeField] private bool autoUpdateCrackVisuals = true;
 
+    [Header("Repair")]
+    public Outline repairOutline; // Outline to show when this region is selected for repair
+
     // Events that other systems can listen to
     public event Action<SubmarineHealthRegion, float> OnDamageTaken;  // Fires when damage is taken
     public event Action<SubmarineHealthRegion> OnRegionDestroyed;     // Fires when health reaches zero
@@ -65,6 +68,13 @@ public class SubmarineHealthRegion : MonoBehaviour
                 DebugLog($"Auto-found CrackVisualController in children");
             }
         }
+
+        if (repairOutline == null)
+        {
+            repairOutline = GetComponentInChildren<Outline>();
+        }
+
+        repairOutline.OutlineWidth = 0f; // Start with no outline
 
         // Initialize crack visuals to show full health (no cracks)
         UpdateCrackVisuals();

@@ -2288,7 +2288,7 @@ MonoBehaviour:
   damage: 20
   attackKnockBackForce: 400
   attackChargeForce: 10000
-  attackDuration: 1.2
+  attackDuration: 0.7
   decelerationTime: 0.8
   preparationPause: 0.3
   attackRotationSpeed: 0.4

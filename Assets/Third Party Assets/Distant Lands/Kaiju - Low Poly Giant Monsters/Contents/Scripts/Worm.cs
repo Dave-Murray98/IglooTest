@@ -30,7 +30,7 @@ namespace DistantLands
 
         [Tooltip("Which axis is the world up")]
         public Vector3 up;
-        public Transform orientingTransform;
+
 
 
         Vector3 oldTravelVector;
@@ -96,8 +96,7 @@ namespace DistantLands
 
             Vector3 travelVector = segments[0].transform.position - oldTravelVector;
 
-            if (orientingTransform)
-                up = orientingTransform.up;
+
 
 
 

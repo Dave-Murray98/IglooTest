@@ -347,7 +347,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.5, y: 1.5, z: 3}
+  m_Size: {x: 2, y: 2, z: 3}
   m_Center: {x: 0, y: 0, z: 0.7}
 --- !u!1 &604147497183900160
 GameObject:
@@ -1455,9 +1455,9 @@ MonoBehaviour:
   playerInAttackRange: 0
   isAttacking: 0
   hurtBox: {fileID: 7328629486238247452}
-  damage: 10
+  damage: 50
   attackKnockBackForce: 400
-  attackChargeForce: 200
+  attackChargeForce: 20000
   attackDuration: 1.2
   decelerationTime: 3
   preparationPause: 0.5
@@ -2549,8 +2549,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 766565788956602809}
-  - component: {fileID: 529814066282504631}
-  - component: {fileID: 65530181227025031}
+  - component: {fileID: 1306586033050027983}
   - component: {fileID: 1417806662043324414}
   - component: {fileID: 8436039058598067804}
   - component: {fileID: 2028050570171748602}
@@ -2585,59 +2584,28 @@ Transform:
   - {fileID: 3986882682863359371}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!33 &529814066282504631
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4911484083289185446}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &65530181227025031
-MeshRenderer:
+--- !u!95 &1306586033050027983
+Animator:
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4911484083289185446}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: f8ce3b3f786c145e397f3c275f706895, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: 2b6ec9f69b856df488b02805459e2474, type: 3}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!136 &1417806662043324414
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2692,8 +2660,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nPC: {fileID: 8436039058598067804}
-  maxHealth: 100
-  currentHealth: 100
+  maxHealth: 200
+  currentHealth: 200
   isDead: 0
   enableDebugLogs: 0
 --- !u!114 &9136250957131585101
@@ -2805,7 +2773,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4911484083289185446}
   serializedVersion: 4
-  m_Mass: 10
+  m_Mass: 1000
   m_Drag: 5
   m_AngularDrag: 2
   m_CenterOfMass: {x: 0, y: 0, z: 0}

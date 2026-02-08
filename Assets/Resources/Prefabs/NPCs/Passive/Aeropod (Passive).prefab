@@ -2065,7 +2065,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2755906186143317481}
   serializedVersion: 4
-  m_Mass: 10
+  m_Mass: 1000
   m_Drag: 5
   m_AngularDrag: 2
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -4384,7 +4384,7 @@ SkinnedMeshRenderer:
   m_RootBone: {fileID: 7888108293779453041}
   m_AABB:
     m_Center: {x: 0, y: -0.047188938, z: 5.4319353}
-    m_Extent: {x: 6.3910694, y: 0.56504136, z: 14.667653}
+    m_Extent: {x: 10, y: 5, z: 14.667653}
   m_DirtyAABB: 0
 --- !u!114 &2103573107004305480
 MonoBehaviour:
@@ -4874,7 +4874,7 @@ MonoBehaviour:
   UseMaxDistance: 1
   DistanceFrom: {fileID: 0}
   _distanceFrom_Auto: {fileID: 0}
-  MaximumDistance: 35
+  MaximumDistance: 40
   MaxOutDistanceFactor: 0
   DistanceWithoutY: 0
   DistanceMeasurePoint: {x: 0, y: 0, z: 0}
@@ -4907,7 +4907,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   DeflectOnlyCollisions: 1
-  _Editor_Category: 0
+  _Editor_Category: 2
   _Editor_FeaturesCategory: 0
   DrawGizmos: 1
   StartBone: {fileID: 8927283961926806673}

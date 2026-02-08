@@ -356,8 +356,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   depth: {x: 0, y: 0, z: 1}
-  offset: {x: 0, y: 0, z: 0}
-  width: {x: 5, y: 5, z: 7.5}
+  offset: 0
+  width: 10
 --- !u!1 &951429914973115917
 GameObject:
   m_ObjectHideFlags: 0
@@ -404,8 +404,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   depth: {x: 0, y: 10, z: 1}
-  offset: {x: 0, y: 0, z: 0}
-  width: {x: 5, y: 22.5, z: 7.5}
+  offset: 0
+  width: 10
 --- !u!1 &1336119647872713447
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,7 +416,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7318603742947240547}
   - component: {fileID: 6536305435763144226}
-  - component: {fileID: 6401036131040329977}
+  - component: {fileID: 1803805575757887762}
   m_Layer: 24
   m_Name: HitBox
   m_TagString: Untagged
@@ -453,8 +453,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npcHealth: {fileID: 5350342525145686384}
   enableDebugLogs: 0
---- !u!65 &6401036131040329977
-BoxCollider:
+--- !u!136 &1803805575757887762
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -471,9 +471,11 @@ BoxCollider:
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 2
+  m_Radius: 0.75
+  m_Height: 3.7
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: -0.43}
 --- !u!1 &1444354062314045647
 GameObject:
   m_ObjectHideFlags: 0
@@ -520,8 +522,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   depth: {x: 0, y: 0, z: -1}
-  offset: {x: 0, y: 0, z: 0}
-  width: {x: 5, y: 5, z: 7.5}
+  offset: 0
+  width: 10
 --- !u!1 &2010828832263358182
 GameObject:
   m_ObjectHideFlags: 0
@@ -567,8 +569,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   depth: {x: 0, y: 30, z: 15}
-  offset: {x: 0, y: 0, z: 0}
-  width: {x: 10, y: 30, z: 30}
+  offset: 0
+  width: 10
 --- !u!1 &2130258598286722296
 GameObject:
   m_ObjectHideFlags: 0
@@ -615,8 +617,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   depth: {x: 0, y: 0, z: 15}
-  offset: {x: 0, y: 0, z: 0}
-  width: {x: 10, y: 10, z: 30}
+  offset: 0
+  width: 10
 --- !u!1 &2371830597619995562
 GameObject:
   m_ObjectHideFlags: 0
@@ -701,10 +703,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.75
+  m_Height: 3.7
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: -0.43}
 --- !u!114 &2915257248585243715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1221,8 +1223,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   depth: {x: 0, y: 0, z: -1}
-  offset: {x: 0, y: 0, z: 0}
-  width: {x: 5, y: 5, z: 7.5}
+  offset: 0
+  width: 10
 --- !u!1 &8450636385097762037
 GameObject:
   m_ObjectHideFlags: 0
@@ -1268,8 +1270,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   depth: {x: 0, y: 0, z: 1}
-  offset: {x: 0, y: 0, z: 0}
-  width: {x: 5, y: 5, z: 7.5}
+  offset: 0
+  width: 10
 --- !u!1 &8928293498014859188
 GameObject:
   m_ObjectHideFlags: 0
@@ -1316,8 +1318,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   depth: {x: 0, y: -10, z: -1}
-  offset: {x: 0, y: 0, z: 0}
-  width: {x: 5, y: 22.5, z: 7.5}
+  offset: 0
+  width: 10
 --- !u!1 &9180484784649195278
 GameObject:
   m_ObjectHideFlags: 0

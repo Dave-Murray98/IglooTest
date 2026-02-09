@@ -145,7 +145,7 @@ Transform:
   m_GameObject: {fileID: 70930810}
   serializedVersion: 2
   m_LocalRotation: {x: 0.0000000037252899, y: -0, z: -0.0000000074505797, w: 1}
-  m_LocalPosition: {x: -10.58649, y: 2.4601169, z: -12.140253}
+  m_LocalPosition: {x: -20.424946, y: 4.7445827, z: 22.858633}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -783,7 +783,7 @@ MonoBehaviour:
   _debug:
     _drawBounds: 0
     _drawSlicesInEditor: 0
-  _waveBuffers: {fileID: 1197941006}
+  _waveBuffers: {fileID: 1007709312}
 --- !u!1 &207055349
 GameObject:
   m_ObjectHideFlags: 0
@@ -10604,7 +10604,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 20, y: 20, z: 20}
+  m_LocalScale: {x: 9.807889, y: 9.807889, z: 9.807889}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 385304240}
@@ -39728,7 +39728,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2941839105698722431, guid: a7ad26c4755273c4cb548890d32c8ea1, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -40267,6 +40268,43 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!84 &1007709312
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: GerstnerCascades
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 6
+  m_Width: 64
+  m_Height: 64
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthStencilFormat: 0
+  m_ColorFormat: 48
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_UseDynamicScaleExplicit: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_EnableRandomWrite: 1
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 0
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 5
+  m_VolumeDepth: 16
+  m_ShadowSamplingMode: 2
 --- !u!1 &1009654079
 GameObject:
   m_ObjectHideFlags: 0
@@ -43934,43 +43972,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6599353012912783429, guid: 9b63aac133e3e9342bf9bcc7b1a4b0e5, type: 3}
   m_PrefabInstance: {fileID: 1197041943}
   m_PrefabAsset: {fileID: 0}
---- !u!84 &1197941006
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: GerstnerCascades
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 6
-  m_Width: 64
-  m_Height: 64
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthStencilFormat: 0
-  m_ColorFormat: 48
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_UseDynamicScaleExplicit: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_EnableRandomWrite: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 0
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 5
-  m_VolumeDepth: 16
-  m_ShadowSamplingMode: 2
 --- !u!1001 &1212684588
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -58455,15 +58456,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3386963606743846133, guid: 1667ba03691646442aec2a427e7b54fa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -20.9
+      value: -32.5
       objectReference: {fileID: 0}
     - target: {fileID: 3386963606743846133, guid: 1667ba03691646442aec2a427e7b54fa, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.27
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 3386963606743846133, guid: 1667ba03691646442aec2a427e7b54fa, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.68
+      value: 11.65
       objectReference: {fileID: 0}
     - target: {fileID: 3386963606743846133, guid: 1667ba03691646442aec2a427e7b54fa, type: 3}
       propertyPath: m_LocalRotation.w

@@ -721,6 +721,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: 0c5a5a43a5f90e749ac31d31c7e15f6c, type: 2}
   movementScript: {fileID: 7319593979586023236}
+  animationHandler: {fileID: 0}
   rb: {fileID: 3764205289313827450}
   stateMachine: {fileID: 5060616166936948737}
   health: {fileID: 5350342525145686384}
@@ -898,6 +899,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7564132263234079020}
+  - component: {fileID: 8255955633080912988}
   m_Layer: 0
   m_Name: Jaw
   m_TagString: Untagged
@@ -920,6 +922,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3031597755865682877}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8255955633080912988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3406211144029624211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e375841a09e9fab4187adedb7251464e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  depth: {x: 10, y: 0, z: 0}
+  offset: 0
+  width: 10
 --- !u!1 &3655669509144497614
 GameObject:
   m_ObjectHideFlags: 0

@@ -271,8 +271,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   depth: {x: 0, y: 0, z: 15}
-  offset: {x: 0, y: 0, z: 0}
-  width: {x: 5, y: 5, z: 15}
+  offset: 0
+  width: 10
 --- !u!1 &1233457305017698546
 GameObject:
   m_ObjectHideFlags: 0
@@ -603,6 +603,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: 0c5a5a43a5f90e749ac31d31c7e15f6c, type: 2}
   movementScript: {fileID: 4859244073270288582}
+  animationHandler: {fileID: 0}
   rb: {fileID: 6279713985555281571}
   stateMachine: {fileID: 6312704758861496366}
   health: {fileID: 1950487334647399760}
@@ -949,6 +950,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1479604728063305152}
+  - component: {fileID: 68932970016972449}
   m_Layer: 0
   m_Name: Lower Jaw
   m_TagString: Untagged
@@ -968,10 +970,24 @@ Transform:
   m_LocalPosition: {x: 1.3448416e-16, y: -0.6056628, z: 0.5498215}
   m_LocalScale: {x: 1, y: 1.0000002, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 7016136693454403432}
+  m_Children: []
   m_Father: {fileID: 7340270424176346176}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &68932970016972449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3537722263195217208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e375841a09e9fab4187adedb7251464e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  depth: {x: 10, y: 0, z: 0}
+  offset: 0
+  width: 10
 --- !u!1 &4046818128480931403
 GameObject:
   m_ObjectHideFlags: 0
@@ -1003,37 +1019,6 @@ Transform:
   m_Children:
   - {fileID: 8584326111163991442}
   m_Father: {fileID: 6599353012912783429}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5026894434191801463
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7016136693454403432}
-  m_Layer: 0
-  m_Name: Lower Jaw_end
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7016136693454403432
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5026894434191801463}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 1.0910606, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1479604728063305152}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5177649642751588479
 GameObject:
@@ -1207,8 +1192,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   depth: {x: 0, y: 30, z: 15}
-  offset: {x: 0, y: 0, z: 0}
-  width: {x: 5, y: 7.5, z: 7.5}
+  offset: 0
+  width: 10
 --- !u!1 &7823197390196873884
 GameObject:
   m_ObjectHideFlags: 0

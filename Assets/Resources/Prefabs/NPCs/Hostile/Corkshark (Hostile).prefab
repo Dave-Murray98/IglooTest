@@ -2769,6 +2769,7 @@ GameObject:
   - component: {fileID: 2727966655678007870}
   - component: {fileID: 5005751369350491610}
   - component: {fileID: 3771035765818284034}
+  - component: {fileID: 9012786544141202963}
   - component: {fileID: 2097544444789909131}
   - component: {fileID: 3695756580983643428}
   - component: {fileID: 5459165461533823581}
@@ -2809,7 +2810,7 @@ Animator:
   m_GameObject: {fileID: 4148872792774122784}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 304233d0a1c8e834ea465072c702f6a2, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 437d6b043ea23d94983ffee2460d5888, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2858,10 +2859,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: a7ce53be4be85c144a29e8d667d1bcd1, type: 2}
   movementScript: {fileID: 3695756580983643428}
+  animationHandler: {fileID: 9012786544141202963}
   rb: {fileID: 3172758442780870105}
   stateMachine: {fileID: 5459165461533823581}
   health: {fileID: 2097544444789909131}
   attack: {fileID: 649493592602177279}
+--- !u!114 &9012786544141202963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4148872792774122784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ab9b09366ddda9418a9ee929af80d5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 2727966655678007870}
+  attackTriggerName: Attack
 --- !u!114 &2097544444789909131
 MonoBehaviour:
   m_ObjectHideFlags: 0

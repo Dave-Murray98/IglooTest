@@ -12,6 +12,7 @@ public class NPC : MonoBehaviour
     public NPCConfig config;
     [Header("NPC Components")]
     public NPCManagedUnderwaterMovement movementScript;
+    public NPCAnimationHandler animationHandler;
     public Rigidbody rb;
     public NPCStateMachine stateMachine;
     public NPCHealth health;
@@ -21,6 +22,9 @@ public class NPC : MonoBehaviour
     {
         if (movementScript == null)
             movementScript = GetComponent<NPCManagedUnderwaterMovement>();
+
+        if (animationHandler == null)
+            animationHandler = GetComponent<NPCAnimationHandler>();
 
         if (rb == null)
             rb = GetComponent<Rigidbody>();

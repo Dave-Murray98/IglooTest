@@ -176,10 +176,8 @@ public class NPCAttack : MonoBehaviour
 
         DebugLog($"Lunging towards player with force: {attackChargeForce}");
 
-        // if (animationHandler != null)
-        // {
-        //     animationHandler.PlayAttackAnimation();
-        // }
+        if (npc.animationHandler != null)
+            npc.animationHandler.PlayAttackAnimation();
 
         hurtBox.attackDirection = attackDirection;
         hurtBox.gameObject.SetActive(true);

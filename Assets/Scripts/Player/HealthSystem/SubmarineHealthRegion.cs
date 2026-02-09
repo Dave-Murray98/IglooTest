@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using System.Collections;
+using Unity.VisualScripting;
 
 /// <summary>
 /// Represents a single damageable region of the submarine (front, back, left, right, or bottom).
@@ -20,6 +22,7 @@ public class SubmarineHealthRegion : MonoBehaviour
     [Tooltip("Current health of this region")]
     [ShowInInspector, ReadOnly]
     private float currentHealth;
+    [SerializeField] private float lowHealthThreshold = 30f; // Health threshold to consider as "low"
 
     [Header("Visual Feedback")]
     [Tooltip("Optional: GameObject to activate when this region is destroyed (like sparks or cracks)")]
@@ -40,6 +43,14 @@ public class SubmarineHealthRegion : MonoBehaviour
     [Header("Particle Effects")]
     [Tooltip("Optional: Particle effect to play when this region is repaired")]
     [SerializeField] private ParticleSystem repairParticleEffect;
+    [SerializeField] private ParticleSystem lowHealthParticleEffect;
+    [SerializeField] private float lowHealthParticleEffectPlayChance = 0.6f; // Chance to play low health effect each second when health is low
+    [SerializeField] private float lowHealthEffectPlayInterval = 1f; // How often to try to play the low health effect when health is below the threshold
+
+    [Header("Warning Light")]
+    [Tooltip("Optional: Reference to the flashing warning light for this region")]
+    [SerializeField] private FlashingWarningLight warningLight; // Add this line
+
 
     // Events that other systems can listen to
     public event Action<SubmarineHealthRegion, float> OnDamageTaken;  // Fires when damage is taken
@@ -57,6 +68,9 @@ public class SubmarineHealthRegion : MonoBehaviour
 
     [SerializeField] private bool enableDebugLogs = false;
 
+    private bool lowHealthEffectCoroutineRunning = false;
+    private Coroutine lowHealthEffectCoroutine;
+
     private void Awake()
     {
         // Start with full health
@@ -73,12 +87,23 @@ public class SubmarineHealthRegion : MonoBehaviour
             }
         }
 
+        // Try to find warning light if not assigned
+        if (warningLight == null)
+        {
+            warningLight = GetComponentInChildren<FlashingWarningLight>();
+
+            if (warningLight != null)
+            {
+                DebugLog($"Auto-found FlashingWarningLight in children");
+            }
+        }
+
         if (repairOutline == null)
         {
             repairOutline = GetComponentInChildren<Outline>();
         }
 
-        repairOutline.OutlineWidth = 0f; // Start with no outline
+        repairOutline.OutlineWidth = 0f;
 
         // Initialize crack visuals to show full health (no cracks)
         UpdateCrackVisuals();
@@ -105,6 +130,22 @@ public class SubmarineHealthRegion : MonoBehaviour
         // Update crack visuals to reflect new health
         UpdateCrackVisuals();
 
+        if (currentHealth <= lowHealthThreshold)
+        {
+            // Try to play low health effect if the coroutine isn't already running
+            if (lowHealthEffectCoroutineRunning == false)
+            {
+                lowHealthEffectCoroutine = StartCoroutine(LowHealthEffectCoroutine());
+            }
+
+            // Start warning light if available
+            if (warningLight != null && !warningLight.IsFlashing) // We'll add this property
+            {
+                warningLight.StartFlashing();
+                DebugLog($"[{regionName}] Warning light started - low health!");
+            }
+        }
+
         // Notify listeners that damage was taken
         OnDamageTaken?.Invoke(this, damageAmount);
 
@@ -113,6 +154,7 @@ public class SubmarineHealthRegion : MonoBehaviour
         {
             HandleRegionDestroyed();
         }
+
     }
 
     /// <summary>
@@ -143,6 +185,31 @@ public class SubmarineHealthRegion : MonoBehaviour
             if (repairParticleEffect != null)
             {
                 repairParticleEffect.Play();
+            }
+
+            if (currentHealth > lowHealthThreshold)
+            {
+                lowHealthEffectCoroutineRunning = false;
+
+                // Stop the specific coroutine instance if it exists
+                if (lowHealthEffectCoroutine != null)
+                {
+                    StopCoroutine(lowHealthEffectCoroutine);
+                    lowHealthEffectCoroutine = null;
+                }
+
+                // Stop warning light if available
+                if (warningLight != null)
+                {
+                    warningLight.StopFlashing();
+                    DebugLog($"[{regionName}] Warning light stopped - health recovered!");
+                }
+
+                // If we were destroyed and now have health again, remove destroyed effects
+                if (previousHealth <= 0f && currentHealth > 0f)
+                {
+                    HandleRegionRepaired();
+                }
             }
 
             // If we were destroyed and now have health again, remove destroyed effects
@@ -237,6 +304,38 @@ public class SubmarineHealthRegion : MonoBehaviour
             activeDestroyedEffect = null;
         }
     }
+
+    #region Low Health Effect Coroutine
+
+    private IEnumerator LowHealthEffectCoroutine()
+    {
+        lowHealthEffectCoroutineRunning = true;
+
+        while (lowHealthEffectCoroutineRunning) // Changed from 'while (true)'
+        {
+            float randomChance = UnityEngine.Random.Range(0f, 1f);
+
+            if (randomChance < lowHealthParticleEffectPlayChance)
+            {
+                PlayLowHealthEffect();
+            }
+
+            yield return new WaitForSeconds(lowHealthEffectPlayInterval);
+        }
+
+        // Clean up when the loop exits
+        lowHealthEffectCoroutine = null;
+    }
+
+    private void PlayLowHealthEffect()
+    {
+        if (lowHealthParticleEffect != null)
+        {
+            lowHealthParticleEffect.Play();
+        }
+    }
+
+    #endregion
 
     // Optional: Draw a gizmo in the editor to show where this region is
     private void OnDrawGizmos()

@@ -145,7 +145,7 @@ Transform:
   m_GameObject: {fileID: 70930810}
   serializedVersion: 2
   m_LocalRotation: {x: 0.0000000037252899, y: -0, z: -0.0000000074505797, w: 1}
-  m_LocalPosition: {x: -37.00498, y: -0.9615459, z: -6.7873864}
+  m_LocalPosition: {x: -10.58649, y: 2.4601169, z: -12.140253}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10604,7 +10604,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 20, y: 20, z: 20}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 385304240}
@@ -39687,18 +39687,6 @@ PrefabInstance:
     - target: {fileID: 2482531440913398984, guid: a7ad26c4755273c4cb548890d32c8ea1, type: 3}
       propertyPath: m_Name
       value: PlayerSubmarine
-      objectReference: {fileID: 0}
-    - target: {fileID: 2895142600235624530, guid: a7ad26c4755273c4cb548890d32c8ea1, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000749533061614874, guid: a7ad26c4755273c4cb548890d32c8ea1, type: 3}
-      propertyPath: m_Radius
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 5037309244168899538, guid: a7ad26c4755273c4cb548890d32c8ea1, type: 3}
-      propertyPath: enableDebugLogs
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7337299441925571645, guid: a7ad26c4755273c4cb548890d32c8ea1, type: 3}
       propertyPath: m_LocalPosition.x

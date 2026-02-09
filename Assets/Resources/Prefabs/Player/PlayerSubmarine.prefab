@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 136371168471359188}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -11.6}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1154,6 +1154,9 @@ MonoBehaviour:
   maxThrottleInput: 1
   maxSteeringInput: 1
   maxBrake: 1
+  lowFrequency: 0.4
+  highFrequency: 0.4
+  rumbleDuration: 0.1
   enableDebugLogs: 1
 --- !u!114 &5037309244168899538
 MonoBehaviour:
@@ -1167,13 +1170,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9014d31d197b174687135bb92a3f3a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthManager: {fileID: 2564051555669736998}
   repairAmountPerPress: 0.5
   repairCooldown: 0.1
   maxOutlineWidth: 10
   flashSpeed: 10
   directionThreshold: 0.6
-  enableDebugLogs: 0
+  lowFrequency: 0.4
+  highFrequency: 0.4
+  rumbleDuration: 0.1
+  enableDebugLogs: 1
   showDebugGizmos: 1
 --- !u!114 &2564051555669736998
 MonoBehaviour:
@@ -1193,6 +1198,9 @@ MonoBehaviour:
   rightRegion: {fileID: 1318871917068846915}
   bottomRegion: {fileID: 453211013417184346}
   destroySubmarineWhenAllRegionsDestroyed: 1
+  lowFrequency: 1
+  highFrequency: 1
+  rumbleDuration: 0.3
   enableDebugLogs: 0
   showDebugGizmos: 1
 --- !u!114 &2568921799066710355
@@ -1619,9 +1627,9 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 04e71246c75bcad4bb526ab1430652ce, type: 2}
-  - {fileID: 2100000, guid: ee6f68af5fda53b4ea20ce472f2a98cf, type: 2}
-  - {fileID: 2100000, guid: 0850713dbea42d24f87fd9f2e688df9c, type: 2}
+  - {fileID: 2100000, guid: b7e356450eea3e64fbae03d64362fcd5, type: 2}
+  - {fileID: 2100000, guid: 80136950ace96f148b584a06257917e4, type: 2}
+  - {fileID: 2100000, guid: 19e5d3204286b534ea95ce2213603dee, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

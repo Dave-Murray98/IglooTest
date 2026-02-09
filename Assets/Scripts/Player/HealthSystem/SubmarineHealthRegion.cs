@@ -37,6 +37,10 @@ public class SubmarineHealthRegion : MonoBehaviour
     [Header("Repair")]
     public Outline repairOutline; // Outline to show when this region is selected for repair
 
+    [Header("Particle Effects")]
+    [Tooltip("Optional: Particle effect to play when this region is repaired")]
+    [SerializeField] private ParticleSystem repairParticleEffect;
+
     // Events that other systems can listen to
     public event Action<SubmarineHealthRegion, float> OnDamageTaken;  // Fires when damage is taken
     public event Action<SubmarineHealthRegion> OnRegionDestroyed;     // Fires when health reaches zero
@@ -135,6 +139,11 @@ public class SubmarineHealthRegion : MonoBehaviour
 
             // Notify listeners
             OnHealthRestored?.Invoke(this, actualHealed);
+
+            if (repairParticleEffect != null)
+            {
+                repairParticleEffect.Play();
+            }
 
             // If we were destroyed and now have health again, remove destroyed effects
             if (previousHealth <= 0f && currentHealth > 0f)

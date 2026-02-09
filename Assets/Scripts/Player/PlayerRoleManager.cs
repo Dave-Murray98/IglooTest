@@ -139,15 +139,15 @@ public class PlayerRoleManager : MonoBehaviour
             DebugLog("No pilot exists, assigning this player as pilot...");
             AssignAsPilot(playerInput);
         }
-        else if (gunnerHandlers.Count < maxGunners)
-        {
-            DebugLog($"Pilot and engineer exist, assigning this player as gunner {gunnerHandlers.Count + 1}...");
-            AssignAsGunner(playerInput);
-        }
         else if (!HasEngineer)
         {
             DebugLog("Pilot exists but no engineer, assigning this player as engineer...");
             AssignAsEngineer(playerInput);
+        }
+        else if (gunnerHandlers.Count < maxGunners)
+        {
+            DebugLog($"Pilot and engineer exist, assigning this player as gunner {gunnerHandlers.Count + 1}...");
+            AssignAsGunner(playerInput);
         }
         else
         {

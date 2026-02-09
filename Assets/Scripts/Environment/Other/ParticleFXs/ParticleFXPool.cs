@@ -17,7 +17,8 @@ public class ParticleFXPool : MonoBehaviour
         LureGrenade,
         StunGrenade,
         AudioLogDestroyFX,
-        BreakEggFX
+        BreakEggFX,
+        TurretShootFX
     }
     #endregion
 
@@ -256,6 +257,11 @@ public class ParticleFXPool : MonoBehaviour
         return GetParticle(ParticleType.BreakEggFX, position, rotation);
     }
 
+    public GameObject GetTurretShootFX(Vector3 position, Quaternion rotation)
+    {
+        return GetParticle(ParticleType.TurretShootFX, position, rotation);
+    }
+
     /// <summary>
     /// Static convenience method - Get blood splat particle
     /// </summary>
@@ -304,6 +310,11 @@ public class ParticleFXPool : MonoBehaviour
     public static GameObject CreateBreakEggFX(Vector3 position, Quaternion rotation)
     {
         return Instance.GetBreakEggFX(position, rotation);
+    }
+
+    public static GameObject CreateTurretShootFX(Vector3 position, Quaternion rotation)
+    {
+        return Instance.GetTurretShootFX(position, rotation);
     }
 
     #endregion

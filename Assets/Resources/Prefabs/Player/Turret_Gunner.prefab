@@ -209,6 +209,9 @@ MonoBehaviour:
   projectileDamage: 10
   knockBackForce: 50
   fireRate: 0.5
+  lowFrequency: 0.5
+  highFrequency: 0.5
+  rumbleDuration: 0.2
   enableDebugLogs: 1
   showGizmos: 1
 --- !u!1 &7599058421412014935

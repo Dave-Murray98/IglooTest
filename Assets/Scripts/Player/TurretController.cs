@@ -221,6 +221,8 @@ public class TurretController : MonoBehaviour
         // Rumble gamepad
         RumblePulse(lowFrequency, highFrequency, rumbleDuration);
 
+        ParticleFXPool.Instance.GetTurretShootFX(firePoint.position, firePoint.rotation);
+
     }
 
     /// <summary>

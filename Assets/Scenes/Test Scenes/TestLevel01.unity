@@ -145,7 +145,7 @@ Transform:
   m_GameObject: {fileID: 70930810}
   serializedVersion: 2
   m_LocalRotation: {x: 0.0000000037252899, y: -0, z: -0.0000000074505797, w: 1}
-  m_LocalPosition: {x: -32.5, y: 0, z: 24.83}
+  m_LocalPosition: {x: -32.439903, y: 0.1554001, z: 24.88134}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10604,7 +10604,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3.1368556, y: 3.1368556, z: 3.1368556}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 385304240}
@@ -39684,61 +39684,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2421441149583532081, guid: a7ad26c4755273c4cb548890d32c8ea1, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2421441149583532081, guid: a7ad26c4755273c4cb548890d32c8ea1, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2421441149583532081, guid: a7ad26c4755273c4cb548890d32c8ea1, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2421441149583532081, guid: a7ad26c4755273c4cb548890d32c8ea1, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2421441149583532081, guid: a7ad26c4755273c4cb548890d32c8ea1, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2482531440913398984, guid: a7ad26c4755273c4cb548890d32c8ea1, type: 3}
       propertyPath: m_Name
       value: PlayerSubmarine
-      objectReference: {fileID: 0}
-    - target: {fileID: 2788553569599577475, guid: a7ad26c4755273c4cb548890d32c8ea1, type: 3}
-      propertyPath: m_fontColor.g
-      value: 0.8901961
-      objectReference: {fileID: 0}
-    - target: {fileID: 2788553569599577475, guid: a7ad26c4755273c4cb548890d32c8ea1, type: 3}
-      propertyPath: m_fontColor.r
-      value: 0.7294118
-      objectReference: {fileID: 0}
-    - target: {fileID: 2788553569599577475, guid: a7ad26c4755273c4cb548890d32c8ea1, type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 4294960058
-      objectReference: {fileID: 0}
-    - target: {fileID: 3675531524416920796, guid: a7ad26c4755273c4cb548890d32c8ea1, type: 3}
-      propertyPath: m_fontColor.g
-      value: 0.8901961
-      objectReference: {fileID: 0}
-    - target: {fileID: 3675531524416920796, guid: a7ad26c4755273c4cb548890d32c8ea1, type: 3}
-      propertyPath: m_fontColor.r
-      value: 0.7294118
-      objectReference: {fileID: 0}
-    - target: {fileID: 3675531524416920796, guid: a7ad26c4755273c4cb548890d32c8ea1, type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 4294960058
-      objectReference: {fileID: 0}
-    - target: {fileID: 3937037102032473071, guid: a7ad26c4755273c4cb548890d32c8ea1, type: 3}
-      propertyPath: m_fontStyle
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4494260581311089605, guid: a7ad26c4755273c4cb548890d32c8ea1, type: 3}
-      propertyPath: m_fontStyle
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7337299441925571645, guid: a7ad26c4755273c4cb548890d32c8ea1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -39779,18 +39727,6 @@ PrefabInstance:
     - target: {fileID: 7337299441925571645, guid: a7ad26c4755273c4cb548890d32c8ea1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8949599437645429399, guid: a7ad26c4755273c4cb548890d32c8ea1, type: 3}
-      propertyPath: m_fontColor.g
-      value: 0.8901961
-      objectReference: {fileID: 0}
-    - target: {fileID: 8949599437645429399, guid: a7ad26c4755273c4cb548890d32c8ea1, type: 3}
-      propertyPath: m_fontColor.r
-      value: 0.7294118
-      objectReference: {fileID: 0}
-    - target: {fileID: 8949599437645429399, guid: a7ad26c4755273c4cb548890d32c8ea1, type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 4294960058
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

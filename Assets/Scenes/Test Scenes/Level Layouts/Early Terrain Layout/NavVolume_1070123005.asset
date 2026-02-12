@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 96ed1a6a10a8456c91791de1a6b1893f, type: 3}
-  m_Name: NavVolume_1339353026
+  m_Name: NavVolume_1070123005
   m_EditorClassIdentifier: 
   _vertices: []
   _regions: []
@@ -21,4 +21,4 @@ MonoBehaviour:
   _linkVertices: 
   _linkEdges: []
   _linkTriangles: []
-  _version: 42
+  _version: 1

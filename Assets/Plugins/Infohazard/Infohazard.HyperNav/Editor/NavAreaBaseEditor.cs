@@ -18,9 +18,11 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using Object = UnityEngine.Object;
 
-namespace Infohazard.HyperNav.Editor {
+namespace Infohazard.HyperNav.Editor
+{
     [CanEditMultipleObjects]
-    public abstract class NavAreaBaseEditor : UnityEditor.Editor {
+    public abstract class NavAreaBaseEditor : UnityEditor.Editor
+    {
         private static readonly Color HandleColor = new Color(127f, 214f, 244f, 100f) / 255;
         private static readonly Color HandleColorSelected = new Color(127f, 214f, 244f, 210f) / 255;
 
@@ -43,35 +45,44 @@ namespace Infohazard.HyperNav.Editor {
         protected bool EditingCollider =>
             EditMode.editMode == EditMode.SceneViewEditMode.Collider && EditMode.IsOwner(this);
 
-        protected static bool EnableSanityChecks {
+        protected static bool EnableSanityChecks
+        {
             get => EditorPrefs.GetBool("NavAreaBaseEditor.EnableSanityChecks", false);
             set => EditorPrefs.SetBool("NavAreaBaseEditor.EnableSanityChecks", value);
         }
 
-        protected static bool VisualizeAllSurfaces {
+        protected static bool VisualizeAllSurfaces
+        {
             get => EditorPrefs.GetBool("NavAreaBaseEditor.VisualizeAllSurfaces", false);
             set => EditorPrefs.SetBool("NavAreaBaseEditor.VisualizeAllSurfaces", value);
         }
 
-        protected static NavLayerMask VisualizeAllSurfacesMask {
+        protected static NavLayerMask VisualizeAllSurfacesMask
+        {
             get => EditorPrefs.GetInt("NavAreaBaseEditor.VisualizeAllSurfacesMask", -1);
             set => EditorPrefs.SetInt("NavAreaBaseEditor.VisualizeAllSurfacesMask", value);
         }
 
-        protected static bool VisualizeAllVolumes {
+        protected static bool VisualizeAllVolumes
+        {
             get => EditorPrefs.GetBool("NavAreaBaseEditor.VisualizeAllVolumes", false);
             set => EditorPrefs.SetBool("NavAreaBaseEditor.VisualizeAllVolumes", value);
         }
 
-        protected static NavLayerMask VisualizeAllVolumesMask {
+        protected static NavLayerMask VisualizeAllVolumesMask
+        {
             get => EditorPrefs.GetInt("NavAreaBaseEditor.VisualizeAllVolumesMask", -1);
             set => EditorPrefs.SetInt("NavAreaBaseEditor.VisualizeAllVolumesMask", value);
         }
 
-        protected void DoBakeActionWithProfile(string text, Action<bool> bakeAction) {
-            if (_mouseButton != 1) {
+        protected void DoBakeActionWithProfile(string text, Action<bool> bakeAction)
+        {
+            if (_mouseButton != 1)
+            {
                 bakeAction(false);
-            } else {
+            }
+            else
+            {
                 GenericMenu menu = new();
                 menu.AddItem(new GUIContent(text), false, () => bakeAction(false));
                 menu.AddItem(new GUIContent($"{text} with Profile"), false, () => bakeAction(true));
@@ -79,8 +90,10 @@ namespace Infohazard.HyperNav.Editor {
             }
         }
 
-        public override void OnInspectorGUI() {
-            if (Event.current.type == EventType.MouseDown) {
+        public override void OnInspectorGUI()
+        {
+            if (Event.current.type == EventType.MouseDown)
+            {
                 _mouseButton = Event.current.button;
             }
 
@@ -95,7 +108,8 @@ namespace Infohazard.HyperNav.Editor {
             serializedObject.ApplyModifiedProperties();
         }
 
-        protected virtual void DrawProperties() {
+        protected virtual void DrawProperties()
+        {
             serializedObject.Update();
 
             EditorGUILayout.LabelField("Runtime Settings", EditorStyles.boldLabel);
@@ -114,13 +128,16 @@ namespace Infohazard.HyperNav.Editor {
 
             CoreDrawers.DrawPropertyWithHelpBoxSupport(sharedSettingsProperty);
 
-            if (sharedSettingsProperty.objectReferenceValue == null) {
-                if (instanceSettingsProperty != null) {
+            if (sharedSettingsProperty.objectReferenceValue == null)
+            {
+                if (instanceSettingsProperty != null)
+                {
                     DrawBakingAndExternalLinkProperties(instanceSettingsProperty);
                 }
 
-                if (GUILayout.Button("Create Shared Settings")) {
-                    Type type = ((NavAreaBase) target).SettingsAssetType;
+                if (GUILayout.Button("Create Shared Settings"))
+                {
+                    Type type = ((NavAreaBase)target).SettingsAssetType;
                     Object newSettings = CoreEditorUtility.CreateAndSaveNewAsset(
                         target.name + type.Name, type, null, null, target);
 
@@ -134,12 +151,17 @@ namespace Infohazard.HyperNav.Editor {
                     sharedSettingsDataProperty.CopyFrom(instanceSettingsProperty);
                     _serializedObjectForSettings.ApplyModifiedProperties();
                 }
-            } else if (sharedSettingsProperty.isExpanded && sharedSettingsProperty.hasMultipleDifferentValues) {
+            }
+            else if (sharedSettingsProperty.isExpanded && sharedSettingsProperty.hasMultipleDifferentValues)
+            {
                 EditorGUILayout.HelpBox("Multiple different shared settings.", MessageType.Info);
-            } else if (sharedSettingsProperty.isExpanded) {
+            }
+            else if (sharedSettingsProperty.isExpanded)
+            {
                 Object settingsObject = sharedSettingsProperty.objectReferenceValue;
                 if (_serializedObjectForSettings == null ||
-                    _serializedObjectForSettings.targetObject != settingsObject) {
+                    _serializedObjectForSettings.targetObject != settingsObject)
+                {
                     _serializedObjectForSettings = new SerializedObject(settingsObject);
                 }
 
@@ -148,8 +170,10 @@ namespace Infohazard.HyperNav.Editor {
                 SerializedProperty sharedSettingsDataProperty =
                     _serializedObjectForSettings.FindProperty(NavAreaBaseSettingsAsset.PropNames.Data);
 
-                if (sharedSettingsDataProperty != null) {
-                    using (new EditorGUI.IndentLevelScope()) {
+                if (sharedSettingsDataProperty != null)
+                {
+                    using (new EditorGUI.IndentLevelScope())
+                    {
                         EditorGUILayout.HelpBox(
                             "Editing ScriptableObject settings. Changes will be saved to the asset.",
                             MessageType.Info);
@@ -159,7 +183,8 @@ namespace Infohazard.HyperNav.Editor {
 
                 _serializedObjectForSettings.ApplyModifiedProperties();
 
-                if (GUILayout.Button("To Instance Settings")) {
+                if (GUILayout.Button("To Instance Settings"))
+                {
                     instanceSettingsProperty.CopyFrom(sharedSettingsDataProperty);
                     sharedSettingsProperty.objectReferenceValue = null;
                 }
@@ -170,7 +195,8 @@ namespace Infohazard.HyperNav.Editor {
             DrawVisualizationProperties();
         }
 
-        protected virtual void DrawBakingAndExternalLinkProperties(SerializedProperty property) {
+        protected virtual void DrawBakingAndExternalLinkProperties(SerializedProperty property)
+        {
             DrawBakingProperties(property);
 
             EditorGUILayout.Space();
@@ -179,7 +205,8 @@ namespace Infohazard.HyperNav.Editor {
             DrawExternalLinkProperties(property);
         }
 
-        protected virtual void DrawRuntimeProperties() {
+        protected virtual void DrawRuntimeProperties()
+        {
             DrawBakedDataProperties();
             DrawInstanceIDProperties();
 
@@ -188,7 +215,8 @@ namespace Infohazard.HyperNav.Editor {
                 serializedObject.FindProperty(NavAreaBase.PropNames.AutoDetectMovement));
         }
 
-        protected virtual void DrawBakedDataProperties() {
+        protected virtual void DrawBakedDataProperties()
+        {
             // No editing Data directly.
             EditorGUI.BeginDisabledGroup(true);
             CoreDrawers.DrawPropertyWithHelpBoxSupport(serializedObject.FindProperty(NavAreaBase.PropNames.Data));
@@ -199,17 +227,20 @@ namespace Infohazard.HyperNav.Editor {
             EditorGUI.EndDisabledGroup();
         }
 
-        protected virtual void DrawInstanceIDProperties() {
+        protected virtual void DrawInstanceIDProperties()
+        {
             // No editing InstanceID directly.
             EditorGUILayout.BeginHorizontal();
             EditorGUI.BeginDisabledGroup(true);
             CoreDrawers.DrawPropertyWithHelpBoxSupport(serializedObject.FindProperty(NavAreaBase.PropNames.InstanceID));
             EditorGUI.EndDisabledGroup();
 
-            if (GUILayout.Button("↻", GUILayout.Width(32))) {
+            if (GUILayout.Button("↻", GUILayout.Width(32)))
+            {
                 serializedObject.ApplyModifiedProperties();
 
-                foreach (NavAreaBase area in targets.Cast<NavAreaBase>()) {
+                foreach (NavAreaBase area in targets.Cast<NavAreaBase>())
+                {
                     area.UpdateUniqueID();
                 }
 
@@ -221,22 +252,29 @@ namespace Infohazard.HyperNav.Editor {
 
             EditorGUILayout.EndHorizontal();
 
-            if (failedToCalculateUniqueID) {
+            if (failedToCalculateUniqueID)
+            {
                 EditorGUILayout.HelpBox(
                     $"Failed to calculate the ID for {failedToCalculateUniqueID.name}. " +
                     "If you are editing a prefab, try saving the prefab to resolve this.",
                     MessageType.Warning);
-            } else {
-                foreach (NavAreaBase area in targets.Cast<NavAreaBase>()) {
+            }
+            else
+            {
+                foreach (NavAreaBase area in targets.Cast<NavAreaBase>())
+                {
                     GameObject prefabRoot = PrefabUtility.GetOutermostPrefabInstanceRoot(area);
-                    if (prefabRoot == null) {
+                    if (prefabRoot == null)
+                    {
                         PrefabStage stage = PrefabStageUtility.GetPrefabStage(area.gameObject);
-                        if (stage != null) {
+                        if (stage != null)
+                        {
                             prefabRoot = stage.prefabContentsRoot;
                         }
                     }
 
-                    if (prefabRoot != null && !prefabRoot.transform.IsPathUnique(area.transform)) {
+                    if (prefabRoot != null && !prefabRoot.transform.IsPathUnique(area.transform))
+                    {
                         EditorGUILayout.HelpBox(
                             "Determining the ID for an area in a prefab requires a unique path. " +
                             "Please ensure the area and every parent object have unique names within their respective parents.",
@@ -250,7 +288,8 @@ namespace Infohazard.HyperNav.Editor {
                 serializedObject.FindProperty(NavAreaBase.PropNames.RandomInstanceID));
         }
 
-        protected virtual void DrawBoundsProperties() {
+        protected virtual void DrawBoundsProperties()
+        {
             // Bounds field and button to edit in the scene view (like a box collider).
             SerializedProperty boundsProperty = serializedObject.FindProperty(NavAreaBase.PropNames.Bounds);
             EditMode.DoEditModeInspectorModeButton(EditMode.SceneViewEditMode.Collider, "Edit Bounds",
@@ -260,30 +299,35 @@ namespace Infohazard.HyperNav.Editor {
             CoreDrawers.DrawPropertyWithHelpBoxSupport(boundsProperty);
         }
 
-        protected virtual void DrawStartLocationProperties() {
+        protected virtual void DrawStartLocationProperties()
+        {
             SerializedProperty useStartLocationsProp =
                 serializedObject.FindProperty(NavAreaBase.PropNames.UseStartLocations);
             CoreDrawers.DrawPropertyWithHelpBoxSupport(useStartLocationsProp);
 
             // Draw StartLocations only if UseStartLocations is true.
-            if (useStartLocationsProp.boolValue) {
+            if (useStartLocationsProp.boolValue)
+            {
                 CoreDrawers.DrawPropertyWithHelpBoxSupport(
                     serializedObject.FindProperty(NavAreaBase.PropNames.StartLocations));
             }
         }
 
-        protected virtual void DrawBakingProperties(SerializedProperty property) {
+        protected virtual void DrawBakingProperties(SerializedProperty property)
+        {
             DrawPhysicsQueryProperties(property);
         }
 
-        protected virtual void DrawPhysicsQueryProperties(SerializedProperty property) {
+        protected virtual void DrawPhysicsQueryProperties(SerializedProperty property)
+        {
             DrawLayerMaskProperties(property);
             DrawAgentSizeProperties(property);
             CoreDrawers.DrawPropertyWithHelpBoxSupport(
                 property.FindPropertyRelative(NavAreaBaseSettings.PropNames.VoxelSize));
         }
 
-        protected virtual void DrawExternalLinkProperties(SerializedProperty property) {
+        protected virtual void DrawExternalLinkProperties(SerializedProperty property)
+        {
             CoreDrawers.DrawPropertyWithHelpBoxSupport(
                 property.FindPropertyRelative(NavAreaBaseSettings.PropNames.MaxExternalLinkDistanceToVolume));
             CoreDrawers.DrawPropertyWithHelpBoxSupport(
@@ -292,14 +336,16 @@ namespace Infohazard.HyperNav.Editor {
                 property.FindPropertyRelative(NavAreaBaseSettings.PropNames.ExternalLinkTargetLayers));
         }
 
-        protected virtual void DrawAgentSizeProperties(SerializedProperty property) {
+        protected virtual void DrawAgentSizeProperties(SerializedProperty property)
+        {
             CoreDrawers.DrawPropertyWithHelpBoxSupport(
                 property.FindPropertyRelative(NavAreaBaseSettings.PropNames.Layer));
             CoreDrawers.DrawPropertyWithHelpBoxSupport(
                 property.FindPropertyRelative(NavAreaBaseSettings.PropNames.MaxAgentRadius));
         }
 
-        protected virtual void DrawLayerMaskProperties(SerializedProperty property) {
+        protected virtual void DrawLayerMaskProperties(SerializedProperty property)
+        {
             CoreDrawers.DrawPropertyWithHelpBoxSupport(
                 property.FindPropertyRelative(NavAreaBaseSettings.PropNames.BlockingLayers));
             CoreDrawers.DrawPropertyWithHelpBoxSupport(
@@ -308,10 +354,13 @@ namespace Infohazard.HyperNav.Editor {
 
         protected virtual void DrawVisualizationProperties() { }
 
-        protected virtual void DrawVisualizeAllProperties() {
+        protected virtual void DrawVisualizeAllProperties()
+        {
             HyperNavSettings settings = HyperNavSettings.Instance;
-            if (settings) {
-                for (int i = 0; i < NavLayerNames.Length; i++) {
+            if (settings)
+            {
+                for (int i = 0; i < NavLayerNames.Length; i++)
+                {
                     NavLayerNames[i] = settings.GetLayerName(i);
                 }
             }
@@ -321,17 +370,20 @@ namespace Infohazard.HyperNav.Editor {
             bool allSurfaces = VisualizeAllSurfaces;
             EditorGUI.BeginChangeCheck();
             allSurfaces = EditorGUILayout.Toggle("Visualize All Surfaces", allSurfaces);
-            if (EditorGUI.EndChangeCheck()) {
+            if (EditorGUI.EndChangeCheck())
+            {
                 VisualizeAllSurfaces = allSurfaces;
                 needsRepaint = true;
             }
 
-            if (allSurfaces) {
+            if (allSurfaces)
+            {
                 EditorGUI.indentLevel++;
                 int surfaceMask = VisualizeAllSurfacesMask;
                 EditorGUI.BeginChangeCheck();
                 surfaceMask = EditorGUILayout.MaskField(new GUIContent("Layers"), surfaceMask, NavLayerNames);
-                if (EditorGUI.EndChangeCheck()) {
+                if (EditorGUI.EndChangeCheck())
+                {
                     VisualizeAllSurfacesMask = surfaceMask;
                     needsRepaint = true;
                 }
@@ -342,17 +394,20 @@ namespace Infohazard.HyperNav.Editor {
             bool allVolumes = VisualizeAllVolumes;
             EditorGUI.BeginChangeCheck();
             allVolumes = EditorGUILayout.Toggle("Visualize All Volumes", allVolumes);
-            if (EditorGUI.EndChangeCheck()) {
+            if (EditorGUI.EndChangeCheck())
+            {
                 VisualizeAllVolumes = allVolumes;
                 needsRepaint = true;
             }
 
-            if (allVolumes) {
+            if (allVolumes)
+            {
                 EditorGUI.indentLevel++;
                 int volumeMask = VisualizeAllVolumesMask;
                 EditorGUI.BeginChangeCheck();
                 volumeMask = EditorGUILayout.MaskField(new GUIContent("Layers"), volumeMask, NavLayerNames);
-                if (EditorGUI.EndChangeCheck()) {
+                if (EditorGUI.EndChangeCheck())
+                {
                     VisualizeAllVolumesMask = volumeMask;
                     needsRepaint = true;
                 }
@@ -360,18 +415,21 @@ namespace Infohazard.HyperNav.Editor {
                 EditorGUI.indentLevel--;
             }
 
-            if (needsRepaint) {
+            if (needsRepaint)
+            {
                 EditorApplication.delayCall += SceneView.RepaintAll;
             }
         }
 
-        public virtual void DrawButtons() {
+        public virtual void DrawButtons()
+        {
             EditorGUILayout.LabelField("Actions", EditorStyles.boldLabel);
 
             bool sanityChecksEnabled = EnableSanityChecks;
             EditorGUI.BeginChangeCheck();
             sanityChecksEnabled = EditorGUILayout.Toggle("Enable Sanity Checks", sanityChecksEnabled);
-            if (EditorGUI.EndChangeCheck()) {
+            if (EditorGUI.EndChangeCheck())
+            {
                 EnableSanityChecks = sanityChecksEnabled;
             }
 
@@ -379,10 +437,12 @@ namespace Infohazard.HyperNav.Editor {
 
             // Draw progress bar if baking or bake button otherwise.
             bool isAnyBaking = false;
-            foreach (NavAreaBase area in targets.Cast<NavAreaBase>()) {
+            foreach (NavAreaBase area in targets.Cast<NavAreaBase>())
+            {
                 bool isBaking = EditorNavAreaBakingUtility.TryGetBakeProgress(area, out NavAreaBakeProgress value);
 
-                if (isBaking) {
+                if (isBaking)
+                {
                     // ProgressBar is not available in layout drawing mode,
                     // so draw an empty space then use that rect to draw the progress bar.
                     EditorGUILayout.Space(EditorGUIUtility.singleLineHeight, true);
@@ -394,11 +454,15 @@ namespace Infohazard.HyperNav.Editor {
                 }
             }
 
-            if (!isAnyBaking) {
-                if (GUILayout.Button("Bake", GUILayout.ExpandWidth(true))) {
+            if (!isAnyBaking)
+            {
+                if (GUILayout.Button("Bake", GUILayout.ExpandWidth(true)))
+                {
                     serializedObject.ApplyModifiedProperties();
-                    DoBakeActionWithProfile("Bake", profile => {
-                        foreach (NavAreaBase area in targets.Cast<NavAreaBase>()) {
+                    DoBakeActionWithProfile("Bake", profile =>
+                    {
+                        foreach (NavAreaBase area in targets.Cast<NavAreaBase>())
+                        {
                             area.UpdateUniqueID();
                             EditorNavAreaBakingUtility.GetOrCreateData(area);
                             EditorNavAreaBakingUtility.BakeDataAsync(area, sanityChecksEnabled, profile).Forget();
@@ -410,21 +474,29 @@ namespace Infohazard.HyperNav.Editor {
             }
 
             // Draw cancel button if baking or clear button otherwise.
-            if (isAnyBaking) {
-                if (GUILayout.Button("Cancel", GUILayout.Width(75))) {
-                    foreach (NavAreaBase area in targets.Cast<NavAreaBase>()) {
+            if (isAnyBaking)
+            {
+                if (GUILayout.Button("Cancel", GUILayout.Width(75)))
+                {
+                    foreach (NavAreaBase area in targets.Cast<NavAreaBase>())
+                    {
                         EditorNavAreaBakingUtility.CancelBake(area);
                     }
                 }
-            } else {
-                if (GUILayout.Button("Clear", GUILayout.Width(75))) {
-                    foreach (NavAreaBase area in targets.Cast<NavAreaBase>()) {
+            }
+            else
+            {
+                if (GUILayout.Button("Clear", GUILayout.Width(75)))
+                {
+                    foreach (NavAreaBase area in targets.Cast<NavAreaBase>())
+                    {
                         area.UpdateUniqueID();
                     }
 
                     serializedObject.Update();
 
-                    foreach (NavAreaBase area in targets.Cast<NavAreaBase>()) {
+                    foreach (NavAreaBase area in targets.Cast<NavAreaBase>())
+                    {
                         EditorNavAreaBakingUtility.ClearData(area);
                     }
                 }
@@ -436,9 +508,11 @@ namespace Infohazard.HyperNav.Editor {
             EditorGUI.BeginDisabledGroup(EditorNavAreaBakingUtility.BakeHandlers.Count > 0);
 
             UniTask? previousTask = null;
-            if (GUILayout.Button("Bake All", GUILayout.ExpandWidth(true))) {
+            if (GUILayout.Button("Bake All", GUILayout.ExpandWidth(true)))
+            {
                 serializedObject.ApplyModifiedProperties();
-                foreach (NavAreaBase otherArea in _allAreas) {
+                foreach (NavAreaBase otherArea in _allAreas)
+                {
                     if (EditorNavAreaBakingUtility.TryGetBakeProgress(otherArea, out NavAreaBakeProgress _)) continue;
                     otherArea.UpdateUniqueID();
                     EditorNavAreaBakingUtility.GetOrCreateData(otherArea);
@@ -453,9 +527,11 @@ namespace Infohazard.HyperNav.Editor {
                 serializedObject.Update();
             }
 
-            if (GUILayout.Button("Clear All", GUILayout.Width(75))) {
+            if (GUILayout.Button("Clear All", GUILayout.Width(75)))
+            {
                 serializedObject.ApplyModifiedProperties();
-                foreach (NavAreaBase otherArea in _allAreas) {
+                foreach (NavAreaBase otherArea in _allAreas)
+                {
                     otherArea.UpdateUniqueID();
                     EditorNavAreaBakingUtility.ClearData(otherArea);
                 }
@@ -467,8 +543,10 @@ namespace Infohazard.HyperNav.Editor {
             EditorGUILayout.EndHorizontal();
 
 
-            if (EditorNavAreaBakingUtility.BakeHandlers.Count > 0) {
-                foreach (NavAreaBase otherArea in _allAreas) {
+            if (EditorNavAreaBakingUtility.BakeHandlers.Count > 0)
+            {
+                foreach (NavAreaBase otherArea in _allAreas)
+                {
                     if (!EditorNavAreaBakingUtility.TryGetBakeProgress(otherArea,
                                                                        out NavAreaBakeProgress progress)) continue;
 
@@ -479,7 +557,8 @@ namespace Infohazard.HyperNav.Editor {
                     EditorGUI.ProgressBar(rect, progress.Progress,
                                           $"{progress.Operation}: {Mathf.RoundToInt(progress.Progress * 100)}%");
 
-                    if (GUILayout.Button("Cancel", GUILayout.Width(75))) {
+                    if (GUILayout.Button("Cancel", GUILayout.Width(75)))
+                    {
                         EditorNavAreaBakingUtility.CancelBake(otherArea);
                     }
 
@@ -489,16 +568,19 @@ namespace Infohazard.HyperNav.Editor {
 
             EditorGUILayout.BeginHorizontal();
 
-            bool anyBaked = targets.Cast<INavArea>().Any(a => (Object) a.Data != null && a.Data.IsBaked);
+            bool anyBaked = targets.Cast<INavArea>().Any(a => (Object)a.Data != null && a.Data.IsBaked);
             EditorGUI.BeginDisabledGroup(!anyBaked);
 
-            if (GUILayout.Button("Generate External Links")) {
+            if (GUILayout.Button("Generate External Links"))
+            {
                 ExternalLinkEditorUtility.GenerateExternalLinks(targets.Cast<NavAreaBase>().ToList());
                 SceneView.RepaintAll();
             }
 
-            if (GUILayout.Button("Clear", GUILayout.Width(75))) {
-                foreach (NavAreaBase area in targets.Cast<NavAreaBase>()) {
+            if (GUILayout.Button("Clear", GUILayout.Width(75)))
+            {
+                foreach (NavAreaBase area in targets.Cast<NavAreaBase>())
+                {
                     ExternalLinkEditorUtility.ClearExternalLinks(area);
                 }
 
@@ -511,13 +593,16 @@ namespace Infohazard.HyperNav.Editor {
 
             EditorGUILayout.BeginHorizontal();
 
-            if (GUILayout.Button("Generate All External Links")) {
+            if (GUILayout.Button("Generate All External Links"))
+            {
                 ExternalLinkEditorUtility.GenerateAllExternalLinks();
                 SceneView.RepaintAll();
             }
 
-            if (GUILayout.Button("Clear All", GUILayout.Width(75))) {
-                foreach (NavAreaBase otherArea in _allAreas) {
+            if (GUILayout.Button("Clear All", GUILayout.Width(75)))
+            {
+                foreach (NavAreaBase otherArea in _allAreas)
+                {
                     ExternalLinkEditorUtility.ClearExternalLinks(otherArea);
                 }
 
@@ -526,10 +611,12 @@ namespace Infohazard.HyperNav.Editor {
 
             EditorGUILayout.EndHorizontal();
 
-            if (targets.Length == 1) {
-                NavAreaBase areaBase = (NavAreaBase) target;
+            if (targets.Length == 1)
+            {
+                NavAreaBase areaBase = (NavAreaBase)target;
                 EditorGUI.BeginDisabledGroup(areaBase.PreviewMesh == null);
-                if (GUILayout.Button("Export Preview")) {
+                if (GUILayout.Button("Export Preview"))
+                {
                     NavEditorUtility.ExportPreviewMesh(areaBase.PreviewMesh);
                 }
 
@@ -537,7 +624,8 @@ namespace Infohazard.HyperNav.Editor {
             }
         }
 
-        private void OnEnable() {
+        private void OnEnable()
+        {
             // Camera.onPreCull used to render visualization mesh in built-in RP.
             Camera.onPreCull -= Camera_OnPreCull;
             Camera.onPreCull += Camera_OnPreCull;
@@ -554,32 +642,40 @@ namespace Infohazard.HyperNav.Editor {
 
             // In prefab editing mode we don't want to render all areas in the scene.
             // Rather we search the prefab stage hierarchy.
-            if (stage == null) {
+            if (stage == null)
+            {
                 _allAreas = FindObjectsOfType<NavAreaBase>();
-            } else {
+            }
+            else
+            {
                 _allAreas = stage.prefabContentsRoot.GetComponentsInChildren<NavAreaBase>();
             }
         }
 
-        private void OnDisable() {
+        private void OnDisable()
+        {
             Camera.onPreCull -= Camera_OnPreCull;
             RenderPipelineManager.beginCameraRendering -= RenderPipelineManager_BeginCameraRendering;
             EditorNavAreaBakingUtility.BakeProgressUpdated -= NavAreaUtil_BakeProgressUpdated;
         }
 
-        private void RenderPipelineManager_BeginCameraRendering(ScriptableRenderContext ctx, Camera camera) {
+        private void RenderPipelineManager_BeginCameraRendering(ScriptableRenderContext ctx, Camera camera)
+        {
             CameraWillRender(camera);
         }
 
-        private void Camera_OnPreCull(Camera camera) {
+        private void Camera_OnPreCull(Camera camera)
+        {
             CameraWillRender(camera);
         }
 
-        private void NavAreaUtil_BakeProgressUpdated(NavAreaBase area) {
+        private void NavAreaUtil_BakeProgressUpdated(NavAreaBase area)
+        {
             Repaint();
         }
 
-        private void CameraWillRender(Camera camera) {
+        private void CameraWillRender(Camera camera)
+        {
             if (!camera || camera.gameObject.scene.isLoaded) return;
 
             bool visualizeAllSurfaces = VisualizeAllSurfaces;
@@ -587,9 +683,12 @@ namespace Infohazard.HyperNav.Editor {
             bool visualizeAllVolumes = VisualizeAllVolumes;
             NavLayerMask volumeMask = VisualizeAllVolumesMask;
 
-            if (visualizeAllSurfaces || visualizeAllVolumes) {
-                foreach (NavAreaBase area in _allAreas) {
-                    bool visualizeThis = Array.IndexOf(targets, area) >= 0 || area switch {
+            if (visualizeAllSurfaces || visualizeAllVolumes)
+            {
+                foreach (NavAreaBase area in _allAreas)
+                {
+                    bool visualizeThis = Array.IndexOf(targets, area) >= 0 || area switch
+                    {
                         NavSurface => visualizeAllSurfaces && surfaceMask.Contains(area.Layer),
                         NavVolume => visualizeAllVolumes && volumeMask.Contains(area.Layer),
                         _ => false,
@@ -598,23 +697,28 @@ namespace Infohazard.HyperNav.Editor {
                     if (visualizeThis)
                         RenderVisualization(area, camera);
                 }
-            } else {
-                foreach (NavAreaBase area in targets.Cast<NavAreaBase>()) {
+            }
+            else
+            {
+                foreach (NavAreaBase area in targets.Cast<NavAreaBase>())
+                {
                     RenderVisualization(area, camera);
                 }
             }
         }
 
-        private void RenderVisualization(NavAreaBase area, Camera camera) {
+        private void RenderVisualization(NavAreaBase area, Camera camera)
+        {
             if (!area.isActiveAndEnabled) return;
 
             // If area is baked and mode is Blocking or Final, generate the mesh.
             // All other modes must be generated while baking.
             INavArea navArea = area;
             bool hasData = area.IsNativeDataCreated ||
-                           ((Object) navArea.Data != null && navArea.Data.IsBaked);
+                           ((Object)navArea.Data != null && navArea.Data.IsBaked);
 
-            if (hasData && area.PreviewMesh == null) {
+            if (hasData && area.PreviewMesh == null)
+            {
                 area.Register();
                 NavAreaPreviewUtility.RebuildPreviewMesh(area);
             }
@@ -623,29 +727,35 @@ namespace Infohazard.HyperNav.Editor {
             Mesh mesh = area.PreviewMesh;
             Material[] mats = area.PreviewMaterials;
             Matrix4x4 matrix = area.transform.localToWorldMatrix;
-            if (mesh != null && mats != null) {
-                for (int i = 0; i < mesh.subMeshCount && i < mats.Length; i++) {
+            if (mesh != null && mats != null)
+            {
+                for (int i = 0; i < mesh.subMeshCount && i < mats.Length; i++)
+                {
                     //if (i != 0 && i != mesh.subMeshCount / 2) continue;
                     Graphics.DrawMesh(mesh, matrix, mats[i], 0, camera, i, null, ShadowCastingMode.Off, false);
                 }
             }
         }
 
-        public void OnSceneGUI() {
-            NavAreaBase area = (NavAreaBase) target;
+        public void OnSceneGUI()
+        {
+            NavAreaBase area = (NavAreaBase)target;
             // Draw collider editing handle.
-            if (EditingCollider) {
+            if (EditingCollider)
+            {
                 Bounds bounds = area.Bounds;
                 Color color = area.enabled ? HandleColor : HandleColorDisabled;
                 Matrix4x4 localToWorld =
                     Matrix4x4.TRS(area.transform.position, area.transform.rotation, Vector3.one);
-                using (new Handles.DrawingScope(color, localToWorld)) {
+                using (new Handles.DrawingScope(color, localToWorld))
+                {
                     _boundsHandle.center = bounds.center;
                     _boundsHandle.size = bounds.size;
 
                     EditorGUI.BeginChangeCheck();
                     _boundsHandle.DrawHandle();
-                    if (EditorGUI.EndChangeCheck()) {
+                    if (EditorGUI.EndChangeCheck())
+                    {
                         Undo.RecordObject(area, "Modify NavArea Bounds");
                         Vector3 center = _boundsHandle.center;
                         Vector3 size = _boundsHandle.size;
@@ -653,7 +763,8 @@ namespace Infohazard.HyperNav.Editor {
                         area.Bounds = newBounds;
                         EditorUtility.SetDirty(target);
 
-                        foreach (NavAreaBase other in area.GetComponents<NavAreaBase>()) {
+                        foreach (NavAreaBase other in area.GetComponents<NavAreaBase>())
+                        {
                             if (other == area || other.Bounds != bounds) continue;
                             Undo.RecordObject(other, "Modify NavArea Bounds");
                             other.Bounds = newBounds;
@@ -663,12 +774,15 @@ namespace Infohazard.HyperNav.Editor {
             }
 
             // Draw handles for each start location.
-            if (area.UseStartLocations) {
+            if (area.UseStartLocations)
+            {
                 float voxelSize = area.BaseSettings.VoxelSize;
-                for (int i = 0; i < area.StartLocations.Count; i++) {
+                for (int i = 0; i < area.StartLocations.Count; i++)
+                {
                     Vector3 worldPos = area.transform.TransformPoint(area.StartLocations[i]);
                     Vector3 movedPos = Handles.PositionHandle(worldPos, area.transform.rotation);
-                    if (movedPos != worldPos) {
+                    if (movedPos != worldPos)
+                    {
                         movedPos.x = Mathf.Round(movedPos.x / voxelSize) * voxelSize;
                         movedPos.y = Mathf.Round(movedPos.y / voxelSize) * voxelSize;
                         movedPos.z = Mathf.Round(movedPos.z / voxelSize) * voxelSize;
@@ -680,29 +794,35 @@ namespace Infohazard.HyperNav.Editor {
             }
 
             // Draw vertex numbers.
-            if (area.ShowVertexNumbers) {
+            if (area.ShowVertexNumbers)
+            {
                 DrawVertexNumbers(area);
             }
         }
 
         // Cache info on vertex indices to make drawing them faster.
-        private static void CacheVertexNumbers(NavAreaBase area) {
+        private static void CacheVertexNumbers(NavAreaBase area)
+        {
             _previewVertices = area.PreviewMesh.vertices;
             _previewVertexRegions = new Dictionary<int, string>();
             _previewMesh = area.PreviewMesh;
 
             _previewIndices = new int[area.PreviewMesh.subMeshCount][];
-            for (int i = 0; i < area.PreviewMesh.subMeshCount; i++) {
+            for (int i = 0; i < area.PreviewMesh.subMeshCount; i++)
+            {
                 _previewIndices[i] = area.PreviewMesh.GetIndices(i);
             }
 
             Dictionary<int, HashSet<int>> vertexRegionSets = new Dictionary<int, HashSet<int>>();
 
-            for (int i = 0; i < area.PreviewMesh.subMeshCount; i++) {
+            for (int i = 0; i < area.PreviewMesh.subMeshCount; i++)
+            {
                 int[] indices = area.PreviewMesh.GetIndices(i);
-                for (int j = 0; j < indices.Length; j++) {
+                for (int j = 0; j < indices.Length; j++)
+                {
                     int index = indices[j];
-                    if (!vertexRegionSets.TryGetValue(index, out HashSet<int> regions)) {
+                    if (!vertexRegionSets.TryGetValue(index, out HashSet<int> regions))
+                    {
                         regions = new HashSet<int>();
                         vertexRegionSets[index] = regions;
                     }
@@ -714,31 +834,38 @@ namespace Infohazard.HyperNav.Editor {
         }
 
         // Draw cached vertex numbers.
-        private static void DrawVertexNumbers(NavAreaBase area) {
+        private static void DrawVertexNumbers(NavAreaBase area)
+        {
             Camera cam = Camera.current;
 
             Mesh mesh = area.PreviewMesh;
             if (mesh == null || cam == null) return;
 
             if (_previewVertices == null || _previewVertexRegions == null ||
-                _previewMesh != area.PreviewMesh) {
+                _previewMesh != area.PreviewMesh)
+            {
                 CacheVertexNumbers(area);
             }
 
             float range2 = area.ShowVertexNumbersRange * area.ShowVertexNumbersRange;
-            if (mesh != null && cam != null) {
-                foreach (var pair in _previewVertexRegions) {
+            if (mesh != null && cam != null)
+            {
+                foreach (var pair in _previewVertexRegions)
+                {
                     Vector3 v = area.transform.TransformPoint(_previewVertices[pair.Key]);
-                    if (Vector3.SqrMagnitude(v - cam.transform.position) < range2) {
+                    if (Vector3.SqrMagnitude(v - cam.transform.position) < range2)
+                    {
                         Handles.Label(v, pair.Value);
                     }
                 }
 
-                for (int i = 0; i < mesh.subMeshCount; i++) {
+                for (int i = 0; i < mesh.subMeshCount; i++)
+                {
                     if (mesh.GetTopology(i) != MeshTopology.Triangles) continue;
 
                     int[] indices = _previewIndices[i];
-                    for (int j = 0; j < indices.Length; j += 3) {
+                    for (int j = 0; j < indices.Length; j += 3)
+                    {
                         Vector3 v0 = area.transform.TransformPoint(_previewVertices[indices[j]]);
                         Vector3 v1 = area.transform.TransformPoint(_previewVertices[indices[j + 1]]);
                         Vector3 v2 = area.transform.TransformPoint(_previewVertices[indices[j + 2]]);
@@ -746,7 +873,8 @@ namespace Infohazard.HyperNav.Editor {
                         float triArea = Vector3.Cross(v1 - v0, v2 - v0).magnitude * 0.5f;
 
                         Vector3 center = (v0 + v1 + v2) / 3;
-                        if (Vector3.SqrMagnitude(center - cam.transform.position) < range2) {
+                        if (Vector3.SqrMagnitude(center - cam.transform.position) < range2)
+                        {
                             Handles.Label(center, $"{j}: {i} - area: {triArea}");
                         }
                     }
@@ -756,18 +884,21 @@ namespace Infohazard.HyperNav.Editor {
 
 
         [DrawGizmo(GizmoType.Selected | GizmoType.Active | GizmoType.Pickable)]
-        private static void RenderBoxGizmoSelected(NavAreaBase area, GizmoType gizmoType) {
+        private static void RenderBoxGizmoSelected(NavAreaBase area, GizmoType gizmoType)
+        {
             // Draw the bounds editor gizmo.
             RenderBoxGizmo(area, gizmoType, true);
         }
 
         [DrawGizmo(GizmoType.NotInSelectionHierarchy | GizmoType.Pickable)]
-        private static void RenderBoxGizmoNotSelected(NavAreaBase area, GizmoType gizmoType) {
+        private static void RenderBoxGizmoNotSelected(NavAreaBase area, GizmoType gizmoType)
+        {
             RenderBoxGizmo(area, gizmoType, false);
         }
 
         // Draw the bounds editor gizmo.
-        private static void RenderBoxGizmo(NavAreaBase area, GizmoType gizmoType, bool selected) {
+        private static void RenderBoxGizmo(NavAreaBase area, GizmoType gizmoType, bool selected)
+        {
             Color color = selected ? HandleColorSelected : HandleColor;
             if (!area.enabled)
                 color = HandleColorDisabled;
@@ -786,7 +917,8 @@ namespace Infohazard.HyperNav.Editor {
             Gizmos.DrawWireCube(bounds.center, bounds.size);
 
             // If selected, draw filled bounds.
-            if (selected && area.enabled) {
+            if (selected && area.enabled)
+            {
                 Color colorTrans = new Color(color.r * 0.75f, color.g * 0.75f, color.b * 0.75f, color.a * 0.15f);
                 Gizmos.color = colorTrans;
                 Gizmos.DrawCube(bounds.center, bounds.size);
@@ -802,7 +934,8 @@ namespace Infohazard.HyperNav.Editor {
             where TData : ScriptableObject, INavAreaData<TNativeData, TPointers>
             where TNativeData : unmanaged, IDisposable, INativeNavAreaData
             where TPointers : struct, IDisposable, INativeNavAreaDataPointers
-            where TSettings : NavAreaBaseSettings<TSettings>, new() {
+            where TSettings : NavAreaBaseSettings<TSettings>, new()
+        {
             if (!area.VisualizeExternalLinks) return;
 
             TNativeData nativeData = area.NativeData;
@@ -812,16 +945,19 @@ namespace Infohazard.HyperNav.Editor {
             Gizmos.color = Color.green;
             Handles.color = Color.green;
 
-            for (int i = 0; i < nativeData.RegionCount; i++) {
+            for (int i = 0; i < nativeData.RegionCount; i++)
+            {
                 SerializableRange linkRange = nativeData.GetExternalLinkRange(i);
                 NativeBounds regionBounds = nativeData.GetRegionBounds(i);
-                for (int j = linkRange.Start; j < linkRange.End; j++) {
+                for (int j = linkRange.Start; j < linkRange.End; j++)
+                {
                     NativeNavExternalLinkData link = nativeData.GetExternalLinkData(j);
                     Vector3 linkPos = area.transform.TransformPoint(link.FromPosition.xyz);
                     Vector3 toPos = area.transform.TransformPoint(link.ToPosition.xyz);
 
                     Vector3 vector;
-                    if (Vector3.SqrMagnitude(link.FromPosition.xyz - link.ToPosition.xyz) < 0.0001f) {
+                    if (Vector3.SqrMagnitude(link.FromPosition.xyz - link.ToPosition.xyz) < 0.0001f)
+                    {
                         Vector3 regionCenter = area.transform.TransformPoint(regionBounds.Center.xyz);
                         float3 pointInRegion = linkPos - regionCenter;
                         pointInRegion /= regionBounds.Extents.xyz;
@@ -829,16 +965,23 @@ namespace Infohazard.HyperNav.Editor {
                         float absY = Mathf.Abs(pointInRegion.y);
                         float absZ = Mathf.Abs(pointInRegion.z);
 
-                        if (absX > absY && absX > absZ) {
+                        if (absX > absY && absX > absZ)
+                        {
                             vector = new Vector3(Mathf.Sign(pointInRegion.x), 0, 0);
-                        } else if (absY > absX && absY > absZ) {
+                        }
+                        else if (absY > absX && absY > absZ)
+                        {
                             vector = new Vector3(0, Mathf.Sign(pointInRegion.y), 0);
-                        } else {
+                        }
+                        else
+                        {
                             vector = new Vector3(0, 0, Mathf.Sign(pointInRegion.z));
                         }
 
                         vector = area.transform.TransformDirection(vector);
-                    } else {
+                    }
+                    else
+                    {
                         vector = toPos - linkPos;
                         Handles.DrawLine(linkPos, toPos);
                     }

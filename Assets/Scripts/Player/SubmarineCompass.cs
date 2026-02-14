@@ -6,7 +6,6 @@ public class SubmarineCompass : MonoBehaviour
 
     void Start()
     {
-        // Get the submarine (the parent of this GameObject)
         submarine = transform.parent;
         SetCompassRotation();
     }
@@ -18,11 +17,9 @@ public class SubmarineCompass : MonoBehaviour
 
     void SetCompassRotation()
     {
-        // Get the submarine's world rotation
-        Vector3 submarineRotation = submarine.eulerAngles;
-
-        // Apply the submarine's pitch and roll to the compass
-        // but force Y (yaw) to always be 0 (north)
-        transform.rotation = Quaternion.Euler(submarineRotation.x, 0f, submarineRotation.z);
+        // Counteract the submarine's Y rotation in local space
+        // If the submarine faces east (90 degrees), we rotate the compass -90 degrees locally
+        // so that it ends up pointing north in world space
+        transform.localEulerAngles = new Vector3(0f, -submarine.eulerAngles.y, 0f);
     }
 }

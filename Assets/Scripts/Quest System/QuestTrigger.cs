@@ -4,7 +4,7 @@ using UnityEngine;
 public class QuestTrigger : MonoBehaviour
 {
     [Header("QuestData")]
-    [SerializeField] private QuestData questData;
+    public QuestData questData;
 
     [Header("Visuals")]
     [SerializeField] private GameObject incompleteVisual;

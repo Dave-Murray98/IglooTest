@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questID: BoneValleyQuest
   displayName: Bone Valley Quest
+  questDescription: Find fragment 03 in the Bone Valley (North).

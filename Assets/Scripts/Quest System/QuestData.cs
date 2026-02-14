@@ -5,4 +5,6 @@ public class QuestData : ScriptableObject
 {
     public string questID;
     public string displayName;
+
+    public string questDescription;
 }

@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questID: KelpForestQuest
   displayName: Kelp Forest Quest
+  questDescription: Find fragment 02 in the Kelp Forest (West).

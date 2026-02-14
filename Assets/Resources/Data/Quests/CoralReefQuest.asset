@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questID: CoralReefQuest
   displayName: Coral Reef Quest
+  questDescription: Find fragment 01 in the Choral Reef (East).

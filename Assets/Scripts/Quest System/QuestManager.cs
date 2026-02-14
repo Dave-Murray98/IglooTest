@@ -8,7 +8,9 @@ public class QuestManager : MonoBehaviour
 
     public static event Action<string> OnQuestCompleted;
 
-    private readonly HashSet<string> _completedQuests = new HashSet<string>();
+    public readonly List<string> completedQuests = new List<string>();
+
+    public List<QuestData> allQuests;
 
     [Header("Debug")]
     [SerializeField] private bool enableDebugLogs = false;
@@ -22,14 +24,30 @@ public class QuestManager : MonoBehaviour
         }
 
         Instance = this;
+
+        if (allQuests == null || allQuests.Count == 0)
+            FindAllQuests();
+    }
+
+    private void FindAllQuests()
+    {
+        QuestTrigger[] triggers = FindObjectsByType<QuestTrigger>(FindObjectsSortMode.None);
+        foreach (QuestTrigger trigger in triggers)
+        {
+            if (trigger.questData != null)
+            {
+                DebugLog($"Found quest: {trigger.questData.questID}");
+                allQuests.Add(trigger.questData);
+            }
+        }
     }
 
     public void CompleteQuest(string questID)
     {
-        if (_completedQuests.Contains(questID))
+        if (completedQuests.Contains(questID))
             return;
 
-        _completedQuests.Add(questID);
+        completedQuests.Add(questID);
         OnQuestCompleted?.Invoke(questID);
 
         DebugLog($"Quest completed: {questID}");

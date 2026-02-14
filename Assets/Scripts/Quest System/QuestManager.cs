@@ -8,9 +8,14 @@ public class QuestManager : MonoBehaviour
 
     public static event Action<string> OnQuestCompleted;
 
+    public static event Action OnFinalQuestStarted;
+
     public readonly List<string> completedQuests = new List<string>();
 
+    [Header("Quests")]
     public List<QuestData> allQuests;
+
+    public QuestData finalQuest;
 
     [Header("Debug")]
     [SerializeField] private bool enableDebugLogs = false;
@@ -50,7 +55,26 @@ public class QuestManager : MonoBehaviour
         completedQuests.Add(questID);
         OnQuestCompleted?.Invoke(questID);
 
+        if (completedQuests.Count == allQuests.Count)
+        {
+            StartFinalQuest();
+        }
+
         DebugLog($"Quest completed: {questID}");
+    }
+
+    private void StartFinalQuest()
+    {
+        if (finalQuest == null)
+        {
+            DebugLog("No final quest set.");
+            return;
+        }
+
+        DebugLog($"Starting final quest: {finalQuest.questID}");
+
+        OnFinalQuestStarted?.Invoke();
+        // You can implement logic here to activate the final quest in the game world
     }
 
     private void DebugLog(string message)

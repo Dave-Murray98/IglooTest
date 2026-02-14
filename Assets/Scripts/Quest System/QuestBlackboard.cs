@@ -21,9 +21,16 @@ public class QuestBlackboard : MonoBehaviour
     private void Start()
     {
         QuestManager.OnQuestCompleted += UpdateBlackboard;
+        QuestManager.OnFinalQuestStarted += OnFinalQuestStarted;
 
         // initialize the blackboard text with all incomplete quests
         blackboardText.text = GetBlackboardText();
+    }
+
+    private void OnFinalQuestStarted()
+    {
+        if (QuestManager.Instance.finalQuest != null)
+            blackboardText.text = "1. " + QuestManager.Instance.finalQuest.questDescription; // show the final quest description on the blackboard
     }
 
     private void UpdateBlackboard(string questID)

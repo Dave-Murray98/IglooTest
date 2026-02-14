@@ -41,8 +41,11 @@ public class QuestManager : MonoBehaviour
         {
             if (trigger.questData != null)
             {
-                DebugLog($"Found quest: {trigger.questData.questID}");
-                allQuests.Add(trigger.questData);
+                if (trigger.questData.questID != finalQuest?.questID) // make sure we don't add the final quest to the list of all quests
+                {
+                    DebugLog($"Found quest: {trigger.questData.questID}");
+                    allQuests.Add(trigger.questData);
+                }
             }
         }
     }

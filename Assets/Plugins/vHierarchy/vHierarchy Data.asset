@@ -42,6 +42,8 @@ MonoBehaviour:
     - b2ef585730291934193bf921e5f550c3
     - 4ddddb7e7d6929944a4c3c75198e0acd
     - 5797f7be623dcc0428ed56bc53de4499
+    - c1a141cca479c7d499c36c8a376101bf
+    - 9e02542a7c0dc284baefa27cbd0af22b
     values:
     - goDatasByGlobalId:
         keys:
@@ -52,7 +54,6 @@ MonoBehaviour:
         - GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-2482531440913398984-797395267
         - GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-1969324725-0
         - GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-486119702-0
-        - GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-585334841723203111-0
         values:
         - iColor: 2
           icon: 
@@ -67,11 +68,9 @@ MonoBehaviour:
         - iColor: 2
           icon: 
         - iColor: 8
-          icon: 
-        - iColor: 0
           icon: 
       goDatasByInstanceId:
-        keys: 361b0100f81b0100441b0100ac1c0100baf3fffff61c01004c1b0100f871fcff
+        keys: 46d2010012d301004ad20100bcd301008ed1fdfff8d3010052d20100
         values:
         - iColor: 2
           icon: 
@@ -86,8 +85,6 @@ MonoBehaviour:
         - iColor: 2
           icon: 
         - iColor: 8
-          icon: 
-        - iColor: 0
           icon: 
     - goDatasByGlobalId:
         keys: []
@@ -320,6 +317,30 @@ MonoBehaviour:
       goDatasByInstanceId:
         keys: 
         values: []
+    - goDatasByGlobalId:
+        keys: []
+        values: []
+      goDatasByInstanceId:
+        keys: 
+        values: []
+    - goDatasByGlobalId:
+        keys:
+        - GlobalObjectId_V1-2-c1a141cca479c7d499c36c8a376101bf-1023293619-0
+        - GlobalObjectId_V1-2-c1a141cca479c7d499c36c8a376101bf-1068654184-0
+        values:
+        - iColor: 2
+          icon: Terrain Icon
+        - iColor: 4
+          icon: Material Icon
+      goDatasByInstanceId:
+        keys: 56d8010078470200ac470200
+        values:
+        - iColor: 2
+          icon: Terrain Icon
+        - iColor: 2
+          icon: Terrain Icon
+        - iColor: 4
+          icon: Material Icon
     - goDatasByGlobalId:
         keys: []
         values: []

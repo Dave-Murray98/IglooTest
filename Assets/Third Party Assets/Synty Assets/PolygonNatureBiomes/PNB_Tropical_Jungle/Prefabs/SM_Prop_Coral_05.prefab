@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7243392300001841774}
   - component: {fileID: 5992718244935884235}
   - component: {fileID: 8416838716394776833}
-  - component: {fileID: -8042204281472553384}
+  - component: {fileID: 3196714038578524645}
   m_Layer: 0
   m_Name: SM_Prop_Coral_05
   m_TagString: Untagged
@@ -87,7 +87,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &-8042204281472553384
+--- !u!136 &3196714038578524645
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

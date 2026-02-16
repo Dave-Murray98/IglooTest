@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c3c0f300a224433b9e05bf4acdfd671, type: 3}
-  m_Name: Dark Green Kelp
+  m_Name: Yellow Kelp
   m_EditorClassIdentifier: Kelp::KelpSettings
-  StemColor: {r: 0.041384827, g: 0.09433961, b: 0.049638495, a: 1}
+  StemColor: {r: 0.46091634, g: 0.39798006, b: 0, a: 1}
   StemSegmentLength: 1
   StemGravity: -2
-  LeafStartColor: {r: 0.057271283, g: 0.31132078, b: 0.0732452, a: 1}
-  LeafTipColor: {r: 0.024601793, g: 0.11320752, b: 0.013349941, a: 1}
-  LeavesPerStemSegment: 7
-  LeafLength: 3
-  LeafWidth: 1.5
+  LeafStartColor: {r: 0.5803922, g: 0.46026912, b: 0, a: 1}
+  LeafTipColor: {r: 0.6392157, g: 0.28081623, b: 0, a: 1}
+  LeavesPerStemSegment: 15
+  LeafLength: 4.8
+  LeafWidth: 0.88
   RandomizeLeafRotation: 1
-  LeafWindings: 5
-  LeafRighteningForce: 2.6
-  LeafGravity: -1.35
-  LeafTipGravityMultiplier: 2.71
+  LeafWindings: 4.02
+  LeafRighteningForce: -1
+  LeafGravity: -0.79
+  LeafTipGravityMultiplier: -2.93

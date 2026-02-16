@@ -18,8 +18,8 @@ MonoBehaviour:
   LeafStartColor: {r: 0, g: 0.00665, b: 0.0069999998, a: 1}
   LeafTipColor: {r: 0, g: 0.30305, b: 0.319, a: 1}
   LeavesPerStemSegment: 15
-  LeafLength: 2
-  LeafWidth: 0.4
+  LeafLength: 5
+  LeafWidth: 1
   RandomizeLeafRotation: 1
   LeafWindings: 5
   LeafRighteningForce: -1

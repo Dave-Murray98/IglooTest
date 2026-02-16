@@ -109,6 +109,7 @@ namespace Kellojo.StylizedKelp
         {
             StartCoroutine(Initialize());
         }
+
         public IEnumerator Initialize()
         {
             willInitialize = false;
@@ -134,7 +135,7 @@ namespace Kellojo.StylizedKelp
             {
                 yield return null;
             }
-            ;
+
 
 
             if (_kelpSettings.Count == 0 || _kelpStemSegments.Count == 0) yield break; // do not initialize if there are no kelp are registered
@@ -175,6 +176,7 @@ namespace Kellojo.StylizedKelp
         {
             Deinitialize();
         }
+
         void Deinitialize()
         {
             DisposeBufferAndStoreData(ref _kelpSegmentBuffer, ref _kelpStemSegments);
@@ -206,7 +208,8 @@ namespace Kellojo.StylizedKelp
             if (kelpStemVisualEffect != null) kelpStemVisualEffect.Reinit();
             if (kelpLeafVisualEffect != null) kelpLeafVisualEffect.Reinit();
 
-            StartCoroutine(Initialize());
+            if (isActiveAndEnabled)
+                StartCoroutine(Initialize());
         }
 
         private void OnDrawGizmos()

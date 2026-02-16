@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 2d9587df3d027c84da2aef9e26d860c5
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 332396
+  packageName: Stylized Kelp GPU
+  packageVersion: 1.2
+  assetPath: Assets/Kellojo/Stylized-Kelp/Scripts/Editor/Kelp Editor.asmdef
+  uploadId: 844210

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: a22bd61f26c954d34a9f8fe8f92734f6
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 332396
+  packageName: Stylized Kelp GPU
+  packageVersion: 1.2
+  assetPath: Assets/Kellojo/Stylized-Kelp/Shaders/RotatePointByLookDirection.hlsl
+  uploadId: 844210

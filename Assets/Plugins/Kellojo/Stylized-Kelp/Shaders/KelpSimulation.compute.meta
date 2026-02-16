@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 570d2d228f7832b489cbfc763786df5d
+ComputeShaderImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 332396
+  packageName: Stylized Kelp GPU
+  packageVersion: 1.2
+  assetPath: Assets/Kellojo/Stylized-Kelp/Shaders/KelpSimulation.compute
+  uploadId: 844210

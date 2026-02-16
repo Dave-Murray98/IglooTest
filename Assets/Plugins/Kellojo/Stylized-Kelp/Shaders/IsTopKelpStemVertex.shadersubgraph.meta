@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: b4e9d83d1f8d44a4eb7575a5d48cf915
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 60072b568d64c40a485e0fc55012dc9f, type: 3}
+AssetOrigin:
+  serializedVersion: 1
+  productId: 332396
+  packageName: Stylized Kelp GPU
+  packageVersion: 1.2
+  assetPath: Assets/Kellojo/Stylized-Kelp/Shaders/IsTopKelpStemVertex.shadersubgraph
+  uploadId: 844210

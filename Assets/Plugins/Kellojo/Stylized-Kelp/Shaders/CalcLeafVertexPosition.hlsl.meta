@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 3b55b91567ec940b9ae1d7c3e90b7e78
+ShaderIncludeImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 332396
+  packageName: Stylized Kelp GPU
+  packageVersion: 1.2
+  assetPath: Assets/Kellojo/Stylized-Kelp/Shaders/CalcLeafVertexPosition.hlsl
+  uploadId: 844210

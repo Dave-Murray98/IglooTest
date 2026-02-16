@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: bedac848c0bd7fb44ad7719f2abb94d4
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 332396
+  packageName: Stylized Kelp GPU
+  packageVersion: 1.2
+  assetPath: Assets/Kellojo/Stylized-Kelp/Prefabs/Stylized Kelp Renderer.prefab
+  uploadId: 844210

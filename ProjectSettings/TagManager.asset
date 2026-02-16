@@ -20,7 +20,7 @@ TagManager:
   - Water
   - UI
   - Player
-  - 
+  - KelpCollider
   - IglooScreen
   - Water Clipping
   - IglooPlayer

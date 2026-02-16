@@ -1368,6 +1368,61 @@ MonoBehaviour:
   depth: 40
   width: 5
   seed: 0
+--- !u!1 &5518142854748137654
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4320282015428105455}
+  - component: {fileID: 355680867670762286}
+  m_Layer: 7
+  m_Name: Kelp Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4320282015428105455
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5518142854748137654}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.3447922, y: -0, z: -0, w: 0.93867904}
+  m_LocalPosition: {x: 0, y: 1.3100004, z: 1.3100004}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5291420337965313044}
+  m_LocalEulerAnglesHint: {x: 40.338, y: 0, z: 0}
+--- !u!136 &355680867670762286
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5518142854748137654}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2.5
+  m_Height: 6
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5586016116263962619
 GameObject:
   m_ObjectHideFlags: 0
@@ -1504,6 +1559,7 @@ Transform:
   - {fileID: 2922418586329450615}
   - {fileID: 4477115361833696083}
   - {fileID: 1231796707275600842}
+  - {fileID: 4320282015428105455}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &7166935345891359953

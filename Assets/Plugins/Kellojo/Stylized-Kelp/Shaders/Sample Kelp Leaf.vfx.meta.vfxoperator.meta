@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 6f62bb7ef44bc4913b26f47924aa07ae
+VisualEffectImporter:
+  externalObjects: {}
+  serializedVersion: 1
+  template:
+    name: 
+    category: 
+    description: 
+    icon: {instanceID: 0}
+    thumbnail: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 332396
+  packageName: Stylized Kelp GPU
+  packageVersion: 1.2
+  assetPath: Assets/Kellojo/Stylized-Kelp/Shaders/Sample Kelp Leaf.vfx.meta.vfxoperator
+  uploadId: 844210

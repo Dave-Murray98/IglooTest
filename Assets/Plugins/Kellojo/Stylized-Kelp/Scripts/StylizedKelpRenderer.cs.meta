@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: c425d72e1fe0fc04abca998d40f794ce
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - leafTexture: {fileID: 2800000, guid: 67d6a2e407e4be046bd2e5774b4085fb, type: 3}
+  - playerTransform: {instanceID: 0}
+  - kelpStemVisualEffect: {instanceID: 0}
+  - kelpLeafVisualEffect: {instanceID: 0}
+  - verletKelpComputeShader: {fileID: 7200000, guid: 570d2d228f7832b489cbfc763786df5d,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 332396
+  packageName: Stylized Kelp GPU
+  packageVersion: 1.2
+  assetPath: Assets/Kellojo/Stylized-Kelp/Scripts/StylizedKelpRenderer.cs
+  uploadId: 844210

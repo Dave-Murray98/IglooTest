@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c3c0f300a224433b9e05bf4acdfd671, type: 3}
+  m_Name: Red Kelp
+  m_EditorClassIdentifier: Kelp::KelpSettings
+  StemColor: {r: 0.1882353, g: 0.016027613, b: 0.015686272, a: 1}
+  StemSegmentLength: 1
+  StemGravity: -2
+  LeafStartColor: {r: 0.5803922, g: 0, b: 0.022203857, a: 1}
+  LeafTipColor: {r: 0.6392157, g: 0.00970619, b: 0, a: 1}
+  LeavesPerStemSegment: 15
+  LeafLength: 4.8
+  LeafWidth: 0.88
+  RandomizeLeafRotation: 1
+  LeafWindings: 4.02
+  LeafRighteningForce: -1
+  LeafGravity: -0.79
+  LeafTipGravityMultiplier: -2.93

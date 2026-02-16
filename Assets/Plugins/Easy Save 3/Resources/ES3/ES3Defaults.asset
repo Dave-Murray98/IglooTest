@@ -49,6 +49,7 @@ MonoBehaviour:
     - Infohazard.Core
     - Infohazard.Core.Data
     - Infohazard.HyperNav
+    - Kelp
     - Klak.Ndi.Runtime
     - Klak.Spout.Runtime
     - NWH.Common

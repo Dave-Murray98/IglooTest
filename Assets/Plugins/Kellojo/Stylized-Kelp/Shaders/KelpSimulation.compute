@@ -1,0 +1,224 @@
+#pragma kernel VerletSimulate
+#pragma kernel VerletConstrain
+#pragma kernel ComputeLeafPoints
+#pragma kernel AttachLeafToStem
+#include <UnityShaderVariables.cginc>
+
+struct KelpVerletSegment
+{
+    float3 position;
+    float3 previousPosition;
+    int isFixed;
+    int isEndSegment;
+        
+    float3 leftPosition;
+    float3 rightPosition;
+    float stemSegmentVerticalPos;
+        
+    int controllingIndex;
+    float angle;
+
+    int kelpSettingsIndex;
+
+    int visible;
+};
+
+struct KelpSettings
+{
+    float4 StemColor;
+    float StemSegmentLength;
+    float StemGravity;
+    
+    float4 LeafStartColor;
+    float4 LeafTipColor;
+    int LeavesPerStemSegment;
+    float LeafLength;
+    float LeafWidth;
+    float LeafWindings;
+    float LeafRighteningForce;
+    float LeafGravity;
+    float LeafTipGravityMultiplier;
+};
+
+RWStructuredBuffer<KelpVerletSegment> stemSegments;
+RWStructuredBuffer<KelpVerletSegment> segments;
+RWStructuredBuffer<KelpSettings> settings;
+float fixedDeltaTime;
+bool isLeaf;
+int constraintIterations;
+float simulationDistance;
+float3 playerPosition;
+
+float dampingFactor;
+float3 WindScale;
+float WindStrength;
+float WindSpeed;
+
+float3 WindAt(float3 position)
+{
+    float time = _Time.y * WindSpeed;
+
+    float3 wind = float3(0,0,0);
+    wind.x = sin(time + position.x * WindScale.x + position.y * WindScale.y);
+    wind.z = cos(time + position.z * WindScale.z + position.y * WindScale.y);
+
+    wind *= WindStrength;
+    return wind;
+}
+
+KelpVerletSegment FindLeafRootSegment(KelpVerletSegment segment, int curIndex)
+{
+    // More complex than it needs to be but the Unity compiler will complain otherwise :-(
+    KelpVerletSegment root;
+    if (segment.isFixed > 0) {
+        root = segment;
+    } else if (curIndex < 2) {
+        root = segment;
+    } else if (segment.isEndSegment > 0) {
+        root = segments[curIndex - 2];
+    } else {
+        root = segments[curIndex - 1];
+    }
+    return root;
+}
+
+float3 GetStemSegmentVerticalPositionAt(int stemSegmentIndex, float t)
+{
+    KelpVerletSegment stemSegment = stemSegments[stemSegmentIndex];
+    
+    if (stemSegment.isEndSegment == 0) {
+        KelpVerletSegment nextStemSeg = stemSegments[stemSegmentIndex + 1];
+        return lerp(stemSegment.position, nextStemSeg.position, t);
+    }
+    
+    return stemSegment.position;
+}
+
+bool IsCulled(KelpVerletSegment segment) {
+    
+    KelpVerletSegment rootStemSegment;
+    if (isLeaf) {
+        KelpVerletSegment stemSegment = stemSegments[segment.controllingIndex];
+        rootStemSegment = stemSegments[stemSegment.controllingIndex];
+    } else {
+        rootStemSegment = segments[segment.controllingIndex];
+    }
+    
+    float distToPlayer = length(playerPosition - rootStemSegment.position);
+    return distToPlayer > simulationDistance;
+}
+
+[numthreads(64,1,1)]
+void VerletSimulate(uint3 id : SV_DispatchThreadID)
+{
+    uint i = id.x;
+    KelpVerletSegment segment = segments[i];
+    if (segment.isFixed > 0) return;
+    if (IsCulled(segment)) return;
+    
+    KelpSettings kelpSettings = settings[segment.kelpSettingsIndex];
+
+    float3 vel = (segment.position - segment.previousPosition) * dampingFactor;
+    if (!isLeaf) vel += WindAt(segment.position);
+
+    segment.previousPosition = segment.position;
+    segment.position += vel;
+
+    if (isLeaf) {
+        // Leaves should have gravity aligned with their forward dir to straighten them out
+        KelpVerletSegment rootSegment = FindLeafRootSegment(segment, i);
+        float3 righteningVector = float3(sin(rootSegment.angle), 0, cos(rootSegment.angle));
+        segment.position += righteningVector * (kelpSettings.LeafRighteningForce * fixedDeltaTime);
+    }
+            
+    float3 gravity = float3(0, -1, 0) * fixedDeltaTime;
+    if (isLeaf) {
+        gravity *= kelpSettings.LeafGravity;
+        if (segment.isEndSegment > 0) gravity *= kelpSettings.LeafTipGravityMultiplier;
+    }
+    if (!isLeaf) gravity *= kelpSettings.StemGravity;
+    segment.position += gravity;
+
+    segments[i] = segment;
+}
+
+[numthreads(64,1,1)]
+void VerletConstrain(uint3 id : SV_DispatchThreadID)
+{
+    int startingIndex = id.x * 3;
+    
+    for (int it = 0; it < constraintIterations; it++){
+        
+        for (int lfi = 0; lfi < 3; lfi++)
+        {
+            int i = startingIndex + lfi;
+            KelpVerletSegment currentSeg = segments[i];
+            if (IsCulled(currentSeg)) continue;
+            
+            KelpSettings kelpSettings = settings[currentSeg.kelpSettingsIndex];
+            if (currentSeg.isEndSegment > 0) break;
+                
+            KelpVerletSegment nextSeg = segments[i + 1];
+
+            float dist = length(currentSeg.position - nextSeg.position);
+            float segmentLength = isLeaf ? kelpSettings.LeafLength * 0.5f : kelpSettings.StemSegmentLength;
+            float diff = dist - segmentLength;
+
+            float3 changeDir = normalize(currentSeg.position - nextSeg.position);
+            float3 change = changeDir * diff;
+
+            if (currentSeg.isFixed > 0) {
+               nextSeg.position += change;
+            } else {
+               currentSeg.position -= change * 0.5f;
+               nextSeg.position += change * 0.5f;
+            }
+
+            segments[i] = currentSeg;
+            segments[i + 1] = nextSeg;
+        }
+    }
+}
+
+[numthreads(64,1,1)]
+void ComputeLeafPoints(uint3 id : SV_DispatchThreadID)
+{
+    uint i = id.x;
+    KelpVerletSegment segment = segments[i];
+    if (IsCulled(segment)) return;
+    
+    KelpSettings kelpSettings = settings[segment.kelpSettingsIndex];
+    KelpVerletSegment rootSegment = FindLeafRootSegment(segment, i);
+
+    float3 prevPosition;
+    if (segment.isFixed == 0) {
+        KelpVerletSegment prevSegment = segments[i - 1];
+        prevPosition = prevSegment.position;
+    } else {
+        KelpVerletSegment nextSeg = segments[i + 1];
+        prevPosition = segment.position + segment.position - nextSeg.position;
+    }
+
+    // Quaternion.LookRotation
+    float3 forward = normalize(segment.position - prevPosition);
+    float3 up = float3(0, -1, 0);
+    if (abs(dot(forward, up)) > 0.999f) up = float3(1, 0, 0);
+    float3 right = normalize(cross(up, forward));
+    
+    float3 leafLocalPos = rootSegment.position - segment.position;
+    segment.leftPosition  = leafLocalPos + (-right * kelpSettings.LeafWidth);
+    segment.rightPosition = leafLocalPos + ( right * kelpSettings.LeafWidth);
+    
+    segments[i] = segment;
+}
+
+[numthreads(64,1,1)]
+void AttachLeafToStem(uint3 id : SV_DispatchThreadID)
+{
+    uint i = id.x;
+    KelpVerletSegment segment = segments[i];
+    if (segment.isFixed < 1) return;
+    
+    segment.position = GetStemSegmentVerticalPositionAt(segment.controllingIndex, segment.stemSegmentVerticalPos);
+    segments[i] = segment;
+}

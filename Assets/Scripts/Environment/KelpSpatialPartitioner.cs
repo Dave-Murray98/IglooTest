@@ -3,20 +3,34 @@ using System.Collections;
 using System.Collections.Generic;
 using Kellojo.StylizedKelp;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class KelpSpatialPartitioner : MonoBehaviour
 {
 
-    [FormerlySerializedAs("Player")] public Transform player;
-    private List<StylizedKelpRenderer> _kelpRenderers = new List<StylizedKelpRenderer>();
+    [SerializeField] private Transform player;
+
+    private List<Kelp> kelpRenderers = new List<Kelp>();
+
+    [SerializeField] private float activationCheckFrequency = 0.5f;
+
+    [SerializeField] private StylizedKelpRenderer stylizedKelpRenderer;
+
+    // [SerializeField] private float updateFrequency = 0.53f;
+    // private float updateTimer = 0f;
 
     private void Awake()
     {
-        _kelpRenderers.AddRange(FindObjectsByType<StylizedKelpRenderer>(FindObjectsSortMode.None));
+        kelpRenderers.AddRange(FindObjectsByType<Kelp>(FindObjectsSortMode.None));
 
-        var mainCamera = Camera.main;
-        if (mainCamera != null && player == null) player = mainCamera.transform;
+        if (player == null)
+        {
+            player = Camera.main.transform;
+        }
+
+        if (stylizedKelpRenderer == null)
+        {
+            stylizedKelpRenderer = FindFirstObjectByType<StylizedKelpRenderer>();
+        }
     }
 
     private void OnEnable()
@@ -24,16 +38,32 @@ public class KelpSpatialPartitioner : MonoBehaviour
         StartCoroutine(RunPartitioner());
     }
 
+    // private void Update()
+    // {
+
+    //     updateTimer += Time.deltaTime;
+    //     if (updateTimer > updateFrequency)
+    //     {
+    //         if (stylizedKelpRenderer != null)
+    //         {
+    //             stylizedKelpRenderer.Simulate();
+    //         }
+
+    //         updateTimer = 0f;
+    //     }
+    // }
+
+
     IEnumerator RunPartitioner()
     {
         while (enabled)
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(activationCheckFrequency);
 
-            foreach (var kelpRenderer in _kelpRenderers)
+            foreach (var kelpRenderer in kelpRenderers)
             {
                 var distance = Vector3.Distance(kelpRenderer.transform.position, player.position);
-                kelpRenderer.gameObject.SetActive(distance < kelpRenderer.simulationDistance);
+                kelpRenderer.gameObject.SetActive(distance < stylizedKelpRenderer.simulationDistance);
             }
         }
     }

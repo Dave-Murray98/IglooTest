@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 976d3fc254674ac3bd53c72c168c9c53
+timeCreated: 1643967205
+AssetOrigin:
+  serializedVersion: 1
+  productId: 149753
+  packageName: Digger PRO - Voxel enhanced terrains
+  packageVersion: 8.0
+  assetPath: Assets/Digger/Modules/Core/Sources/Polygonizers/MarchingCubesPolygonizer.cs
+  uploadId: 832230

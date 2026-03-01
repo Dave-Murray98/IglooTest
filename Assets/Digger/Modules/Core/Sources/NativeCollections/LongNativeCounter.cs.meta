@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 9f746bb716ace4445a54c98a28ab4b0b
+AssetOrigin:
+  serializedVersion: 1
+  productId: 149753
+  packageName: Digger PRO - Voxel enhanced terrains
+  packageVersion: 8.0
+  assetPath: Assets/Digger/Modules/Core/Sources/NativeCollections/LongNativeCounter.cs
+  uploadId: 832230

@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: ac454146ffed49f88ff19e81f065365c
+timeCreated: 1659293328
+AssetOrigin:
+  serializedVersion: 1
+  productId: 149753
+  packageName: Digger PRO - Voxel enhanced terrains
+  packageVersion: 8.0
+  assetPath: Assets/Digger/Modules/Core/Sources/VoxelPhysics/LinkLabelOfNeighborChunksXJob.cs
+  uploadId: 832230

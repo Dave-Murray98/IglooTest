@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 27da713f59c4426aaad0b4720eabd2a2
+timeCreated: 1642256316
+AssetOrigin:
+  serializedVersion: 1
+  productId: 149753
+  packageName: Digger PRO - Voxel enhanced terrains
+  packageVersion: 8.0
+  assetPath: Assets/Digger/Modules/AdvancedOperations/Splines/Editor/BezierSplineEditor.cs
+  uploadId: 832230

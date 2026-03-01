@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab3640e7d2dea4ebf863ff59f8fb15d2, type: 3}
+  m_Name: DefaultAdvancedVoxelGenerator
+  m_EditorClassIdentifier: 
+  depthLayers:
+  - minDepth: 0
+    textureIndex: 0
+    destructible: 1
+  - minDepth: 10
+    textureIndex: 1
+    destructible: 1
+  - minDepth: 20
+    textureIndex: 1
+    destructible: 0
+  noiseLayers:
+  - scale: 20
+    octaves: 2
+    persistence: 0.5
+    blendMode: 0
+    threshold: -0.2
+    textureIndex: 2
+    destructible: 0

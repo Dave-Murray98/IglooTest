@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 514e45b265194c6b85d019fc120ec147
+timeCreated: 1732399910
+AssetOrigin:
+  serializedVersion: 1
+  productId: 149753
+  packageName: Digger PRO - Voxel enhanced terrains
+  packageVersion: 8.0
+  assetPath: Assets/Digger/Modules/Core/Sources/Jobs/GetSurfaceChunksJob.cs
+  uploadId: 832230

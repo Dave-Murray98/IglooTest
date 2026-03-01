@@ -42,6 +42,10 @@ MonoBehaviour:
     - Autodesk.Fbx
     - Autodesk.Fbx.BuildTestAssets
     - Crest
+    - Digger.AdvancedOperations
+    - Digger.Core
+    - Digger.Runtime
+    - Digger.Splines
     - DistantLands.Cozy.Runtime
     - Drawing
     - extOSC

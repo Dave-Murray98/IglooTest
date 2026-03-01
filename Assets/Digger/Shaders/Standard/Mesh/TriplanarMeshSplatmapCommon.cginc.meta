@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 0a70bc9ec14aa6542a632dab29db8352
+ShaderIncludeImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 149753
+  packageName: Digger PRO - Voxel enhanced terrains
+  packageVersion: 8.0
+  assetPath: Assets/Digger/Shaders/Standard/Mesh/TriplanarMeshSplatmapCommon.cginc
+  uploadId: 832230

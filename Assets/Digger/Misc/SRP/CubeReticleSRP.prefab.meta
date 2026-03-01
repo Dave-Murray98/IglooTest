@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 6270b92bd221649079644623459e73ef
+labels:
+- Digger_CubeReticleSRP
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 149753
+  packageName: Digger PRO - Voxel enhanced terrains
+  packageVersion: 8.0
+  assetPath: Assets/Digger/Misc/SRP/CubeReticleSRP.prefab
+  uploadId: 832230

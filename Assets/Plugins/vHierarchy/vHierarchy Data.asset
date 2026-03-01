@@ -44,6 +44,7 @@ MonoBehaviour:
     - 5797f7be623dcc0428ed56bc53de4499
     - c1a141cca479c7d499c36c8a376101bf
     - 9e02542a7c0dc284baefa27cbd0af22b
+    - c28568339664c3147bf94df48fbc0e8d
     values:
     - goDatasByGlobalId:
         keys:
@@ -328,7 +329,7 @@ MonoBehaviour:
         - iColor: 0
           icon: 
       goDatasByInstanceId:
-        keys: 04480100624801002ed3ffffba430100dc430100
+        keys: 70480100d24801005c8bffffe243010008440100
         values:
         - iColor: 2
           icon: Terrain Icon
@@ -346,3 +347,19 @@ MonoBehaviour:
       goDatasByInstanceId:
         keys: 
         values: []
+    - goDatasByGlobalId:
+        keys:
+        - GlobalObjectId_V1-2-c28568339664c3147bf94df48fbc0e8d-1023293619-0
+        - GlobalObjectId_V1-2-c28568339664c3147bf94df48fbc0e8d-451259708-0
+        values:
+        - iColor: 2
+          icon: Terrain Icon
+        - iColor: 2
+          icon: Terrain Icon
+      goDatasByInstanceId:
+        keys: 009801000c940100
+        values:
+        - iColor: 2
+          icon: Terrain Icon
+        - iColor: 2
+          icon: Terrain Icon

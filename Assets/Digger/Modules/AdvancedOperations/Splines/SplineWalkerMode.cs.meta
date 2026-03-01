@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 21cf28b80970c4cccbd48b36f535a1bf
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 149753
+  packageName: Digger PRO - Voxel enhanced terrains
+  packageVersion: 8.0
+  assetPath: Assets/Digger/Modules/AdvancedOperations/Splines/SplineWalkerMode.cs
+  uploadId: 832230

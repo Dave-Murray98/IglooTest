@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 3886e96ecea4f4f0eb98bb0c41a31fbe
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 149753
+  packageName: Digger PRO - Voxel enhanced terrains
+  packageVersion: 8.0
+  assetPath: Assets/Digger/Modules/AdvancedOperations/Splines/Line.cs
+  uploadId: 832230

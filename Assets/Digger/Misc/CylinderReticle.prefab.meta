@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 5f84d9118806945efb5300cba5bf90ea
+labels:
+- Digger_CylinderReticle
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 149753
+  packageName: Digger PRO - Voxel enhanced terrains
+  packageVersion: 8.0
+  assetPath: Assets/Digger/Misc/CylinderReticle.prefab
+  uploadId: 832230

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: d9d5dcda9a8c44043bc58a3d24b07d43
+labels:
+- Digger_CylinderReticleSRP
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 149753
+  packageName: Digger PRO - Voxel enhanced terrains
+  packageVersion: 8.0
+  assetPath: Assets/Digger/Misc/SRP/CylinderReticleSRP.prefab
+  uploadId: 832230

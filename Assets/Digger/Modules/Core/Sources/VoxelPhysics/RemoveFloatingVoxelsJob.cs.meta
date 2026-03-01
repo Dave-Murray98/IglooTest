@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: c93a16988772469896eccca914b32f27
+timeCreated: 1659296659
+AssetOrigin:
+  serializedVersion: 1
+  productId: 149753
+  packageName: Digger PRO - Voxel enhanced terrains
+  packageVersion: 8.0
+  assetPath: Assets/Digger/Modules/Core/Sources/VoxelPhysics/RemoveFloatingVoxelsJob.cs
+  uploadId: 832230

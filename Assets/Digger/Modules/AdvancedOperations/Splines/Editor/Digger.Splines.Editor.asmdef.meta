@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: bb8ee193bd552954591bfd2ff56111cf
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 149753
+  packageName: Digger PRO - Voxel enhanced terrains
+  packageVersion: 8.0
+  assetPath: Assets/Digger/Modules/AdvancedOperations/Splines/Editor/Digger.Splines.Editor.asmdef
+  uploadId: 832230

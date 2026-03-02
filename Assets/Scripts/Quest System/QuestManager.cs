@@ -80,6 +80,17 @@ public class QuestManager : MonoBehaviour
         // You can implement logic here to activate the final quest in the game world
     }
 
+    /// <summary>
+    /// Check if a quest has been completed
+    /// </summary>
+    public bool IsQuestComplete(string questID)
+    {
+        if (string.IsNullOrEmpty(questID))
+            return false;
+
+        return completedQuests.Contains(questID);
+    }
+
     private void DebugLog(string message)
     {
         if (enableDebugLogs)

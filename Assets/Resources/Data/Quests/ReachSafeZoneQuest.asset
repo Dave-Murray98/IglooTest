@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ea2f974025afea449f322322372d0b6, type: 3}
   m_Name: ReachSafeZoneQuest
   m_EditorClassIdentifier: 
-  questID: EscapeCaveQuest
+  questID: ReachSafeZoneQuest
   questName: 
-  questDescription: Leave the cave
+  questDescription: Escape the cave
   requirements:
   - rid: 2029818371973054594
   isRepeatable: 0

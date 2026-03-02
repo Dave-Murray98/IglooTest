@@ -32,7 +32,7 @@ public class QuestData : ScriptableObject
     /// <summary>
     /// Check if all requirements for this quest are currently met
     /// </summary>
-    public bool AreRequirementsMet(GameObject player)
+    public bool AreRequirementsMet()
     {
         if (requirements == null || requirements.Length == 0)
             return true; // No requirements = always available
@@ -42,7 +42,7 @@ public class QuestData : ScriptableObject
             if (requirement == null)
                 continue;
 
-            if (!requirement.IsMet(player))
+            if (!requirement.IsMet())
             {
                 if (showDebugInfo)
                     Debug.Log($"[Quest:{questID}] Requirement failed: {requirement.GetFailureMessage()}");
@@ -56,7 +56,7 @@ public class QuestData : ScriptableObject
     /// <summary>
     /// Get the first requirement failure message (for UI feedback)
     /// </summary>
-    public string GetFirstFailureMessage(GameObject player)
+    public string GetFirstFailureMessage()
     {
         if (requirements == null || requirements.Length == 0)
             return "";
@@ -66,7 +66,7 @@ public class QuestData : ScriptableObject
             if (requirement == null)
                 continue;
 
-            if (!requirement.IsMet(player))
+            if (!requirement.IsMet())
                 return requirement.GetFailureMessage();
         }
 
@@ -101,12 +101,12 @@ public class QuestData : ScriptableObject
             return;
         }
 
-        bool allMet = AreRequirementsMet(player.gameObject);
+        bool allMet = AreRequirementsMet();
         Debug.Log($"[Quest:{questID}] Requirements Met: {allMet}");
 
         if (!allMet)
         {
-            Debug.Log($"Failure Reason: {GetFirstFailureMessage(player.gameObject)}");
+            Debug.Log($"Failure Reason: {GetFirstFailureMessage()}");
         }
     }
 

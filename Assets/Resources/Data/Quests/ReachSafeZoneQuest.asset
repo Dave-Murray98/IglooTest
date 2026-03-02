@@ -13,5 +13,16 @@ MonoBehaviour:
   m_Name: ReachSafeZoneQuest
   m_EditorClassIdentifier: 
   questID: EscapeCaveQuest
-  displayName: Escape Cave Quest
-  questDescription: Escape the cave
+  questName: 
+  questDescription: Leave the cave
+  requirements:
+  - rid: 2029818371973054594
+  isRepeatable: 0
+  showDebugInfo: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 2029818371973054594
+      type: {class: OtherQuestRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        requiredQuestID: EscapeCaveQuest

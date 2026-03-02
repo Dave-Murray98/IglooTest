@@ -20,32 +20,48 @@ public class QuestBlackboard : MonoBehaviour
 
     private void Start()
     {
-        QuestManager.OnQuestCompleted += UpdateBlackboard;
-        QuestManager.OnFinalQuestStarted += OnFinalQuestStarted;
+        // Listen for any quest completing (biome or chain)
+        QuestManager.OnQuestCompleted += OnQuestCompleted;
 
-        // initialize the blackboard text with all incomplete quests
-        blackboardText.text = GetBlackboardText();
+        // Listen for a new chain quest unlocking
+        QuestManager.OnChainQuestStarted += OnChainQuestStarted;
+
+        // Show all biome quests at the start
+        blackboardText.text = GetBiomeQuestText();
     }
 
-    private void OnFinalQuestStarted()
+    private void OnDestroy()
     {
-        if (QuestManager.Instance.finalQuest != null)
-            blackboardText.text = "1. " + QuestManager.Instance.finalQuest.questDescription; // show the final quest description on the blackboard
+        QuestManager.OnQuestCompleted -= OnQuestCompleted;
+        QuestManager.OnChainQuestStarted -= OnChainQuestStarted;
     }
 
-    private void UpdateBlackboard(string questID)
+    private void OnQuestCompleted(string questID)
     {
-        blackboardText.text = GetBlackboardText();
+        // If we're still in the biome quest phase, refresh the biome list
+        // (the completed quest will be missing from the new text, so it disappears)
+        QuestData activeChain = QuestManager.Instance.GetActiveChainQuest();
+        if (activeChain == null)
+        {
+            // No chain quest has started yet - we're still on biome quests
+            blackboardText.text = GetBiomeQuestText();
+        }
+        // If a chain quest IS active, the board was already updated by OnChainQuestStarted
+        // and completing it will be handled by the next OnChainQuestStarted call
     }
 
-    // we take all the quests in the quest manager, and if they are not completed,
-    // we add their description to the blackboard text, separated by by two newlines and with a numbered list
-    private string GetBlackboardText()
+    private void OnChainQuestStarted(QuestData chainQuest)
+    {
+        // Replace the blackboard with just this one new quest
+        blackboardText.text = $"1. {chainQuest.questDescription}";
+    }
+
+    private string GetBiomeQuestText()
     {
         string text = "";
         int questNumber = 1;
 
-        foreach (QuestData quest in QuestManager.Instance.allQuests)
+        foreach (QuestData quest in QuestManager.Instance.biomeQuests)
         {
             if (!QuestManager.Instance.completedQuests.Contains(quest.questID))
             {

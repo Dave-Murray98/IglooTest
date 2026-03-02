@@ -8,7 +8,7 @@ public class OtherQuestRequirement : IQuestRequirement
 {
     [SerializeField] private string requiredQuestID;
 
-    public bool IsMet(GameObject player)
+    public bool IsMet()
     {
         if (string.IsNullOrEmpty(requiredQuestID))
             return true; // No quest required

@@ -13,5 +13,11 @@ MonoBehaviour:
   m_Name: DescendIntoCaveQuest
   m_EditorClassIdentifier: 
   questID: DescendIntoCaveQuest
-  displayName: Descend Into Cave Quest
-  questDescription: Descend into the cave
+  questName: 
+  questDescription: Locate the previous expedition in the cave.
+  requirements: []
+  isRepeatable: 0
+  showDebugInfo: 0
+  references:
+    version: 2
+    RefIds: []

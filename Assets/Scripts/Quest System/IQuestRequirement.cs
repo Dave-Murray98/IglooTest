@@ -9,9 +9,7 @@ public interface IQuestRequirement
     /// <summary>
     /// Check if this requirement is currently met
     /// </summary>
-    /// <param name="player">The player attempting the quest</param>
-    /// <returns>True if requirement is satisfied</returns>
-    bool IsMet(GameObject player);
+    bool IsMet();
 
     /// <summary>
     /// Get a description of why the requirement failed (for UI feedback)

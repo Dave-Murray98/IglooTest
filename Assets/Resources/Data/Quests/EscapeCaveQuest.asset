@@ -13,5 +13,16 @@ MonoBehaviour:
   m_Name: EscapeCaveQuest
   m_EditorClassIdentifier: 
   questID: EscapeCaveQuest
-  displayName: Escape Cave Quest
+  questName: 
   questDescription: Escape the cave
+  requirements:
+  - rid: 2029818371973054593
+  isRepeatable: 0
+  showDebugInfo: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 2029818371973054593
+      type: {class: OtherQuestRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        requiredQuestID: DescendIntoCaveQuest

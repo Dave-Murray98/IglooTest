@@ -6,16 +6,27 @@ public class QuestManager : MonoBehaviour
 {
     public static QuestManager Instance { get; private set; }
 
+    // Fired when any quest is completed, passing its questID
     public static event Action<string> OnQuestCompleted;
 
-    public static event Action OnFinalQuestStarted;
+    // Fired when a new chain quest unlocks, passing the quest's data
+    public static event Action<QuestData> OnChainQuestStarted;
+
+    // Fired when all quests (including all chain quests) are done
+    public static event Action OnGameCompleted;
 
     public readonly List<string> completedQuests = new List<string>();
 
-    [Header("Quests")]
-    public List<QuestData> allQuests;
+    [Header("Biome Quests")]
+    [Tooltip("The 3 biome quests - all available from the start")]
+    public List<QuestData> biomeQuests;
 
-    public QuestData finalQuest;
+    [Header("Chain Quests (Sequential)")]
+    [Tooltip("Unlock one-by-one after biome quests are done. Order matters! 0=Descend, 1=Escape, 2=SafeZone")]
+    public List<QuestData> chainQuests;
+
+    // Tracks which chain quest we're on. -1 means none have started yet.
+    private int currentChainQuestIndex = -1;
 
     [Header("Debug")]
     [SerializeField] private bool enableDebugLogs = false;
@@ -30,26 +41,35 @@ public class QuestManager : MonoBehaviour
 
         Instance = this;
 
-        if (allQuests == null || allQuests.Count == 0)
+        if (biomeQuests == null || biomeQuests.Count == 0)
             FindAllQuests();
     }
 
     private void FindAllQuests()
     {
+        biomeQuests = new List<QuestData>();
+
+        // Build a set of chain quest IDs so we don't accidentally count them as biome quests
+        HashSet<string> chainQuestIDs = new HashSet<string>();
+        if (chainQuests != null)
+            foreach (QuestData cq in chainQuests)
+                if (cq != null) chainQuestIDs.Add(cq.questID);
+
         QuestTrigger[] triggers = FindObjectsByType<QuestTrigger>(FindObjectsSortMode.None);
         foreach (QuestTrigger trigger in triggers)
         {
-            if (trigger.questData != null)
+            if (trigger.questData != null && !chainQuestIDs.Contains(trigger.questData.questID))
             {
-                if (trigger.questData.questID != finalQuest?.questID) // make sure we don't add the final quest to the list of all quests
-                {
-                    DebugLog($"Found quest: {trigger.questData.questID}");
-                    allQuests.Add(trigger.questData);
-                }
+                DebugLog($"Found biome quest: {trigger.questData.questID}");
+                biomeQuests.Add(trigger.questData);
             }
         }
     }
 
+    /// <summary>
+    /// Called by QuestTrigger when a player enters a quest zone.
+    /// Works for both biome quests and chain quests.
+    /// </summary>
     public void CompleteQuest(string questID)
     {
         if (completedQuests.Contains(questID))
@@ -57,37 +77,84 @@ public class QuestManager : MonoBehaviour
 
         completedQuests.Add(questID);
         OnQuestCompleted?.Invoke(questID);
-
-        if (completedQuests.Count == allQuests.Count)
-        {
-            StartFinalQuest();
-        }
-
         DebugLog($"Quest completed: {questID}");
+
+        if (IsChainQuest(questID))
+        {
+            // A chain quest was just finished - move to the next one (or end the game)
+            HandleChainQuestCompleted();
+        }
+        else
+        {
+            // A biome quest was finished - check if all biome quests are now done
+            if (AllBiomeQuestsComplete())
+                StartNextChainQuest();
+        }
     }
 
-    private void StartFinalQuest()
+    private bool IsChainQuest(string questID)
     {
-        if (finalQuest == null)
+        if (chainQuests == null) return false;
+        foreach (QuestData cq in chainQuests)
+            if (cq != null && cq.questID == questID) return true;
+        return false;
+    }
+
+    private bool AllBiomeQuestsComplete()
+    {
+        foreach (QuestData q in biomeQuests)
+            if (!completedQuests.Contains(q.questID)) return false;
+        return true;
+    }
+
+    private void HandleChainQuestCompleted()
+    {
+        int nextIndex = currentChainQuestIndex + 1;
+
+        if (nextIndex < chainQuests.Count)
+            StartNextChainQuest();
+        else
         {
-            DebugLog("No final quest set.");
+            DebugLog("All quests complete! Game finished.");
+            Debug.Log("[QuestManager] GAME COMPLETE!");
+            OnGameCompleted?.Invoke();
+        }
+    }
+
+    private void StartNextChainQuest()
+    {
+        currentChainQuestIndex++;
+
+        if (currentChainQuestIndex >= chainQuests.Count)
+        {
+            DebugLog("No more chain quests.");
             return;
         }
 
-        DebugLog($"Starting final quest: {finalQuest.questID}");
+        QuestData nextQuest = chainQuests[currentChainQuestIndex];
+        if (nextQuest == null)
+        {
+            DebugLog($"Chain quest at index {currentChainQuestIndex} is null!");
+            return;
+        }
 
-        OnFinalQuestStarted?.Invoke();
-        // You can implement logic here to activate the final quest in the game world
+        DebugLog($"Starting chain quest: {nextQuest.questID}");
+        OnChainQuestStarted?.Invoke(nextQuest);
     }
 
     /// <summary>
-    /// Check if a quest has been completed
+    /// Returns the currently active chain quest, or null if none has started yet.
     /// </summary>
+    public QuestData GetActiveChainQuest()
+    {
+        if (currentChainQuestIndex < 0 || currentChainQuestIndex >= chainQuests.Count)
+            return null;
+        return chainQuests[currentChainQuestIndex];
+    }
+
     public bool IsQuestComplete(string questID)
     {
-        if (string.IsNullOrEmpty(questID))
-            return false;
-
+        if (string.IsNullOrEmpty(questID)) return false;
         return completedQuests.Contains(questID);
     }
 
@@ -96,5 +163,4 @@ public class QuestManager : MonoBehaviour
         if (enableDebugLogs)
             Debug.Log($"[QuestManager] {message}");
     }
-
 }

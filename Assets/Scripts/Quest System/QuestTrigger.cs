@@ -34,11 +34,19 @@ public class QuestTrigger : MonoBehaviour
 
     private void CompleteQuest()
     {
-        DebugLog($"Quest completed: {questData.questID}");
 
-        QuestManager.Instance.CompleteQuest(questData.questID);
-        col.enabled = false;
-        SetVisuals(true);
+        if (questData.AreRequirementsMet())
+        {
+            DebugLog($"Quest completed: {questData.questID}");
+
+            QuestManager.Instance.CompleteQuest(questData.questID);
+            col.enabled = false;
+            SetVisuals(true);
+        }
+        else
+        {
+            DebugLog($"Requirements not met for quest: {questData.questID}");
+        }
     }
 
     private void SetVisuals(bool completed)

@@ -273,7 +273,7 @@ public class SubmarineHealthManager : MonoBehaviour
     /// <summary>
     /// Called when the entire submarine is destroyed
     /// </summary>
-    private void HandleSubmarineDestroyed()
+    public void HandleSubmarineDestroyed()
     {
         Debug.Log("[SubmarineHealthManager] SUBMARINE DESTROYED!");
 

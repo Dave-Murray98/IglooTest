@@ -7,13 +7,21 @@ public class NPCHurtBox : MonoBehaviour
 
     public Vector3 attackDirection;
 
-    private void OnTriggerEnter(Collider other)
+    [SerializeField] protected bool enableDebugLogs = false;
+
+    protected virtual void OnTriggerEnter(Collider other)
     {
         SubmarineDamageDetector damageDetector = other.GetComponent<SubmarineDamageDetector>();
         if (damageDetector != null)
         {
             damageDetector.TakeDamageFromAttack(transform.position, damage, attackDirection, attackKnockBackForce);
         }
+    }
+
+    protected virtual void DebugLog(string message)
+    {
+        if (enableDebugLogs)
+            Debug.Log("[NPCHurtBox]" + message);
     }
 
 }

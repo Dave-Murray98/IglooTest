@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class QuestManager : MonoBehaviour
@@ -156,6 +157,13 @@ public class QuestManager : MonoBehaviour
     {
         if (string.IsNullOrEmpty(questID)) return false;
         return completedQuests.Contains(questID);
+    }
+
+    [Button]
+    public void CompleteBiomeQuests()
+    {
+        foreach (QuestData q in biomeQuests)
+            CompleteQuest(q.questID);
     }
 
     private void DebugLog(string message)

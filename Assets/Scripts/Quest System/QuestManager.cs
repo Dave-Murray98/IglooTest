@@ -29,6 +29,10 @@ public class QuestManager : MonoBehaviour
     // Tracks which chain quest we're on. -1 means none have started yet.
     private int currentChainQuestIndex = -1;
 
+    [Header("Cave Entrance")]
+    [SerializeField] private GameObject nonDestructableBlockingObject;
+    [SerializeField] private GameObject destructableBlockingObject;
+
     [Header("Debug")]
     [SerializeField] private bool enableDebugLogs = false;
 
@@ -44,6 +48,11 @@ public class QuestManager : MonoBehaviour
 
         if (biomeQuests == null || biomeQuests.Count == 0)
             FindAllQuests();
+    }
+
+    private void Start()
+    {
+        HandleCaveEntrance(false);
     }
 
     private void FindAllQuests()
@@ -89,7 +98,12 @@ public class QuestManager : MonoBehaviour
         {
             // A biome quest was finished - check if all biome quests are now done
             if (AllBiomeQuestsComplete())
+            {
+                HandleCaveEntrance(true);
                 StartNextChainQuest();
+            }
+            else
+                HandleCaveEntrance(false);
         }
     }
 
@@ -141,6 +155,26 @@ public class QuestManager : MonoBehaviour
 
         DebugLog($"Starting chain quest: {nextQuest.questID}");
         OnChainQuestStarted?.Invoke(nextQuest);
+    }
+
+    private void HandleCaveEntrance(bool isCaveEntranceOpen)
+    {
+        if (isCaveEntranceOpen)
+        {
+            if (nonDestructableBlockingObject != null)
+                nonDestructableBlockingObject.SetActive(false);
+
+            if (destructableBlockingObject != null)
+                destructableBlockingObject.SetActive(true);
+        }
+        else
+        {
+            if (nonDestructableBlockingObject != null)
+                nonDestructableBlockingObject.SetActive(true);
+
+            if (destructableBlockingObject != null)
+                destructableBlockingObject.SetActive(false);
+        }
     }
 
     /// <summary>

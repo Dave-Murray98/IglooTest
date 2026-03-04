@@ -6,8 +6,6 @@ public class AudioSettings : MonoBehaviour
     [Header("Audio Settings")]
     [SerializeField] private AudioSettingsData currentSettings;
 
-    [Header("Auto-Reference Settings")]
-    [SerializeField] private bool autoFindAudioManager = true;
 
     [Header("Debug")]
     [SerializeField] private bool enableDebugLogs = false;

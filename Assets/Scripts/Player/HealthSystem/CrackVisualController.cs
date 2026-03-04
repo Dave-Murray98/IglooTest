@@ -24,7 +24,6 @@ public class CrackVisualController : MonoBehaviour
 
     [Header("Debug")]
     [SerializeField] private bool enableDebugLogs = false;
-    [SerializeField] private bool showDebugInfo = true;
 
     // Shader property names (these must match the properties in your Shader Graph)
     private static readonly int RevealAmountProperty = Shader.PropertyToID("_RevealAmount");

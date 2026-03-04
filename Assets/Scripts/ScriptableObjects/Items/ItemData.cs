@@ -40,9 +40,6 @@ public class ItemData : ScriptableObject
     [Header("Ammo Settings")]
     [SerializeField] private AmmoData ammoData;
 
-    [Header("Debug")]
-    [SerializeField] private bool showDebugInfo = false;
-
     // Properties for accessing type-specific data
     public ConsumableData ConsumableData => consumableData;
     public AmmoData AmmoData => ammoData;

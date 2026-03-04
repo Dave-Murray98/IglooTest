@@ -1,14 +1,13 @@
 using System;
 using Infohazard.Core;
 using Sirenix.OdinInspector;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+
 
 /// <summary>
 /// UPDATED: UIManager with complete low oxygen warning system including audio
 /// </summary>
-public class UIManager : MonoBehaviour, IManager, IManagerState
+public class UIManager : MonoBehaviour, IManager
 {
     [Header("UI References")]
     public GameObject pauseMenu;
@@ -23,11 +22,6 @@ public class UIManager : MonoBehaviour, IManager, IManagerState
     [Header("Debug")]
     [SerializeField] private bool enableDebugLogs = false;
 
-    // IManagerState implementation
-    [ShowInInspector] private ManagerOperationalState operationalState = ManagerOperationalState.Gameplay;
-    [ShowInInspector, ReadOnly] public ManagerOperationalState CurrentOperationalState => operationalState;
-
-
     public void Initialize()
     {
         DebugLog("UIManager Initialized");
@@ -39,9 +33,6 @@ public class UIManager : MonoBehaviour, IManager, IManagerState
 
     public void RefreshReferences()
     {
-        if (!CanOperateInCurrentState())
-            return;
-
         DebugLog("UIManager: Refreshing references");
 
         // Unsubscribe first to prevent duplicates
@@ -193,50 +184,6 @@ public class UIManager : MonoBehaviour, IManager, IManagerState
         }
 
         pauseMenuManager.CloseSettingsPanel();
-    }
-
-    #endregion
-
-    #region  IManagerState Implementation
-
-    public void SetOperationalState(ManagerOperationalState newState)
-    {
-        operationalState = newState;
-
-        switch (newState)
-        {
-            case ManagerOperationalState.Menu:
-                OnEnterMenuState();
-                break;
-            case ManagerOperationalState.Gameplay:
-                OnEnterGameplayState();
-                break;
-            case ManagerOperationalState.Transition:
-                OnEnterTransitionState();
-                break;
-        }
-    }
-
-    public void OnEnterMenuState()
-    {
-        // Disable Update if you have one
-        this.enabled = false;
-    }
-
-    public void OnEnterGameplayState()
-    {
-        // Re-enable operations
-        this.enabled = true;
-    }
-
-    public void OnEnterTransitionState()
-    {
-        // Minimal operations during transition
-    }
-
-    public bool CanOperateInCurrentState()
-    {
-        return operationalState == ManagerOperationalState.Gameplay;
     }
 
     #endregion

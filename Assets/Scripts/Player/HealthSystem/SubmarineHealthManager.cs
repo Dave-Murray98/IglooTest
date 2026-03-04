@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using UnityEngine.InputSystem.XR.Haptics;
+using UnityEditor.EditorTools;
 
 
 /// <summary>
@@ -32,8 +33,8 @@ public class SubmarineHealthManager : MonoBehaviour
     [SerializeField] private SubmarineHealthRegion bottomRegion;
 
     [Header("Submarine Status")]
-    [Tooltip("Should the submarine be destroyed when all regions are destroyed?")]
-    [SerializeField] private bool destroySubmarineWhenAllRegionsDestroyed = true;
+    [Tooltip("Should the submarine be destroyed when any single region is destroyed? if false, all regions must be destroyed for the submarine to be destroyed.")]
+    [SerializeField] private bool destroySubmarineWhenAnyRegionDestroyed = true;
 
 
     [Header("On Take Damage Rumble Settings")]
@@ -264,10 +265,12 @@ public class SubmarineHealthManager : MonoBehaviour
         OnAnyRegionDestroyed?.Invoke(region);
 
         // Check if entire submarine should be destroyed
-        if (destroySubmarineWhenAllRegionsDestroyed && IsSubmarineDestroyed)
-        {
+        if (destroySubmarineWhenAnyRegionDestroyed)
             HandleSubmarineDestroyed();
-        }
+        else
+            if (IsSubmarineDestroyed)
+                HandleSubmarineDestroyed();
+
     }
 
     /// <summary>
@@ -279,6 +282,8 @@ public class SubmarineHealthManager : MonoBehaviour
 
         // Notify listeners
         OnSubmarineDestroyed?.Invoke();
+
+        GameManager.Instance.OnPlayerDeath();
 
         // Here you could add:
         // - Game over logic

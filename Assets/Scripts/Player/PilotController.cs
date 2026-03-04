@@ -17,21 +17,10 @@ public class PilotController : MonoBehaviour
     [SerializeField] private AdvancedShipController shipController;
     [SerializeField] private SubmarineBallastController ballastController;
 
-    [Header("Input Response")]
-    [SerializeField] private float throttleResponseSpeed = 2f;
-    [SerializeField] private float steeringResponseSpeed = 3f;
-    [SerializeField] private bool invertSteering = false;
 
     [Header("Submarine Config")]
     [SerializeField] private float maxThrottleInput = 1f;
     [SerializeField] private float maxSteeringInput = 1f;
-    [SerializeField] private float maxBrake = 1f;
-
-
-    [Header("Rumble Settings")]
-    [SerializeField] private float lowFrequency = 0.4f;
-    [SerializeField] private float highFrequency = 0.4f;
-    [SerializeField] private float rumbleDuration = 0.1f;
 
 
     [Header("Debug")]

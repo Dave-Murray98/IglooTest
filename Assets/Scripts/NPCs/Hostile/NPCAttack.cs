@@ -28,10 +28,6 @@ public class NPCAttack : MonoBehaviour
     [Tooltip("Brief pause at zero velocity before lunging")]
     [SerializeField] private float preparationPause = 0.2f;
 
-    [Header("Attack Rotation")]
-    [Tooltip("How fast the monster rotates to face the player during attack preparation")]
-    [SerializeField] private float attackRotationSpeed = 5f;
-
     [Header("Debug")]
     [SerializeField] private bool enableDebugLogs = false;
 

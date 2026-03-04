@@ -3,14 +3,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-/// <summary>
-/// UPDATED: InputManager with IManagerState implementation for menu/gameplay state awareness.
-/// Now properly adapts behavior based on operational state:
-/// - Menu State: Only UI/menu navigation active
-/// - Gameplay State: Full input functionality
-/// - Transition State: Minimal operations during state changes
-/// </summary>
-public class InputManager : MonoBehaviour, IManager, IManagerState
+public class InputManager : MonoBehaviour, IManager
 {
     public static InputManager Instance { get; private set; }
 
@@ -57,13 +50,8 @@ public class InputManager : MonoBehaviour, IManager, IManagerState
     private InputActionMap pilotActionMap;
 
     // State tracking
-    private bool gameplayInputEnabled = true;
     [ShowInInspector, ReadOnly] private bool isCleanedUp = false;
     private bool isFullyInitialized = false;
-
-    // IManagerState implementation
-    [ShowInInspector] private ManagerOperationalState operationalState = ManagerOperationalState.Gameplay;
-    [ShowInInspector, ReadOnly] public ManagerOperationalState CurrentOperationalState => operationalState;
 
     // Utility methods
     public bool IsMoving() => MovementInput.magnitude > 0.1f;
@@ -156,14 +144,7 @@ public class InputManager : MonoBehaviour, IManager, IManagerState
         }
 
         // Gameplay ActionMaps - only enable if not in menu state
-        if (operationalState != ManagerOperationalState.Menu)
-        {
-            EnableGameplayActionMaps();
-        }
-        else
-        {
-            DebugLog("[InputManager] Menu state detected - gameplay inputs disabled");
-        }
+        EnableGameplayActionMaps();
     }
 
     /// <summary>
@@ -202,120 +183,6 @@ public class InputManager : MonoBehaviour, IManager, IManagerState
 
         // Notify other systems
         OnInputManagerReady?.Invoke(this);
-    }
-
-    #endregion
-
-    #region IManagerState Implementation
-
-    public void SetOperationalState(ManagerOperationalState newState)
-    {
-        if (newState == operationalState)
-        {
-            DebugLog($"Already in {newState} state");
-            return;
-        }
-
-        DebugLog($"Transitioning from {operationalState} to {newState}");
-
-        var previousState = operationalState;
-        operationalState = newState;
-
-        // Handle state transitions
-        switch (newState)
-        {
-            case ManagerOperationalState.Menu:
-                OnEnterMenuState();
-                break;
-            case ManagerOperationalState.Gameplay:
-                OnEnterGameplayState();
-                break;
-            case ManagerOperationalState.Transition:
-                OnEnterTransitionState();
-                break;
-        }
-
-        DebugLog($"State transition complete: {previousState} -> {newState}");
-    }
-
-    public void OnEnterMenuState()
-    {
-        DebugLog("=== ENTERING MENU STATE ===");
-
-        // Disable all gameplay input
-        DisableGameplayActionMaps();
-
-        if (GameManager.Instance.uiManager != null)
-            GameManager.Instance.uiManager.ToggleUIMenuModeInput(true);
-
-        // Ensure UI ActionMap is disabled (so the player can't pause the game from the menu)
-        if (uiActionMap != null && !uiActionMap.enabled)
-        {
-            uiActionMap.Disable();
-        }
-
-        // Clear any held input states
-        ClearAllInputStates();
-
-        gameplayInputEnabled = false;
-
-        DebugLog("Menu state entered - only UI input active");
-    }
-
-    public void OnEnterGameplayState()
-    {
-        DebugLog("=== ENTERING GAMEPLAY STATE ===");
-
-        // Enable all gameplay ActionMaps
-        EnableGameplayActionMaps();
-
-        // Ensure UI ActionMap is still enabled for pause functionality
-        if (uiActionMap != null && !uiActionMap.enabled)
-        {
-            uiActionMap.Enable();
-        }
-
-        gameplayInputEnabled = true;
-
-        DebugLog("Gameplay state entered - all input active");
-    }
-
-    public void OnEnterTransitionState()
-    {
-        DebugLog("=== ENTERING TRANSITION STATE ===");
-
-        // During transitions, minimize input processing
-        // Keep UI active for potential loading screens
-        DisableGameplayActionMaps();
-
-        // Clear input states
-        ClearAllInputStates();
-
-        DebugLog("Transition state entered - minimal input active");
-    }
-
-    public bool CanOperateInCurrentState()
-    {
-        // InputManager can always operate (menus need input too)
-        // But gameplay inputs are restricted in menu state
-        return isFullyInitialized && !isCleanedUp;
-    }
-
-    /// <summary>
-    /// Clears all input state flags
-    /// </summary>
-    private void ClearAllInputStates()
-    {
-        MovementInput = Vector2.zero;
-        LookInput = Vector2.zero;
-
-        SurfacePressed = false;
-        SurfaceHeld = false;
-
-        DivePressed = false;
-        DiveHeld = false;
-
-        DebugLog("All input states cleared");
     }
 
     #endregion
@@ -386,7 +253,6 @@ public class InputManager : MonoBehaviour, IManager, IManagerState
         if (isCleanedUp) return;
 
         DebugLog("[InputManager] Disabling gameplay input (keeping UI enabled)");
-        gameplayInputEnabled = false;
 
         // Disable gameplay ActionMaps but KEEP UI enabled
         pilotActionMap?.Disable();
@@ -401,7 +267,6 @@ public class InputManager : MonoBehaviour, IManager, IManagerState
         if (isCleanedUp) return;
 
         DebugLog("[InputManager] Enabling gameplay input");
-        gameplayInputEnabled = true;
 
         // Re-enable all essential ActionMaps
         EnableEssentialActionMapsImmediate();

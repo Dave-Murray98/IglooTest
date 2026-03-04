@@ -42,16 +42,6 @@ public class AudioManager : MonoBehaviour, IManager
     [Header("Audio Settings")]
     [SerializeField] private AudioSettingsData defaultSettings;
 
-    [Header("3D Audio Settings")]
-    [Tooltip("Default minimum distance for 3D audio")]
-    [SerializeField] private float default3DMinDistance = 1f;
-
-    [Tooltip("Default maximum distance for 3D audio")]
-    [SerializeField] private float default3DMaxDistance = 50f;
-
-    [Tooltip("Rolloff mode for 3D audio distance attenuation")]
-    [SerializeField] private AudioRolloffMode rolloffMode = AudioRolloffMode.Linear;
-
     [Header("Debug")]
     [SerializeField] private bool enableDebugLogs = false;
     [SerializeField] private bool showPoolStats = false;

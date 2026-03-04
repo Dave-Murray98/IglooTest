@@ -33,7 +33,6 @@ public class NPCManagedUnderwaterMovement : MonoBehaviour
     [Header("Movement Settings")]
     [SerializeField] private float maxSpeed = 4f;
     [SerializeField] private float acceleration = 6f;
-    [SerializeField] private float deceleration = 6f;
 
     [Header("Rotation Settings")]
     [SerializeField] private float rotationSpeed = 5f;

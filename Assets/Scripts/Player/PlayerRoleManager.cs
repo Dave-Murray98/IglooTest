@@ -6,8 +6,8 @@ using UnityEngine.InputSystem;
 /// <summary>
 /// Manages player roles and controller assignments for local multiplayer.
 /// Handles spawning PlayerInput components and assigning them to Pilot, Engineer, or Gunner roles.
-/// PlayerInputManager uses Evoke Unity Events to send messages to this script.
-/// UPDATED: Now assigns Engineer as 2nd player (for testing purposes)
+/// Scene-based (not persistent) so it is recreated fresh on every scene load,
+/// avoiding stale reference issues when restarting the level.
 /// </summary>
 public class PlayerRoleManager : MonoBehaviour
 {
@@ -33,9 +33,9 @@ public class PlayerRoleManager : MonoBehaviour
     // Events
     public static event Action<PilotInputHandler> OnPilotAssigned;
     public static event Action<EngineerInputHandler> OnEngineerAssigned;
-    public static event Action<GunnerInputHandler, int> OnGunnerAssigned; // handler, gunner number
-    public static event Action<int> OnPlayerJoinedEvent; // player index - renamed to avoid conflict
-    public static event Action<int> OnPlayerLeftEvent; // player index - renamed to avoid conflict
+    public static event Action<GunnerInputHandler, int> OnGunnerAssigned;
+    public static event Action<int> OnPlayerJoinedEvent;
+    public static event Action<int> OnPlayerLeftEvent;
 
     // State
     public bool HasPilot => pilotHandler != null;
@@ -47,11 +47,11 @@ public class PlayerRoleManager : MonoBehaviour
     {
         Debug.Log("===== PlayerRoleManager Awake START =====");
 
+        // Simple singleton - no DontDestroyOnLoad so this is recreated fresh each scene
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
-            DebugLog("PlayerRoleManager singleton created");
+            DebugLog("PlayerRoleManager instance created");
         }
         else
         {
@@ -60,13 +60,12 @@ public class PlayerRoleManager : MonoBehaviour
             return;
         }
 
-        // Ensure we have a parent for input handlers
         if (inputHandlerParent == null)
         {
             inputHandlerParent = transform;
         }
 
-        // CRITICAL: Try to subscribe to events in Awake
+        // Subscribe to PlayerInputManager events
         var inputManager = FindFirstObjectByType<PlayerInputManager>();
         if (inputManager != null)
         {
@@ -87,7 +86,7 @@ public class PlayerRoleManager : MonoBehaviour
 
     private void Start()
     {
-        // Check for any PlayerInput objects that might have spawned before we subscribed
+        // Check for any PlayerInput objects that may have already spawned before we subscribed
         var existingPlayers = FindObjectsByType<PlayerInput>(FindObjectsSortMode.None);
         if (existingPlayers.Length > 0)
         {
@@ -104,8 +103,8 @@ public class PlayerRoleManager : MonoBehaviour
     }
 
     /// <summary>
-    /// PUBLIC Unity Message - Called by PlayerInputManager via SendMessage when "Send Messages" is enabled
-    /// This MUST be public for Unity's SendMessage to find it
+    /// PUBLIC Unity Message - Called by PlayerInputManager via SendMessage when "Send Messages" is enabled.
+    /// This MUST be public for Unity's SendMessage to find it.
     /// </summary>
     public void OnPlayerJoined(PlayerInput playerInput)
     {
@@ -114,8 +113,8 @@ public class PlayerRoleManager : MonoBehaviour
     }
 
     /// <summary>
-    /// PUBLIC Unity Message - Called by PlayerInputManager via SendMessage when "Send Messages" is enabled
-    /// This MUST be public for Unity's SendMessage to find it
+    /// PUBLIC Unity Message - Called by PlayerInputManager via SendMessage when "Send Messages" is enabled.
+    /// This MUST be public for Unity's SendMessage to find it.
     /// </summary>
     public void OnPlayerLeft(PlayerInput playerInput)
     {
@@ -124,8 +123,8 @@ public class PlayerRoleManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Called when a new player joins via PlayerInputManager
-    /// UPDATED: Priority order for testing - Pilot -> Engineer -> Gunners
+    /// Called when a new player joins via PlayerInputManager.
+    /// Priority order: Pilot -> Gunners -> Engineer
     /// </summary>
     private void OnPlayerInputJoined(PlayerInput playerInput)
     {
@@ -133,7 +132,6 @@ public class PlayerRoleManager : MonoBehaviour
         DebugLog($"Player {playerInput.playerIndex} joined with device: {playerInput.currentControlScheme}");
         DebugLog($"Current state - HasPilot: {HasPilot}, HasEngineer: {HasEngineer}, Gunners: {gunnerHandlers.Count}/{maxGunners}");
 
-        // Assign role based on what's available (TESTING PRIORITY: Pilot -> Engineer -> Gunners)
         if (!HasPilot)
         {
             DebugLog("No pilot exists, assigning this player as pilot...");
@@ -141,18 +139,17 @@ public class PlayerRoleManager : MonoBehaviour
         }
         else if (gunnerHandlers.Count < maxGunners)
         {
-            DebugLog($"Pilot and engineer exist, assigning this player as gunner {gunnerHandlers.Count + 1}...");
+            DebugLog($"Assigning this player as gunner {gunnerHandlers.Count + 1}...");
             AssignAsGunner(playerInput);
         }
         else if (!HasEngineer)
         {
-            DebugLog("Pilot exists but no engineer, assigning this player as engineer...");
+            DebugLog("No engineer exists, assigning this player as engineer...");
             AssignAsEngineer(playerInput);
         }
         else
         {
             Debug.LogWarning($"[PlayerRoleManager] All roles filled! Cannot assign player {playerInput.playerIndex}");
-            // Could destroy the PlayerInput here or show UI feedback
         }
 
         OnPlayerJoinedEvent?.Invoke(playerInput.playerIndex);
@@ -160,29 +157,24 @@ public class PlayerRoleManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Called when a player leaves
+    /// Called when a player leaves.
     /// </summary>
     private void OnPlayerInputLeft(PlayerInput playerInput)
     {
         DebugLog($"Player {playerInput.playerIndex} left");
 
-        // Check if it was the pilot
         if (pilotHandler != null && pilotHandler.PlayerIndex == playerInput.playerIndex)
         {
             DebugLog("Pilot disconnected!");
             pilotHandler = null;
-            // Could reassign roles here or pause game
         }
 
-        // Check if it was the engineer
         if (engineerHandler != null && engineerHandler.PlayerIndex == playerInput.playerIndex)
         {
             DebugLog("Engineer disconnected!");
             engineerHandler = null;
-            // Could reassign roles here or pause game
         }
 
-        // Check if it was a gunner
         for (int i = gunnerHandlers.Count - 1; i >= 0; i--)
         {
             if (gunnerHandlers[i].PlayerIndex == playerInput.playerIndex)
@@ -197,11 +189,10 @@ public class PlayerRoleManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Assigns a PlayerInput as the pilot
+    /// Assigns a PlayerInput as the pilot.
     /// </summary>
     private void AssignAsPilot(PlayerInput playerInput)
     {
-        // Add or get PilotInputHandler component
         var handler = playerInput.gameObject.GetComponent<PilotInputHandler>();
         if (handler == null)
         {
@@ -209,8 +200,6 @@ public class PlayerRoleManager : MonoBehaviour
         }
 
         pilotHandler = handler;
-
-        // Switch to Pilot action map
         playerInput.SwitchCurrentActionMap("Pilot");
 
         DebugLog($"Player {playerInput.playerIndex} assigned as PILOT");
@@ -218,11 +207,10 @@ public class PlayerRoleManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Assigns a PlayerInput as the engineer
+    /// Assigns a PlayerInput as the engineer.
     /// </summary>
     private void AssignAsEngineer(PlayerInput playerInput)
     {
-        // Add or get EngineerInputHandler component
         var handler = playerInput.gameObject.GetComponent<EngineerInputHandler>();
         if (handler == null)
         {
@@ -230,8 +218,6 @@ public class PlayerRoleManager : MonoBehaviour
         }
 
         engineerHandler = handler;
-
-        // Switch to Engineer action map
         playerInput.SwitchCurrentActionMap("Engineer");
 
         DebugLog($"Player {playerInput.playerIndex} assigned as ENGINEER");
@@ -239,11 +225,10 @@ public class PlayerRoleManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Assigns a PlayerInput as a gunner
+    /// Assigns a PlayerInput as a gunner.
     /// </summary>
     private void AssignAsGunner(PlayerInput playerInput)
     {
-        // Add or get GunnerInputHandler component
         var handler = playerInput.gameObject.GetComponent<GunnerInputHandler>();
         if (handler == null)
         {
@@ -253,8 +238,6 @@ public class PlayerRoleManager : MonoBehaviour
         int gunnerNumber = gunnerHandlers.Count;
         handler.SetGunnerNumber(gunnerNumber);
         gunnerHandlers.Add(handler);
-
-        // Switch to Gunner action map
         playerInput.SwitchCurrentActionMap("Gunner");
 
         DebugLog($"Player {playerInput.playerIndex} assigned as GUNNER {gunnerNumber + 1}");
@@ -262,23 +245,17 @@ public class PlayerRoleManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Gets the pilot input handler
+    /// Gets the pilot input handler.
     /// </summary>
-    public PilotInputHandler GetPilotHandler()
-    {
-        return pilotHandler;
-    }
+    public PilotInputHandler GetPilotHandler() => pilotHandler;
 
     /// <summary>
-    /// Gets the engineer input handler
+    /// Gets the engineer input handler.
     /// </summary>
-    public EngineerInputHandler GetEngineerHandler()
-    {
-        return engineerHandler;
-    }
+    public EngineerInputHandler GetEngineerHandler() => engineerHandler;
 
     /// <summary>
-    /// Gets a specific gunner input handler by index
+    /// Gets a specific gunner input handler by index.
     /// </summary>
     public GunnerInputHandler GetGunnerHandler(int gunnerIndex)
     {
@@ -290,7 +267,7 @@ public class PlayerRoleManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Gets all gunner input handlers
+    /// Gets all gunner input handlers.
     /// </summary>
     public List<GunnerInputHandler> GetAllGunnerHandlers()
     {
@@ -304,7 +281,7 @@ public class PlayerRoleManager : MonoBehaviour
             Instance = null;
         }
 
-        // Unsubscribe from events
+        // Unsubscribe from PlayerInputManager
         var inputManager = FindFirstObjectByType<PlayerInputManager>();
         if (inputManager != null)
         {

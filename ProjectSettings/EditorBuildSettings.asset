@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Test Scenes/Level Layouts/GameOverScene.unity
     guid: 491e84d708904ae4da92a8a292425c4c
+  - enabled: 1
+    path: Assets/Scenes/Test Scenes/Level Layouts/GameWinScene.unity
+    guid: 988a3e04fbc400e4ebcc64c0af0d9dce
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

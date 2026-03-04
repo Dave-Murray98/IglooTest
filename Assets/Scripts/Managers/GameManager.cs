@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private string levelSceneName = "Level01";
     [SerializeField] private string mainMenuSceneName = "MainMenu";
     [SerializeField] private string gameOverSceneName = "GameOverScene";
+    [SerializeField] private string gameWinSceneName = "GameWinScene";
 
     [Header("Persistent Managers")]
     [ShowInInspector, ReadOnly] private AudioManager audioManagerReference;
@@ -343,6 +344,19 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(levelSceneName);
     }
 
+    public void OnPlayerDeath()
+    {
+        DebugLog("Player died!");
+        SceneManager.LoadScene(gameOverSceneName);
+    }
+
+    [Button("Test Win")]
+    public void OnPlayerWin()
+    {
+        DebugLog("Player won!");
+        SceneManager.LoadScene(gameWinSceneName);
+    }
+
     /// <summary>
     /// Manually triggers manager reference refresh with singleton support
     /// </summary>
@@ -370,13 +384,6 @@ public class GameManager : MonoBehaviour
 
         return inputManagerReady;
     }
-
-    public void OnPlayerDeath()
-    {
-        DebugLog("Player died!");
-        SceneManager.LoadScene(gameOverSceneName);
-    }
-
 
     private void OnDestroy()
     {

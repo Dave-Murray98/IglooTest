@@ -4,7 +4,6 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.SceneManagement;
-using Unity.VisualScripting;
 
 /// <summary>
 /// Interface for centralized manager coordination.
@@ -37,13 +36,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    [SerializeField] private string startingSceneName = "Level00";
+    [SerializeField] private string levelSceneName = "Level01";
     [SerializeField] private string mainMenuSceneName = "MainMenu";
-
-
-    [Header("Scene-Based Managers")]
-    public UIManager uiManager;
-
+    [SerializeField] private string gameOverSceneName = "GameOverScene";
 
     [Header("Persistent Managers")]
     [ShowInInspector, ReadOnly] private AudioManager audioManagerReference;
@@ -181,9 +176,6 @@ public class GameManager : MonoBehaviour
         sceneBasedManagers.Clear();
 
         // Register scene-based managers that implement IManager
-        uiManager = FindFirstObjectByType<UIManager>();
-
-        if (uiManager != null) sceneBasedManagers.Add(uiManager);
 
         DebugLog($"Found {sceneBasedManagers.Count} scene-based managers");
 
@@ -346,6 +338,11 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(mainMenuSceneName);
     }
 
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(levelSceneName);
+    }
+
     /// <summary>
     /// Manually triggers manager reference refresh with singleton support
     /// </summary>
@@ -377,6 +374,7 @@ public class GameManager : MonoBehaviour
     public void OnPlayerDeath()
     {
         DebugLog("Player died!");
+        SceneManager.LoadScene(gameOverSceneName);
     }
 
 
@@ -409,4 +407,6 @@ public class GameManager : MonoBehaviour
             Debug.Log($"[GameManager] {message}");
         }
     }
+
+
 }

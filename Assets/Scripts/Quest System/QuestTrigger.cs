@@ -1,36 +1,16 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Collider))]
-public class QuestTrigger : MonoBehaviour
+public class QuestTrigger : EventTrigger
 {
     [Header("QuestData")]
     public QuestData questData;
 
-    [Header("Visuals")]
-    [SerializeField] private GameObject incompleteVisual;
-    [SerializeField] private GameObject completeVisual;
-
-    [Header("Collision")]
-    [SerializeField] private Collider col;
-
-    [Header("Debug")]
-    [SerializeField] private bool enableDebugLogs = false;
-
-    private void Awake()
+    //called by oncollision enter
+    protected override void TriggerEvent()
     {
-        if (col == null)
-            col = GetComponent<Collider>();
-
-        SetVisuals(false);
+        CompleteQuest();
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        PilotController pilot = other.GetComponent<PilotController>();
-        if (pilot != null)
-            CompleteQuest();
-
-    }
 
     private void CompleteQuest()
     {
@@ -49,30 +29,18 @@ public class QuestTrigger : MonoBehaviour
         }
     }
 
-    private void SetVisuals(bool completed)
-    {
-        if (incompleteVisual != null)
-            incompleteVisual.SetActive(!completed);
-
-        if (completeVisual != null)
-            completeVisual.SetActive(completed);
-
-
-        DebugLog($"Set visuals: {(completed ? "Complete" : "Incomplete")}");
-    }
-
-    private void DebugLog(string message)
+    protected override void DebugLog(string message)
     {
         if (enableDebugLogs)
             Debug.Log("[QuestTrigger " + questData.questID + "] " + message);
     }
 
-    private void OnDrawGizmos()
+    protected override void OnDrawGizmos()
     {
         if (col == null)
             return;
 
-        Gizmos.color = new Color(0f, 1f, 0.5f, 0.25f);
+        Gizmos.color = new Color(0f, 1f, 0.5f, 0.25f); // light green
         Gizmos.matrix = transform.localToWorldMatrix;
 
         if (col is BoxCollider box)

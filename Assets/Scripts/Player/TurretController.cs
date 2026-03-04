@@ -117,7 +117,7 @@ public class TurretController : MonoBehaviour
             }
         }
 
-        SubmarineHealthManager.Instance.OnSubmarineTakenDamage += RumblePulse;
+        SubmarineHealthManager.Instance.OnSubmarineTakenDamage += HandleRumble;
     }
 
     private void OnGunnerAssigned(GunnerInputHandler handler, int gunnerNumber)
@@ -219,10 +219,15 @@ public class TurretController : MonoBehaviour
         }
 
         // Rumble gamepad
-        RumblePulse(lowFrequency, highFrequency, rumbleDuration);
+        HandleRumble(lowFrequency, highFrequency, rumbleDuration);
 
         ParticleFXPool.Instance.GetTurretShootFX(firePoint.position, firePoint.rotation);
 
+    }
+
+    private void HandleRumble(float lowFrequency, float highFrequency, float duration)
+    {
+        RumbleManager.Instance.RumblePulse(assignedGamepad, lowFrequency, highFrequency, duration);
     }
 
     /// <summary>

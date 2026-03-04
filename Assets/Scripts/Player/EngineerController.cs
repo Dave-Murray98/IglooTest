@@ -73,8 +73,13 @@ public class EngineerController : MonoBehaviour
             DebugLog("Waiting for engineer to connect...");
         }
 
-        SubmarineHealthManager.Instance.OnSubmarineTakenDamage += RumblePulse;
+        SubmarineHealthManager.Instance.OnSubmarineTakenDamage += HandleRumble;
 
+    }
+
+    private void HandleRumble(float lowFrequency, float highFrequency, float duration)
+    {
+        RumbleManager.Instance.RumblePulse(assignedGamepad, lowFrequency, highFrequency, duration);
     }
 
     private void OnEngineerAssigned(EngineerInputHandler handler)
@@ -349,30 +354,8 @@ public class EngineerController : MonoBehaviour
 
 
         // Rumble gamepad
-        RumblePulse(lowFrequency, highFrequency, rumbleDuration);
-
+        HandleRumble(lowFrequency, highFrequency, rumbleDuration);
         // The crack visuals will automatically update via SubmarineHealthRegion's UpdateCrackVisuals()
-    }
-
-    public void RumblePulse(float lowFrequency, float highFrequency, float duration)
-    {
-        if (assignedGamepad != null)
-        {
-            //start rumble 
-            assignedGamepad.SetMotorSpeeds(lowFrequency, highFrequency);
-
-            //stop rumble after duration
-            StartCoroutine(StopRumbleAfterDuration(duration));
-        }
-    }
-
-    private IEnumerator StopRumbleAfterDuration(float duration)
-    {
-        yield return new WaitForSeconds(duration);
-        if (assignedGamepad != null)
-        {
-            assignedGamepad.SetMotorSpeeds(0f, 0f);
-        }
     }
 
     #endregion

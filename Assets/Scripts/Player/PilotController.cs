@@ -61,7 +61,12 @@ public class PilotController : MonoBehaviour
             DebugLog("Waiting for pilot to connect...");
         }
 
-        SubmarineHealthManager.Instance.OnSubmarineTakenDamage += RumblePulse;
+        SubmarineHealthManager.Instance.OnSubmarineTakenDamage += HandleRumble;
+    }
+
+    private void HandleRumble(float lowFrequency, float highFrequency, float duration)
+    {
+        RumbleManager.Instance.RumblePulse(assignedGamepad, lowFrequency, highFrequency, duration);
     }
 
     private void OnPilotAssigned(PilotInputHandler handler)
@@ -162,26 +167,6 @@ public class PilotController : MonoBehaviour
     }
 
 
-    public void RumblePulse(float lowFrequency, float highFrequency, float duration)
-    {
-        if (assignedGamepad != null)
-        {
-            //start rumble 
-            assignedGamepad.SetMotorSpeeds(lowFrequency, highFrequency);
-
-            //stop rumble after duration
-            StartCoroutine(StopRumbleAfterDuration(duration));
-        }
-    }
-
-    private IEnumerator StopRumbleAfterDuration(float duration)
-    {
-        yield return new WaitForSeconds(duration);
-        if (assignedGamepad != null)
-        {
-            assignedGamepad.SetMotorSpeeds(0f, 0f);
-        }
-    }
 
     private void OnDestroy()
     {

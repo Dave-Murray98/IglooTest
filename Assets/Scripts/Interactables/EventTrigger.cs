@@ -61,7 +61,7 @@ public class EventTrigger : MonoBehaviour
             return;
 
         //create a yellow wire cube at the position of the object
-        Gizmos.color = Color.yellow;
+        Gizmos.color = Color.yellow * new Color(1, 1, 1, 0.5f);
         Gizmos.matrix = transform.localToWorldMatrix;
 
         if (col is BoxCollider box)

@@ -1239,7 +1239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPaused: 0
-  enableDebugLogs: 0
+  enableDebugLogs: 1
 --- !u!4 &2054162992
 Transform:
   m_ObjectHideFlags: 0

@@ -52,6 +52,9 @@ public class TurretController : MonoBehaviour
     [SerializeField] private float highFrequency = 0.5f;
     [SerializeField] private float rumbleDuration = 0.2f;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip[] shootSounds;
+
     [Header("Debug")]
     [SerializeField] private bool enableDebugLogs = false;
     [SerializeField] private bool showGizmos = true;
@@ -206,6 +209,11 @@ public class TurretController : MonoBehaviour
         PlayerProjectile projectile = PlayerBulletPool.Instance.GetProjectile(turretProjectile, firePoint.position, firePoint.rotation);
 
         projectile.Initialize(projectileDamage, knockBackForce, turretProjectile, firePoint.position, firePoint.rotation);
+
+        if (shootSounds != null && shootSounds.Length > 0)
+        {
+            AudioManager.Instance.PlaySound(shootSounds[Random.Range(0, shootSounds.Length)], transform.position, AudioCategory.PlayerSFX, layer: AudioLayer.Exterior);
+        }
 
         // Apply force using projectile's forward direction
         Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();

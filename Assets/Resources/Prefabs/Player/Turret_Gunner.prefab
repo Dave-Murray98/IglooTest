@@ -205,13 +205,17 @@ MonoBehaviour:
   maxPitch: 85
   firePoint: {fileID: 4503427860597407425}
   turretProjectile: {fileID: 11400000, guid: 0f6e4ff8a709fee44bf13d329df39f9f, type: 2}
-  projectileForce: 10
+  projectileForce: 50
   projectileDamage: 10
   knockBackForce: 50
   fireRate: 0.5
   lowFrequency: 0.5
   highFrequency: 0.5
   rumbleDuration: 0.2
+  shootSounds:
+  - {fileID: 8300000, guid: 31a97900a443fab48b97b50e3c31301d, type: 3}
+  - {fileID: 8300000, guid: ce0a5901a433e0743b1f358a824c2948, type: 3}
+  - {fileID: 8300000, guid: ebde450e6fc48f84da20cdc7a97dccd6, type: 3}
   enableDebugLogs: 1
   showGizmos: 1
 --- !u!1 &7599058421412014935

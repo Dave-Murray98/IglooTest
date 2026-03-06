@@ -2,7 +2,6 @@ using System.IO;
 using Digger.Modules.Core.Sources;
 using Digger.Modules.Core.Sources.Jobs;
 using UnityEditor.Build;
-using UnityEditor.Build.Reporting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -23,8 +22,10 @@ namespace Digger.Modules.Runtime.Sources.Editor
                 Directory.Delete(streamingAssetsBasePath, true);
 
             var scenes = buildPlayerContext.BuildPlayerOptions.scenes;
-            foreach (var scene in scenes) {
-                ProcessScene(SceneManager.GetSceneByPath(scene));
+            foreach (var scene in scenes)
+            {
+                //EditorSceneManager.OpenScene(scene, OpenSceneMode.Additive);
+                // ProcessScene(SceneManager.GetSceneByPath(scene));
             }
         }
 
@@ -34,18 +35,22 @@ namespace Digger.Modules.Runtime.Sources.Editor
             var rootObjects = scene.GetRootGameObjects();
 
             var includeVoxelData = false;
-            foreach (var rootObject in rootObjects) {
+            foreach (var rootObject in rootObjects)
+            {
                 var diggerRuntime = rootObject.GetComponentInChildren<DiggerMasterRuntime>();
-                if (diggerRuntime) {
+                if (diggerRuntime)
+                {
                     includeVoxelData = true;
                     Debug.Log($"DiggerMasterRuntime has been detected in scene '{scene.name}'. Voxel data will be included in build.");
                     break;
                 }
             }
 
-            foreach (var rootObject in rootObjects) {
+            foreach (var rootObject in rootObjects)
+            {
                 var diggers = rootObject.GetComponentsInChildren<DiggerSystem>();
-                foreach (var digger in diggers) {
+                foreach (var digger in diggers)
+                {
                     digger.OnPreprocessBuild(includeVoxelData);
                 }
             }

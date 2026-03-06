@@ -5,24 +5,18 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/Test Scenes/TestLevel01.unity
-    guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 0
-    path: Assets/Scenes/Test Scenes/Level Layouts/Early Terrain Layout.unity
-    guid: c1a141cca479c7d499c36c8a376101bf
   - enabled: 1
     path: Assets/Scenes/Test Scenes/Level Layouts/MainMenuScene.unity
     guid: 55e9eea4414aa8a438efc9b4eb606d20
   - enabled: 1
-    path: Assets/Scenes/Test Scenes/Level Layouts/Level01.unity
+    path: Assets/Scenes/Test Scenes/Level Layouts/Terrain With Cave.unity
     guid: c28568339664c3147bf94df48fbc0e8d
-  - enabled: 1
-    path: Assets/Scenes/Test Scenes/Level Layouts/GameOverScene.unity
-    guid: 491e84d708904ae4da92a8a292425c4c
   - enabled: 1
     path: Assets/Scenes/Test Scenes/Level Layouts/GameWinScene.unity
     guid: 988a3e04fbc400e4ebcc64c0af0d9dce
+  - enabled: 1
+    path: Assets/Scenes/Test Scenes/Level Layouts/GameOverScene.unity
+    guid: 491e84d708904ae4da92a8a292425c4c
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

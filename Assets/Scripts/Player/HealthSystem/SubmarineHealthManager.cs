@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Sirenix.OdinInspector;
-using UnityEngine.InputSystem.XR.Haptics;
-using UnityEditor.EditorTools;
 
 
 /// <summary>

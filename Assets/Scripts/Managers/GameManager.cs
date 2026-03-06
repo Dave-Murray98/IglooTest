@@ -36,7 +36,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    [ShowInInspector, ReadOnly] private static string levelSceneName = "Level01";
+    [ShowInInspector, ReadOnly]
+    private static string levelSceneName = "Terrain With Cave";
     [ShowInInspector, ReadOnly] private static string mainMenuSceneName = "MainMenuScene";
     [ShowInInspector, ReadOnly] private static string gameOverSceneName = "GameOverScene";
     [ShowInInspector, ReadOnly] private static string gameWinSceneName = "GameWinScene";

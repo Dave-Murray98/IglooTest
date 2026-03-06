@@ -21,6 +21,9 @@ public class UnderwaterAmbienceController : MonoBehaviour
     [SerializeField] private AudioClip submergeClip;
     [SerializeField] private AudioClip breachClip;
     [SerializeField][Range(0f, 1f)] private float transitionSFXVolume = 1f;
+    [SerializeField] private float transitionSFXCooldown = 0.5f;
+    private float lastTransitionSFXTime = -999f;
+
 
     [Header("Depth Thresholds")]
     [SerializeField] private float surfaceDepthThreshold = 1f;
@@ -120,10 +123,10 @@ public class UnderwaterAmbienceController : MonoBehaviour
         surfaceSource = CreateSource("Surface", surfaceAmbienceClip);
         deepSource = CreateSource("Deep", deepAmbienceClip);
         veryDeepSource = CreateSource("VeryDeep", veryDeepAmbienceClip);
-        transitionSFXSource = CreateSource("TransitionSFX", null, loop: false);
+        transitionSFXSource = CreateSource("TransitionSFX", null, loop: false, volume: transitionSFXVolume);
     }
 
-    private AudioSource CreateSource(string label, AudioClip clip, bool loop = true)
+    private AudioSource CreateSource(string label, AudioClip clip, bool loop = true, float volume = 0f)
     {
         var go = new GameObject($"Ambience_{label}");
         go.transform.SetParent(transform);
@@ -132,7 +135,7 @@ public class UnderwaterAmbienceController : MonoBehaviour
         src.clip = clip;
         src.loop = loop;
         src.playOnAwake = false;
-        src.volume = 0f;
+        src.volume = volume;
         src.spatialBlend = 0f; // 2D — ambience fills the whole space
 
         // All ambience comes from outside the hull
@@ -185,13 +188,13 @@ public class UnderwaterAmbienceController : MonoBehaviour
 
     private void TransitionToState(AmbienceState newState)
     {
+        AmbienceState previousState = currentState;
         currentState = newState;
 
         switch (newState)
         {
             case AmbienceState.AboveWater:
-                // Only play breach SFX if we were underwater before
-                if (currentState != AmbienceState.AboveWater)
+                if (previousState != AmbienceState.AboveWater)
                     PlayTransitionSFX(breachClip);
 
                 FadeTo(aboveWaterSource, ref aboveWaterTween, maxAboveWaterVolume);
@@ -201,7 +204,7 @@ public class UnderwaterAmbienceController : MonoBehaviour
                 break;
 
             case AmbienceState.Surface:
-                if (currentState == AmbienceState.AboveWater)
+                if (previousState == AmbienceState.AboveWater)
                     PlayTransitionSFX(submergeClip);
 
                 FadeTo(surfaceSource, ref surfaceTween, maxSurfaceVolume);
@@ -274,7 +277,16 @@ public class UnderwaterAmbienceController : MonoBehaviour
     private void PlayTransitionSFX(AudioClip clip)
     {
         if (transitionSFXSource == null || clip == null) return;
+
+        if (Time.time - lastTransitionSFXTime < transitionSFXCooldown)
+        {
+            DebugLog("Transition SFX skipped — cooldown active.");
+            return;
+        }
+
+        lastTransitionSFXTime = Time.time;
         transitionSFXSource.PlayOneShot(clip, transitionSFXVolume);
+        DebugLog($"Playing transition SFX: {clip.name}");
     }
 
     private void DebugLog(string message)

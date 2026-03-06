@@ -22,6 +22,7 @@ public class QuestTrigger : EventTrigger
             QuestManager.Instance.CompleteQuest(questData.questID);
             col.enabled = false;
             SetVisuals(true);
+            PlayHandlerSpeechIfAssigned();
         }
         else
         {

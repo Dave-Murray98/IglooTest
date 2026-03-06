@@ -342,6 +342,7 @@ MonoBehaviour:
         - GlobalObjectId_V1-2-c28568339664c3147bf94df48fbc0e8d-1023293619-0
         - GlobalObjectId_V1-2-c28568339664c3147bf94df48fbc0e8d-451259708-0
         - GlobalObjectId_V1-2-c28568339664c3147bf94df48fbc0e8d-187826892-0
+        - GlobalObjectId_V1-2-c28568339664c3147bf94df48fbc0e8d-552189234-0
         values:
         - iColor: 2
           icon: Terrain Icon
@@ -349,8 +350,10 @@ MonoBehaviour:
           icon: Terrain Icon
         - iColor: 6
           icon: DirectionalLight Icon
+        - iColor: 9
+          icon: AudioSource Icon
       goDatasByInstanceId:
-        keys: 024f0100e248010002460100
+        keys: 78500100c8490100dc460100daadfeff
         values:
         - iColor: 2
           icon: Terrain Icon
@@ -358,3 +361,5 @@ MonoBehaviour:
           icon: Terrain Icon
         - iColor: 6
           icon: DirectionalLight Icon
+        - iColor: 9
+          icon: AudioSource Icon

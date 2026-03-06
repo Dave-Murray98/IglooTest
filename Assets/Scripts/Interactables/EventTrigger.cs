@@ -12,6 +12,15 @@ public class EventTrigger : MonoBehaviour
     [SerializeField] protected GameObject completeVisual;
 
 
+    // -----------------------------------------------------------------------
+    // Handler Speech
+    // -----------------------------------------------------------------------
+    [Header("Handler Speech (Optional)")]
+    [Tooltip("Assign a HandlerSpeechData asset here if you want the handler (boss) " +
+             "to speak when this trigger fires. Leave empty for silent triggers.")]
+    [SerializeField] private HandlerSpeechData handlerSpeech;
+
+
     [Header("Debug")]
     [SerializeField] protected bool enableDebugLogs = false;
 
@@ -28,13 +37,37 @@ public class EventTrigger : MonoBehaviour
         PilotController pilot = other.GetComponent<PilotController>();
         if (pilot != null)
             TriggerEvent();
-
     }
 
     protected virtual void TriggerEvent()
     {
         col.enabled = false;
         SetVisuals(true);
+
+        // If a handler speech has been assigned, play it through the intercom.
+        // HandlerSpeechController handles interrupting any currently playing speech.
+        PlayHandlerSpeechIfAssigned();
+    }
+
+    /// <summary>
+    /// Plays the handler speech clip if one is assigned to this trigger.
+    /// Safe to call even when handlerSpeech is null — it will simply do nothing.
+    /// </summary>
+    protected void PlayHandlerSpeechIfAssigned()
+    {
+        if (handlerSpeech == null)
+            return;
+
+        if (HandlerSpeechController.Instance == null)
+        {
+            Debug.LogWarning("[EventTrigger] HandlerSpeechData is assigned but no " +
+                             "HandlerSpeechController exists in the scene. " +
+                             "Add HandlerSpeechController to your intercom GameObject.");
+            return;
+        }
+
+        DebugLog($"Triggering handler speech: '{handlerSpeech.speechLabel}'");
+        HandlerSpeechController.Instance.Play(handlerSpeech);
     }
 
     protected virtual void SetVisuals(bool completed)
@@ -44,7 +77,6 @@ public class EventTrigger : MonoBehaviour
 
         if (completeVisual != null)
             completeVisual.SetActive(completed);
-
 
         DebugLog($"Set visuals: {(completed ? "Complete" : "Incomplete")}");
     }
@@ -60,7 +92,6 @@ public class EventTrigger : MonoBehaviour
         if (col == null)
             return;
 
-        //create a yellow wire cube at the position of the object
         Gizmos.color = Color.yellow * new Color(1, 1, 1, 0.5f);
         Gizmos.matrix = transform.localToWorldMatrix;
 
@@ -78,8 +109,6 @@ public class EventTrigger : MonoBehaviour
         }
         else if (col is CapsuleCollider capsule)
         {
-            // Unity has no built-in DrawWireCapsule, so we approximate
-            // it with two spheres at each end and a wire cube for the body.
             float radius = capsule.radius;
             float halfHeight = Mathf.Max(0f, capsule.height * 0.5f - radius);
             Vector3 top = capsule.center + Vector3.up * halfHeight;

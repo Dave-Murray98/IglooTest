@@ -42,7 +42,7 @@ public class SubmarineHealthManager : MonoBehaviour
 
     [Header("Audio")]
     [SerializeField]
-    private AudioClip anyRegionLowHealthSFX;
+    private AudioClip anyRegionLowHealthLoopSFX;
 
     [Header("Debug")]
     [SerializeField] private bool enableDebugLogs = true;
@@ -58,6 +58,9 @@ public class SubmarineHealthManager : MonoBehaviour
     private List<SubmarineHealthRegion> allRegions;
 
     // Status tracking
+    private int lowHealthRegionCount = 0;
+    private int lowHealthLoopPlaybackID = -1;
+
     [ShowInInspector, ReadOnly]
     private int destroyedRegionCount = 0;
 
@@ -110,6 +113,8 @@ public class SubmarineHealthManager : MonoBehaviour
         {
             region.OnDamageTaken += HandleRegionDamaged;
             region.OnRegionDestroyed += HandleRegionDestroyed;
+            region.OnEnteredLowHealth += HandleRegionEnteredLowHealth;
+            region.OnExitedLowHealth += HandleRegionExitedLowHealth;
         }
 
         DebugLog("Health Manager initialized with " + allRegions.Count + " regions.");
@@ -253,6 +258,39 @@ public class SubmarineHealthManager : MonoBehaviour
         OnSubmarineTakenDamage?.Invoke(lowFrequency, highFrequency, rumbleDuration);
     }
 
+    private void HandleRegionEnteredLowHealth(SubmarineHealthRegion region)
+    {
+        lowHealthRegionCount++;
+        DebugLog($"{region.RegionName} entered low health. Low health regions: {lowHealthRegionCount}");
+
+        // Only start the loop if it isn't already playing
+        if (lowHealthLoopPlaybackID == -1 && anyRegionLowHealthLoopSFX != null)
+        {
+            lowHealthLoopPlaybackID = AudioManager.Instance.PlaySound2DTracked(
+                anyRegionLowHealthLoopSFX,
+                AudioCategory.PlayerSFX,
+                volume: 1f,
+                loop: true,
+                layer: AudioLayer.Interior
+            );
+            DebugLog("Low health loop SFX started.");
+        }
+    }
+
+    private void HandleRegionExitedLowHealth(SubmarineHealthRegion region)
+    {
+        lowHealthRegionCount = Mathf.Max(0, lowHealthRegionCount - 1);
+        DebugLog($"{region.RegionName} exited low health. Low health regions: {lowHealthRegionCount}");
+
+        // Stop the loop only when no regions are low health anymore
+        if (lowHealthRegionCount == 0 && lowHealthLoopPlaybackID != -1)
+        {
+            AudioManager.Instance.StopLoopingSound(lowHealthLoopPlaybackID, AudioCategory.PlayerSFX);
+            lowHealthLoopPlaybackID = -1;
+            DebugLog("Low health loop SFX stopped.");
+        }
+    }
+
     /// <summary>
     /// Called when any region is destroyed
     /// </summary>
@@ -297,8 +335,8 @@ public class SubmarineHealthManager : MonoBehaviour
     [Button]
     private void TestPlayAlarmClip(AudioLayer audioLoayer)
     {
-        if (anyRegionLowHealthSFX == null) return;
-        AudioManager.Instance.PlaySound2D(anyRegionLowHealthSFX, AudioCategory.PlayerSFX, layer: audioLoayer);
+        if (anyRegionLowHealthLoopSFX == null) return;
+        AudioManager.Instance.PlaySound2D(anyRegionLowHealthLoopSFX, AudioCategory.PlayerSFX, layer: audioLoayer);
     }
 
     private void OnDestroy()
@@ -310,6 +348,8 @@ public class SubmarineHealthManager : MonoBehaviour
             {
                 region.OnDamageTaken -= HandleRegionDamaged;
                 region.OnRegionDestroyed -= HandleRegionDestroyed;
+                region.OnEnteredLowHealth -= HandleRegionEnteredLowHealth;
+                region.OnExitedLowHealth -= HandleRegionExitedLowHealth;
             }
         }
     }

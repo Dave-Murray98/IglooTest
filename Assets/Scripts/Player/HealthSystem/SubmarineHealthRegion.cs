@@ -65,6 +65,9 @@ public class SubmarineHealthRegion : MonoBehaviour
     public event Action<SubmarineHealthRegion> OnRegionDestroyed;     // Fires when health reaches zero
     public event Action<SubmarineHealthRegion, float> OnHealthRestored; // Fires when healed
 
+    public event Action<SubmarineHealthRegion> OnEnteredLowHealth;   // Fires when health drops into low health range
+    public event Action<SubmarineHealthRegion> OnExitedLowHealth;    // Fires when health recovers above low health threshold
+
     // Properties for easy access
     public string RegionName => regionName;
     public float CurrentHealth => currentHealth;
@@ -121,6 +124,7 @@ public class SubmarineHealthRegion : MonoBehaviour
     /// Apply damage to this region
     /// </summary>
     /// <param name="damageAmount">How much damage to apply</param>
+    [Button]
     public void TakeDamage(float damageAmount)
     {
         // Can't damage a region that's already destroyed
@@ -145,16 +149,14 @@ public class SubmarineHealthRegion : MonoBehaviour
             AudioManager.Instance.PlaySound(glassCrackSounds[randomIndex], transform.position, AudioCategory.PlayerSFX, layer: AudioLayer.Interior);
         }
 
-        if (currentHealth <= lowHealthThreshold)
+        if (currentHealth <= lowHealthThreshold && previousHealth > lowHealthThreshold)
         {
-            // Try to play low health effect if the coroutine isn't already running
-            if (lowHealthEffectCoroutineRunning == false)
-            {
-                lowHealthEffectCoroutine = StartCoroutine(LowHealthEffectCoroutine());
-            }
+            OnEnteredLowHealth?.Invoke(this); // NEW: fire event on first crossing
 
-            // Start warning light if available
-            if (warningLight != null && !warningLight.IsFlashing) // We'll add this property
+            if (lowHealthEffectCoroutineRunning == false)
+                lowHealthEffectCoroutine = StartCoroutine(LowHealthEffectCoroutine());
+
+            if (warningLight != null && !warningLight.IsFlashing)
             {
                 warningLight.StartFlashing();
                 DebugLog($"[{regionName}] Warning light started - low health!");
@@ -176,6 +178,7 @@ public class SubmarineHealthRegion : MonoBehaviour
     /// Restore health to this region
     /// </summary>
     /// <param name="healAmount">How much health to restore</param>
+    [Button]
     public void RestoreHealth(float healAmount)
     {
         // Make sure heal amount is positive
@@ -205,6 +208,8 @@ public class SubmarineHealthRegion : MonoBehaviour
             if (currentHealth > lowHealthThreshold)
             {
                 lowHealthEffectCoroutineRunning = false;
+
+                OnExitedLowHealth?.Invoke(this); // fire event when recovering from low health
 
                 // Stop the specific coroutine instance if it exists
                 if (lowHealthEffectCoroutine != null)

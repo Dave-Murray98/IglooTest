@@ -1674,7 +1674,7 @@ MonoBehaviour:
   lowFrequency: 1
   highFrequency: 1
   rumbleDuration: 0.3
-  anyRegionLowHealthSFX: {fileID: 0}
+  anyRegionLowHealthLoopSFX: {fileID: 8300000, guid: c9e3a39cdc40ef948850fd30c422e8c9, type: 3}
   enableDebugLogs: 0
   showDebugGizmos: 1
 --- !u!114 &2568921799066710355

@@ -1703,6 +1703,22 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b2781210437ceff419711663d83ea077, type: 3}
   - {fileID: 8300000, guid: 87d8eda0e0fbe6b448be5ef13f265720, type: 3}
   - {fileID: 8300000, guid: 152b4b34206cb6244a19453fc6f6fb6f, type: 3}
+  highDamageSFXs:
+  - {fileID: 8300000, guid: 426eeca43e678e0499630fec59204198, type: 3}
+  - {fileID: 8300000, guid: 830c89e3a88caac409ecf9d7d11419eb, type: 3}
+  - {fileID: 8300000, guid: 5a53795bf127df348a99a90a7c15f832, type: 3}
+  - {fileID: 8300000, guid: f9106aac061156c4baa37f5d22115ad8, type: 3}
+  mediumDamageSFXs:
+  - {fileID: 8300000, guid: a949207df9609204ca9b2eb0cc092809, type: 3}
+  - {fileID: 8300000, guid: be0d4e46e8950174ba0c763af8df2cd9, type: 3}
+  - {fileID: 8300000, guid: 39d1fd7afdd910d4093cc59da446281f, type: 3}
+  lowDamageSFXs:
+  - {fileID: 8300000, guid: 3a6e6db4466298f4a93dfa0a491b4823, type: 3}
+  - {fileID: 8300000, guid: 178ef6768f6692e458fd7b25f3042973, type: 3}
+  - {fileID: 8300000, guid: fe5127dcda31fbf43841581a443dcc60, type: 3}
+  - {fileID: 8300000, guid: 3ab5bd59fc773724ab2cd58e93676f69, type: 3}
+  lowDamageThreshold: 10
+  mediumDamageThreshold: 40
   enableDebugLogs: 0
   showCollisionGizmos: 1
 --- !u!114 &3771206795834829442

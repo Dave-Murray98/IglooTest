@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using System.Collections;
+using DistantLands.Cozy;
 
 /// <summary>
 /// Represents a single damageable region of the submarine (front, back, left, right, or bottom).
@@ -48,6 +49,11 @@ public class SubmarineHealthRegion : MonoBehaviour
     [SerializeField] private ParticleSystem lowHealthParticleEffect;
     [SerializeField] private float lowHealthParticleEffectPlayChance = 0.6f; // Chance to play low health effect each second when health is low
     [SerializeField] private float lowHealthEffectPlayInterval = 1f; // How often to try to play the low health effect when health is below the threshold
+
+    [Header("Audio")]
+    [Tooltip("Optional: Audio to play when this region is repaired")]
+    [SerializeField] private AudioClip repairAudioClip;
+    [SerializeField] private AudioClip[] sparkSounds;
 
     [Header("Warning Light")]
     [Tooltip("Optional: Reference to the flashing warning light for this region")]
@@ -341,6 +347,11 @@ public class SubmarineHealthRegion : MonoBehaviour
         if (lowHealthParticleEffect != null)
         {
             lowHealthParticleEffect.Play();
+
+            if (sparkSounds != null && sparkSounds.Length > 0)
+            {
+                AudioManager.Instance.PlaySound(sparkSounds[UnityEngine.Random.Range(0, sparkSounds.Length)], transform.position, AudioCategory.PlayerSFX, layer: AudioLayer.Interior);
+            }
         }
     }
 

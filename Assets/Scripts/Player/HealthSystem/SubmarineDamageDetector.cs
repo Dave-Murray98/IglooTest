@@ -39,6 +39,11 @@ public class SubmarineDamageDetector : MonoBehaviour
     [Header("Audio")]
     [SerializeField]
     private AudioClip[] collisionImpactSounds;
+    [SerializeField] private AudioClip[] highDamageSFXs;
+    [SerializeField] private AudioClip[] mediumDamageSFXs;
+    [SerializeField] private AudioClip[] lowDamageSFXs;
+    [SerializeField] private float lowDamageThreshold = 5f;
+    [SerializeField] private float mediumDamageThreshold = 10f;
 
     [Header("Debug")]
     [SerializeField] private bool enableDebugLogs = false;
@@ -180,6 +185,38 @@ public class SubmarineDamageDetector : MonoBehaviour
         {
             healthManager.TakeDamageAtPoint(attackPosition, damageAmount, attackDirection, attackForce);
             DebugLog($"Took {damageAmount} damage from attack at {attackPosition}");
+        }
+
+        PlayAttackDamageSound(attackPosition, damageAmount);
+
+    }
+
+    private void PlayAttackDamageSound(Vector3 attackPosition, float damageAmount)
+    {
+        //calculate damage threshold
+        if (damageAmount < lowDamageThreshold)
+        {
+            if (lowDamageSFXs != null && lowDamageSFXs.Length > 0)
+            {
+                int randomIndex = UnityEngine.Random.Range(0, lowDamageSFXs.Length);
+                AudioManager.Instance.PlaySound(lowDamageSFXs[randomIndex], attackPosition, AudioCategory.PlayerSFX, layer: AudioLayer.Exterior);
+            }
+        }
+        else if (damageAmount < mediumDamageThreshold)
+        {
+            if (mediumDamageSFXs != null && mediumDamageSFXs.Length > 0)
+            {
+                int randomIndex = UnityEngine.Random.Range(0, mediumDamageSFXs.Length);
+                AudioManager.Instance.PlaySound(mediumDamageSFXs[randomIndex], attackPosition, AudioCategory.PlayerSFX, layer: AudioLayer.Exterior);
+            }
+        }
+        else
+        {
+            if (highDamageSFXs != null && highDamageSFXs.Length > 0)
+            {
+                int randomIndex = UnityEngine.Random.Range(0, highDamageSFXs.Length);
+                AudioManager.Instance.PlaySound(highDamageSFXs[randomIndex], attackPosition, AudioCategory.PlayerSFX, layer: AudioLayer.Exterior);
+            }
         }
     }
 

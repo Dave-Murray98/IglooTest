@@ -29,6 +29,9 @@ public class QuestManager : MonoBehaviour
     // Tracks which chain quest we're on. -1 means none have started yet.
     private int currentChainQuestIndex = -1;
 
+    [Header("Speech Handler Speeches")]
+    [SerializeField] private HandlerSpeechData onBiomeQuestsCompleteSpeech;
+
     [Header("Cave Entrance")]
     [SerializeField] private GameObject nonDestructableBlockingObject;
     [SerializeField] private GameObject destructableBlockingObject;
@@ -101,6 +104,9 @@ public class QuestManager : MonoBehaviour
             {
                 HandleCaveEntrance(true);
                 StartNextChainQuest();
+
+                if (onBiomeQuestsCompleteSpeech != null)
+                    HandlerSpeechController.Instance.Play(onBiomeQuestsCompleteSpeech);
             }
             else
                 HandleCaveEntrance(false);

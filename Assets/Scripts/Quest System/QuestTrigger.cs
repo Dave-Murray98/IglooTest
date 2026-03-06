@@ -1,3 +1,5 @@
+using Sirenix.OdinInspector;
+using Unity.Profiling;
 using UnityEngine;
 
 public class QuestTrigger : EventTrigger
@@ -11,8 +13,8 @@ public class QuestTrigger : EventTrigger
         CompleteQuest();
     }
 
-
-    private void CompleteQuest()
+    [Button]
+    protected virtual void CompleteQuest()
     {
 
         if (questData.AreRequirementsMet())

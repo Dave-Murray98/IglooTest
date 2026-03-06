@@ -31,6 +31,7 @@ public class QuestManager : MonoBehaviour
 
     [Header("Speech Handler Speeches")]
     [SerializeField] private HandlerSpeechData onBiomeQuestsCompleteSpeech;
+    [SerializeField] private GameObject caveEntranceSpeechTrigger;
 
     [Header("Cave Entrance")]
     [SerializeField] private GameObject nonDestructableBlockingObject;
@@ -107,6 +108,9 @@ public class QuestManager : MonoBehaviour
 
                 if (onBiomeQuestsCompleteSpeech != null)
                     HandlerSpeechController.Instance.Play(onBiomeQuestsCompleteSpeech);
+
+                if (caveEntranceSpeechTrigger != null)
+                    caveEntranceSpeechTrigger.SetActive(true);
             }
             else
                 HandleCaveEntrance(false);
@@ -180,6 +184,9 @@ public class QuestManager : MonoBehaviour
 
             if (destructableBlockingObject != null)
                 destructableBlockingObject.SetActive(false);
+
+            if (caveEntranceSpeechTrigger != null)
+                caveEntranceSpeechTrigger.SetActive(false);
         }
     }
 

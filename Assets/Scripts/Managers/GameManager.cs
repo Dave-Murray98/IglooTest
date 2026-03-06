@@ -348,6 +348,7 @@ public class GameManager : MonoBehaviour
     public void OnPlayerDeath()
     {
         DebugLog("Player died!");
+        AudioManager.Instance.StopAllSounds();
         SceneManager.LoadScene(gameOverSceneName);
     }
 
@@ -355,6 +356,7 @@ public class GameManager : MonoBehaviour
     public void OnPlayerWin()
     {
         DebugLog("Player won!");
+        AudioManager.Instance.StopAllSounds();
         SceneManager.LoadScene(gameWinSceneName);
     }
 

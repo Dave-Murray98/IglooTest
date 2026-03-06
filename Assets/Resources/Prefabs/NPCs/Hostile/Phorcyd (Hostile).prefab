@@ -113,6 +113,7 @@ MonoBehaviour:
   damage: 10
   attackKnockBackForce: 100
   attackDirection: {x: 0, y: 0, z: 0}
+  enableDebugLogs: 0
 --- !u!65 &7458498297391715514
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1249,6 +1250,7 @@ GameObject:
   - component: {fileID: 5199052182442124486}
   - component: {fileID: 7371911156629932609}
   - component: {fileID: 8287362257067188770}
+  - component: {fileID: -6425837458547136867}
   m_Layer: 15
   m_Name: Phorcyd (Hostile)
   m_TagString: Untagged
@@ -1338,6 +1340,7 @@ MonoBehaviour:
   stateMachine: {fileID: 3547173422902249723}
   health: {fileID: 215939431458840030}
   attack: {fileID: 2795869217425657992}
+  nPCAudio: {fileID: 0}
 --- !u!114 &4020901928818153700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1390,7 +1393,6 @@ MonoBehaviour:
   repathOnReachEndDistance: 1
   maxSpeed: 6
   acceleration: 6
-  deceleration: 6
   rotationSpeed: 0.6
   enableDebugLogs: 0
 --- !u!114 &3547173422902249723
@@ -1516,6 +1518,28 @@ MonoBehaviour:
   _debugAvoidance: 0
   _avoidedTags:
     _value: -1
+--- !u!114 &-6425837458547136867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3853556479346812526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50c55cbaf68df53448fccff619731953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleAudioClips:
+  - {fileID: 8300000, guid: 1aa297a30214e044dbd25e0e392c6ede, type: 3}
+  - {fileID: 8300000, guid: d15ef1de17c0e5440b18ca65b2dc3013, type: 3}
+  - {fileID: 8300000, guid: fb03827d49ae2784d989fd54108a17b9, type: 3}
+  - {fileID: 8300000, guid: 71fdf470acb89c0499794af0e2acec24, type: 3}
+  - {fileID: 8300000, guid: ca1bf36b6f48c7c47889d5625be8d39d, type: 3}
+  attackAudioClips:
+  - {fileID: 8300000, guid: 7df2dfaf4459b39479ace4c3f20973e3, type: 3}
+  - {fileID: 8300000, guid: fb73b586fae0398439bb1ba83d2f028c, type: 3}
+  - {fileID: 8300000, guid: ec0ccc1f990d7974f87f8742a0cff2d2, type: 3}
 --- !u!1 &4324593305973787757
 GameObject:
   m_ObjectHideFlags: 0
@@ -1932,7 +1956,6 @@ MonoBehaviour:
   attackDuration: 1.2
   decelerationTime: 2
   preparationPause: 0.5
-  attackRotationSpeed: 0.2
   enableDebugLogs: 0
 --- !u!65 &3410490158463490240
 BoxCollider:

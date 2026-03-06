@@ -626,6 +626,7 @@ GameObject:
   - component: {fileID: 4435229430996499566}
   - component: {fileID: 9100171435474205348}
   - component: {fileID: 8866935232492317086}
+  - component: {fileID: 7746000787022464544}
   m_Layer: 15
   m_Name: Airsack (Passive)
   m_TagString: Untagged
@@ -693,6 +694,7 @@ MonoBehaviour:
   stateMachine: {fileID: 3287378048363000499}
   health: {fileID: 7476211500575684939}
   attack: {fileID: 0}
+  nPCAudio: {fileID: 0}
 --- !u!114 &7476211500575684939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -731,7 +733,6 @@ MonoBehaviour:
   repathOnReachEndDistance: 1
   maxSpeed: 2
   acceleration: 2
-  deceleration: 2
   rotationSpeed: 0.1
   enableDebugLogs: 1
 --- !u!114 &3287378048363000499
@@ -857,6 +858,25 @@ MonoBehaviour:
   _debugAvoidance: 0
   _avoidedTags:
     _value: -1
+--- !u!114 &7746000787022464544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4186839338737466007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50c55cbaf68df53448fccff619731953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleAudioClips:
+  - {fileID: 8300000, guid: 197c5d3ccba6a7f49acf2bf04ad6ee14, type: 3}
+  - {fileID: 8300000, guid: 67809d01740d4a54089294e0548d1293, type: 3}
+  - {fileID: 8300000, guid: 150c388ebc55e1a4baa91e9dff188064, type: 3}
+  - {fileID: 8300000, guid: 54f76337881632b4e8d5e117d83c913b, type: 3}
+  - {fileID: 8300000, guid: ae8f6b619a1564148a057797c7f7619a, type: 3}
+  attackAudioClips: []
 --- !u!1 &4367507226743253788
 GameObject:
   m_ObjectHideFlags: 0

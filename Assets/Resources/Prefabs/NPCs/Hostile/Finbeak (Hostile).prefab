@@ -584,6 +584,7 @@ GameObject:
   - component: {fileID: 2122270907697562717}
   - component: {fileID: 6734623030092163762}
   - component: {fileID: 6894986790875617584}
+  - component: {fileID: -4421738340297970052}
   m_Layer: 15
   m_Name: Finbeak (Hostile)
   m_TagString: Untagged
@@ -673,6 +674,7 @@ MonoBehaviour:
   stateMachine: {fileID: 3811006172719550349}
   health: {fileID: 8312347233095940918}
   attack: {fileID: 6072586215979180712}
+  nPCAudio: {fileID: 0}
 --- !u!114 &6947738179291546954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -725,7 +727,6 @@ MonoBehaviour:
   repathOnReachEndDistance: 1
   maxSpeed: 15
   acceleration: 15
-  deceleration: 15
   rotationSpeed: 1.2
   enableDebugLogs: 0
 --- !u!114 &3811006172719550349
@@ -851,6 +852,30 @@ MonoBehaviour:
   _debugAvoidance: 0
   _avoidedTags:
     _value: -1
+--- !u!114 &-4421738340297970052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2023307207795218122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50c55cbaf68df53448fccff619731953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleAudioClips:
+  - {fileID: 8300000, guid: d6450514b7c1a6f4aabff36d3cb977bf, type: 3}
+  - {fileID: 8300000, guid: c7cd0a5332a590249be81db7c6ada1fa, type: 3}
+  - {fileID: 8300000, guid: 28f5e475d50fb3a4f8be99dc4d48cb29, type: 3}
+  - {fileID: 8300000, guid: c176de01f33d6104a9532cf8f4bfb1b4, type: 3}
+  - {fileID: 8300000, guid: 72038b3ce4412e34f887580edcbed05e, type: 3}
+  attackAudioClips:
+  - {fileID: 8300000, guid: a958560da49d7bb4fa4e53f61f410ef4, type: 3}
+  - {fileID: 8300000, guid: 075ab34cd502c4a4ca6d023e12f2b9a9, type: 3}
+  - {fileID: 8300000, guid: 3efa488356b2a724d9d12674d03209a8, type: 3}
+  - {fileID: 8300000, guid: 82d9537348be8e34d8c71f6b1235e757, type: 3}
+  - {fileID: 8300000, guid: 311948106ce3b7842bea7878ac5dc3a7, type: 3}
 --- !u!1 &2125809219916332161
 GameObject:
   m_ObjectHideFlags: 0
@@ -963,6 +988,7 @@ MonoBehaviour:
   damage: 10
   attackKnockBackForce: 100
   attackDirection: {x: 0, y: 0, z: 0}
+  enableDebugLogs: 0
 --- !u!65 &5789611134381554888
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2308,7 +2334,6 @@ MonoBehaviour:
   attackDuration: 0.7
   decelerationTime: 0.8
   preparationPause: 0.3
-  attackRotationSpeed: 0.4
   enableDebugLogs: 0
 --- !u!65 &7090991292444190454
 BoxCollider:

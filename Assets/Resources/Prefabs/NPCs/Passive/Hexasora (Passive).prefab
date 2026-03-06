@@ -416,6 +416,7 @@ GameObject:
   - component: {fileID: 8752592200799142533}
   - component: {fileID: 3336328165985429179}
   - component: {fileID: 1271517417434760705}
+  - component: {fileID: 5935256858635304779}
   m_Layer: 15
   m_Name: Hexasora (Passive)
   m_TagString: Untagged
@@ -505,6 +506,7 @@ MonoBehaviour:
   stateMachine: {fileID: 5085981533109573150}
   health: {fileID: 7871308973331397327}
   attack: {fileID: 0}
+  nPCAudio: {fileID: 0}
 --- !u!114 &7871308973331397327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -543,7 +545,6 @@ MonoBehaviour:
   repathOnReachEndDistance: 1
   maxSpeed: 3
   acceleration: 3
-  deceleration: 3
   rotationSpeed: 0.3
   enableDebugLogs: 0
 --- !u!114 &5085981533109573150
@@ -669,6 +670,23 @@ MonoBehaviour:
   _debugAvoidance: 0
   _avoidedTags:
     _value: -1
+--- !u!114 &5935256858635304779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 810369029184039760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50c55cbaf68df53448fccff619731953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleAudioClips:
+  - {fileID: 8300000, guid: a8e821eed63bef545800fa08d21cf616, type: 3}
+  - {fileID: 8300000, guid: e808fd9a5482fef46bd02fb4fdb28a3d, type: 3}
+  - {fileID: 8300000, guid: 13ca2c62620f4ab48af7a8a9f8d7882b, type: 3}
+  attackAudioClips: []
 --- !u!1 &939888777403893770
 GameObject:
   m_ObjectHideFlags: 0

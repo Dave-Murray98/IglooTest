@@ -2037,6 +2037,7 @@ GameObject:
   - component: {fileID: 717239986112012293}
   - component: {fileID: 5929982836398933137}
   - component: {fileID: 1138168312831800952}
+  - component: {fileID: 2801069582402062414}
   m_Layer: 15
   m_Name: Ringtooth (Hostile)
   m_TagString: Untagged
@@ -2126,6 +2127,7 @@ MonoBehaviour:
   stateMachine: {fileID: 2323165239865849711}
   health: {fileID: 6174528391271988503}
   attack: {fileID: 3761862957444628224}
+  nPCAudio: {fileID: 0}
 --- !u!114 &2957356239952653370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2178,7 +2180,6 @@ MonoBehaviour:
   repathOnReachEndDistance: 1
   maxSpeed: 12
   acceleration: 12
-  deceleration: 12
   rotationSpeed: 1
   enableDebugLogs: 0
 --- !u!114 &2323165239865849711
@@ -2304,6 +2305,29 @@ MonoBehaviour:
   _debugAvoidance: 0
   _avoidedTags:
     _value: -1
+--- !u!114 &2801069582402062414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6250158107272653950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50c55cbaf68df53448fccff619731953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleAudioClips:
+  - {fileID: 8300000, guid: 547264728c2228343836ac501af7f7fe, type: 3}
+  - {fileID: 8300000, guid: f783509f2c9f84d4a9604ad691abaa6e, type: 3}
+  - {fileID: 8300000, guid: 87d184702eba62542b29d2fcaac3f825, type: 3}
+  - {fileID: 8300000, guid: bc933774da40aa74b84045d5b067876d, type: 3}
+  - {fileID: 8300000, guid: f36deea6f06e5444ab49f9d5d1486940, type: 3}
+  - {fileID: 8300000, guid: 04ac4a2578c046546a30283b938d82fc, type: 3}
+  attackAudioClips:
+  - {fileID: 8300000, guid: 70a1462f9409cae4fb8a0b764ef331e7, type: 3}
+  - {fileID: 8300000, guid: fb89fe0bb1f64fb4aaf6f6556fd0d64a, type: 3}
+  - {fileID: 8300000, guid: b2661a277221520489ecf00bf4ab6e7c, type: 3}
 --- !u!1 &6933169735529179814
 GameObject:
   m_ObjectHideFlags: 0
@@ -2731,6 +2755,7 @@ MonoBehaviour:
   damage: 10
   attackKnockBackForce: 100
   attackDirection: {x: 0, y: 0, z: 0}
+  enableDebugLogs: 0
 --- !u!65 &1938935531080697931
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3346,7 +3371,6 @@ MonoBehaviour:
   attackDuration: 0.8
   decelerationTime: 0.8
   preparationPause: 0.4
-  attackRotationSpeed: 0.6
   enableDebugLogs: 0
 --- !u!65 &3755510630988586346
 BoxCollider:

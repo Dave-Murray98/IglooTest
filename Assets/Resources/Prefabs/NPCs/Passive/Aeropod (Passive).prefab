@@ -1852,6 +1852,7 @@ GameObject:
   - component: {fileID: 2282367385896311448}
   - component: {fileID: 713997344643723110}
   - component: {fileID: 2958865976852218573}
+  - component: {fileID: -1712945534821388115}
   m_Layer: 15
   m_Name: Aeropod (Passive)
   m_TagString: Untagged
@@ -1935,10 +1936,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: 0c5a5a43a5f90e749ac31d31c7e15f6c, type: 2}
   movementScript: {fileID: 8624380496647242207}
+  animationHandler: {fileID: 0}
   rb: {fileID: 713997344643723110}
   stateMachine: {fileID: 1144100662224192180}
   health: {fileID: 6102274410503932750}
   attack: {fileID: 0}
+  nPCAudio: {fileID: 0}
 --- !u!114 &6102274410503932750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1977,7 +1980,6 @@ MonoBehaviour:
   repathOnReachEndDistance: 1
   maxSpeed: 4
   acceleration: 4
-  deceleration: 4
   rotationSpeed: 0.4
   enableDebugLogs: 0
 --- !u!114 &1144100662224192180
@@ -2103,6 +2105,25 @@ MonoBehaviour:
   _debugAvoidance: 0
   _avoidedTags:
     _value: -1
+--- !u!114 &-1712945534821388115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2755906186143317481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50c55cbaf68df53448fccff619731953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleAudioClips:
+  - {fileID: 8300000, guid: 6747185872e17c844a3c7dedcc09e243, type: 3}
+  - {fileID: 8300000, guid: 63169d7e27d3e254283e2193c3ffe3fd, type: 3}
+  - {fileID: 8300000, guid: c5203e8164fcd8c49925c3c5c06431db, type: 3}
+  - {fileID: 8300000, guid: 642e543c781183f41bb504cd9f639d38, type: 3}
+  - {fileID: 8300000, guid: 6c8f784387c26ed4ab8b7c42d05b4df6, type: 3}
+  attackAudioClips: []
 --- !u!1 &2775192767235773440
 GameObject:
   m_ObjectHideFlags: 0

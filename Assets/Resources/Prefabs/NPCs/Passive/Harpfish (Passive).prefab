@@ -500,6 +500,7 @@ GameObject:
   - component: {fileID: 904806264086667591}
   - component: {fileID: 6279713985555281571}
   - component: {fileID: 4666045486220995555}
+  - component: {fileID: -2989992658718593959}
   m_Layer: 15
   m_Name: Harpfish (Passive)
   m_TagString: Untagged
@@ -609,6 +610,7 @@ MonoBehaviour:
   stateMachine: {fileID: 6312704758861496366}
   health: {fileID: 1950487334647399760}
   attack: {fileID: 0}
+  nPCAudio: {fileID: 0}
 --- !u!114 &1950487334647399760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -647,7 +649,6 @@ MonoBehaviour:
   repathOnReachEndDistance: 1
   maxSpeed: 2
   acceleration: 2
-  deceleration: 2
   rotationSpeed: 0.6
   enableDebugLogs: 1
 --- !u!114 &6312704758861496366
@@ -773,6 +774,25 @@ MonoBehaviour:
   _debugAvoidance: 0
   _avoidedTags:
     _value: -1
+--- !u!114 &-2989992658718593959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2368278323178177376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50c55cbaf68df53448fccff619731953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleAudioClips:
+  - {fileID: 8300000, guid: 9ff24b7cc9828bd46ae18f8620a8abcf, type: 3}
+  - {fileID: 8300000, guid: 57fc49bc177c7e74aad7b672a3c81315, type: 3}
+  - {fileID: 8300000, guid: 3f3b9bb18bf5ac44392e3771c46841fd, type: 3}
+  - {fileID: 8300000, guid: 164ca8a919f6cbb48bde74b1ce993a18, type: 3}
+  - {fileID: 8300000, guid: b187d42d48fde96489a632ef52c4eb47, type: 3}
+  attackAudioClips: []
 --- !u!1 &2421723156770499500
 GameObject:
   m_ObjectHideFlags: 0

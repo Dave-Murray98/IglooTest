@@ -445,6 +445,7 @@ MonoBehaviour:
   damage: 10
   attackKnockBackForce: 100
   attackDirection: {x: 0, y: 0, z: 0}
+  enableDebugLogs: 0
 --- !u!65 &7706140273463670580
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -485,6 +486,7 @@ GameObject:
   - component: {fileID: 6800899912182209861}
   - component: {fileID: 1754289003525651569}
   - component: {fileID: 829977144034066128}
+  - component: {fileID: -8031122019366985276}
   m_Layer: 15
   m_Name: Hostile NPC Agent 01
   m_TagString: Untagged
@@ -599,10 +601,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: a7ce53be4be85c144a29e8d667d1bcd1, type: 2}
   movementScript: {fileID: 4227920609456074248}
+  animationHandler: {fileID: 0}
   rb: {fileID: 1754289003525651569}
   stateMachine: {fileID: 1864349252703491753}
   health: {fileID: 101658765690410194}
   attack: {fileID: 1444079495874625306}
+  nPCAudio: {fileID: 0}
 --- !u!114 &101658765690410194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -641,7 +645,6 @@ MonoBehaviour:
   repathOnReachEndDistance: 1
   maxSpeed: 10
   acceleration: 12
-  deceleration: 12
   rotationSpeed: 5
   enableDebugLogs: 0
 --- !u!114 &1864349252703491753
@@ -767,6 +770,20 @@ MonoBehaviour:
   _debugAvoidance: 0
   _avoidedTags:
     _value: -1
+--- !u!114 &-8031122019366985276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5594530268961586593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50c55cbaf68df53448fccff619731953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleAudioClips: []
+  attackAudioClips: []
 --- !u!1 &7530382784106291026
 GameObject:
   m_ObjectHideFlags: 0
@@ -1208,7 +1225,6 @@ MonoBehaviour:
   attackDuration: 1.2
   decelerationTime: 0.3
   preparationPause: 0.2
-  attackRotationSpeed: 5
   enableDebugLogs: 0
 --- !u!65 &8436573473203888968
 BoxCollider:

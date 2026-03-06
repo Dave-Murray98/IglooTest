@@ -13,6 +13,7 @@ public class SetWanderDestination : NPCAction
     {
         base.OnStart();
         nPC.movementScript.SetRandomWanderDestination();
+        nPC.nPCAudio.PlayRandomIdleAudioClip();
     }
 
     public override TaskStatus OnUpdate()

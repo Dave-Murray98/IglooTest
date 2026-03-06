@@ -328,6 +328,7 @@ MonoBehaviour:
   damage: 10
   attackKnockBackForce: 100
   attackDirection: {x: 0, y: 0, z: 0}
+  enableDebugLogs: 0
 --- !u!65 &4513747981991660543
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1516,7 +1517,6 @@ MonoBehaviour:
   attackDuration: 1.2
   decelerationTime: 3
   preparationPause: 0.5
-  attackRotationSpeed: 0.1
   enableDebugLogs: 0
 --- !u!65 &6841554823015148270
 BoxCollider:
@@ -2614,6 +2614,7 @@ GameObject:
   - component: {fileID: 453845145566223291}
   - component: {fileID: 8206524796231316327}
   - component: {fileID: 1326967833807902851}
+  - component: {fileID: -5805637903462298703}
   m_Layer: 15
   m_Name: Eldriken (Hostile)
   m_TagString: Untagged
@@ -2705,6 +2706,7 @@ MonoBehaviour:
   stateMachine: {fileID: 6493885323434896306}
   health: {fileID: 2028050570171748602}
   attack: {fileID: 7776759601351495843}
+  nPCAudio: {fileID: 0}
 --- !u!114 &3575116113487462088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2757,7 +2759,6 @@ MonoBehaviour:
   repathOnReachEndDistance: 1
   maxSpeed: 2
   acceleration: 2
-  deceleration: 2
   rotationSpeed: 0.5
   enableDebugLogs: 0
 --- !u!114 &6493885323434896306
@@ -2883,6 +2884,29 @@ MonoBehaviour:
   _debugAvoidance: 0
   _avoidedTags:
     _value: -1
+--- !u!114 &-5805637903462298703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4911484083289185446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50c55cbaf68df53448fccff619731953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleAudioClips:
+  - {fileID: 8300000, guid: b1ee106e9f36fe8448158aae2a7be2ca, type: 3}
+  - {fileID: 8300000, guid: 58e6d231de4c0634089557ac9edee87f, type: 3}
+  - {fileID: 8300000, guid: 03585a4465df22349b587348983410c3, type: 3}
+  - {fileID: 8300000, guid: a6e38e0739f829f4da83e9f551e9cd1b, type: 3}
+  - {fileID: 8300000, guid: 63d76bd738e525f4a9ae6e384044daec, type: 3}
+  attackAudioClips:
+  - {fileID: 8300000, guid: 795d4c0e84377bc40b1a00977c15e061, type: 3}
+  - {fileID: 8300000, guid: 9e7512518500a2646b3eda33f1483161, type: 3}
+  - {fileID: 8300000, guid: 69f12849738b7c64fb5ff77c1f466530, type: 3}
+  - {fileID: 8300000, guid: 4b250f4d7e0c92042b5855e69a786e9f, type: 3}
 --- !u!1 &5008955416899311846
 GameObject:
   m_ObjectHideFlags: 0

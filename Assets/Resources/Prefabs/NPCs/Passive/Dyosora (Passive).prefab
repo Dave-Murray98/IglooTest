@@ -1768,6 +1768,7 @@ GameObject:
   - component: {fileID: 716229545860925625}
   - component: {fileID: 8281901251175078556}
   - component: {fileID: 8083289100743653856}
+  - component: {fileID: 7627080851985653650}
   m_Layer: 15
   m_Name: Dyosora (Passive)
   m_TagString: Untagged
@@ -1858,6 +1859,7 @@ MonoBehaviour:
   stateMachine: {fileID: 8265606764302566053}
   health: {fileID: 6811757643029527359}
   attack: {fileID: 0}
+  nPCAudio: {fileID: 0}
 --- !u!114 &6811757643029527359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1896,7 +1898,6 @@ MonoBehaviour:
   repathOnReachEndDistance: 1
   maxSpeed: 5
   acceleration: 5
-  deceleration: 5
   rotationSpeed: 0.5
   enableDebugLogs: 0
 --- !u!114 &8265606764302566053
@@ -2022,6 +2023,24 @@ MonoBehaviour:
   _debugAvoidance: 0
   _avoidedTags:
     _value: -1
+--- !u!114 &7627080851985653650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8301433780479699231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50c55cbaf68df53448fccff619731953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleAudioClips:
+  - {fileID: 8300000, guid: 11d7f705cba801e43bda083bdbc15465, type: 3}
+  - {fileID: 8300000, guid: 7ad6b34a450c2874c898aa5638860238, type: 3}
+  - {fileID: 8300000, guid: 79a153a7d5f066b47964163c1a3235f3, type: 3}
+  - {fileID: 8300000, guid: b076c5ebb604b1449b396809f7905d4d, type: 3}
+  attackAudioClips: []
 --- !u!1 &8515849370532191315
 GameObject:
   m_ObjectHideFlags: 0

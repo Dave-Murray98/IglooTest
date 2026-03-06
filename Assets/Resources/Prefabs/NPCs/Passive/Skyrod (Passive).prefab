@@ -608,6 +608,7 @@ GameObject:
   - component: {fileID: 4565875766162480604}
   - component: {fileID: 6887029697186633661}
   - component: {fileID: 1483104395469158372}
+  - component: {fileID: -70275404290839534}
   m_Layer: 15
   m_Name: Skyrod (Passive)
   m_TagString: Untagged
@@ -691,10 +692,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: 0c5a5a43a5f90e749ac31d31c7e15f6c, type: 2}
   movementScript: {fileID: 4139319568339628070}
+  animationHandler: {fileID: 0}
   rb: {fileID: 6887029697186633661}
   stateMachine: {fileID: 7131709907137638285}
   health: {fileID: 8191551072364078973}
   attack: {fileID: 0}
+  nPCAudio: {fileID: 0}
 --- !u!114 &8191551072364078973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -733,7 +736,6 @@ MonoBehaviour:
   repathOnReachEndDistance: 1
   maxSpeed: 3
   acceleration: 3
-  deceleration: 3
   rotationSpeed: 0.3
   enableDebugLogs: 0
 --- !u!114 &7131709907137638285
@@ -859,6 +861,25 @@ MonoBehaviour:
   _debugAvoidance: 0
   _avoidedTags:
     _value: -1
+--- !u!114 &-70275404290839534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3216049370161340230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50c55cbaf68df53448fccff619731953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleAudioClips:
+  - {fileID: 8300000, guid: 256718ad332feca41b0f65997e18ceb2, type: 3}
+  - {fileID: 8300000, guid: 70389d0c619da4a4890c621ef182796b, type: 3}
+  - {fileID: 8300000, guid: 000f77f8972e3564b8a63a10f28ce93c, type: 3}
+  - {fileID: 8300000, guid: f9298d99e54bf634badbaaa4fa3e79ab, type: 3}
+  - {fileID: 8300000, guid: 1e153195f3d3a2748be94c7b277f4f36, type: 3}
+  attackAudioClips: []
 --- !u!1 &3425147322918089782
 GameObject:
   m_ObjectHideFlags: 0

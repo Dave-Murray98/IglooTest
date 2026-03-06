@@ -2664,7 +2664,6 @@ MonoBehaviour:
   attackDuration: 1.2
   decelerationTime: 2
   preparationPause: 0.5
-  attackRotationSpeed: 0.2
   enableDebugLogs: 0
 --- !u!65 &3712411228866953918
 BoxCollider:
@@ -2776,6 +2775,7 @@ GameObject:
   - component: {fileID: 4918823100214714525}
   - component: {fileID: 3172758442780870105}
   - component: {fileID: 4130114889348357731}
+  - component: {fileID: -936608667690970984}
   m_Layer: 15
   m_Name: Corkshark (Hostile)
   m_TagString: Untagged
@@ -2865,6 +2865,7 @@ MonoBehaviour:
   stateMachine: {fileID: 5459165461533823581}
   health: {fileID: 2097544444789909131}
   attack: {fileID: 649493592602177279}
+  nPCAudio: {fileID: -936608667690970984}
 --- !u!114 &9012786544141202963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2917,7 +2918,6 @@ MonoBehaviour:
   repathOnReachEndDistance: 1
   maxSpeed: 6
   acceleration: 6
-  deceleration: 6
   rotationSpeed: 0.6
   enableDebugLogs: 0
 --- !u!114 &5459165461533823581
@@ -3043,6 +3043,30 @@ MonoBehaviour:
   _debugAvoidance: 0
   _avoidedTags:
     _value: -1
+--- !u!114 &-936608667690970984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4148872792774122784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50c55cbaf68df53448fccff619731953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleAudioClips:
+  - {fileID: 8300000, guid: c66ab3ec72b3ac14cbe8ce609489be60, type: 3}
+  - {fileID: 8300000, guid: 23fe6300daa7114458a138db00331dd5, type: 3}
+  - {fileID: 8300000, guid: 1d48cb74dd3e19349b1a9b04c23cffab, type: 3}
+  - {fileID: 8300000, guid: b4ecb558013440548ac6d32954e9b006, type: 3}
+  - {fileID: 8300000, guid: d7e6c11c3693084448fac5cf0ecb3f81, type: 3}
+  attackAudioClips:
+  - {fileID: 8300000, guid: 3225c91665fa14f40ad9f606a4a0153a, type: 3}
+  - {fileID: 8300000, guid: 9fa345b686baa9a4f80cd52fab194960, type: 3}
+  - {fileID: 8300000, guid: 3482927f263a1eb49ab6d4f5aa26fb58, type: 3}
+  - {fileID: 8300000, guid: c9ba0ad889dbfef46ae1b0ccf031b965, type: 3}
+  - {fileID: 8300000, guid: 166c5072a78d80848a2977ff980fe640, type: 3}
 --- !u!1 &4183906791013969102
 GameObject:
   m_ObjectHideFlags: 0
@@ -6820,6 +6844,7 @@ MonoBehaviour:
   damage: 10
   attackKnockBackForce: 100
   attackDirection: {x: 0, y: 0, z: 0}
+  enableDebugLogs: 0
 --- !u!65 &986611193819357133
 BoxCollider:
   m_ObjectHideFlags: 0

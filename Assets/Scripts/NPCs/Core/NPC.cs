@@ -17,6 +17,7 @@ public class NPC : MonoBehaviour
     public NPCStateMachine stateMachine;
     public NPCHealth health;
     public NPCAttack attack;
+    public NPCAudio nPCAudio;
 
     private void Awake()
     {
@@ -37,6 +38,9 @@ public class NPC : MonoBehaviour
 
         if (attack == null)
             attack = GetComponent<NPCAttack>();
+
+        if (nPCAudio == null)
+            nPCAudio = GetComponent<NPCAudio>();
     }
 
     public void Attack()

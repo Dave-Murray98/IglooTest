@@ -692,6 +692,7 @@ GameObject:
   - component: {fileID: 2949037312581436857}
   - component: {fileID: 3764205289313827450}
   - component: {fileID: 1995481381406467772}
+  - component: {fileID: -8107275363106247764}
   m_Layer: 15
   m_Name: Hooded Hawk (Passive)
   m_TagString: Untagged
@@ -782,6 +783,7 @@ MonoBehaviour:
   stateMachine: {fileID: 5060616166936948737}
   health: {fileID: 5350342525145686384}
   attack: {fileID: 0}
+  nPCAudio: {fileID: 0}
 --- !u!114 &5350342525145686384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -820,7 +822,6 @@ MonoBehaviour:
   repathOnReachEndDistance: 1
   maxSpeed: 4
   acceleration: 4
-  deceleration: 4
   rotationSpeed: 0.54
   enableDebugLogs: 1
 --- !u!114 &5060616166936948737
@@ -946,6 +947,23 @@ MonoBehaviour:
   _debugAvoidance: 0
   _avoidedTags:
     _value: -1
+--- !u!114 &-8107275363106247764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2371830597619995562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50c55cbaf68df53448fccff619731953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleAudioClips:
+  - {fileID: 8300000, guid: fc28a9f006fa50c41a1561320bc721a2, type: 3}
+  - {fileID: 8300000, guid: 9fe9fc32f1127a04f8055b9aa6d2e36a, type: 3}
+  - {fileID: 8300000, guid: 1e847f7649b192543b1f3dd29563a03f, type: 3}
+  attackAudioClips: []
 --- !u!1 &3406211144029624211
 GameObject:
   m_ObjectHideFlags: 0

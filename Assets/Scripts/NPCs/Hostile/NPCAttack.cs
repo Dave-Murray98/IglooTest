@@ -170,6 +170,8 @@ public class NPCAttack : MonoBehaviour
         // (Monster is already facing this direction from the rotation phase)
         npc.rb.AddForce(attackDirection * attackChargeForce, ForceMode.Impulse);
 
+        npc.nPCAudio.PlayRandomAttackAudioClip();
+
         DebugLog($"Lunging towards player with force: {attackChargeForce}");
 
         if (npc.animationHandler != null)

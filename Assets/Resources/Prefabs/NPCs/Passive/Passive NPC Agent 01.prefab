@@ -152,6 +152,7 @@ GameObject:
   - component: {fileID: 3062646254544939116}
   - component: {fileID: 3054315210863043189}
   - component: {fileID: 8825946562653235120}
+  - component: {fileID: 2518162571576831107}
   m_Layer: 15
   m_Name: Passive NPC Agent 01
   m_TagString: Untagged
@@ -265,10 +266,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: 0c5a5a43a5f90e749ac31d31c7e15f6c, type: 2}
   movementScript: {fileID: 6339075913325058811}
+  animationHandler: {fileID: 0}
   rb: {fileID: 3054315210863043189}
   stateMachine: {fileID: 7378414024554187399}
   health: {fileID: 7353296563837964474}
   attack: {fileID: 0}
+  nPCAudio: {fileID: 0}
 --- !u!114 &7353296563837964474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,7 +310,6 @@ MonoBehaviour:
   repathOnReachEndDistance: 1
   maxSpeed: 10
   acceleration: 12
-  deceleration: 12
   rotationSpeed: 5
   enableDebugLogs: 0
 --- !u!114 &7378414024554187399
@@ -433,6 +435,20 @@ MonoBehaviour:
   _debugAvoidance: 0
   _avoidedTags:
     _value: -1
+--- !u!114 &2518162571576831107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4194650917746827220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50c55cbaf68df53448fccff619731953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleAudioClips: []
+  attackAudioClips: []
 --- !u!1 &6303145067345391959
 GameObject:
   m_ObjectHideFlags: 0

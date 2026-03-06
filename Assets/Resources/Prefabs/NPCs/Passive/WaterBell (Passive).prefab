@@ -1536,6 +1536,7 @@ GameObject:
   - component: {fileID: 8658620294075536906}
   - component: {fileID: 160016890216196135}
   - component: {fileID: 4553424936911695408}
+  - component: {fileID: -3677614870914266435}
   m_Layer: 15
   m_Name: WaterBell (Passive)
   m_TagString: Untagged
@@ -1603,6 +1604,7 @@ MonoBehaviour:
   stateMachine: {fileID: 5826919401636004338}
   health: {fileID: 5309290517492839240}
   attack: {fileID: 0}
+  nPCAudio: {fileID: 0}
 --- !u!114 &5309290517492839240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1641,7 +1643,6 @@ MonoBehaviour:
   repathOnReachEndDistance: 1
   maxSpeed: 2
   acceleration: 2
-  deceleration: 2
   rotationSpeed: 0.1
   enableDebugLogs: 1
 --- !u!114 &5826919401636004338
@@ -1767,6 +1768,20 @@ MonoBehaviour:
   _debugAvoidance: 0
   _avoidedTags:
     _value: -1
+--- !u!114 &-3677614870914266435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5958850157169548213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50c55cbaf68df53448fccff619731953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleAudioClips: []
+  attackAudioClips: []
 --- !u!1 &6165617611611467884
 GameObject:
   m_ObjectHideFlags: 0

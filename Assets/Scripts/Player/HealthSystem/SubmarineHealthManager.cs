@@ -40,6 +40,9 @@ public class SubmarineHealthManager : MonoBehaviour
     [SerializeField] private float highFrequency = 1f;
     [SerializeField] private float rumbleDuration = 0.3f;
 
+    [Header("Audio")]
+    [SerializeField]
+    private AudioClip anyRegionLowHealthSFX;
 
     [Header("Debug")]
     [SerializeField] private bool enableDebugLogs = true;
@@ -290,6 +293,14 @@ public class SubmarineHealthManager : MonoBehaviour
         // - etc.
     }
 
+
+    [Button]
+    private void TestPlayAlarmClip(AudioLayer audioLoayer)
+    {
+        if (anyRegionLowHealthSFX == null) return;
+        AudioManager.Instance.PlaySound2D(anyRegionLowHealthSFX, AudioCategory.PlayerSFX, layer: audioLoayer);
+    }
+
     private void OnDestroy()
     {
         // Unsubscribe from all region events to prevent memory leaks
@@ -326,6 +337,7 @@ public class SubmarineHealthManager : MonoBehaviour
             }
         }
     }
+
 
 #if UNITY_EDITOR
     // Inspector buttons for testing (only visible in Unity Editor)

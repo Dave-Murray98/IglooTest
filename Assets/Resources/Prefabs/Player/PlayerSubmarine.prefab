@@ -952,7 +952,6 @@ MonoBehaviour:
   transitionSpeed: 5
   smoothTransition: 1
   enableDebugLogs: 0
-  showDebugInfo: 1
 --- !u!33 &6133414627958494949
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1057,7 +1056,6 @@ MonoBehaviour:
   transitionSpeed: 5
   smoothTransition: 1
   enableDebugLogs: 0
-  showDebugInfo: 1
 --- !u!33 &3734630970645225698
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1338,7 +1336,6 @@ MonoBehaviour:
   transitionSpeed: 5
   smoothTransition: 1
   enableDebugLogs: 0
-  showDebugInfo: 1
 --- !u!33 &737770545844485410
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1581,6 +1578,7 @@ GameObject:
   - component: {fileID: 3243397684127688229}
   - component: {fileID: 3885895894122431987}
   - component: {fileID: 612529502854093613}
+  - component: {fileID: 8730326842499864857}
   m_Layer: 6
   m_Name: PlayerSubmarine
   m_TagString: Untagged
@@ -1630,15 +1628,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shipController: {fileID: 432319468387849730}
   ballastController: {fileID: 3768133145417087292}
-  throttleResponseSpeed: 2
-  steeringResponseSpeed: 3
-  invertSteering: 0
   maxThrottleInput: 1
   maxSteeringInput: 1
-  maxBrake: 1
-  lowFrequency: 0.4
-  highFrequency: 0.4
-  rumbleDuration: 0.1
   enableDebugLogs: 1
 --- !u!114 &5037309244168899538
 MonoBehaviour:
@@ -1679,10 +1670,11 @@ MonoBehaviour:
   leftRegion: {fileID: 2539438933066095800}
   rightRegion: {fileID: 1318871917068846915}
   bottomRegion: {fileID: 453211013417184346}
-  destroySubmarineWhenAllRegionsDestroyed: 1
+  destroySubmarineWhenAnyRegionDestroyed: 1
   lowFrequency: 1
   highFrequency: 1
   rumbleDuration: 0.3
+  anyRegionLowHealthSFX: {fileID: 0}
   enableDebugLogs: 0
   showDebugGizmos: 1
 --- !u!114 &2568921799066710355
@@ -1706,6 +1698,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 9
   damageCooldown: 0.5
+  collisionImpactSounds:
+  - {fileID: 8300000, guid: 7d7a66986d98ebf41b6270bf47f3c791, type: 3}
+  - {fileID: 8300000, guid: b2781210437ceff419711663d83ea077, type: 3}
+  - {fileID: 8300000, guid: 87d8eda0e0fbe6b448be5ef13f265720, type: 3}
+  - {fileID: 8300000, guid: 152b4b34206cb6244a19453fc6f6fb6f, type: 3}
   enableDebugLogs: 0
   showCollisionGizmos: 1
 --- !u!114 &3771206795834829442
@@ -1945,7 +1942,7 @@ MonoBehaviour:
   combinedInertiaTensor: {x: 0, y: 0, z: 0}
   combinedMass: 5150
   dimensions: {x: 1.8044281, y: 6.8196955, z: 63.756035}
-  inertiaTensor: {x: 32834.598, y: 29932.895, z: 15902.713}
+  inertiaTensor: {x: 32834.566, y: 29932.87, z: 15902.707}
   useDefaultCenterOfMass: 0
   useDefaultInertia: 1
   useDefaultMass: 0
@@ -2155,6 +2152,21 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 5c73fb6a050203a499cf6c3c2df765ae, type: 2}
+--- !u!114 &8730326842499864857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2482531440913398984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dec1f132b3bc88e47898ee87b6f38e63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  submarineSubmersionDepthThreshold: 0.1
+  enableDebugLogs: 1
+  showDebugGizmos: 1
 --- !u!1 &2538727952083432188
 GameObject:
   m_ObjectHideFlags: 0
@@ -3333,7 +3345,6 @@ MonoBehaviour:
   transitionSpeed: 5
   smoothTransition: 1
   enableDebugLogs: 0
-  showDebugInfo: 1
 --- !u!33 &2028467506580130579
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -8898,7 +8909,6 @@ MonoBehaviour:
   transitionSpeed: 5
   smoothTransition: 1
   enableDebugLogs: 0
-  showDebugInfo: 1
 --- !u!33 &8925210357413190475
 MeshFilter:
   m_ObjectHideFlags: 0

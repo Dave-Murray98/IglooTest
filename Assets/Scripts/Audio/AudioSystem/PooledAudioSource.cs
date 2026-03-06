@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 /// <summary>
 /// Wrapper component for AudioSource that enables object pooling behavior.
@@ -8,29 +9,14 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class PooledAudioSource : MonoBehaviour
 {
-    private AudioSource audioSource;
+    public AudioSource audioSource;
     private AudioPool ownerPool;
     public bool isLooping;
     private float startTime;
 
-    /// <summary>
-    /// Whether this audio source is currently playing audio
-    /// </summary>
     public bool IsPlaying => audioSource != null && audioSource.isPlaying;
-
-    /// <summary>
-    /// The audio category this source belongs to
-    /// </summary>
     public AudioCategory Category { get; private set; }
-
-    /// <summary>
-    /// Unique ID for this specific audio playback instance
-    /// </summary>
     public int PlaybackID { get; private set; }
-
-    /// <summary>
-    /// Optional tag to identify what type of sound this is (e.g., "tool_use", "ambience")
-    /// </summary>
     public string AudioTag { get; private set; }
 
     private void Awake()
@@ -42,9 +28,6 @@ public class PooledAudioSource : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Initializes this pooled audio source with its owner pool and category
-    /// </summary>
     public void Initialize(AudioPool pool, AudioCategory category)
     {
         ownerPool = pool;
@@ -52,14 +35,31 @@ public class PooledAudioSource : MonoBehaviour
     }
 
     /// <summary>
-    /// Plays an audio clip with the specified settings
-    /// Now returns a playback ID for tracking
-    /// <param name="clip">The audio clip to play</param>
-    /// <param name="position">World position for 3D audio (use Vector3.zero for 2D)</param>
-    /// <param name="volume">Volume level (0-1)</param>
-    /// <param name="pitch">Pitch adjustment (default 1.0)</param>
-    /// <param name="loop">Whether the audio should loop</param>
-    /// <param name="spatialBlend">0 = 2D, 1 = 3D (default 1 for spatial audio)</param>
+    /// Routes this audio source through the given mixer group.
+    /// Called by AudioPool.GetSource() before playback begins,
+    /// based on the AudioLayer (Interior or Exterior) requested by the caller.
+    /// </summary>
+    public void SetMixerGroup(AudioMixerGroup mixerGroup)
+    {
+        if (audioSource == null)
+        {
+            Debug.LogError("[PooledAudioSource] audioSource is null in SetMixerGroup — Awake may not have run yet.");
+            return;
+        }
+
+        if (mixerGroup == null)
+        {
+            Debug.LogWarning("[PooledAudioSource] mixerGroup is null — check AudioManager Inspector fields.");
+            return;
+        }
+
+        audioSource.outputAudioMixerGroup = mixerGroup;
+        Debug.Log("[PooledAudioSource] Mixer group assigned: " + mixerGroup.name);
+    }
+
+    /// <summary>
+    /// Plays an audio clip with the specified settings.
+    /// Returns a playback ID for tracking looping sounds.
     /// </summary>
     public int Play(AudioClip clip, Vector3 position, float volume, float pitch = 1.0f, bool loop = false, float spatialBlend = 1.0f, string audioTag = "")
     {
@@ -70,39 +70,30 @@ public class PooledAudioSource : MonoBehaviour
             return -1;
         }
 
-        // Generate unique ID for this playback
         PlaybackID = UnityEngine.Random.Range(1000000, 9999999);
         AudioTag = audioTag;
 
-        // Set position
         transform.position = position;
 
-        // Configure audio source
         audioSource.clip = clip;
         audioSource.volume = volume;
         audioSource.pitch = pitch;
         audioSource.loop = loop;
         audioSource.spatialBlend = spatialBlend;
 
-        // Store state
         isLooping = loop;
         startTime = Time.time;
 
-        // Play the audio
         audioSource.Play();
 
-        // If not looping, schedule return to pool
         if (!isLooping)
         {
             Invoke(nameof(CheckAndReturnToPool), clip.length / pitch + 0.1f);
         }
 
-        return PlaybackID; // Return ID so caller can track this sound
+        return PlaybackID;
     }
 
-    /// <summary>
-    /// Stops playback and returns this source to the pool
-    /// </summary>
     public void Stop()
     {
         if (audioSource.isPlaying)
@@ -114,9 +105,6 @@ public class PooledAudioSource : MonoBehaviour
         ReturnToPool();
     }
 
-    /// <summary>
-    /// Updates the volume of this audio source
-    /// </summary>
     public void SetVolume(float volume)
     {
         if (audioSource != null)
@@ -125,9 +113,6 @@ public class PooledAudioSource : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Checks if audio has finished playing, then returns to pool
-    /// </summary>
     private void CheckAndReturnToPool()
     {
         if (!audioSource.isPlaying && !isLooping)
@@ -136,9 +121,6 @@ public class PooledAudioSource : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Returns this audio source to its owner pool for reuse
-    /// </summary>
     private void ReturnToPool()
     {
         if (ownerPool != null)
@@ -147,9 +129,11 @@ public class PooledAudioSource : MonoBehaviour
         }
     }
 
-
     /// <summary>
-    /// Resets the audio source to default state before returning to pool
+    /// Resets the audio source to a clean default state before returning to the pool.
+    /// Note: the mixer group assignment is intentionally NOT cleared here — it will be
+    /// re-assigned by AudioPool.GetSource() on the next use, so there is no risk of
+    /// a source playing through the wrong group.
     /// </summary>
     public void ResetState()
     {
@@ -169,7 +153,6 @@ public class PooledAudioSource : MonoBehaviour
         CancelInvoke();
         gameObject.SetActive(false);
     }
-
 
     private void OnDestroy()
     {

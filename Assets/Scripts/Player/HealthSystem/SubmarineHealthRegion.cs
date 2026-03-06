@@ -2,7 +2,6 @@ using System;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using System.Collections;
-using Unity.VisualScripting;
 
 /// <summary>
 /// Represents a single damageable region of the submarine (front, back, left, right, or bottom).
@@ -36,6 +35,9 @@ public class SubmarineHealthRegion : MonoBehaviour
 
     [Tooltip("Should crack visuals update automatically when health changes?")]
     [SerializeField] private bool autoUpdateCrackVisuals = true;
+
+    [Header("Audio")]
+    [SerializeField] private AudioClip[] glassCrackSounds;
 
     [Header("Repair")]
     public Outline repairOutline; // Outline to show when this region is selected for repair
@@ -129,6 +131,13 @@ public class SubmarineHealthRegion : MonoBehaviour
 
         // Update crack visuals to reflect new health
         UpdateCrackVisuals();
+
+        if (glassCrackSounds != null && glassCrackSounds.Length > 0)
+        {
+            // Play random crack sound
+            int randomIndex = UnityEngine.Random.Range(0, glassCrackSounds.Length);
+            AudioManager.Instance.PlaySound(glassCrackSounds[randomIndex], transform.position, AudioCategory.PlayerSFX, layer: AudioLayer.Interior);
+        }
 
         if (currentHealth <= lowHealthThreshold)
         {

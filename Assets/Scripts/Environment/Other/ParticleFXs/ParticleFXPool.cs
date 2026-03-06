@@ -43,6 +43,9 @@ public class ParticleFXPool : MonoBehaviour
         [Tooltip("Maximum number of particles that can exist in this pool")]
         public int maxPoolSize = 30;
 
+        [Tooltip("Is this particle type used for exterior audio? If true, it will use the Exterior audio mixer group, otherwise it will use the Interior audio mixer group")]
+        public bool isExteriorAudio = true;
+
         [HideInInspector]
         public Queue<GameObject> availableParticles = new Queue<GameObject>();
 
@@ -196,7 +199,7 @@ public class ParticleFXPool : MonoBehaviour
         {
             pooledComponent = particleObject.AddComponent<PooledParticle>();
         }
-        pooledComponent.Initialize(this, poolConfig.particleType);
+        pooledComponent.Initialize(this, poolConfig.particleType, poolConfig.isExteriorAudio);
 
         // Deactivate and add to available pool
         particleObject.SetActive(false);

@@ -29,10 +29,10 @@ public class CrackVisualController : MonoBehaviour
     private static readonly int RevealAmountProperty = Shader.PropertyToID("_RevealAmount");
 
     // Current state
-    [ShowInInspector, ReadOnly, ShowIf("showDebugInfo")]
+    [ShowInInspector, ReadOnly]
     private float currentRevealAmount = 0f;
 
-    [ShowInInspector, ReadOnly, ShowIf("showDebugInfo")]
+    [ShowInInspector, ReadOnly]
     private float targetRevealAmount = 0f;
 
     private void Awake()

@@ -11,50 +11,47 @@ public class PlayerWaterDetector : MonoBehaviour
     private Transform player;
 
     [Header("Water State Thresholds")]
-    [SerializeField, Tooltip("Head is considered underwater when this deep")]
-    private float playerSubmersionDepthThreshold = 0.1f;
+    [SerializeField, Tooltip("Submarine is considered underwater when this deep")]
+    private float submarineSubmersionDepthThreshold = 0.1f;
 
     [Header("Debug")]
     [SerializeField] private bool enableDebugLogs = true;
     [SerializeField] private bool showDebugGizmos = true;
 
-
     // Crest water sampling helpers
-    private SampleHeightHelper headSampleHelper;
+    private SampleHeightHelper submarineSampleHelper;
     private SampleHeightHelper surfaceSampleHelper;
     private OceanRenderer oceanRenderer;
 
     // Water state tracking - immediate transitions
-    private bool isHeadUnderwater = false;
-    private bool wasHeadUnderwater = false;
+    private bool isSubmarineUnderwater = false;
+    private bool wasSubmarineUnderwater = false;
 
     // Water height and depth data
-    private float waterHeightAtHead;
-    private float headDepthInWater;
+    private float waterHeightAtSubmarine;
+    private float submarineDepthInWater;
 
     // Events - immediate transitions
-    public event System.Action OnHeadSubmerged;      // Head goes underwater while swimming
-    public event System.Action OnHeadSurfaced;       // Head surfaces while swimming
+    public event System.Action OnSubmarineSubmerged;    // Submarine goes underwater
+    public event System.Action OnSubmarineSurfaced;     // Submarine surfaces
 
     // Public properties - immediate water state
-    public bool IsHeadUnderwater => isHeadUnderwater;
-    public float HeadDepthInWater => headDepthInWater;
+    public bool IsSubmarineUnderwater => isSubmarineUnderwater;
+    public float SubmarineDepthInWater => submarineDepthInWater;
 
     // Swimming state properties for surface systems
-    public float WaterHeightAtHead => waterHeightAtHead;
+    public float WaterHeightAtSubmarine => waterHeightAtSubmarine;
 
     // Scene compatibility
-    public float HeadDepth => HeadDepthInWater;
+    public float SubmarineDepth => SubmarineDepthInWater;
 
     #region Initialization
 
     private void Awake()
     {
         player = GetComponent<Transform>();
-
         InitializeCrestComponents();
     }
-
 
     private void InitializeCrestComponents()
     {
@@ -64,8 +61,7 @@ public class PlayerWaterDetector : MonoBehaviour
 
         try
         {
-            // Create sample helpers for all detection points
-            headSampleHelper = new SampleHeightHelper();
+            submarineSampleHelper = new SampleHeightHelper();
             surfaceSampleHelper = new SampleHeightHelper();
 
             DebugLog("Crest components initialized successfully with rotation-independent detection");
@@ -79,11 +75,10 @@ public class PlayerWaterDetector : MonoBehaviour
 
     private void InitializeNonWaterScene()
     {
-        // Reset all water state
-        isHeadUnderwater = false;
-        wasHeadUnderwater = false;
-        headDepthInWater = 0f;
-        waterHeightAtHead = 0f;
+        isSubmarineUnderwater = false;
+        wasSubmarineUnderwater = false;
+        submarineDepthInWater = 0f;
+        waterHeightAtSubmarine = 0f;
 
         DebugLog("Non-water scene initialization complete");
     }
@@ -100,38 +95,35 @@ public class PlayerWaterDetector : MonoBehaviour
 
     private void UpdateWaterDetection()
     {
-        // Sample water height at calculated detection positions (rotation-independent)
-        waterHeightAtHead = SampleWaterHeightAtPosition(player.position, headSampleHelper);
-        headDepthInWater = Mathf.Max(0f, waterHeightAtHead - player.position.y);
+        // Sample water height at the submarine's position (rotation-independent)
+        waterHeightAtSubmarine = SampleWaterHeightAtPosition(player.position, submarineSampleHelper);
+        submarineDepthInWater = Mathf.Max(0f, waterHeightAtSubmarine - player.position.y);
 
         UpdateWaterStateFlags();
     }
 
     private void UpdateWaterStateFlags()
     {
-        wasHeadUnderwater = isHeadUnderwater;
-
-        // Head submersion state (for underwater vs surface swimming distinction)
-        isHeadUnderwater = headDepthInWater > playerSubmersionDepthThreshold;
+        wasSubmarineUnderwater = isSubmarineUnderwater;
+        isSubmarineUnderwater = submarineDepthInWater > submarineSubmersionDepthThreshold;
     }
 
     /// <summary>
-    /// Check for immediate water state changes
+    /// Check for immediate water state changes and fire events
     /// </summary>
     private void CheckWaterStateChanges()
     {
-        // Head submersion events (for underwater vs surface swimming distinction)
-        if (isHeadUnderwater != wasHeadUnderwater)
+        if (isSubmarineUnderwater != wasSubmarineUnderwater)
         {
-            if (isHeadUnderwater)
+            if (isSubmarineUnderwater)
             {
-                DebugLog($"Head submerged (rotation-independent) - head depth: {headDepthInWater:F2}m");
-                OnHeadSubmerged?.Invoke();
+                DebugLog($"Submarine submerged - depth: {submarineDepthInWater:F2}m");
+                OnSubmarineSubmerged?.Invoke();
             }
             else
             {
-                DebugLog($"Head surfaced (rotation-independent) - head depth: {headDepthInWater:F2}m");
-                OnHeadSurfaced?.Invoke();
+                DebugLog($"Submarine surfaced - depth: {submarineDepthInWater:F2}m");
+                OnSubmarineSurfaced?.Invoke();
             }
         }
     }
@@ -167,7 +159,7 @@ public class PlayerWaterDetector : MonoBehaviour
     }
 
     /// <summary>
-    /// Get water depth at any position (utility method)
+    /// Get water depth at any world position (utility method for other systems)
     /// </summary>
     public float GetWaterDepthAtPosition(Vector3 worldPosition)
     {
@@ -204,21 +196,15 @@ public class PlayerWaterDetector : MonoBehaviour
     {
         if (!showDebugGizmos) return;
 
-        // ROTATION-INDEPENDENT: Draw calculated detection positions (not bone positions)
         if (Application.isPlaying)
         {
-            // Draw head detection position
-            Gizmos.color = isHeadUnderwater ? Color.red : Color.green;
+            Gizmos.color = isSubmarineUnderwater ? Color.red : Color.green;
             Gizmos.DrawWireSphere(player.position, 0.1f);
-
         }
-        else if (!Application.isPlaying)
+        else
         {
-            // Show preview of detection points in editor
-            Vector3 playerPos = transform.position;
-
             Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(playerPos, 0.1f);
+            Gizmos.DrawWireSphere(transform.position, 0.1f);
         }
     }
 

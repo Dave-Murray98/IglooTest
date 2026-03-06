@@ -2,14 +2,21 @@ using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Audio;
 
 /// <summary>
 /// Central audio management system with object pooling and category-based volume control.
-/// Implements IManager for integration with GameManager's lifecycle management.
+/// Implements IManager for integration with GameManager lifecycle management.
 /// Persists across scenes as a singleton to maintain audio continuity and settings.
-/// 
+///
+/// All sounds are routed through one of two mixer groups on the SubmarineMixer:
+///   - Interior: sounds originating inside the sub (engine, crew, UI) - played clean
+///   - Exterior: sounds originating outside the sub (ambience, creatures, impacts) -
+///               processed through the hull low-pass and reverb effects
+///
 /// Usage Examples:
-/// - AudioManager.Instance.PlaySound(clip, transform.position, AudioCategory.PlayerSFX);
+/// - AudioManager.Instance.PlaySound(clip, transform.position, AudioCategory.PlayerSFX, layer: AudioLayer.Interior);
+/// - AudioManager.Instance.PlaySound(clip, transform.position, AudioCategory.EnemySFX, layer: AudioLayer.Exterior);
 /// - AudioManager.Instance.SetCategoryVolume(AudioCategory.Music, 0.5f);
 /// - AudioManager.Instance.StopAllSounds(AudioCategory.Ambience);
 /// </summary>
@@ -39,6 +46,14 @@ public class AudioManager : MonoBehaviour, IManager
     [SerializeField][ShowIf("useCustomPoolSizes")] private int musicInitialSize = 2;
     [SerializeField][ShowIf("useCustomPoolSizes")] private int musicMaxSize = 3;
 
+    [Header("Audio Mixer")]
+    [Tooltip("Assign the SubmarineMixer asset here")]
+    public AudioMixer submarineMixer;
+    [Tooltip("The Interior group from SubmarineMixer - for sounds inside the submarine")]
+    public AudioMixerGroup interiorMixerGroup;
+    [Tooltip("The Exterior group from SubmarineMixer - for sounds heard through the hull")]
+    public AudioMixerGroup exteriorMixerGroup;
+
     [Header("Audio Settings")]
     [SerializeField] private AudioSettingsData defaultSettings;
 
@@ -50,22 +65,17 @@ public class AudioManager : MonoBehaviour, IManager
     private Dictionary<AudioCategory, AudioPool> audioPools;
     private Transform poolContainer;
 
-    // Current settings
     public AudioSettingsData currentSettings;
     private float masterVolume = 1.0f;
 
-    // Initialization tracking
     private bool isInitialized = false;
 
     // Events
     public event Action<AudioCategory, float> OnCategoryVolumeChanged;
     public event Action<float> OnMasterVolumeChanged;
-    public event Action OnVolumeSettingsChanged; // Event to notify any system that doesn't use audio pooling (ie audio logs) when volume settings change
+    public event Action OnVolumeSettingsChanged;
     public event Action OnAudioManagerInitialized;
 
-    /// <summary>
-    /// Whether the manager is properly initialized and ready for use
-    /// </summary>
     public bool IsProperlyInitialized => isInitialized;
 
     #region Singleton & Lifecycle
@@ -85,9 +95,6 @@ public class AudioManager : MonoBehaviour, IManager
         }
     }
 
-    /// <summary>
-    /// Initialize the audio manager and create all audio pools
-    /// </summary>
     public void Initialize()
     {
         if (isInitialized)
@@ -98,20 +105,21 @@ public class AudioManager : MonoBehaviour, IManager
 
         DebugLog("Initializing AudioManager");
 
-        // Create pool container
+        if (submarineMixer == null)
+            Debug.LogWarning("[AudioManager] SubmarineMixer not assigned - sounds will play without mixer routing.");
+
+        if (interiorMixerGroup == null || exteriorMixerGroup == null)
+            Debug.LogWarning("[AudioManager] Interior or Exterior mixer group not assigned - sounds will play without hull filtering.");
+
         poolContainer = new GameObject("AudioSourcePools").transform;
         poolContainer.SetParent(transform);
 
-        // Initialize settings
         if (defaultSettings == null)
-        {
             defaultSettings = new AudioSettingsData();
-        }
 
         currentSettings = new AudioSettingsData(defaultSettings);
         masterVolume = currentSettings.masterVolume;
 
-        // Create audio pools for each category
         InitializeAudioPools();
 
         if (MusicManager.Instance != null)
@@ -122,14 +130,10 @@ public class AudioManager : MonoBehaviour, IManager
         OnAudioManagerInitialized?.Invoke();
     }
 
-    /// <summary>
-    /// Refresh references after scene changes (IManager implementation)
-    /// </summary>
     public void RefreshReferences()
     {
         DebugLog("Refreshing AudioManager references");
 
-        // AudioManager is persistent, but we might need to verify pools still exist
         if (audioPools == null || poolContainer == null)
         {
             Debug.LogWarning("[AudioManager] Pools were destroyed, reinitializing");
@@ -138,9 +142,6 @@ public class AudioManager : MonoBehaviour, IManager
         }
     }
 
-    /// <summary>
-    /// Clean up resources (IManager implementation)
-    /// </summary>
     public void Cleanup()
     {
         DebugLog("Cleaning up AudioManager");
@@ -148,16 +149,12 @@ public class AudioManager : MonoBehaviour, IManager
         if (audioPools != null)
         {
             foreach (var pool in audioPools.Values)
-            {
                 pool.Cleanup();
-            }
             audioPools.Clear();
         }
 
         if (poolContainer != null)
-        {
             Destroy(poolContainer.gameObject);
-        }
 
         isInitialized = false;
     }
@@ -175,9 +172,6 @@ public class AudioManager : MonoBehaviour, IManager
 
     #region Pool Initialization
 
-    /// <summary>
-    /// Creates audio pools for all categories with configured sizes
-    /// </summary>
     private void InitializeAudioPools()
     {
         audioPools = new Dictionary<AudioCategory, AudioPool>();
@@ -187,22 +181,19 @@ public class AudioManager : MonoBehaviour, IManager
             int initSize = GetInitialPoolSize(category);
             int maxSize = GetMaxPoolSize(category);
 
-            // Create pool
             var pool = new AudioPool(category, poolContainer, initSize, maxSize);
 
-            // Set initial volume from settings
+            // Pass both mixer groups to every pool so it can route on a per-play basis
+            pool.SetMixerGroups(interiorMixerGroup, exteriorMixerGroup);
+
             pool.Volume = currentSettings.GetCategoryVolume(category) * masterVolume;
 
-            // Add to dictionary
             audioPools[category] = pool;
 
             DebugLog($"Created {category} pool: Initial={initSize}, Max={maxSize}");
         }
     }
 
-    /// <summary>
-    /// Gets the initial pool size for a category (uses custom sizes if enabled)
-    /// </summary>
     private int GetInitialPoolSize(AudioCategory category)
     {
         if (!useCustomPoolSizes) return initialPoolSize;
@@ -219,9 +210,6 @@ public class AudioManager : MonoBehaviour, IManager
         };
     }
 
-    /// <summary>
-    /// Gets the maximum pool size for a category (uses custom sizes if enabled)
-    /// </summary>
     private int GetMaxPoolSize(AudioCategory category)
     {
         if (!useCustomPoolSizes) return maxPoolSize;
@@ -243,15 +231,20 @@ public class AudioManager : MonoBehaviour, IManager
     #region Public API - Play Sounds
 
     /// <summary>
-    /// Plays a sound at a specific position with full control over playback parameters
+    /// Plays a sound at a specific position with full control over playback parameters.
     /// </summary>
     /// <param name="clip">Audio clip to play</param>
-    /// <param name="position">World position for 3D audio (use Vector3.zero for 2D UI sounds)</param>
+    /// <param name="position">World position for 3D audio (use Vector3.zero for 2D sounds)</param>
     /// <param name="category">Audio category for volume control and pooling</param>
     /// <param name="volume">Additional volume multiplier (0-1), applied on top of category volume</param>
     /// <param name="pitch">Pitch adjustment (default 1.0)</param>
     /// <param name="loop">Whether the audio should loop indefinitely</param>
-    /// <param name="spatialBlend">0 = 2D audio, 1 = 3D audio (default 1 for spatial)</param>
+    /// <param name="spatialBlend">0 = 2D audio, 1 = 3D audio</param>
+    /// <param name="layer">
+    /// Interior = inside the submarine (clean, no hull filtering).
+    /// Exterior = outside the submarine (hull low-pass and reverb applied).
+    /// Defaults to Interior. Pass AudioLayer.Exterior for any sound originating outside the sub.
+    /// </param>
     /// <returns>The PooledAudioSource playing the sound (can be used to stop it later)</returns>
     public PooledAudioSource PlaySound(
         AudioClip clip,
@@ -260,7 +253,8 @@ public class AudioManager : MonoBehaviour, IManager
         float volume = 1.0f,
         float pitch = 1.0f,
         bool loop = false,
-        float spatialBlend = 1.0f)
+        float spatialBlend = 1.0f,
+        AudioLayer layer = AudioLayer.Exterior)
     {
         if (!isInitialized)
         {
@@ -280,42 +274,60 @@ public class AudioManager : MonoBehaviour, IManager
             return null;
         }
 
-        // Get audio source from pool
         var pool = audioPools[category];
-        var source = pool.GetSource();
+        PooledAudioSource source = pool.GetSource(layer); // layer determines mixer group routing
 
-        // Calculate final volume (category volume * master volume * additional volume)
         float categoryVolume = currentSettings.GetCategoryVolume(category);
         float finalVolume = categoryVolume * masterVolume * Mathf.Clamp01(volume);
 
-        // Play the audio
         source.Play(clip, position, finalVolume, pitch, loop, spatialBlend);
 
-        DebugLog($"Playing {clip.name} at {position} | Category: {category} | Volume: {finalVolume:F2}");
+        string mixerGroupName = source.audioSource.outputAudioMixerGroup != null
+            ? source.audioSource.outputAudioMixerGroup.name
+            : "None (not assigned)";
+
+        DebugLog($"Playing {clip.name} at {position} | Category: {category} | Mixer Group: {mixerGroupName} | Volume: {finalVolume:F2}");
 
         return source;
     }
 
     /// <summary>
-    /// Plays a 2D sound (UI sounds, non-spatial audio)
+    /// Plays a 2D sound (non-spatial - UI sounds, music stingers, etc.)
     /// </summary>
-    public PooledAudioSource PlaySound2D(AudioClip clip, AudioCategory category, float volume = 1.0f, bool loop = false)
+    public PooledAudioSource PlaySound2D(
+        AudioClip clip,
+        AudioCategory category,
+        float volume = 1.0f,
+        bool loop = false,
+        AudioLayer layer = AudioLayer.Interior)
     {
-        return PlaySound(clip, Vector3.zero, category, volume, 1.0f, loop, 0f);
+        return PlaySound(clip, Vector3.zero, category, volume, 1.0f, loop, 0f, layer);
     }
 
     /// <summary>
-    /// Plays a one-shot 3D sound (simplified API for common use case)
+    /// Plays a one-shot 3D sound at a world position (simplified API for common use case)
     /// </summary>
-    public PooledAudioSource PlaySoundAtPosition(AudioClip clip, Vector3 position, AudioCategory category, float volume = 1.0f)
+    public PooledAudioSource PlaySoundAtPosition(
+        AudioClip clip,
+        Vector3 position,
+        AudioCategory category,
+        float volume = 1.0f,
+        AudioLayer layer = AudioLayer.Interior)
     {
-        return PlaySound(clip, position, category, volume, 1.0f, false, 1.0f);
+        return PlaySound(clip, position, category, volume, 1.0f, false, 1.0f, layer);
     }
 
     /// <summary>
     /// Plays a 2D sound and returns a playback ID for tracking (useful for looping sounds)
     /// </summary>
-    public int PlaySound2DTracked(AudioClip clip, AudioCategory category, float volume = 1.0f, float pitch = 1.0f, bool loop = false, string audioTag = "")
+    public int PlaySound2DTracked(
+        AudioClip clip,
+        AudioCategory category,
+        float volume = 1.0f,
+        float pitch = 1.0f,
+        bool loop = false,
+        string audioTag = "",
+        AudioLayer layer = AudioLayer.Interior)
     {
         if (clip == null)
         {
@@ -329,13 +341,25 @@ public class AudioManager : MonoBehaviour, IManager
             return -1;
         }
 
-        PooledAudioSource source = pool.GetSource();
+        PooledAudioSource source = pool.GetSource(layer);
         float finalVolume = volume * pool.Volume * masterVolume;
 
         return source.Play(clip, Vector3.zero, finalVolume, pitch, loop, 0f, audioTag);
     }
 
-    public int PlaySoundTracked(AudioClip clip, Vector3 position, AudioCategory category, float volume = 1.0f, float pitch = 1.0f, bool loop = false, float spatialBlend = 1.0f, string audioTag = "")
+    /// <summary>
+    /// Plays a 3D sound and returns a playback ID for tracking (useful for looping sounds)
+    /// </summary>
+    public int PlaySoundTracked(
+        AudioClip clip,
+        Vector3 position,
+        AudioCategory category,
+        float volume = 1.0f,
+        float pitch = 1.0f,
+        bool loop = false,
+        float spatialBlend = 1.0f,
+        string audioTag = "",
+        AudioLayer layer = AudioLayer.Interior)
     {
         if (clip == null)
         {
@@ -349,7 +373,7 @@ public class AudioManager : MonoBehaviour, IManager
             return -1;
         }
 
-        PooledAudioSource source = pool.GetSource();
+        PooledAudioSource source = pool.GetSource(layer);
         float finalVolume = volume * pool.Volume * masterVolume;
 
         return source.Play(clip, position, finalVolume, pitch, loop, spatialBlend, audioTag);
@@ -361,9 +385,7 @@ public class AudioManager : MonoBehaviour, IManager
     public bool StopLoopingSound(int playbackID, AudioCategory category)
     {
         if (audioPools.TryGetValue(category, out AudioPool pool))
-        {
             return pool.StopLoopingSound(playbackID);
-        }
         return false;
     }
 
@@ -373,9 +395,7 @@ public class AudioManager : MonoBehaviour, IManager
     public int StopLoopingSoundsByTag(string audioTag, AudioCategory category)
     {
         if (audioPools.TryGetValue(category, out AudioPool pool))
-        {
             return pool.StopLoopingSoundsByTag(audioTag);
-        }
         return 0;
     }
 
@@ -386,9 +406,7 @@ public class AudioManager : MonoBehaviour, IManager
     {
         int totalStopped = 0;
         foreach (var pool in audioPools.Values)
-        {
             totalStopped += pool.StopLoopingSoundsByTag(audioTag);
-        }
         return totalStopped;
     }
 
@@ -396,9 +414,6 @@ public class AudioManager : MonoBehaviour, IManager
 
     #region Public API - Stop Sounds
 
-    /// <summary>
-    /// Stops all sounds in a specific category
-    /// </summary>
     public void StopAllSounds(AudioCategory category)
     {
         if (!isInitialized || !audioPools.ContainsKey(category))
@@ -411,17 +426,12 @@ public class AudioManager : MonoBehaviour, IManager
         DebugLog($"Stopped all sounds in category: {category}");
     }
 
-    /// <summary>
-    /// Stops all sounds across all categories
-    /// </summary>
     public void StopAllSounds()
     {
         if (!isInitialized) return;
 
         foreach (var pool in audioPools.Values)
-        {
             pool.StopAll();
-        }
 
         DebugLog("Stopped all sounds");
     }
@@ -430,44 +440,29 @@ public class AudioManager : MonoBehaviour, IManager
 
     #region Volume Control
 
-    /// <summary>
-    /// Sets the volume for a specific audio category
-    /// </summary>
-    /// <param name="category">Category to adjust</param>
-    /// <param name="volume">Volume level (0-1)</param>
     public void SetCategoryVolume(AudioCategory category, float volume)
     {
         volume = Mathf.Clamp01(volume);
         currentSettings.SetCategoryVolume(category, volume);
 
-        // Update pool volume (applies master volume)
         if (audioPools != null && audioPools.ContainsKey(category))
-        {
             audioPools[category].Volume = volume * masterVolume;
-        }
 
         OnCategoryVolumeChanged?.Invoke(category, volume);
         OnVolumeSettingsChanged?.Invoke();
         DebugLog($"Set {category} volume to {volume:F2}");
     }
 
-    /// <summary>
-    /// Gets the current volume for a specific category
-    /// </summary>
     public float GetCategoryVolume(AudioCategory category)
     {
         return currentSettings.GetCategoryVolume(category);
     }
 
-    /// <summary>
-    /// Sets the master volume (affects all categories)
-    /// </summary>
     public void SetMasterVolume(float volume)
     {
         masterVolume = Mathf.Clamp01(volume);
         currentSettings.masterVolume = masterVolume;
 
-        // Update all pool volumes
         if (audioPools != null)
         {
             foreach (var kvp in audioPools)
@@ -482,9 +477,6 @@ public class AudioManager : MonoBehaviour, IManager
         DebugLog($"Set master volume to {masterVolume:F2}");
     }
 
-    /// <summary>
-    /// Gets the current master volume
-    /// </summary>
     public float GetMasterVolume()
     {
         return masterVolume;
@@ -494,9 +486,6 @@ public class AudioManager : MonoBehaviour, IManager
 
     #region Settings Management
 
-    /// <summary>
-    /// Applies a complete set of audio settings
-    /// </summary>
     public void ApplySettings(AudioSettingsData settings)
     {
         if (settings == null || !settings.IsValid())
@@ -508,7 +497,6 @@ public class AudioManager : MonoBehaviour, IManager
         currentSettings = new AudioSettingsData(settings);
         masterVolume = settings.masterVolume;
 
-        // Update all pool volumes
         if (audioPools != null)
         {
             foreach (AudioCategory category in Enum.GetValues(typeof(AudioCategory)))
@@ -524,17 +512,11 @@ public class AudioManager : MonoBehaviour, IManager
         DebugLog($"Applied settings: {settings.GetDebugInfo()}");
     }
 
-    /// <summary>
-    /// Gets a copy of the current audio settings
-    /// </summary>
     public AudioSettingsData GetCurrentSettings()
     {
         return new AudioSettingsData(currentSettings);
     }
 
-    /// <summary>
-    /// Resets all audio settings to defaults
-    /// </summary>
     public void ResetToDefaultSettings()
     {
         ApplySettings(defaultSettings);
@@ -545,9 +527,6 @@ public class AudioManager : MonoBehaviour, IManager
 
     #region Debug & Utility
 
-    /// <summary>
-    /// Gets debug information about all audio pools
-    /// </summary>
     [Button("Show Pool Statistics")]
     [System.Diagnostics.Conditional("UNITY_EDITOR")]
     public void ShowPoolStatistics()
@@ -561,34 +540,27 @@ public class AudioManager : MonoBehaviour, IManager
         Debug.Log("=== AUDIO MANAGER POOL STATISTICS ===");
         Debug.Log($"Master Volume: {masterVolume:F2}");
         Debug.Log($"Settings: {currentSettings.GetDebugInfo()}");
+        Debug.Log($"Mixer: {(submarineMixer != null ? submarineMixer.name : "NOT ASSIGNED")}");
+        Debug.Log($"Interior Group: {(interiorMixerGroup != null ? interiorMixerGroup.name : "NOT ASSIGNED")}");
+        Debug.Log($"Exterior Group: {(exteriorMixerGroup != null ? exteriorMixerGroup.name : "NOT ASSIGNED")}");
         Debug.Log("Pool Status:");
 
         foreach (var kvp in audioPools)
-        {
             Debug.Log($"  {kvp.Value.GetDebugInfo()}");
-        }
 
         Debug.Log("=====================================");
     }
 
-    /// <summary>
-    /// Gets the total number of active audio sources across all pools
-    /// </summary>
     public int GetTotalActiveSources()
     {
         if (!isInitialized || audioPools == null) return 0;
 
         int total = 0;
         foreach (var pool in audioPools.Values)
-        {
             total += pool.ActiveCount;
-        }
         return total;
     }
 
-    /// <summary>
-    /// Gets the number of active sources in a specific category
-    /// </summary>
     public int GetActiveSources(AudioCategory category)
     {
         if (!isInitialized || !audioPools.ContainsKey(category)) return 0;
@@ -598,9 +570,7 @@ public class AudioManager : MonoBehaviour, IManager
     private void DebugLog(string message)
     {
         if (enableDebugLogs)
-        {
             Debug.Log($"[AudioManager] {message}");
-        }
     }
 
     #endregion
@@ -609,7 +579,6 @@ public class AudioManager : MonoBehaviour, IManager
 
     private void OnValidate()
     {
-        // Ensure pool sizes are reasonable
         initialPoolSize = Mathf.Max(1, initialPoolSize);
         maxPoolSize = Mathf.Max(initialPoolSize, maxPoolSize);
 
@@ -617,19 +586,14 @@ public class AudioManager : MonoBehaviour, IManager
         {
             ambienceInitialSize = Mathf.Max(1, ambienceInitialSize);
             ambienceMaxSize = Mathf.Max(ambienceInitialSize, ambienceMaxSize);
-
             playerSFXInitialSize = Mathf.Max(1, playerSFXInitialSize);
             playerSFXMaxSize = Mathf.Max(playerSFXInitialSize, playerSFXMaxSize);
-
             enemySFXInitialSize = Mathf.Max(1, enemySFXInitialSize);
             enemySFXMaxSize = Mathf.Max(enemySFXInitialSize, enemySFXMaxSize);
-
             dialogueInitialSize = Mathf.Max(1, dialogueInitialSize);
             dialogueMaxSize = Mathf.Max(dialogueInitialSize, dialogueMaxSize);
-
             uiInitialSize = Mathf.Max(1, uiInitialSize);
             uiMaxSize = Mathf.Max(uiInitialSize, uiMaxSize);
-
             musicInitialSize = Mathf.Max(1, musicInitialSize);
             musicMaxSize = Mathf.Max(musicInitialSize, musicMaxSize);
         }
@@ -656,12 +620,8 @@ public class AudioManager : MonoBehaviour, IManager
     {
         if (!showPoolStats || !isInitialized || audioPools == null) return;
 
-        // Draw pool statistics in scene view
         foreach (var kvp in audioPools)
-        {
-            var pool = kvp.Value;
             Debug.DrawRay(transform.position, Vector3.up * (int)kvp.Key, Color.green);
-        }
     }
 
     #endregion

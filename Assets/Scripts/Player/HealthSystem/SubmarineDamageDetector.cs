@@ -35,6 +35,11 @@ public class SubmarineDamageDetector : MonoBehaviour
 
     private float lastDamageTime = -999f;
 
+
+    [Header("Audio")]
+    [SerializeField]
+    private AudioClip[] collisionImpactSounds;
+
     [Header("Debug")]
     [SerializeField] private bool enableDebugLogs = false;
     [SerializeField] private bool showCollisionGizmos = true;
@@ -109,6 +114,14 @@ public class SubmarineDamageDetector : MonoBehaviour
         {
             healthManager.TakeDamageAtPoint(collisionPoint, damage, Vector3.zero);
             lastDamageTime = Time.time;
+
+
+            if (collisionImpactSounds != null && collisionImpactSounds.Length > 0)
+            {
+                // Play random impact sound
+                int randomIndex = UnityEngine.Random.Range(0, collisionImpactSounds.Length);
+                AudioManager.Instance.PlaySound(collisionImpactSounds[randomIndex], collisionPoint, AudioCategory.PlayerSFX, layer: AudioLayer.Exterior);
+            }
 
             DebugLog($"Applied {damage:F1} damage at {collisionPoint}");
         }

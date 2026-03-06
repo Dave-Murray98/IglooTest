@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Audio;
 
 /// <summary>
 /// Manages a pool of audio sources for a specific audio category.
@@ -13,6 +13,10 @@ public class AudioPool
     private readonly Transform poolParent;
     private readonly int initialSize;
     private readonly int maxSize;
+
+    // Mixer groups — set once by AudioManager after creation
+    private AudioMixerGroup interiorMixerGroup;
+    private AudioMixerGroup exteriorMixerGroup;
 
     private readonly Queue<PooledAudioSource> availableSources = new Queue<PooledAudioSource>();
     private readonly List<PooledAudioSource> activeSources = new List<PooledAudioSource>();
@@ -51,10 +55,6 @@ public class AudioPool
     /// <summary>
     /// Creates a new audio pool for the specified category
     /// </summary>
-    /// <param name="category">The audio category this pool manages</param>
-    /// <param name="parent">Parent transform for organizing pool objects in hierarchy</param>
-    /// <param name="initialSize">Initial number of audio sources to create</param>
-    /// <param name="maxSize">Maximum number of audio sources allowed (prevents memory issues)</param>
     public AudioPool(AudioCategory category, Transform parent, int initialSize = 5, int maxSize = 50)
     {
         this.category = category;
@@ -62,7 +62,6 @@ public class AudioPool
         this.initialSize = initialSize;
         this.maxSize = maxSize;
 
-        // Pre-create initial pool of audio sources
         for (int i = 0; i < initialSize; i++)
         {
             CreateNewSource();
@@ -70,37 +69,48 @@ public class AudioPool
     }
 
     /// <summary>
-    /// Gets an available audio source from the pool, or creates a new one if needed
+    /// Assigns the Interior and Exterior mixer groups to this pool.
+    /// Called once by AudioManager during initialization.
     /// </summary>
-    public PooledAudioSource GetSource()
+    public void SetMixerGroups(AudioMixerGroup interior, AudioMixerGroup exterior)
+    {
+        interiorMixerGroup = interior;
+        exteriorMixerGroup = exterior;
+    }
+
+    /// <summary>
+    /// Gets an available audio source from the pool, or creates a new one if needed.
+    /// The AudioLayer determines which mixer group the source is routed to.
+    /// </summary>
+    public PooledAudioSource GetSource(AudioLayer layer = AudioLayer.Interior)
     {
         PooledAudioSource source;
 
-        // Try to get an available source from the queue
         if (availableSources.Count > 0)
         {
             source = availableSources.Dequeue();
         }
         else
         {
-            // No available sources - need to create a new one or reuse oldest active
             if (allSources.Count < maxSize)
             {
-                // Create new source (we haven't hit the max limit yet)
                 source = CreateNewSource();
             }
             else
             {
-                // At max capacity - stop and reuse the oldest active source
                 source = activeSources[0];
-                source.Stop(); // This will call ReturnToPool, but we immediately reuse it
+                source.Stop();
                 Debug.LogWarning($"[AudioPool:{category}] Max pool size reached ({maxSize}). Reusing oldest source.");
             }
         }
 
-        // Activate and track the source
+        // Activate FIRST so Awake has definitely run and audioSource is valid
         source.gameObject.SetActive(true);
         activeSources.Add(source);
+
+        // Now safe to assign the mixer group
+        AudioMixerGroup targetGroup = layer == AudioLayer.Exterior ? exteriorMixerGroup : interiorMixerGroup;
+        source.SetMixerGroup(targetGroup);
 
         return source;
     }
@@ -112,13 +122,9 @@ public class AudioPool
     {
         if (source == null) return;
 
-        // Remove from active list
         activeSources.Remove(source);
-
-        // Reset state
         source.ResetState();
 
-        // Add back to available queue
         if (!availableSources.Contains(source))
         {
             availableSources.Enqueue(source);
@@ -130,9 +136,7 @@ public class AudioPool
     /// </summary>
     public void StopAll()
     {
-        // Create a copy of the list since Stop() modifies activeSources
         var sourcesToStop = new List<PooledAudioSource>(activeSources);
-
         foreach (var source in sourcesToStop)
         {
             source.Stop();
@@ -142,8 +146,6 @@ public class AudioPool
     /// <summary>
     /// Stops a specific looping sound by its playback ID
     /// </summary>
-    /// <param name="playbackID">The ID returned when the sound was played</param>
-    /// <returns>True if the sound was found and stopped</returns>
     public bool StopLoopingSound(int playbackID)
     {
         foreach (PooledAudioSource source in activeSources)
@@ -160,13 +162,9 @@ public class AudioPool
     /// <summary>
     /// Stops all looping sounds with a specific audio tag
     /// </summary>
-    /// <param name="audioTag">The tag assigned when playing the sound</param>
-    /// <returns>Number of sounds stopped</returns>
     public int StopLoopingSoundsByTag(string audioTag)
     {
         int stoppedCount = 0;
-
-        // Create a copy since Stop() modifies the activeSources list
         var sourcesToCheck = new List<PooledAudioSource>(activeSources);
 
         foreach (PooledAudioSource source in sourcesToCheck)
@@ -182,12 +180,11 @@ public class AudioPool
     }
 
     /// <summary>
-    /// Stops all looping sounds in this pool (existing method, keeping for compatibility)
+    /// Stops all looping sounds in this pool
     /// </summary>
     public void StopAllLoopingSounds()
     {
         var sourcesToStop = new List<PooledAudioSource>(activeSources);
-
         foreach (PooledAudioSource source in sourcesToStop)
         {
             if (source.isLooping)
@@ -197,9 +194,6 @@ public class AudioPool
         }
     }
 
-
-    /// Updates volume for all active audio sources in this pool
-    /// </summary>
     private void UpdateAllSourceVolumes()
     {
         foreach (var source in activeSources)
@@ -211,23 +205,17 @@ public class AudioPool
         }
     }
 
-    /// <summary>
-    /// Creates a new audio source and adds it to the pool
-    /// </summary>
     private PooledAudioSource CreateNewSource()
     {
-        // Create GameObject with PooledAudioSource component
         GameObject sourceObj = new GameObject($"AudioSource_{category}_{allSources.Count}");
         sourceObj.transform.SetParent(poolParent);
         sourceObj.SetActive(false);
 
-        // Add and initialize the pooled audio source component
         PooledAudioSource pooledSource = sourceObj.AddComponent<PooledAudioSource>();
         pooledSource.Initialize(this, category);
 
-        // Configure the AudioSource component for 3D audio
         AudioSource audioSource = sourceObj.GetComponent<AudioSource>();
-        audioSource.spatialBlend = 1.0f; // Full 3D by default
+        audioSource.spatialBlend = 1.0f;
         audioSource.minDistance = 1f;
         audioSource.maxDistance = 50f;
         audioSource.rolloffMode = AudioRolloffMode.Linear;
@@ -235,28 +223,22 @@ public class AudioPool
 
         if (category == AudioCategory.UI)
         {
-            //ignore the listener effects
+            // UI sounds bypass listener effects (reverb, low-pass) entirely —
+            // they always sound clean regardless of the submarine's environment
             audioSource.bypassListenerEffects = true;
         }
 
-        // Track the new source
         allSources.Add(pooledSource);
         availableSources.Enqueue(pooledSource);
 
         return pooledSource;
     }
 
-    /// <summary>
-    /// Gets debug information about this pool's current state
-    /// </summary>
     public string GetDebugInfo()
     {
         return $"{category}: Active={ActiveCount}, Available={AvailableCount}, Total={TotalCount}/{maxSize}, Volume={Volume:F2}";
     }
 
-    /// <summary>
-    /// Cleans up all audio sources in this pool
-    /// </summary>
     public void Cleanup()
     {
         foreach (var source in allSources)

@@ -272,6 +272,12 @@ MonoBehaviour:
   effectSpawnPoint: {fileID: 0}
   crackVisualController: {fileID: 0}
   autoUpdateCrackVisuals: 1
+  glassCrackSounds:
+  - {fileID: 8300000, guid: 14b0dab1f84880844a1c7f92cbf1c3fc, type: 3}
+  - {fileID: 8300000, guid: f02b4632058d9904e93025b706b146fb, type: 3}
+  - {fileID: 8300000, guid: 01a7184341229ee47ac82b14fd8d8e2f, type: 3}
+  - {fileID: 8300000, guid: 39dafd51309a45a4e8d851b50d9ed617, type: 3}
+  - {fileID: 8300000, guid: 50993ea0b10017d4a90842bc6464cfbe, type: 3}
   repairOutline: {fileID: 0}
   repairParticleEffect: {fileID: 0}
   lowHealthParticleEffect: {fileID: 8427115328715096880}

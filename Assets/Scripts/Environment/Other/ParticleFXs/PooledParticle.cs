@@ -1,3 +1,5 @@
+using System.ComponentModel;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 /// <summary>
@@ -14,6 +16,9 @@ public class PooledParticle : MonoBehaviour
 
     [Header("Audio")]
     public AudioClip[] audioClips;
+
+
+    public bool isExteriorAudio;
 
     private void Awake()
     {
@@ -32,10 +37,11 @@ public class PooledParticle : MonoBehaviour
     /// <summary>
     /// Initialize the pooled particle with its pool reference and type
     /// </summary>
-    public void Initialize(ParticleFXPool pool, ParticleFXPool.ParticleType particleType)
+    public void Initialize(ParticleFXPool pool, ParticleFXPool.ParticleType particleType, bool isExternalAudio)
     {
         this.pool = pool;
         this.particleType = particleType;
+        this.isExteriorAudio = isExternalAudio;
         isInitialized = true;
     }
 
@@ -100,7 +106,10 @@ public class PooledParticle : MonoBehaviour
         }
 
         AudioClip randomClip = audioClips[Random.Range(0, audioClips.Length)];
-        AudioManager.Instance.PlaySound(randomClip, transform.position, AudioCategory.Ambience);
+        if (isExteriorAudio)
+            AudioManager.Instance.PlaySound(randomClip, transform.position, AudioCategory.Ambience, layer: AudioLayer.Exterior);
+        else
+            AudioManager.Instance.PlaySound(randomClip, transform.position, AudioCategory.Ambience, layer: AudioLayer.Interior);
     }
 
     private void OnDestroy()

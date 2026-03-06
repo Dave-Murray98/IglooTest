@@ -52,7 +52,11 @@ public class SubmarineHealthRegion : MonoBehaviour
 
     [Header("Audio")]
     [Tooltip("Optional: Audio to play when this region is repaired")]
-    [SerializeField] private AudioClip repairAudioClip;
+    [SerializeField] private AudioClip[] repairSFX;
+    [SerializeField] private float repairSoundCooldown = 0.5f;
+    [SerializeField]
+    private float repairSoundMinPitchVariation = 0.8f;
+    [SerializeField] private float repairSoundMaxPitchVariation = 1.2f;
     [SerializeField] private AudioClip[] sparkSounds;
 
     [Header("Warning Light")]
@@ -81,6 +85,8 @@ public class SubmarineHealthRegion : MonoBehaviour
 
     private bool lowHealthEffectCoroutineRunning = false;
     private Coroutine lowHealthEffectCoroutine;
+
+    private float lastRepairSoundTime = -Mathf.Infinity;
 
     private void Awake()
     {
@@ -204,6 +210,15 @@ public class SubmarineHealthRegion : MonoBehaviour
             {
                 repairParticleEffect.Play();
             }
+
+            if (repairSFX != null && repairSFX.Length > 0 && Time.time >= lastRepairSoundTime + repairSoundCooldown)
+            {
+                AudioClip clip = repairSFX[UnityEngine.Random.Range(0, repairSFX.Length)];
+                float pitch = UnityEngine.Random.Range(repairSoundMinPitchVariation, repairSoundMaxPitchVariation);
+                AudioManager.Instance.PlaySound2D(clip, AudioCategory.PlayerSFX, pitch: pitch, layer: AudioLayer.Interior);
+                lastRepairSoundTime = Time.time;
+            }
+
 
             if (currentHealth > lowHealthThreshold)
             {

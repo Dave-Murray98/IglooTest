@@ -283,7 +283,12 @@ MonoBehaviour:
   lowHealthParticleEffect: {fileID: 8427115328715096880}
   lowHealthParticleEffectPlayChance: 0.6
   lowHealthEffectPlayInterval: 1
-  repairAudioClip: {fileID: 0}
+  repairSFX:
+  - {fileID: 8300000, guid: 1f30c549e75ce784ca704ab79645528d, type: 3}
+  - {fileID: 8300000, guid: ee06cd496f887a9449e09b5230bc71ee, type: 3}
+  - {fileID: 8300000, guid: 68e80a3fbb81d7f439302fb66998d63e, type: 3}
+  - {fileID: 8300000, guid: 9b361cb6117758344996b43a69b2ec1f, type: 3}
+  repairSoundCooldown: 1
   sparkSounds:
   - {fileID: 8300000, guid: 9201e471d84b5c348b7eae23954423f2, type: 3}
   - {fileID: 8300000, guid: f4b24b02b03f7234ab664697c01911db, type: 3}

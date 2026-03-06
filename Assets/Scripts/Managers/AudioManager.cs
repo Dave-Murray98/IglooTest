@@ -298,10 +298,11 @@ public class AudioManager : MonoBehaviour, IManager
         AudioClip clip,
         AudioCategory category,
         float volume = 1.0f,
+        float pitch = 1.0f,
         bool loop = false,
         AudioLayer layer = AudioLayer.Interior)
     {
-        return PlaySound(clip, Vector3.zero, category, volume, 1.0f, loop, 0f, layer);
+        return PlaySound(clip, Vector3.zero, category, volume, pitch, loop, 0f, layer);
     }
 
     /// <summary>

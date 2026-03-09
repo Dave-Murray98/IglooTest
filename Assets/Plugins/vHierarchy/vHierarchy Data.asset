@@ -345,6 +345,8 @@ MonoBehaviour:
         - GlobalObjectId_V1-2-c28568339664c3147bf94df48fbc0e8d-552189234-0
         - GlobalObjectId_V1-2-c28568339664c3147bf94df48fbc0e8d-600914802-0
         - GlobalObjectId_V1-2-c28568339664c3147bf94df48fbc0e8d-1874342334-0
+        - GlobalObjectId_V1-2-c28568339664c3147bf94df48fbc0e8d-596886773-0
+        - GlobalObjectId_V1-2-c28568339664c3147bf94df48fbc0e8d-1678455096-0
         values:
         - iColor: 2
           icon: Terrain Icon
@@ -358,8 +360,12 @@ MonoBehaviour:
           icon: ParticleSystem Icon
         - iColor: 0
           icon: AudioSource Icon
+        - iColor: 2
+          icon: ReflectionProbe Icon
+        - iColor: 8
+          icon: AvatarMask On Icon
       goDatasByInstanceId:
-        keys: 78500100c8490100dc460100daadfeffa64b0100c628ffff
+        keys: 6c510100aa4a0100be470100f24b01009a4c0100ea5b0100904c01001c590100
         values:
         - iColor: 2
           icon: Terrain Icon
@@ -373,3 +379,7 @@ MonoBehaviour:
           icon: ParticleSystem Icon
         - iColor: 0
           icon: AudioSource Icon
+        - iColor: 2
+          icon: ReflectionProbe Icon
+        - iColor: 8
+          icon: AvatarMask On Icon

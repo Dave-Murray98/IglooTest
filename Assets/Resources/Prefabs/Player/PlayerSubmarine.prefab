@@ -2786,7 +2786,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3922106670421637791}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9730,6 +9730,14 @@ PrefabInstance:
       value: -75
       objectReference: {fileID: 0}
     - target: {fileID: 5363393173364276818, guid: 6f2e3de75a4ae1148946178401bda68b, type: 3}
+      propertyPath: knockBackForce
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5363393173364276818, guid: 6f2e3de75a4ae1148946178401bda68b, type: 3}
+      propertyPath: projectileDamage
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5363393173364276818, guid: 6f2e3de75a4ae1148946178401bda68b, type: 3}
       propertyPath: assignedGunnerNumber
       value: 3
       objectReference: {fileID: 0}
@@ -9834,6 +9842,14 @@ PrefabInstance:
     - target: {fileID: 5363393173364276818, guid: 6f2e3de75a4ae1148946178401bda68b, type: 3}
       propertyPath: minPitch
       value: -75
+      objectReference: {fileID: 0}
+    - target: {fileID: 5363393173364276818, guid: 6f2e3de75a4ae1148946178401bda68b, type: 3}
+      propertyPath: knockBackForce
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5363393173364276818, guid: 6f2e3de75a4ae1148946178401bda68b, type: 3}
+      propertyPath: projectileDamage
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5363393173364276818, guid: 6f2e3de75a4ae1148946178401bda68b, type: 3}
       propertyPath: assignedGunnerNumber
@@ -10126,6 +10142,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5807363586697700144}
     - target: {fileID: 5275607546216662593, guid: 124d4bdca739aa245805f9186f3488e9, type: 3}
+      propertyPath: repairSoundCooldown
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5275607546216662593, guid: 124d4bdca739aa245805f9186f3488e9, type: 3}
       propertyPath: repairParticleEffect
       value: 
       objectReference: {fileID: 432716726925653688}
@@ -10333,6 +10353,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1480836283733598610}
     - target: {fileID: 5275607546216662593, guid: 124d4bdca739aa245805f9186f3488e9, type: 3}
+      propertyPath: repairSoundCooldown
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5275607546216662593, guid: 124d4bdca739aa245805f9186f3488e9, type: 3}
       propertyPath: repairParticleEffect
       value: 
       objectReference: {fileID: 957555423734076512}
@@ -10531,6 +10555,10 @@ PrefabInstance:
       propertyPath: repairOutline
       value: 
       objectReference: {fileID: 2521801615531537631}
+    - target: {fileID: 5275607546216662593, guid: 124d4bdca739aa245805f9186f3488e9, type: 3}
+      propertyPath: repairSoundCooldown
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5275607546216662593, guid: 124d4bdca739aa245805f9186f3488e9, type: 3}
       propertyPath: repairParticleEffect
       value: 
@@ -10743,6 +10771,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6385825934561239388}
     - target: {fileID: 5275607546216662593, guid: 124d4bdca739aa245805f9186f3488e9, type: 3}
+      propertyPath: repairSoundCooldown
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5275607546216662593, guid: 124d4bdca739aa245805f9186f3488e9, type: 3}
       propertyPath: repairParticleEffect
       value: 
       objectReference: {fileID: 4061837999618015078}
@@ -10941,6 +10973,10 @@ PrefabInstance:
       propertyPath: repairOutline
       value: 
       objectReference: {fileID: 915357560142271615}
+    - target: {fileID: 5275607546216662593, guid: 124d4bdca739aa245805f9186f3488e9, type: 3}
+      propertyPath: repairSoundCooldown
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5275607546216662593, guid: 124d4bdca739aa245805f9186f3488e9, type: 3}
       propertyPath: repairParticleEffect
       value: 
@@ -11160,6 +11196,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 5363393173364276818, guid: 6f2e3de75a4ae1148946178401bda68b, type: 3}
+      propertyPath: knockBackForce
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5363393173364276818, guid: 6f2e3de75a4ae1148946178401bda68b, type: 3}
+      propertyPath: projectileDamage
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 6007131482365090401, guid: 6f2e3de75a4ae1148946178401bda68b, type: 3}
       propertyPath: m_Name
       value: Turret_Gunner1
@@ -11253,6 +11297,14 @@ PrefabInstance:
     - target: {fileID: 5363393173364276818, guid: 6f2e3de75a4ae1148946178401bda68b, type: 3}
       propertyPath: minYaw
       value: -30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5363393173364276818, guid: 6f2e3de75a4ae1148946178401bda68b, type: 3}
+      propertyPath: knockBackForce
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5363393173364276818, guid: 6f2e3de75a4ae1148946178401bda68b, type: 3}
+      propertyPath: projectileDamage
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5363393173364276818, guid: 6f2e3de75a4ae1148946178401bda68b, type: 3}
       propertyPath: assignedGunnerNumber

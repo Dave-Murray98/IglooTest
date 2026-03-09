@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: OnExitCave
   m_EditorClassIdentifier: 
   clip: {fileID: 8300000, guid: 7f4c0987cc3312849bc149f698ca16df, type: 3}
-  speechLabel: OnReachEscapeRoute
+  speechLabel: OnExitCave
   transcript: 

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40e676e1df6935740ae9f9e4b3a73048, type: 3}
   m_Name: Intro Speech
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: 7f4c0987cc3312849bc149f698ca16df, type: 3}
+  clip: {fileID: 8300000, guid: 2342fdb1e82893d4c9150ffccc9a95e7, type: 3}
   speechLabel: Handler Speech
   transcript: 

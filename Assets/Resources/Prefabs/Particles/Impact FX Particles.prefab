@@ -340,8 +340,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.4
-      minScalar: 0.1
+      scalar: 0.8
+      minScalar: 0.2
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5004,6 +5004,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioClips: []
+  isExteriorAudio: 0
 --- !u!198 &2061889180991673365
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -5258,8 +5259,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.2
-      minScalar: 0.05
+      scalar: 0.4
+      minScalar: 0.1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -9946,6 +9947,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 05f467fb2ac583f458925ce36fd0e777, type: 3}
   - {fileID: 8300000, guid: e31870377ed1b154b8b5b43f0770ec3d, type: 3}
   - {fileID: 8300000, guid: 3b99d6af827c32e4b848ca082b693436, type: 3}
+  isExteriorAudio: 0
 --- !u!198 &5095819899582838753
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -10200,8 +10202,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.4
-      minScalar: 0.1
+      scalar: 0.8
+      minScalar: 0.2
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -15121,8 +15123,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.2
-      minScalar: 0.05
+      scalar: 0.4
+      minScalar: 0.1
       maxCurve:
         serializedVersion: 2
         m_Curve:

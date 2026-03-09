@@ -54,7 +54,7 @@ public class PooledAudioSource : MonoBehaviour
         }
 
         audioSource.outputAudioMixerGroup = mixerGroup;
-        Debug.Log("[PooledAudioSource] Mixer group assigned: " + mixerGroup.name);
+        //Debug.Log("[PooledAudioSource] Mixer group assigned: " + mixerGroup.name);
     }
 
     /// <summary>

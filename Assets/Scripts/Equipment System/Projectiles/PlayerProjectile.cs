@@ -100,14 +100,19 @@ public class PlayerProjectile : MonoBehaviour
         NPCHitBox hitBox = other.GetComponent<NPCHitBox>();
 
         // get the position of the hit point
-        Vector3 slightlyFurtherBackPos = transform.position - rb.linearVelocity.normalized * 0.5f;
-        Vector3 hitPoint = other.ClosestPoint(slightlyFurtherBackPos);
+        Vector3 hitPoint = transform.position - rb.linearVelocity.normalized * 0.5f;
 
         if (hitBox != null)
         {
             // Apply damage to monster
             hitBox.TakeDamage(damage, hitPoint, rb.linearVelocity.normalized, knockBackForce);
             DebugLog($"Dealt {damage} damage to {other.gameObject.name}");
+
+            ParticleFXPool.Instance.GetImpactFX(hitPoint, quaternion.identity);
+        }
+        else if (other.GetComponent<TerrainCollider>() != null)
+        {
+            DebugLog($"Hit terrain at position {transform.position}");
         }
         else
         {
@@ -115,7 +120,7 @@ public class PlayerProjectile : MonoBehaviour
             DebugLog($"Hit {other.gameObject.name} (no MonsterHitbox component)");
         }
 
-        NoisePool.CreateNoise(transform.position, sourceAmmoType.effectNoiseVolume);
+        // NoisePool.CreateNoise(transform.position, sourceAmmoType.effectNoiseVolume);
 
         // Return to pool regardless of what we hit
         ReturnToPool();

@@ -876,6 +876,9 @@ MonoBehaviour:
   uiMaxSize: 15
   musicInitialSize: 2
   musicMaxSize: 5
+  submarineMixer: {fileID: 24100000, guid: 4b88ece71121d134d86ca91ffd3e65a5, type: 2}
+  interiorMixerGroup: {fileID: -3957072812974939162, guid: 4b88ece71121d134d86ca91ffd3e65a5, type: 2}
+  exteriorMixerGroup: {fileID: 1577160433825058618, guid: 4b88ece71121d134d86ca91ffd3e65a5, type: 2}
   defaultSettings:
     ambienceVolume: 0.7
     playerSFXVolume: 1

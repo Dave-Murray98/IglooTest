@@ -100,7 +100,7 @@ public class PlayerProjectile : MonoBehaviour
         NPCHitBox hitBox = other.GetComponent<NPCHitBox>();
 
         // get the position of the hit point
-        Vector3 hitPoint = transform.position - rb.linearVelocity.normalized * 0.5f;
+        Vector3 hitPoint = transform.position - rb.linearVelocity.normalized * 1f;
 
         if (hitBox != null)
         {
@@ -109,10 +109,6 @@ public class PlayerProjectile : MonoBehaviour
             DebugLog($"Dealt {damage} damage to {other.gameObject.name}");
 
             ParticleFXPool.Instance.GetImpactFX(hitPoint, quaternion.identity);
-        }
-        else if (other.GetComponent<TerrainCollider>() != null)
-        {
-            DebugLog($"Hit terrain at position {transform.position}");
         }
         else
         {

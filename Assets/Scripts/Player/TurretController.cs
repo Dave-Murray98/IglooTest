@@ -41,7 +41,7 @@ public class TurretController : MonoBehaviour
     [SerializeField] private ItemData turretProjectile;
 
     [Tooltip("Force applied to projectile")]
-    [SerializeField] private float projectileForce = 10f;
+    [SerializeField] private float projectileForce = 50f;
     [SerializeField] private float projectileDamage = 1f;
     [SerializeField] private float knockBackForce = 10f;
 

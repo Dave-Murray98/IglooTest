@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1876111784750723814}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -46,9 +46,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   checkRigid: 1
   checkRigidRoot: 1
-  gizmoType: 0
+  gizmoType: 1
   sphereRadius: 1.5
-  boxSize: {x: 5, y: 2, z: 5}
+  boxSize: {x: 2, y: 2, z: 5}
   showGizmo: 1
   type: 0
   spdMin: 0
@@ -83,7 +83,7 @@ GameObject:
   - component: {fileID: 5052141132679960393}
   - component: {fileID: 3682290924813723030}
   - component: {fileID: -2455647546576864207}
-  - component: {fileID: 421665970161950341}
+  - component: {fileID: 8435300567200012670}
   m_Layer: 23
   m_Name: Turret Bullet
   m_TagString: Untagged
@@ -201,8 +201,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeout: 10
   enableDebugLogs: 1
---- !u!135 &421665970161950341
-SphereCollider:
+--- !u!136 &8435300567200012670
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -216,9 +216,11 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 2
+  m_Radius: 0.8
+  m_Height: 4
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: -1.3}

@@ -1,4 +1,3 @@
-using System.Collections;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -7,8 +6,9 @@ using UnityEngine.InputSystem;
 /// Controls a turret based on gunner input.
 /// Uses MultiRoleInputHandler — reads GunAimInput (right stick) and OnShootPressed (right trigger).
 ///
-/// Bug fix: HandleShoot now checks gameObject.activeInHierarchy before firing,
-/// preventing an inactive turret from shooting if its handler fires an event.
+/// Rumble fix: assignedGamepad is no longer cached at AssignHandler() time.
+/// Instead, inputHandler.GetAssignedGamepad() is called at the moment rumble is needed,
+/// ensuring the gamepad is fully bound even for the last player to join.
 /// </summary>
 public class TurretController : MonoBehaviour
 {
@@ -57,9 +57,10 @@ public class TurretController : MonoBehaviour
     [ShowInInspector, ReadOnly] private float currentPitch = 0f;
     [ShowInInspector, ReadOnly] private bool isAssigned = false;
 
-    private float lastFireTime = 0f;
     private float FireDelay => 1f / fireRate;
-    private Gamepad assignedGamepad;
+    private float lastFireTime = 0f;
+
+    // No cached assignedGamepad — always fetched fresh from inputHandler at call time.
 
     // -------------------------------------------------------------------------
     // Unity lifecycle
@@ -69,14 +70,12 @@ public class TurretController : MonoBehaviour
     {
         ValidateReferences();
         InitialiseRotation();
-
         SubmarineHealthManager.Instance.OnSubmarineTakenDamage += HandleDamageRumble;
     }
 
     private void Update()
     {
         if (!isAssigned || inputHandler == null || !inputHandler.IsActive) return;
-
         UpdateRotation();
     }
 
@@ -84,7 +83,6 @@ public class TurretController : MonoBehaviour
     {
         if (SubmarineHealthManager.Instance != null)
             SubmarineHealthManager.Instance.OnSubmarineTakenDamage -= HandleDamageRumble;
-
         DetachHandler();
     }
 
@@ -97,7 +95,6 @@ public class TurretController : MonoBehaviour
         DetachHandler();
 
         inputHandler = handler;
-        assignedGamepad = handler?.GetAssignedGamepad();
         isAssigned = inputHandler != null;
 
         if (inputHandler != null)
@@ -112,7 +109,6 @@ public class TurretController : MonoBehaviour
             inputHandler.OnShootPressed -= HandleShoot;
 
         inputHandler = null;
-        assignedGamepad = null;
         isAssigned = false;
     }
 
@@ -138,13 +134,9 @@ public class TurretController : MonoBehaviour
 
     private void HandleShoot()
     {
-        // Guard: if this turret's GameObject has been deactivated by TurretManager,
-        // do not fire even if the event still reaches us during the same frame.
         if (!gameObject.activeInHierarchy) return;
-
         if (Time.time - lastFireTime < FireDelay) return;
         lastFireTime = Time.time;
-
         Fire();
     }
 
@@ -168,14 +160,18 @@ public class TurretController : MonoBehaviour
         if (rb != null)
             rb.AddForce(projectile.transform.forward * projectileForce, ForceMode.Impulse);
 
-        RumbleManager.Instance.RumblePulse(assignedGamepad, shootRumbleLow, shootRumbleHigh, shootRumbleDuration);
+        // Fetch the gamepad fresh at fire time — not cached — so it is always valid
+        RumbleManager.Instance.RumblePulse(
+            inputHandler.GetAssignedGamepad(),
+            shootRumbleLow, shootRumbleHigh, shootRumbleDuration);
+
         ParticleFXPool.Instance.GetTurretShootFX(firePoint.position, firePoint.rotation);
     }
 
     private void HandleDamageRumble(float low, float high, float duration)
     {
-        if (assignedGamepad != null)
-            RumbleManager.Instance.RumblePulse(assignedGamepad, low, high, duration);
+        RumbleManager.Instance.RumblePulse(
+            inputHandler?.GetAssignedGamepad(), low, high, duration);
     }
 
     // -------------------------------------------------------------------------

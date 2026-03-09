@@ -1,12 +1,13 @@
 using System.Collections;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 /// <summary>
 /// Controls the engineer's repair functionality.
-/// Uses MultiRoleInputHandler — listens to OnRepairPressed (Gamepad West / X / □)
-/// for repairs, and OnEngineerSelectEntered/Exited for region selection mode.
+/// Uses MultiRoleInputHandler.
+///
+/// Rumble fix: assignedGamepad is no longer cached at AssignHandler() time.
+/// Instead, inputHandler.GetAssignedGamepad() is called at the moment rumble is needed.
 /// </summary>
 public class EngineerController : MonoBehaviour
 {
@@ -49,7 +50,8 @@ public class EngineerController : MonoBehaviour
 
     private float lastRepairTime = 0f;
     private Coroutine flashCoroutine;
-    private Gamepad assignedGamepad;
+
+    // No cached assignedGamepad — always fetched fresh from inputHandler at call time.
 
     // -------------------------------------------------------------------------
     // Unity lifecycle
@@ -63,9 +65,7 @@ public class EngineerController : MonoBehaviour
     private void Update()
     {
         if (inputHandler == null || !inputHandler.IsActive) return;
-
-        if (isInSelectMode)
-            UpdateRegionSelection();
+        if (isInSelectMode) UpdateRegionSelection();
     }
 
     private void OnDestroy()
@@ -84,31 +84,22 @@ public class EngineerController : MonoBehaviour
     // Public API — called by PlayerRoleManager
     // -------------------------------------------------------------------------
 
-    /// <summary>
-    /// Assigns a new input handler and subscribes to its events.
-    /// </summary>
     public void AssignHandler(MultiRoleInputHandler handler)
     {
         DetachHandler();
 
         inputHandler = handler;
-        assignedGamepad = handler?.GetAssignedGamepad();
 
         if (inputHandler != null)
         {
             inputHandler.OnEngineerSelectEntered += HandleSelectModeEntered;
             inputHandler.OnEngineerSelectExited += HandleSelectModeExited;
-
-            // Repair is on its own dedicated button (Gamepad West), not the shoot button
             inputHandler.OnRepairPressed += HandleRepairButtonPressed;
         }
 
         DebugLog($"Handler assigned (Player {handler?.PlayerIndex})");
     }
 
-    /// <summary>
-    /// Unsubscribes from the current handler's events and clears the reference.
-    /// </summary>
     public void DetachHandler()
     {
         if (inputHandler != null)
@@ -119,7 +110,6 @@ public class EngineerController : MonoBehaviour
         }
 
         inputHandler = null;
-        assignedGamepad = null;
 
         if (isInSelectMode)
         {
@@ -136,9 +126,7 @@ public class EngineerController : MonoBehaviour
     {
         Vector2 input = inputHandler.MovementInput;
         SubmarineHealthRegion newRegion = DetermineRegionFromInput(input);
-
-        if (newRegion != currentSelectedRegion)
-            SelectRegion(newRegion);
+        if (newRegion != currentSelectedRegion) SelectRegion(newRegion);
     }
 
     private SubmarineHealthRegion DetermineRegionFromInput(Vector2 input)
@@ -160,8 +148,7 @@ public class EngineerController : MonoBehaviour
 
     private void SelectRegion(SubmarineHealthRegion region)
     {
-        if (currentSelectedRegion != null)
-            DeselectCurrentRegion();
+        if (currentSelectedRegion != null) DeselectCurrentRegion();
 
         currentSelectedRegion = region;
         currentSelectedRegionName = region != null ? region.RegionName : "None";
@@ -209,8 +196,8 @@ public class EngineerController : MonoBehaviour
     {
         while (currentSelectedRegion?.repairOutline != null)
         {
-            float width = Mathf.PingPong(Time.time * flashSpeed, maxOutlineWidth);
-            currentSelectedRegion.repairOutline.OutlineWidth = width;
+            currentSelectedRegion.repairOutline.OutlineWidth =
+                Mathf.PingPong(Time.time * flashSpeed, maxOutlineWidth);
             yield return null;
         }
     }
@@ -263,14 +250,16 @@ public class EngineerController : MonoBehaviour
         DebugLog($"Repaired {currentSelectedRegion.RegionName} by {repaired:F1} " +
                  $"({currentSelectedRegion.CurrentHealth:F0}/{currentSelectedRegion.MaxHealth:F0})");
 
-        if (assignedGamepad != null)
-            RumbleManager.Instance.RumblePulse(assignedGamepad, repairRumbleLow, repairRumbleHigh, repairRumbleDuration);
+        // Fetch the gamepad fresh at rumble time — not cached — so it is always valid
+        RumbleManager.Instance.RumblePulse(
+            inputHandler?.GetAssignedGamepad(),
+            repairRumbleLow, repairRumbleHigh, repairRumbleDuration);
     }
 
     private void HandleDamageRumble(float low, float high, float duration)
     {
-        if (assignedGamepad != null)
-            RumbleManager.Instance.RumblePulse(assignedGamepad, low, high, duration);
+        RumbleManager.Instance.RumblePulse(
+            inputHandler?.GetAssignedGamepad(), low, high, duration);
     }
 
     // -------------------------------------------------------------------------
@@ -286,7 +275,6 @@ public class EngineerController : MonoBehaviour
     private void OnDrawGizmos()
     {
         if (!showDebugGizmos || inputHandler == null) return;
-
         if (currentSelectedRegion != null)
         {
             Gizmos.color = Color.yellow;

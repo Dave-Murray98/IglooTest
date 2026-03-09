@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7383227570576781970}
   - component: {fileID: 6418392422727543529}
+  - component: {fileID: 8464648503626953871}
   m_Layer: 0
   m_Name: PlayerInput
   m_TagString: Untagged
@@ -86,3 +87,16 @@ MonoBehaviour:
   m_DefaultActionMap: Pilot
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &8464648503626953871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529426668796374409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34df5a0e08aab914fa1994b59189f326, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enableDebugLogs: 1

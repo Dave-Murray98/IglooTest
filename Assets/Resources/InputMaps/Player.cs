@@ -118,9 +118,67 @@ public partial class @Player: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""EngineerSelect"",
+                    ""type"": ""Button"",
+                    ""id"": ""410c8555-de53-4ba3-a699-f43db50ff646"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Repair"",
+                    ""type"": ""Button"",
+                    ""id"": ""4f73f6e6-e35f-45fb-aa94-85df1391e3a1"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""GunAim"",
+                    ""type"": ""Value"",
+                    ""id"": ""fb71dfd8-9522-4314-a890-d6124b4f0db6"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""0cfb93cf-9ba4-4cd9-b4b1-18ddb453b4b8"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""1097a3ab-1a62-43a8-b507-3fa652b7823a"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GunAim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6c9f24e0-f7e7-41fb-8efb-b323da5b926e"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GunAim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
                 {
                     ""name"": """",
                     ""id"": ""2ac333fd-232e-4867-aaab-08aad953e41f"",
@@ -189,6 +247,50 @@ public partial class @Player: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""cc0c501a-e0b1-4113-b242-fbee3eae7cbd"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Repair"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""aea4b7b7-7911-423c-9e3f-fcc7b18b8bdd"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Repair"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4731d0d9-a785-4931-ac31-d0a1445a07dd"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2a5afaa4-3b0a-40c9-8026-1304baf3336c"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""77fe7216-f21e-45b2-9b31-8e008b1f37ea"",
                     ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
@@ -228,6 +330,28 @@ public partial class @Player: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Dive"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""898ef5f1-e12a-4108-88ba-919b133d07a0"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EngineerSelect"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2aa482f4-a914-4962-8a50-8702d2ebe282"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EngineerSelect"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -438,7 +562,7 @@ public partial class @Player: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""65a6af28-92c8-4cf3-ae6c-b61ede0ddc6c"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -534,6 +658,10 @@ public partial class @Player: IInputActionCollection2, IDisposable
         m_Pilot_Move = m_Pilot.FindAction("Move", throwIfNotFound: true);
         m_Pilot_Surface = m_Pilot.FindAction("Surface", throwIfNotFound: true);
         m_Pilot_Dive = m_Pilot.FindAction("Dive", throwIfNotFound: true);
+        m_Pilot_EngineerSelect = m_Pilot.FindAction("EngineerSelect", throwIfNotFound: true);
+        m_Pilot_Repair = m_Pilot.FindAction("Repair", throwIfNotFound: true);
+        m_Pilot_GunAim = m_Pilot.FindAction("GunAim", throwIfNotFound: true);
+        m_Pilot_Shoot = m_Pilot.FindAction("Shoot", throwIfNotFound: true);
         // Gunner
         m_Gunner = asset.FindActionMap("Gunner", throwIfNotFound: true);
         m_Gunner_Look = m_Gunner.FindAction("Look", throwIfNotFound: true);
@@ -632,6 +760,10 @@ public partial class @Player: IInputActionCollection2, IDisposable
     private readonly InputAction m_Pilot_Move;
     private readonly InputAction m_Pilot_Surface;
     private readonly InputAction m_Pilot_Dive;
+    private readonly InputAction m_Pilot_EngineerSelect;
+    private readonly InputAction m_Pilot_Repair;
+    private readonly InputAction m_Pilot_GunAim;
+    private readonly InputAction m_Pilot_Shoot;
     /// <summary>
     /// Provides access to input actions defined in input action map "Pilot".
     /// </summary>
@@ -655,6 +787,22 @@ public partial class @Player: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Pilot/Dive".
         /// </summary>
         public InputAction @Dive => m_Wrapper.m_Pilot_Dive;
+        /// <summary>
+        /// Provides access to the underlying input action "Pilot/EngineerSelect".
+        /// </summary>
+        public InputAction @EngineerSelect => m_Wrapper.m_Pilot_EngineerSelect;
+        /// <summary>
+        /// Provides access to the underlying input action "Pilot/Repair".
+        /// </summary>
+        public InputAction @Repair => m_Wrapper.m_Pilot_Repair;
+        /// <summary>
+        /// Provides access to the underlying input action "Pilot/GunAim".
+        /// </summary>
+        public InputAction @GunAim => m_Wrapper.m_Pilot_GunAim;
+        /// <summary>
+        /// Provides access to the underlying input action "Pilot/Shoot".
+        /// </summary>
+        public InputAction @Shoot => m_Wrapper.m_Pilot_Shoot;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -690,6 +838,18 @@ public partial class @Player: IInputActionCollection2, IDisposable
             @Dive.started += instance.OnDive;
             @Dive.performed += instance.OnDive;
             @Dive.canceled += instance.OnDive;
+            @EngineerSelect.started += instance.OnEngineerSelect;
+            @EngineerSelect.performed += instance.OnEngineerSelect;
+            @EngineerSelect.canceled += instance.OnEngineerSelect;
+            @Repair.started += instance.OnRepair;
+            @Repair.performed += instance.OnRepair;
+            @Repair.canceled += instance.OnRepair;
+            @GunAim.started += instance.OnGunAim;
+            @GunAim.performed += instance.OnGunAim;
+            @GunAim.canceled += instance.OnGunAim;
+            @Shoot.started += instance.OnShoot;
+            @Shoot.performed += instance.OnShoot;
+            @Shoot.canceled += instance.OnShoot;
         }
 
         /// <summary>
@@ -710,6 +870,18 @@ public partial class @Player: IInputActionCollection2, IDisposable
             @Dive.started -= instance.OnDive;
             @Dive.performed -= instance.OnDive;
             @Dive.canceled -= instance.OnDive;
+            @EngineerSelect.started -= instance.OnEngineerSelect;
+            @EngineerSelect.performed -= instance.OnEngineerSelect;
+            @EngineerSelect.canceled -= instance.OnEngineerSelect;
+            @Repair.started -= instance.OnRepair;
+            @Repair.performed -= instance.OnRepair;
+            @Repair.canceled -= instance.OnRepair;
+            @GunAim.started -= instance.OnGunAim;
+            @GunAim.performed -= instance.OnGunAim;
+            @GunAim.canceled -= instance.OnGunAim;
+            @Shoot.started -= instance.OnShoot;
+            @Shoot.performed -= instance.OnShoot;
+            @Shoot.canceled -= instance.OnShoot;
         }
 
         /// <summary>
@@ -1118,6 +1290,34 @@ public partial class @Player: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnDive(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "EngineerSelect" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnEngineerSelect(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Repair" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnRepair(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "GunAim" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnGunAim(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Shoot" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnShoot(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Gunner" which allows adding and removing callbacks.

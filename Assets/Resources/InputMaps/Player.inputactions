@@ -32,9 +32,67 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "EngineerSelect",
+                    "type": "Button",
+                    "id": "410c8555-de53-4ba3-a699-f43db50ff646",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Repair",
+                    "type": "Button",
+                    "id": "4f73f6e6-e35f-45fb-aa94-85df1391e3a1",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "GunAim",
+                    "type": "Value",
+                    "id": "fb71dfd8-9522-4314-a890-d6124b4f0db6",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Shoot",
+                    "type": "Button",
+                    "id": "0cfb93cf-9ba4-4cd9-b4b1-18ddb453b4b8",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
+                {
+                    "name": "",
+                    "id": "1097a3ab-1a62-43a8-b507-3fa652b7823a",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GunAim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6c9f24e0-f7e7-41fb-8efb-b323da5b926e",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GunAim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
                 {
                     "name": "",
                     "id": "2ac333fd-232e-4867-aaab-08aad953e41f",
@@ -103,6 +161,50 @@
                 },
                 {
                     "name": "",
+                    "id": "cc0c501a-e0b1-4113-b242-fbee3eae7cbd",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Repair",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "aea4b7b7-7911-423c-9e3f-fcc7b18b8bdd",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Repair",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4731d0d9-a785-4931-ac31-d0a1445a07dd",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2a5afaa4-3b0a-40c9-8026-1304baf3336c",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "77fe7216-f21e-45b2-9b31-8e008b1f37ea",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
@@ -142,6 +244,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Dive",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "898ef5f1-e12a-4108-88ba-919b133d07a0",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "EngineerSelect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2aa482f4-a914-4962-8a50-8702d2ebe282",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "EngineerSelect",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -352,7 +476,7 @@
                 {
                     "name": "",
                     "id": "65a6af28-92c8-4cf3-ae6c-b61ede0ddc6c",
-                    "path": "<Gamepad>/buttonSouth",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

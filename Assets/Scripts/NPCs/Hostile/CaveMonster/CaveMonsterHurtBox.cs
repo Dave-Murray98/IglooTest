@@ -19,7 +19,18 @@ public class CaveMonsterHurtBox : NPCHurtBox
         if (submarineHealthManager != null)
         {
             DebugLog("Player entered Cave Monster attack range!");
-            caveMonster.Bite(submarineHealthManager);
+            caveMonster.playerHealth = submarineHealthManager;
+            caveMonster.Bite();
+        }
+    }
+
+    protected virtual void OnTriggerExit(Collider other)
+    {
+        SubmarineHealthManager submarineHealthManager = other.GetComponent<SubmarineHealthManager>();
+        if (submarineHealthManager != null)
+        {
+            caveMonster.playerHealth = null;
+            DebugLog("Player exited Cave Monster attack range!");
         }
     }
 

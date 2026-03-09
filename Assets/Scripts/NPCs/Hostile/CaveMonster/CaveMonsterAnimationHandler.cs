@@ -9,6 +9,14 @@ public class CaveMonsterAnimationHandler : MonoBehaviour
 
     [SerializeField] private string biteTriggerString = "Bite";
 
+    [SerializeField] private CaveMonster caveMonster;
+
+    private void Awake()
+    {
+        if (caveMonster == null)
+            caveMonster = GetComponent<CaveMonster>();
+    }
+
     public void StartOpenMouthLoopAnimation()
     {
         animator.ResetTrigger(biteTriggerString);
@@ -24,5 +32,7 @@ public class CaveMonsterAnimationHandler : MonoBehaviour
     public void OnBiteAnimationFinished()
     {
         animator.ResetTrigger(biteTriggerString);
+        caveMonster.OnBiteFinished();
+
     }
 }

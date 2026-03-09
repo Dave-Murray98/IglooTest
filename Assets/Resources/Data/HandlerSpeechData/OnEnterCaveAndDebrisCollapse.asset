@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40e676e1df6935740ae9f9e4b3a73048, type: 3}
   m_Name: OnEnterCaveAndDebrisCollapse
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: 7f4c0987cc3312849bc149f698ca16df, type: 3}
+  clip: {fileID: 8300000, guid: 6e975581eaaf58e4fa0d62d3ec01a808, type: 3}
   speechLabel: OnEnterCaveAndDebrisCollapse
   transcript: 

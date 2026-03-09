@@ -30,8 +30,10 @@ public class QuestManager : MonoBehaviour
     private int currentChainQuestIndex = -1;
 
     [Header("Speech Handler Speeches")]
-    [SerializeField] private HandlerSpeechData onBiomeQuestsCompleteSpeech;
     [SerializeField] private GameObject caveEntranceSpeechTrigger;
+
+    [SerializeField] private HandlerSpeechData[] biomeQuestCompleteSpeeches;
+    [SerializeField] private HandlerSpeechData onBiomeQuestsCompletedSpeech;
 
     [Header("Cave Entrance")]
     [SerializeField] private GameObject nonDestructableBlockingObject;
@@ -39,6 +41,8 @@ public class QuestManager : MonoBehaviour
 
     [Header("Debug")]
     [SerializeField] private bool enableDebugLogs = false;
+
+    private int currentBiomeQuestCount = 0;
 
     private void Awake()
     {
@@ -106,14 +110,27 @@ public class QuestManager : MonoBehaviour
                 HandleCaveEntrance(true);
                 StartNextChainQuest();
 
-                if (onBiomeQuestsCompleteSpeech != null)
-                    HandlerSpeechController.Instance.Play(onBiomeQuestsCompleteSpeech);
-
                 if (caveEntranceSpeechTrigger != null)
                     caveEntranceSpeechTrigger.SetActive(true);
+
+                if (currentBiomeQuestCount == biomeQuests.Count - 1 && onBiomeQuestsCompletedSpeech != null)
+                {
+                    HandlerSpeechController.Instance.Play(onBiomeQuestsCompletedSpeech);
+                    currentBiomeQuestCount++;
+                }
             }
             else
+            {
                 HandleCaveEntrance(false);
+                if (currentBiomeQuestCount <= biomeQuests.Count - 1)
+                {
+                    if (biomeQuestCompleteSpeeches[currentBiomeQuestCount] != null)
+                    {
+                        HandlerSpeechController.Instance.Play(biomeQuestCompleteSpeeches[currentBiomeQuestCount]);
+                    }
+                    currentBiomeQuestCount++;
+                }
+            }
         }
     }
 

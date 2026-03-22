@@ -13,5 +13,11 @@ MonoBehaviour:
   m_Name: KelpForestQuest
   m_EditorClassIdentifier: 
   questID: KelpForestQuest
-  displayName: Kelp Forest Quest
-  questDescription: Find fragment 02 in the Kelp Forest (West).
+  questName: 
+  questDescription: Find the wreck in the Kelp Forest.
+  requirements: []
+  isRepeatable: 0
+  showDebugInfo: 0
+  references:
+    version: 2
+    RefIds: []

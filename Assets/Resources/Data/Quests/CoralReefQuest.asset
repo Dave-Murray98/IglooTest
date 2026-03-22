@@ -13,5 +13,11 @@ MonoBehaviour:
   m_Name: CoralReefQuest
   m_EditorClassIdentifier: 
   questID: CoralReefQuest
-  displayName: Coral Reef Quest
-  questDescription: Find fragment 01 in the Choral Reef (East).
+  questName: 
+  questDescription: Find the wreck in the Choral Reef.
+  requirements: []
+  isRepeatable: 0
+  showDebugInfo: 0
+  references:
+    version: 2
+    RefIds: []

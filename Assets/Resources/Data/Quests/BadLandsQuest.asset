@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questID: BadLandsQuest
   questName: 
-  questDescription: Find fragment 03 in the Bad Lands (North).
+  questDescription: Find the wreck in the Bad Lands.
   requirements: []
   isRepeatable: 0
   showDebugInfo: 0

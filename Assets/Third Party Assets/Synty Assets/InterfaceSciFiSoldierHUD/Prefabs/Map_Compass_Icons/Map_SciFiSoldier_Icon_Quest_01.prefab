@@ -5,41 +5,16 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2578781753770651911, guid: 3d9f7dd3001333e4aadeba4a033e0bbf, type: 3}
       propertyPath: m_Name
-      value: Map_SciFiSoldier_Icon_Quest_01
-      objectReference: {fileID: 0}
-    - target: {fileID: 7283713291688300968, guid: 3d9f7dd3001333e4aadeba4a033e0bbf, type: 3}
-      propertyPath: m_Color.b
-      value: 0.23405506
-      objectReference: {fileID: 0}
-    - target: {fileID: 7283713291688300968, guid: 3d9f7dd3001333e4aadeba4a033e0bbf, type: 3}
-      propertyPath: m_Color.g
-      value: 0.18595108
-      objectReference: {fileID: 0}
-    - target: {fileID: 7283713291688300968, guid: 3d9f7dd3001333e4aadeba4a033e0bbf, type: 3}
-      propertyPath: m_Color.r
-      value: 0.40700805
+      value: Map_SciFi_Icon_Quest
       objectReference: {fileID: 0}
     - target: {fileID: 7737134893979855697, guid: 3d9f7dd3001333e4aadeba4a033e0bbf, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: c6f14c3af810e1749921cf57b677e8ad, type: 3}
-    - target: {fileID: 7737134893979855697, guid: 3d9f7dd3001333e4aadeba4a033e0bbf, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7737134893979855697, guid: 3d9f7dd3001333e4aadeba4a033e0bbf, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7737134893979855697, guid: 3d9f7dd3001333e4aadeba4a033e0bbf, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8901176906612004644, guid: 3d9f7dd3001333e4aadeba4a033e0bbf, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -125,7 +100,4 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d9f7dd3001333e4aadeba4a033e0bbf, type: 3}

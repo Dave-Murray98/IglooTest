@@ -45,6 +45,7 @@ MonoBehaviour:
     - c1a141cca479c7d499c36c8a376101bf
     - 9e02542a7c0dc284baefa27cbd0af22b
     - c28568339664c3147bf94df48fbc0e8d
+    - ecd27e6fb17a60e4fa307e932db3022c
     values:
     - goDatasByGlobalId:
         keys:
@@ -371,7 +372,7 @@ MonoBehaviour:
         - iColor: 7
           icon: AudioSource Icon
       goDatasByInstanceId:
-        keys: 42510100864a01009a470100ce4b0100764c0100c05b01006c4c0100f2580100f25d010036550100
+        keys: 74510100a64a0100b6470100ee4b01009e4c0100005c0100944c01002a5901003a5e01006c550100fee5020030df020040dc020078e0020028e102008af002001ee10200b4ed0200c4f20200f6e90200
         values:
         - iColor: 2
           icon: Terrain Icon
@@ -393,3 +394,54 @@ MonoBehaviour:
           icon: Settings Icon
         - iColor: 7
           icon: AudioSource Icon
+        - iColor: 2
+          icon: Terrain Icon
+        - iColor: 2
+          icon: Terrain Icon
+        - iColor: 6
+          icon: DirectionalLight Icon
+        - iColor: 9
+          icon: AudioSource Icon
+        - iColor: 6
+          icon: ParticleSystem Icon
+        - iColor: 0
+          icon: AudioSource Icon
+        - iColor: 2
+          icon: ReflectionProbe Icon
+        - iColor: 8
+          icon: AvatarMask On Icon
+        - iColor: 1
+          icon: Settings Icon
+        - iColor: 7
+          icon: AudioSource Icon
+    - goDatasByGlobalId:
+        keys:
+        - GlobalObjectId_V1-2-ecd27e6fb17a60e4fa307e932db3022c-3864595734835785014-0
+        - GlobalObjectId_V1-2-ecd27e6fb17a60e4fa307e932db3022c-1678455096-0
+        - GlobalObjectId_V1-2-ecd27e6fb17a60e4fa307e932db3022c-451259708-0
+        - GlobalObjectId_V1-2-ecd27e6fb17a60e4fa307e932db3022c-887935334-0
+        - GlobalObjectId_V1-2-ecd27e6fb17a60e4fa307e932db3022c-5892017512646166331-0
+        values:
+        - iColor: 4
+          icon: AvatarMask On Icon
+        - iColor: 8
+          icon: AvatarMask On Icon
+        - iColor: 2
+          icon: Terrain Icon
+        - iColor: 6
+          icon: Canvas Icon
+        - iColor: 0
+          icon: 
+      goDatasByInstanceId:
+        keys: 44fa02005ef7020080f502001674fcff08fb0200
+        values:
+        - iColor: 4
+          icon: AvatarMask On Icon
+        - iColor: 8
+          icon: AvatarMask On Icon
+        - iColor: 2
+          icon: Terrain Icon
+        - iColor: 6
+          icon: Canvas Icon
+        - iColor: 0
+          icon: 

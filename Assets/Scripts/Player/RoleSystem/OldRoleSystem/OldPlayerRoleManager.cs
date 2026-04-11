@@ -200,8 +200,24 @@ public class OldPlayerRoleManager : MonoBehaviour
         pilotHandler = handler;
         playerInput.SwitchCurrentActionMap("Pilot");
 
+        SetupUIActionMap(playerInput);
+
         DebugLog($"Player {playerInput.playerIndex} assigned as PILOT");
         OnPilotAssigned?.Invoke(handler);
+    }
+
+    private void SetupUIActionMap(PlayerInput playerInput)
+    {
+        var uiMap = playerInput.actions.FindActionMap("UI");
+        if (uiMap != null)
+        {
+            uiMap.Enable();
+            DebugLog($"Enabled UI action map for Player {playerInput.playerIndex}");
+        }
+        else
+        {
+            Debug.LogWarning($"[OldPlayerRoleManager] No UI action map found for Player {playerInput.playerIndex}");
+        }
     }
 
     /// <summary>
@@ -217,6 +233,8 @@ public class OldPlayerRoleManager : MonoBehaviour
 
         engineerHandler = handler;
         playerInput.SwitchCurrentActionMap("Engineer");
+
+        SetupUIActionMap(playerInput);
 
         DebugLog($"Player {playerInput.playerIndex} assigned as ENGINEER");
         OnEngineerAssigned?.Invoke(handler);
@@ -237,6 +255,8 @@ public class OldPlayerRoleManager : MonoBehaviour
         handler.SetGunnerNumber(gunnerNumber);
         gunnerHandlers.Add(handler);
         playerInput.SwitchCurrentActionMap("Gunner");
+
+        SetupUIActionMap(playerInput);
 
         DebugLog($"Player {playerInput.playerIndex} assigned as GUNNER {gunnerNumber + 1}");
         OnGunnerAssigned?.Invoke(handler, gunnerNumber);

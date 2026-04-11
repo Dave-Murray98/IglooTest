@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Test Scenes/Level Layouts/Greybox Level.unity
+    guid: ecd27e6fb17a60e4fa307e932db3022c
+  - enabled: 1
     path: Assets/Scenes/Test Scenes/Level Layouts/MainMenuScene.unity
     guid: 55e9eea4414aa8a438efc9b4eb606d20
   - enabled: 1

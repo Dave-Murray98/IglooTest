@@ -463,7 +463,7 @@ Transform:
   m_GameObject: {fileID: 70930810}
   serializedVersion: 2
   m_LocalRotation: {x: 0.0000000037252899, y: -0, z: -0.0000000074505797, w: 1}
-  m_LocalPosition: {x: 405.7871, y: 4.3494053, z: 86.95248}
+  m_LocalPosition: {x: 404.97827, y: 12.41726, z: 84.55844}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4967,7 +4967,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 24.24871, y: 24.24871, z: 24.24871}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 385304240}
@@ -231710,7 +231710,7 @@ MonoBehaviour:
   createOnAwake: 1
   dontDestroyOnLoad: 0
   customCameraPrefab: {fileID: 7200544413838864335, guid: 7bcbe4934a294764ca84ee34e6634de1, type: 3}
-  followObject: {fileID: 0}
+  followObject: {fileID: 2430935914603228001}
   parentObject: {fileID: 0}
   spoutResources: {fileID: 11400000, guid: f449ebbe2051c2e4d993eaa773a410de, type: 2}
   ndiResources: {fileID: 11400000, guid: 69304b86950074db7ba8caba75214004, type: 2}

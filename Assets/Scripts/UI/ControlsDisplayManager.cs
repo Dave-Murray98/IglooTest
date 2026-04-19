@@ -7,30 +7,34 @@ using UnityEngine.InputSystem;
 /// is currently holding the ShowControls button (Options / Menu button).
 ///
 /// Setup:
-///   - Attach this script to any persistent GameObject in the scene.
-///   - Assign the controlsCanvas field to your in-world Canvas GameObject.
-///   - Add "ShowControls" to the "UI" action map in your Input Actions asset,
-///     bound to the Options/Menu button on gamepad.
-///   - Make sure every player's PlayerInput has the "UI" action map available.
+///   - Attach this script to any GameObject in the scene.
+///   - Assign the controlsUIObject field to your Canvas GameObject.
+///   - Add a "ShowControls" action to the "Pilot" action map in your Input Actions
+///     asset, bound to the Options/Menu button on gamepad.
 ///
 /// How it works:
-///   Each frame it checks every connected PlayerInput for whether their
-///   ShowControls action is held. If any one of them is held, the canvas
-///   is shown. The moment all players release it, the canvas is hidden.
+///   When any player presses ShowControls, a counter increments and the canvas
+///   is shown. When they release it, the counter decrements. The canvas hides
+///   when the counter reaches zero (i.e. all players have released the button).
+///   This is more efficient than polling every frame.
 /// </summary>
 public class ControlsDisplayManager : MonoBehaviour
 {
     [Header("References")]
-    [Tooltip("The in-world Canvas GameObject to show/hide.")]
+    [Tooltip("The Canvas GameObject to show/hide.")]
     [SerializeField] private GameObject controlsUIObject;
 
     [Header("Debug")]
     [SerializeField] private bool enableDebugLogs = false;
 
-    // Tracks the ShowControls action for each connected PlayerInput.
-    // Key = PlayerInput, Value = the resolved ShowControls InputAction.
+    // Each registered player maps to their ShowControls InputAction,
+    // so we can unsubscribe cleanly when they leave.
     private readonly Dictionary<PlayerInput, InputAction> showControlsActions
         = new Dictionary<PlayerInput, InputAction>();
+
+    // Tracks how many players are currently holding ShowControls.
+    // Canvas is visible whenever this is greater than zero.
+    private int holdCount = 0;
 
     // -------------------------------------------------------------------------
     // Unity lifecycle
@@ -38,7 +42,6 @@ public class ControlsDisplayManager : MonoBehaviour
 
     private void Awake()
     {
-        // Start hidden
         if (controlsUIObject != null)
             controlsUIObject.SetActive(false);
     }
@@ -63,81 +66,109 @@ public class ControlsDisplayManager : MonoBehaviour
 
     private void OnDisable()
     {
+        // Unsubscribe from all actions before clearing the dictionary
+        foreach (var kvp in showControlsActions)
+        {
+            kvp.Value.performed -= OnShowControlsPressed;
+            kvp.Value.canceled -= OnShowControlsReleased;
+        }
+
+        showControlsActions.Clear();
+        holdCount = 0;
+
+        // Ensure canvas is hidden if this script is disabled mid-hold
+        if (controlsUIObject != null)
+            controlsUIObject.SetActive(false);
+
         var inputManager = FindFirstObjectByType<PlayerInputManager>();
         if (inputManager != null)
         {
             inputManager.onPlayerJoined -= HandlePlayerJoined;
             inputManager.onPlayerLeft -= HandlePlayerLeft;
         }
-
-        showControlsActions.Clear();
     }
 
-    private void Update()
-    {
-        if (controlsUIObject == null) return;
-
-        controlsUIObject.SetActive(IsAnyPlayerHoldingShowControls());
-    }
+    // No Update() needed — canvas state is driven entirely by input events.
 
     // -------------------------------------------------------------------------
     // Player join / leave
     // -------------------------------------------------------------------------
 
-    private void HandlePlayerJoined(PlayerInput playerInput)
-    {
-        RegisterPlayer(playerInput);
-    }
+    private void HandlePlayerJoined(PlayerInput playerInput) => RegisterPlayer(playerInput);
 
     private void HandlePlayerLeft(PlayerInput playerInput)
     {
+        if (!showControlsActions.TryGetValue(playerInput, out var action)) return;
+
+        // If this player was holding the button when they left, decrement the count
+        if (action.IsPressed())
+            DecrementHoldCount();
+
+        action.performed -= OnShowControlsPressed;
+        action.canceled -= OnShowControlsReleased;
         showControlsActions.Remove(playerInput);
+
         DebugLog($"Player {playerInput.playerIndex} unregistered.");
     }
 
     /// <summary>
-    /// Finds the ShowControls action in the player's UI action map and caches it.
+    /// Finds the ShowControls action in the player's Pilot action map and subscribes to it.
     /// </summary>
     private void RegisterPlayer(PlayerInput playerInput)
     {
         if (showControlsActions.ContainsKey(playerInput)) return;
 
-        InputActionMap uiMap = playerInput.actions.FindActionMap("UI");
-        if (uiMap == null)
+        // ShowControls lives in the Pilot map — the single map all players use
+        var pilotMap = playerInput.actions.FindActionMap("Pilot");
+        if (pilotMap == null)
         {
             Debug.LogWarning($"[ControlsDisplayManager] Player {playerInput.playerIndex} " +
-                             $"has no 'UI' action map.");
+                             $"has no 'Pilot' action map.");
             return;
         }
 
-        InputAction action = uiMap.FindAction("ShowControls");
+        var action = pilotMap.FindAction("ShowControls");
         if (action == null)
         {
             Debug.LogWarning($"[ControlsDisplayManager] No 'ShowControls' action found " +
-                             $"in the UI map for Player {playerInput.playerIndex}.");
+                             $"in the Pilot map for Player {playerInput.playerIndex}.");
             return;
         }
 
+        action.performed += OnShowControlsPressed;
+        action.canceled += OnShowControlsReleased;
         showControlsActions[playerInput] = action;
+
         DebugLog($"Player {playerInput.playerIndex} registered.");
     }
 
     // -------------------------------------------------------------------------
-    // Core logic
+    // Input callbacks
     // -------------------------------------------------------------------------
 
-    /// <summary>
-    /// Returns true if at least one registered player is currently holding
-    /// the ShowControls button.
-    /// </summary>
-    private bool IsAnyPlayerHoldingShowControls()
+    private void OnShowControlsPressed(InputAction.CallbackContext ctx)
     {
-        foreach (KeyValuePair<PlayerInput, InputAction> kvp in showControlsActions)
-        {
-            if (kvp.Value.IsPressed())
-                return true;
-        }
-        return false;
+        holdCount++;
+        UpdateCanvasVisibility();
+        DebugLog($"ShowControls pressed — hold count: {holdCount}");
+    }
+
+    private void OnShowControlsReleased(InputAction.CallbackContext ctx)
+    {
+        DecrementHoldCount();
+        DebugLog($"ShowControls released — hold count: {holdCount}");
+    }
+
+    private void DecrementHoldCount()
+    {
+        holdCount = Mathf.Max(0, holdCount - 1);
+        UpdateCanvasVisibility();
+    }
+
+    private void UpdateCanvasVisibility()
+    {
+        if (controlsUIObject != null)
+            controlsUIObject.SetActive(holdCount > 0);
     }
 
     // -------------------------------------------------------------------------

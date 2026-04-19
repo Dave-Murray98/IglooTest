@@ -154,6 +154,15 @@ public partial class @Player: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ShowControls"",
+                    ""type"": ""Button"",
+                    ""id"": ""c19020ec-bfb7-4db9-a138-2718b31c25cf"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -244,6 +253,28 @@ public partial class @Player: IInputActionCollection2, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f87f277f-b7e2-4e48-80d6-da354258ca68"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowControls"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""788e51e1-d2dd-47f2-b4d7-4abe51aef8a6"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowControls"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
@@ -693,6 +724,7 @@ public partial class @Player: IInputActionCollection2, IDisposable
         m_Pilot_Repair = m_Pilot.FindAction("Repair", throwIfNotFound: true);
         m_Pilot_GunAim = m_Pilot.FindAction("GunAim", throwIfNotFound: true);
         m_Pilot_Shoot = m_Pilot.FindAction("Shoot", throwIfNotFound: true);
+        m_Pilot_ShowControls = m_Pilot.FindAction("ShowControls", throwIfNotFound: true);
         // Gunner
         m_Gunner = asset.FindActionMap("Gunner", throwIfNotFound: true);
         m_Gunner_Look = m_Gunner.FindAction("Look", throwIfNotFound: true);
@@ -796,6 +828,7 @@ public partial class @Player: IInputActionCollection2, IDisposable
     private readonly InputAction m_Pilot_Repair;
     private readonly InputAction m_Pilot_GunAim;
     private readonly InputAction m_Pilot_Shoot;
+    private readonly InputAction m_Pilot_ShowControls;
     /// <summary>
     /// Provides access to input actions defined in input action map "Pilot".
     /// </summary>
@@ -835,6 +868,10 @@ public partial class @Player: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Pilot/Shoot".
         /// </summary>
         public InputAction @Shoot => m_Wrapper.m_Pilot_Shoot;
+        /// <summary>
+        /// Provides access to the underlying input action "Pilot/ShowControls".
+        /// </summary>
+        public InputAction @ShowControls => m_Wrapper.m_Pilot_ShowControls;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -882,6 +919,9 @@ public partial class @Player: IInputActionCollection2, IDisposable
             @Shoot.started += instance.OnShoot;
             @Shoot.performed += instance.OnShoot;
             @Shoot.canceled += instance.OnShoot;
+            @ShowControls.started += instance.OnShowControls;
+            @ShowControls.performed += instance.OnShowControls;
+            @ShowControls.canceled += instance.OnShowControls;
         }
 
         /// <summary>
@@ -914,6 +954,9 @@ public partial class @Player: IInputActionCollection2, IDisposable
             @Shoot.started -= instance.OnShoot;
             @Shoot.performed -= instance.OnShoot;
             @Shoot.canceled -= instance.OnShoot;
+            @ShowControls.started -= instance.OnShowControls;
+            @ShowControls.performed -= instance.OnShowControls;
+            @ShowControls.canceled -= instance.OnShowControls;
         }
 
         /// <summary>
@@ -1361,6 +1404,13 @@ public partial class @Player: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnShoot(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ShowControls" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnShowControls(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Gunner" which allows adding and removing callbacks.

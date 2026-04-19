@@ -463,7 +463,7 @@ Transform:
   m_GameObject: {fileID: 70930810}
   serializedVersion: 2
   m_LocalRotation: {x: 0.0000000037252899, y: -0, z: -0.0000000074505797, w: 1}
-  m_LocalPosition: {x: 404.97827, y: 12.41726, z: 84.55844}
+  m_LocalPosition: {x: 405.22, y: 4.3, z: 86.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4967,7 +4967,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 24.24871, y: 24.24871, z: 24.24871}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 385304240}
@@ -176546,7 +176546,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1452826660}
-  - component: {fileID: 1452826659}
+  - component: {fileID: 1452826661}
   m_Layer: 0
   m_Name: Controls Display Manager
   m_TagString: Untagged
@@ -176554,20 +176554,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1452826659
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1452826658}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20085a19efed8174c9040d176ba3265d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controlsUIObject: {fileID: 887935334}
-  enableDebugLogs: 1
 --- !u!4 &1452826660
 Transform:
   m_ObjectHideFlags: 0
@@ -176583,6 +176569,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1452826661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452826658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5f35f10c4f11b42a9d3420d7b81bb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controlsUIObject: {fileID: 887935334}
+  enableDebugLogs: 0
 --- !u!1 &1462487734
 GameObject:
   m_ObjectHideFlags: 0

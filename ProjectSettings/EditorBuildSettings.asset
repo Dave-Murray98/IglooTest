@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Test Scenes/Level Layouts/Greybox Level.unity
     guid: ecd27e6fb17a60e4fa307e932db3022c
   - enabled: 1

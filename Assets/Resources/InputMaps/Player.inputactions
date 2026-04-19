@@ -77,6 +77,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "IdentifyRole",
+                    "type": "Button",
+                    "id": "9c755e83-ae17-4c5c-90e8-966afcdd782f",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -297,6 +306,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "EngineerSelect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9634d272-f7b4-48ec-9194-e1669fbed33f",
+                    "path": "<Keyboard>/v",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "IdentifyRole",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bd2eb4e3-f6c9-4a8e-93eb-59ae8d7486c1",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "IdentifyRole",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

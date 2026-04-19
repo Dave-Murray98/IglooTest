@@ -163,6 +163,15 @@ public partial class @Player: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""IdentifyRole"",
+                    ""type"": ""Button"",
+                    ""id"": ""9c755e83-ae17-4c5c-90e8-966afcdd782f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -383,6 +392,28 @@ public partial class @Player: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""EngineerSelect"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9634d272-f7b4-48ec-9194-e1669fbed33f"",
+                    ""path"": ""<Keyboard>/v"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""IdentifyRole"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bd2eb4e3-f6c9-4a8e-93eb-59ae8d7486c1"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""IdentifyRole"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -725,6 +756,7 @@ public partial class @Player: IInputActionCollection2, IDisposable
         m_Pilot_GunAim = m_Pilot.FindAction("GunAim", throwIfNotFound: true);
         m_Pilot_Shoot = m_Pilot.FindAction("Shoot", throwIfNotFound: true);
         m_Pilot_ShowControls = m_Pilot.FindAction("ShowControls", throwIfNotFound: true);
+        m_Pilot_IdentifyRole = m_Pilot.FindAction("IdentifyRole", throwIfNotFound: true);
         // Gunner
         m_Gunner = asset.FindActionMap("Gunner", throwIfNotFound: true);
         m_Gunner_Look = m_Gunner.FindAction("Look", throwIfNotFound: true);
@@ -829,6 +861,7 @@ public partial class @Player: IInputActionCollection2, IDisposable
     private readonly InputAction m_Pilot_GunAim;
     private readonly InputAction m_Pilot_Shoot;
     private readonly InputAction m_Pilot_ShowControls;
+    private readonly InputAction m_Pilot_IdentifyRole;
     /// <summary>
     /// Provides access to input actions defined in input action map "Pilot".
     /// </summary>
@@ -872,6 +905,10 @@ public partial class @Player: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Pilot/ShowControls".
         /// </summary>
         public InputAction @ShowControls => m_Wrapper.m_Pilot_ShowControls;
+        /// <summary>
+        /// Provides access to the underlying input action "Pilot/IdentifyRole".
+        /// </summary>
+        public InputAction @IdentifyRole => m_Wrapper.m_Pilot_IdentifyRole;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -922,6 +959,9 @@ public partial class @Player: IInputActionCollection2, IDisposable
             @ShowControls.started += instance.OnShowControls;
             @ShowControls.performed += instance.OnShowControls;
             @ShowControls.canceled += instance.OnShowControls;
+            @IdentifyRole.started += instance.OnIdentifyRole;
+            @IdentifyRole.performed += instance.OnIdentifyRole;
+            @IdentifyRole.canceled += instance.OnIdentifyRole;
         }
 
         /// <summary>
@@ -957,6 +997,9 @@ public partial class @Player: IInputActionCollection2, IDisposable
             @ShowControls.started -= instance.OnShowControls;
             @ShowControls.performed -= instance.OnShowControls;
             @ShowControls.canceled -= instance.OnShowControls;
+            @IdentifyRole.started -= instance.OnIdentifyRole;
+            @IdentifyRole.performed -= instance.OnIdentifyRole;
+            @IdentifyRole.canceled -= instance.OnIdentifyRole;
         }
 
         /// <summary>
@@ -1411,6 +1454,13 @@ public partial class @Player: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnShowControls(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "IdentifyRole" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnIdentifyRole(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Gunner" which allows adding and removing callbacks.

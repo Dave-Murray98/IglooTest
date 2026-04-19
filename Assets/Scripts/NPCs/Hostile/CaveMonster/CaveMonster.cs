@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 
 public class CaveMonster : MonoBehaviour
@@ -26,10 +27,13 @@ public class CaveMonster : MonoBehaviour
     [SerializeField] private AudioSource loopingRumbleSource;
     [SerializeField] private AudioClip rumbleClip;
 
+    [Header("Logic")]
+    public bool isBiting = false;
+
     [Header("Debug")]
     [SerializeField] private bool enableDebugLogs = false;
 
-    public SubmarineHealthManager playerHealth;
+    [HideInInspector] public SubmarineHealthManager playerHealth; // this will be set (and cleared) by the hurtbox when the player enters/exits it
 
 
     private void Awake()
@@ -116,21 +120,21 @@ public class CaveMonster : MonoBehaviour
         loopingRumbleSource.Stop();
         StopAllCoroutines();
 
-        if (transform.localPosition.z < -0.3f)
-        {
+        if (!isBiting && transform.localPosition.z < -0.3f)
             StartClimbing();
-        }
     }
 
     private void OpenMouth()
     {
+        DebugLog("Opening mouth!");
         animationHandler.StartOpenMouthLoopAnimation();
         hurtBox.gameObject.SetActive(true);
     }
 
     public void Bite()
     {
-        DebugLog("Biting player!");
+        isBiting = true;
+        DebugLog("Bite triggered! Setting isBiting to true.");
 
         if (biteClip != null)
             AudioManager.Instance.PlaySound(biteClip, Camera.main.transform.position, AudioCategory.EnemySFX, layer: AudioLayer.Exterior);
@@ -144,6 +148,20 @@ public class CaveMonster : MonoBehaviour
     {
         if (playerHealth != null)
             playerHealth.HandleSubmarineDestroyed();
+
+        isBiting = false;
+        DebugLog("Bite finished! Setting isBiting to false.");
+
+        if (transform.localPosition.z < -0.3f)
+        {
+            StartClimbing();
+        }
+    }
+
+    public void OnPlayerExitBiteRange()
+    {
+        isBiting = false;
+        DebugLog("Player exited bite range! Setting isBiting to false.");
     }
 
     private void DebugLog(string message)

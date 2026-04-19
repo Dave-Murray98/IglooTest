@@ -30,6 +30,7 @@ public class CaveMonsterHurtBox : NPCHurtBox
         if (submarineHealthManager != null)
         {
             caveMonster.playerHealth = null;
+            caveMonster.OnPlayerExitBiteRange();
             DebugLog("Player exited Cave Monster attack range!");
         }
     }

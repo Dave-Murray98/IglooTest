@@ -12,11 +12,10 @@ using UnityEngine.InputSystem;
 ///   - Add a "ShowControls" action to the "Pilot" action map in your Input Actions
 ///     asset, bound to the Options/Menu button on gamepad.
 ///
-/// How it works:
-///   When any player presses ShowControls, a counter increments and the canvas
-///   is shown. When they release it, the counter decrements. The canvas hides
-///   when the counter reaches zero (i.e. all players have released the button).
-///   This is more efficient than polling every frame.
+/// Why this uses PlayerRoleManager events instead of PlayerInputManager:
+///   PlayerInputManager is set to "Invoke Unity Events", which means it does NOT
+///   fire the C# onPlayerJoined / onPlayerLeft events. PlayerRoleManager wraps
+///   those joins and exposes its own clean C# events that we can subscribe to safely.
 /// </summary>
 public class ControlsDisplayManager : MonoBehaviour
 {
@@ -27,12 +26,12 @@ public class ControlsDisplayManager : MonoBehaviour
     [Header("Debug")]
     [SerializeField] private bool enableDebugLogs = false;
 
-    // Each registered player maps to their ShowControls InputAction,
-    // so we can unsubscribe cleanly when they leave.
+    // Each registered PlayerInput maps to its ShowControls action
+    // so we can unsubscribe cleanly when that player leaves.
     private readonly Dictionary<PlayerInput, InputAction> showControlsActions
         = new Dictionary<PlayerInput, InputAction>();
 
-    // Tracks how many players are currently holding ShowControls.
+    // How many players are currently holding ShowControls.
     // Canvas is visible whenever this is greater than zero.
     private int holdCount = 0;
 
@@ -48,25 +47,24 @@ public class ControlsDisplayManager : MonoBehaviour
 
     private void OnEnable()
     {
-        var inputManager = FindFirstObjectByType<PlayerInputManager>();
-        if (inputManager != null)
-        {
-            inputManager.onPlayerJoined += HandlePlayerJoined;
-            inputManager.onPlayerLeft += HandlePlayerLeft;
-        }
-        else
-        {
-            Debug.LogWarning("[ControlsDisplayManager] No PlayerInputManager found in scene.");
-        }
+        // Subscribe to PlayerRoleManager's C# events — these fire regardless
+        // of which notification behaviour PlayerInputManager is using.
+        PlayerRoleManager.OnPlayerJoinedEvent += HandlePlayerJoined;
+        PlayerRoleManager.OnPlayerLeftEvent += HandlePlayerLeft;
 
-        // Register any players that already exist (e.g. if this script enables late)
+        // Register any players already connected (e.g. if this script enables late)
         foreach (var pi in FindObjectsByType<PlayerInput>(FindObjectsSortMode.None))
             RegisterPlayer(pi);
+
+        DebugLog("Subscribed to PlayerRoleManager events.");
     }
 
     private void OnDisable()
     {
-        // Unsubscribe from all actions before clearing the dictionary
+        PlayerRoleManager.OnPlayerJoinedEvent -= HandlePlayerJoined;
+        PlayerRoleManager.OnPlayerLeftEvent -= HandlePlayerLeft;
+
+        // Unsubscribe from all input actions before clearing
         foreach (var kvp in showControlsActions)
         {
             kvp.Value.performed -= OnShowControlsPressed;
@@ -76,39 +74,57 @@ public class ControlsDisplayManager : MonoBehaviour
         showControlsActions.Clear();
         holdCount = 0;
 
-        // Ensure canvas is hidden if this script is disabled mid-hold
         if (controlsUIObject != null)
             controlsUIObject.SetActive(false);
-
-        var inputManager = FindFirstObjectByType<PlayerInputManager>();
-        if (inputManager != null)
-        {
-            inputManager.onPlayerJoined -= HandlePlayerJoined;
-            inputManager.onPlayerLeft -= HandlePlayerLeft;
-        }
     }
-
-    // No Update() needed — canvas state is driven entirely by input events.
 
     // -------------------------------------------------------------------------
     // Player join / leave
+    // PlayerRoleManager.OnPlayerJoined passes the PlayerInput's playerIndex (int),
+    // so we find the matching PlayerInput ourselves.
     // -------------------------------------------------------------------------
 
-    private void HandlePlayerJoined(PlayerInput playerInput) => RegisterPlayer(playerInput);
-
-    private void HandlePlayerLeft(PlayerInput playerInput)
+    private void HandlePlayerJoined(int playerIndex)
     {
-        if (!showControlsActions.TryGetValue(playerInput, out var action)) return;
+        DebugLog($"Player {playerIndex} joined — searching for PlayerInput...");
 
-        // If this player was holding the button when they left, decrement the count
-        if (action.IsPressed())
+        // Find the PlayerInput that matches this index
+        foreach (var pi in FindObjectsByType<PlayerInput>(FindObjectsSortMode.None))
+        {
+            if (pi.playerIndex == playerIndex)
+            {
+                RegisterPlayer(pi);
+                return;
+            }
+        }
+
+        Debug.LogWarning($"[ControlsDisplayManager] Could not find PlayerInput for index {playerIndex}.");
+    }
+
+    private void HandlePlayerLeft(int playerIndex)
+    {
+        // Find the registered entry that matches this player index
+        PlayerInput leaving = null;
+        foreach (var kvp in showControlsActions)
+        {
+            if (kvp.Key.playerIndex == playerIndex)
+            {
+                leaving = kvp.Key;
+                break;
+            }
+        }
+
+        if (leaving == null) return;
+
+        // If they were holding the button when they left, correct the count
+        if (showControlsActions[leaving].IsPressed())
             DecrementHoldCount();
 
-        action.performed -= OnShowControlsPressed;
-        action.canceled -= OnShowControlsReleased;
-        showControlsActions.Remove(playerInput);
+        showControlsActions[leaving].performed -= OnShowControlsPressed;
+        showControlsActions[leaving].canceled -= OnShowControlsReleased;
+        showControlsActions.Remove(leaving);
 
-        DebugLog($"Player {playerInput.playerIndex} unregistered.");
+        DebugLog($"Player {playerIndex} unregistered.");
     }
 
     /// <summary>
@@ -118,7 +134,6 @@ public class ControlsDisplayManager : MonoBehaviour
     {
         if (showControlsActions.ContainsKey(playerInput)) return;
 
-        // ShowControls lives in the Pilot map — the single map all players use
         var pilotMap = playerInput.actions.FindActionMap("Pilot");
         if (pilotMap == null)
         {
@@ -139,7 +154,7 @@ public class ControlsDisplayManager : MonoBehaviour
         action.canceled += OnShowControlsReleased;
         showControlsActions[playerInput] = action;
 
-        DebugLog($"Player {playerInput.playerIndex} registered.");
+        DebugLog($"Player {playerInput.playerIndex} registered successfully.");
     }
 
     // -------------------------------------------------------------------------

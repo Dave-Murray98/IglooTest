@@ -3745,7 +3745,7 @@ MonoBehaviour:
   combinedInertiaTensor: {x: 0, y: 0, z: 0}
   combinedMass: 5150
   dimensions: {x: 1.8044281, y: 6.8196955, z: 63.756035}
-  inertiaTensor: {x: 32834.594, y: 29932.883, z: 15902.713}
+  inertiaTensor: {x: 32834.586, y: 29932.883, z: 15902.705}
   useDefaultCenterOfMass: 0
   useDefaultInertia: 1
   useDefaultMass: 0
@@ -5502,7 +5502,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.70710677, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -1.0999953, y: -0.13000011, z: 0.10000515}
-  m_LocalScale: {x: 1.8, y: 1.2, z: 0.1}
+  m_LocalScale: {x: 1.1, y: 0.8, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4029106439987443610}

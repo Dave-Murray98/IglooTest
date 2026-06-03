@@ -46,6 +46,7 @@ MonoBehaviour:
     - 9e02542a7c0dc284baefa27cbd0af22b
     - c28568339664c3147bf94df48fbc0e8d
     - ecd27e6fb17a60e4fa307e932db3022c
+    - e3e638e14fee9d14089a3c1b19b0190e
     values:
     - goDatasByGlobalId:
         keys:
@@ -372,48 +373,8 @@ MonoBehaviour:
         - iColor: 7
           icon: AudioSource Icon
       goDatasByInstanceId:
-        keys: 74510100a64a0100b6470100ee4b01009e4c0100005c0100944c01002a5901003a5e01006c550100fee5020030df020040dc020078e0020028e102008af002001ee10200b4ed0200c4f20200f6e90200
-        values:
-        - iColor: 2
-          icon: Terrain Icon
-        - iColor: 2
-          icon: Terrain Icon
-        - iColor: 6
-          icon: DirectionalLight Icon
-        - iColor: 9
-          icon: AudioSource Icon
-        - iColor: 6
-          icon: ParticleSystem Icon
-        - iColor: 0
-          icon: AudioSource Icon
-        - iColor: 2
-          icon: ReflectionProbe Icon
-        - iColor: 8
-          icon: AvatarMask On Icon
-        - iColor: 1
-          icon: Settings Icon
-        - iColor: 7
-          icon: AudioSource Icon
-        - iColor: 2
-          icon: Terrain Icon
-        - iColor: 2
-          icon: Terrain Icon
-        - iColor: 6
-          icon: DirectionalLight Icon
-        - iColor: 9
-          icon: AudioSource Icon
-        - iColor: 6
-          icon: ParticleSystem Icon
-        - iColor: 0
-          icon: AudioSource Icon
-        - iColor: 2
-          icon: ReflectionProbe Icon
-        - iColor: 8
-          icon: AvatarMask On Icon
-        - iColor: 1
-          icon: Settings Icon
-        - iColor: 7
-          icon: AudioSource Icon
+        keys: 
+        values: []
     - goDatasByGlobalId:
         keys:
         - GlobalObjectId_V1-2-ecd27e6fb17a60e4fa307e932db3022c-3864595734835785014-0
@@ -433,15 +394,26 @@ MonoBehaviour:
         - iColor: 0
           icon: 
       goDatasByInstanceId:
-        keys: 44fa02005ef7020080f502001674fcff08fb0200
+        keys: 
+        values: []
+    - goDatasByGlobalId:
+        keys:
+        - GlobalObjectId_V1-2-e3e638e14fee9d14089a3c1b19b0190e-840746463-0
+        - GlobalObjectId_V1-2-e3e638e14fee9d14089a3c1b19b0190e-5805240412499227048-0
+        - GlobalObjectId_V1-2-e3e638e14fee9d14089a3c1b19b0190e-1788790818-0
         values:
         - iColor: 4
-          icon: AvatarMask On Icon
+          icon: Camera Icon
         - iColor: 8
-          icon: AvatarMask On Icon
-        - iColor: 2
-          icon: Terrain Icon
-        - iColor: 6
-          icon: Canvas Icon
-        - iColor: 0
           icon: 
+        - iColor: 0
+          icon: AvatarMask On Icon
+      goDatasByInstanceId:
+        keys: 424a0100f8510100f288ffff
+        values:
+        - iColor: 4
+          icon: Camera Icon
+        - iColor: 8
+          icon: 
+        - iColor: 0
+          icon: AvatarMask On Icon

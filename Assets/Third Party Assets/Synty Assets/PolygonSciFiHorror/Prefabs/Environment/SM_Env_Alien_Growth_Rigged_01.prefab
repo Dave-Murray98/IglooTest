@@ -8,55 +8,68 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: da403e2dca1aa994ba689b97af4243f5, type: 3}
+    - target: {fileID: -8679921383154817045, guid: da403e2dca1aa994ba689b97af4243f5,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: da403e2dca1aa994ba689b97af4243f5, type: 3}
+    - target: {fileID: -8679921383154817045, guid: da403e2dca1aa994ba689b97af4243f5,
+        type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: da403e2dca1aa994ba689b97af4243f5, type: 3}
+    - target: {fileID: -8679921383154817045, guid: da403e2dca1aa994ba689b97af4243f5,
+        type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: da403e2dca1aa994ba689b97af4243f5, type: 3}
+    - target: {fileID: -8679921383154817045, guid: da403e2dca1aa994ba689b97af4243f5,
+        type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: da403e2dca1aa994ba689b97af4243f5, type: 3}
+    - target: {fileID: -8679921383154817045, guid: da403e2dca1aa994ba689b97af4243f5,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: da403e2dca1aa994ba689b97af4243f5, type: 3}
+    - target: {fileID: -8679921383154817045, guid: da403e2dca1aa994ba689b97af4243f5,
+        type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: da403e2dca1aa994ba689b97af4243f5, type: 3}
+    - target: {fileID: -8679921383154817045, guid: da403e2dca1aa994ba689b97af4243f5,
+        type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: da403e2dca1aa994ba689b97af4243f5, type: 3}
+    - target: {fileID: -8679921383154817045, guid: da403e2dca1aa994ba689b97af4243f5,
+        type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: da403e2dca1aa994ba689b97af4243f5, type: 3}
+    - target: {fileID: -8679921383154817045, guid: da403e2dca1aa994ba689b97af4243f5,
+        type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: da403e2dca1aa994ba689b97af4243f5, type: 3}
+    - target: {fileID: -8679921383154817045, guid: da403e2dca1aa994ba689b97af4243f5,
+        type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -5560071245319100688, guid: da403e2dca1aa994ba689b97af4243f5, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
+    - target: {fileID: -5560071245319100688, guid: da403e2dca1aa994ba689b97af4243f5,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 9d51e34a104737b4ba564e223f53b861, type: 2}
-    - target: {fileID: -1508766869433220405, guid: da403e2dca1aa994ba689b97af4243f5, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
+    - target: {fileID: -1508766869433220405, guid: da403e2dca1aa994ba689b97af4243f5,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 9d51e34a104737b4ba564e223f53b861, type: 2}
-    - target: {fileID: 919132149155446097, guid: da403e2dca1aa994ba689b97af4243f5, type: 3}
+    - target: {fileID: 919132149155446097, guid: da403e2dca1aa994ba689b97af4243f5,
+        type: 3}
       propertyPath: m_Name
       value: SM_Env_Alien_Growth_Rigged_01
       objectReference: {fileID: 0}

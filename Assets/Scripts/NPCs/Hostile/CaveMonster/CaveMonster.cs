@@ -120,7 +120,7 @@ public class CaveMonster : MonoBehaviour
         loopingRumbleSource.Stop();
         StopAllCoroutines();
 
-        if (!isBiting && transform.localPosition.z < -0.3f)
+        if (transform.localPosition.z < -0.3f)
             StartClimbing();
     }
 
@@ -141,7 +141,7 @@ public class CaveMonster : MonoBehaviour
 
         animationHandler.StartBiteAnimation();
 
-        StopClimbing();
+        // StopClimbing();
     }
 
     public void OnBiteFinished()
@@ -155,6 +155,11 @@ public class CaveMonster : MonoBehaviour
         if (transform.localPosition.z < -0.3f)
         {
             StartClimbing();
+            DebugLog("Restarting climb!");
+        }
+        else
+        {
+            DebugLog("Not restarting climb as current z position is greater or equal to -0.3!");
         }
     }
 

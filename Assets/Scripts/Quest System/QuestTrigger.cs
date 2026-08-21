@@ -32,6 +32,15 @@ public class QuestTrigger : EventTrigger
         }
     }
 
+    [Button]
+    public void ForceCompleteQuest()
+    {
+        QuestManager.Instance.CompleteQuest(questData.questID);
+        col.enabled = false;
+        SetVisuals(true);
+        PlayHandlerSpeechIfAssigned();
+    }
+
     protected override void DebugLog(string message)
     {
         if (enableDebugLogs)
